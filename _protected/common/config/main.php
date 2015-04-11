@@ -1,6 +1,6 @@
 <?php
 return [
-    'name' => 'Gallery',
+    'name' => 'Norstone',
     //'language' => 'en',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [

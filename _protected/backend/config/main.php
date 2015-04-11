@@ -1,9 +1,7 @@
 <?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php')
 );
 
 return [
@@ -17,6 +15,10 @@ return [
         'session' => [
             'name' => 'PHPBACKSESSID',
             'savePath' => __DIR__ . '/../../../admin/assets',
+        ],
+        'request' => [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'IEJu99SQ69kubOW4kE_P_F9bg6glo9rF',
         ],
         'view' => [
             'theme' => [
