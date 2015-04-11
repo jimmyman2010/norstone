@@ -34,7 +34,7 @@
     "extra": {
         "asset-installer-paths": {
             "npm-asset-library": "_protected/vendor/npm",
-            "bower-asset-library": "_protected/vendor/bower"
+            "bower-asset-library": "_protected/vendor/bower-asset"
         }
     }
 }
