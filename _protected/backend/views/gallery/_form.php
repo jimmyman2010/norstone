@@ -67,15 +67,10 @@ UploadAsset::register($this);
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">
                 <div class="large-12 columns">
-                    <div id="filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
-                    <br />
-
+                    <div id="filelist" class="view-thumbnail row">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
                     <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
-                        <a id="pickfiles" href="javascript:;" class="tiny button radius secondary">Select files</a>
-                        <a id="uploadfiles" href="javascript:;" class="tiny button radius">Upload files</a>
+                        <a id="pickfiles" href="javascript:;" class="tiny button radius">Select files</a>
                     </div>
-
-                    <br />
                     <pre id="console"></pre>
                 </div>
             </section>

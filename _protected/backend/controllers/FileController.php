@@ -3,7 +3,6 @@
 namespace backend\controllers;
 
 use common\helpers\UtilHelper;
-use Imagine\Image\Box;
 use Yii;
 use common\models\File;
 use common\models\FileSearch;
@@ -68,11 +67,13 @@ class FileController extends Controller
     /**
      * Creates a new File model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @param string $mediaType
+     *
      * @return mixed
      */
-    public function actionUpload($mediaType)
+    public function actionUploadimage()
     {
+        $mediaType = File::MEDIA_IMAGE;
+
         // Chunking might be enabled
         $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
         $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0;
@@ -87,28 +88,48 @@ class FileController extends Controller
             $model->directory = $object->fileDir;
             $model->file_name = $object->fileName;
             $model->file_type = $_FILES['file']['type'];
-            $model->file_size = $_FILES['file']['size'];
             $model->file_ext = $object->fileExt;
-            if ($mediaType === $model::MEDIA_IMAGE) {
-                $object = UtilHelper::generateImage($object->filePath, $object->filePath);
-                if($object)
-                {
-                    $model->dimension = $object->getWidth() . 'x' . $object->getHeight();
-                    $model->width = $object->getWidth();
-                    $model->height = $object->getHeight();
-                } else {
-                    die('{"jsonrpc" : "2.0", "error" : {"code": 104, "message": "Failed to resize image."}, "id" : 0}');
-                }
-            }
+
+            $size = getimagesize($object->filePath);
+            $model->dimension = $size[0] . 'x' . $size[1];
+            $model->width = $size[0];
+            $model->height = $size[1];
+            $model->deleted = 1;
 
             $model->save(false);
 
             // Return Success JSON-RPC response
-            die('{"jsonrpc" : "2.0", "result" : "'.$model->show_url.'?time='.time().'", "id" : '.$model->id.'}');
+            die('{"jsonrpc" : "2.0", "result" : {"showUrl": "'.$model->show_url.'", "fileName": "'.$model->file_name.'", "fileExt":"'.$model->file_ext.'"}, "id" : '.$model->id.'}');
         }
         // Return error JSON-RPC response
         die('{"jsonrpc" : "2.0", "error" : {"code": 104, "message": "Failed to write in file."}, "id" : 0}');
 
+    }
+
+    /**
+     * @param int $id
+     */
+    public function actionProcessimage($id)
+    {
+        $model = $this->findModel($id);
+
+        $fileSource = Yii::getAlias('@uploads') . $model->directory . $model->file_name . '.' . $model->file_ext;
+        $sizeAfterGenerate = UtilHelper::generateImage($fileSource, $fileSource);
+        if($sizeAfterGenerate)
+        {
+            $model->dimension = $sizeAfterGenerate->getWidth() . 'x' . $sizeAfterGenerate->getHeight();
+            $model->width = $sizeAfterGenerate->getWidth();
+            $model->height = $sizeAfterGenerate->getHeight();
+
+            foreach (Yii::$app->params['image_sizes'] as $key => $value) {
+                $thumbnail = Yii::getAlias('@uploads') . $model->directory . $model->file_name . '-' . $key . '.' . $model->file_ext;
+                UtilHelper::generateImage($fileSource, $thumbnail, $value[0], $value[1]);
+            }
+        } else {
+            die('{"jsonrpc" : "2.0", "error" : {"code": 104, "message": "Failed to resize image."}, "id" : '.$model->id.'}');
+        }
+
+        die('{"jsonrpc" : "2.0", "result" : {"showUrl": "'.$model->show_url.'", "fileName": "'.$model->file_name.'", "fileExt":"'.$model->file_ext.'"}, "id" : '.$model->id.'}');
     }
 
 
@@ -140,9 +161,14 @@ class FileController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $directory = rtrim(Yii::getAlias('@uploads') . $model->directory, DIRECTORY_SEPARATOR);
+        if(UtilHelper::delTree($directory)) {
+            $model->delete();
+            die('{"jsonrpc" : "2.0", "result" : "The item was deleted", "id" : '.$model->id.'}');
+        }
 
-        return $this->redirect(['index']);
+        die('{"jsonrpc" : "2.0", "error" : {"code": 104, "message": "Failed to delete image directory."}, "id" : '.$model->id.'}');
     }
 
     /**

@@ -3,12 +3,9 @@
 namespace common\helpers;
 
 use backend\models\FileForm;
-use Imagine\Gd\Image;
-use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
-use Imagine\Image\ImageInterface;
-use Imagine\Image\Point;
 use Yii;
+use yii\imagine\Image;
 
 /**
  * Class UtilHelper
@@ -95,7 +92,7 @@ class UtilHelper{
             @mkdir($targetDir);
 
             $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName . '.' . $fileExt;
-            $fileUrl = '/uploads/' . $mediaType . 's/' . $fileName . '/' . $fileName . '.' . $fileExt;
+            $fileUrl = '/uploads/' . $mediaType . 's/' . $fileName . '/';
             $fileDir = DIRECTORY_SEPARATOR . $mediaType . 's' . DIRECTORY_SEPARATOR . $fileName . DIRECTORY_SEPARATOR;
         } else {
             $i = 0;
@@ -106,10 +103,9 @@ class UtilHelper{
                 $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName . '.' . $fileExt;
             } while(file_exists($filePath));
 
-            $fileUrl = '/uploads/' . $mediaType . 's/' . $fileName . '.' . $fileExt;
+            $fileUrl = '/uploads/' . $mediaType . 's/';
             $fileDir = DIRECTORY_SEPARATOR . $mediaType . 's' . DIRECTORY_SEPARATOR;
         }
-
         // Remove old temp files
         if ($cleanupTargetDir) {
             if (!is_dir($targetDir) || !$dir = opendir($targetDir)) {
@@ -173,70 +169,61 @@ class UtilHelper{
     /**
      * @param string $fileSource
      * @param string $fileTarget
-     * @param Box|null $newSize
+     * @param int $width
+     * @param int $height
      * @return Box|bool
      */
-    public static function generateImage($fileSource, $fileTarget, $newSize = null)
+    public static function generateImage($fileSource, $fileTarget, $width = 0, $height = 0)
     {
-        $imagine = new Imagine();
-        $image = $imagine->open($fileSource);
-        $size = $image->getSize();
-        if($newSize === null) {
+        $tmp = getimagesize($fileSource);
+        $size = new Box($tmp[0], $tmp[1]);
+        if($width === 0 && $height === 0) {
             if ($size->getWidth() > Yii::$app->params['image_maximum_size'] || $size->getHeight() > Yii::$app->params['image_maximum_size']) {
                 if($size->getWidth() > $size->getHeight()) {
                     $width = Yii::$app->params['image_maximum_size'];
-                    $height = $size->getHeight()*(Yii::$app->params['image_maximum_size']/$size->getWidth());
+                    $height = floor($size->getHeight()*(Yii::$app->params['image_maximum_size']/$size->getWidth()));
                 } else {
-                    $width = $size->getWidth()*(Yii::$app->params['image_maximum_size']/$size->getHeight());
+                    $width = floor($size->getWidth()*(Yii::$app->params['image_maximum_size']/$size->getHeight()));
                     $height = Yii::$app->params['image_maximum_size'];
                 }
-                $newSize = new Box($width, $height);
             } else {
-                $newSize = $size;
+                $width = $size->getWidth();
+                $height = $size->getHeight();
             }
         }
-        $image = self::cropImage($image, $size, $newSize);
-        $fileExt = pathinfo($fileSource, PATHINFO_EXTENSION);
-        if ($fileExt === 'png' && $size !== $newSize) {
-            $image->save($fileTarget, array('png_compression_level' => 9));
-            return $size;
+        ini_set('memory_limit', '999999999M');
+        $imagine = Image::thumbnail($fileSource, $width, $height);
+
+        $exif = exif_read_data($fileSource);
+        if(!empty($exif['Orientation'])) {
+            switch($exif['Orientation']) {
+                case 8:
+                    $imagine->rotate(-90);
+                    break;
+                case 3:
+                    $imagine->rotate(180);
+                    break;
+                case 6:
+                    $imagine->rotate(90);
+                    break;
+            }
         }
-        if($fileExt === 'jpg') {
-            $image->save($fileTarget, array('jpeg_quality' => 85));
-            return $size;
-        }
-        if($fileExt === 'gif' || $fileExt === 'bmp') {
-            $image->save($fileTarget);
-            return $size;
+
+        if ($imagine->save($fileTarget)) {
+            return new Box($width, $height);
         }
         return false;
     }
 
     /**
-     * @param Image $image
-     * @param Box $size
-     * @param Box $newSize
-     * @return Image|\Imagine\Image\ManipulatorInterface
+     * @param string $dir
+     * @return bool
      */
-    protected function cropImage($image, $size, $newSize){
-        //we scale on the smaller dimension
-        if ($size->getWidth() > $size->getHeight()) {
-            $width  = $size->getWidth()*($newSize->getHeight()/$size->getHeight());
-            $height =  $newSize->getHeight();
-            //we center the crop in relation to the width
-            $cropPoint = new Point((max($width - $newSize->getWidth(), 0))/2, 0);
-        } else {
-            $width  = $newSize->getWidth();
-            $height =  $size->getHeight()*($newSize->getWidth()/$size->getWidth());
-            //we center the crop in relation to the height
-            $cropPoint = new Point(0, (max($height - $newSize->getHeight(),0))/2);
+    public static function delTree($dir) {
+        $files = array_diff(scandir($dir), array('.','..'));
+        foreach ($files as $file) {
+            (is_dir("$dir/$file")) ? self::delTree("$dir/$file") : unlink("$dir/$file");
         }
-
-        //we scale the image to make the smaller dimension fit our resize box
-        $image = $image->thumbnail(new Box($width, $height));
-
-        //and crop exactly to the box
-        $image->crop($cropPoint, $newSize);
-        return $image;
+        return rmdir($dir);
     }
 }
