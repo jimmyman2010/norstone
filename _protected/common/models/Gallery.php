@@ -15,6 +15,8 @@ use Yii;
  * @property string $intro
  * @property string $description
  * @property string $lean_more_link
+ * @property string $seo_keyword
+ * @property string $seo_description
  * @property string $status
  * @property integer $publish_date
  * @property integer $created_date
@@ -44,9 +46,9 @@ class Gallery extends \yii\db\ActiveRecord
             [['name', 'product_id', 'color_id', 'status', 'created_date', 'created_by'], 'required'],
             [['product_id', 'color_id', 'application', 'publish_date', 'created_date', 'deleted'], 'integer'],
             [['description', 'status'], 'string'],
-            [['name'], 'string', 'max' => 256],
+            [['name', 'seo_description'], 'string', 'max' => 256],
             [['intro'], 'string', 'max' => 1024],
-            [['lean_more_link'], 'string', 'max' => 128],
+            [['lean_more_link', 'seo_keyword'], 'string', 'max' => 128],
             [['created_by'], 'string', 'max' => 32]
         ];
     }
@@ -65,6 +67,8 @@ class Gallery extends \yii\db\ActiveRecord
             'intro' => Yii::t('app', 'Intro'),
             'description' => Yii::t('app', 'Description'),
             'lean_more_link' => Yii::t('app', 'Lean More Link'),
+            'seo_keyword' => Yii::t('app', 'SEO Keyword'),
+            'seo_description' => Yii::t('app', 'SEO Description'),
             'status' => Yii::t('app', 'Status'),
             'publish_date' => Yii::t('app', 'Publish Date'),
             'created_date' => Yii::t('app', 'Created Date'),

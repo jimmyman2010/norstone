@@ -2,13 +2,15 @@
 
 namespace backend\controllers;
 
-use common\models\Color;
-use common\models\ColorSearch;
-use common\models\Product;
-use common\models\ProductSearch;
+use common\models\File;
+use common\models\FileSearch;
+use common\models\GalleryFile;
+use common\models\GalleryFileSearch;
+use common\models\TagSearch;
 use Yii;
 use common\models\Gallery;
 use common\models\GallerySearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -73,13 +75,43 @@ class GalleryController extends Controller
             $model->created_by = Yii::$app->user->identity->username;
 
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
             $model->application = 1;
             return $this->render('create', [
                 'model' => $model,
+                'pictures' => [],
+                'tags' => []
             ]);
+        }
+    }
+
+    /**
+     * @param int $galleryId
+     * @param array $pictureData
+     * @return void
+     */
+    protected function updatePicture($galleryId, $pictureData)
+    {
+        foreach ($pictureData as $index => $value) {
+            if(($modelFile = File::findOne(intval($value['id']))) !== null) {
+                if(!empty($value['caption'])) {
+                    $modelFile->caption = $value['caption'];
+                }
+                $modelFile->deleted = 0;
+                $modelFile->save(false);
+
+                if(($modelGalleryFile = GalleryFile::findOne(['gallery_id' => $galleryId, 'file_id' => intval($value['id'])])) !== null) {
+                    $modelGalleryFile->deleted = 0;
+                } else {
+                    $modelGalleryFile = new GalleryFile();
+                    $modelGalleryFile->gallery_id = $galleryId;
+                    $modelGalleryFile->file_id = $modelFile->id;
+                }
+                $modelGalleryFile->save(false);
+            }
         }
     }
 
@@ -94,10 +126,19 @@ class GalleryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
+            $dataProvider = new FileSearch();
+            $pictures= $dataProvider->search(['gallery_id' => $id])->getModels();
+
+            $dataProvider = new TagSearch();
+            $tags= $dataProvider->search(['gallery_id' => $id])->getModels();
+
             return $this->render('update', [
                 'model' => $model,
+                'pictures' => $pictures,
+                'tags' => $tags
             ]);
         }
     }

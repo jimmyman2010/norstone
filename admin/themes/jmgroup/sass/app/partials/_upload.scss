@@ -6,9 +6,6 @@
         max-height: rem-calc(400);
         overflow: hidden;
         margin-bottom: rem-calc(20);
-        &:nth-child(3n+1){
-            clear: both;
-        }
         table{
             border: none;
             width: 100%;

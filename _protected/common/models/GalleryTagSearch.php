@@ -58,7 +58,6 @@ class GalleryTagSearch extends GalleryTag
         $query->andFilterWhere([
             'gallery_id' => $this->gallery_id,
             'tag_id' => $this->tag_id,
-            'deleted' => $this->deleted,
         ]);
 
         return $dataProvider;

@@ -58,7 +58,6 @@ class ColorSearch extends Color
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'deleted' => $this->deleted,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

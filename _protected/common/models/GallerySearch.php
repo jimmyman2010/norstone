@@ -19,7 +19,7 @@ class GallerySearch extends Gallery
     {
         return [
             [['id', 'application', 'publish_date', 'created_date', 'created_by', 'deleted'], 'integer'],
-            [['name', 'product_id', 'color_id', 'intro', 'description', 'lean_more_link', 'status'], 'safe'],
+            [['name', 'product_id', 'color_id', 'intro', 'description', 'lean_more_link', 'seo_keyword', 'seo_description', 'status'], 'safe'],
         ];
     }
 
@@ -71,13 +71,14 @@ class GallerySearch extends Gallery
             'publish_date' => $this->publish_date,
             'created_date' => $this->created_date,
             'created_by' => $this->created_by,
-            'deleted' => $this->deleted,
         ]);
 
         $query->andFilterWhere(['like', 'tbl_gallery.name', $this->name])
             ->andFilterWhere(['like', 'intro', $this->intro])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'lean_more_link', $this->lean_more_link])
+            ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
+            ->andFilterWhere(['like', 'seo_description', $this->seo_description])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'tbl_product.name', $this->product_id])
             ->andFilterWhere(['like', 'tbl_color.name', $this->color_id]);

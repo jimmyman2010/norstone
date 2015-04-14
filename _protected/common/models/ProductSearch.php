@@ -58,7 +58,6 @@ class ProductSearch extends Product
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'deleted' => $this->deleted,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

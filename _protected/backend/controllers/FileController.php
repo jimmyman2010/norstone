@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\helpers\UtilHelper;
+use common\models\GalleryFileSearch;
 use Yii;
 use common\models\File;
 use common\models\FileSearch;
@@ -164,6 +165,12 @@ class FileController extends Controller
         $model = $this->findModel($id);
         $directory = rtrim(Yii::getAlias('@uploads') . $model->directory, DIRECTORY_SEPARATOR);
         if(UtilHelper::delTree($directory)) {
+            $dataProvider = new GalleryFileSearch();
+            $pictures = $dataProvider->search(['file_id'=>$id])->getModels();
+            foreach ($pictures as $index => $item) {
+                $item->delete();
+            }
+
             $model->delete();
             die('{"jsonrpc" : "2.0", "result" : "The item was deleted", "id" : '.$model->id.'}');
         }

@@ -58,7 +58,6 @@ class GalleryFileSearch extends GalleryFile
         $query->andFilterWhere([
             'gallery_id' => $this->gallery_id,
             'file_id' => $this->file_id,
-            'deleted' => $this->deleted,
         ]);
 
         return $dataProvider;

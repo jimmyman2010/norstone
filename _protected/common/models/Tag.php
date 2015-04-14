@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $slug
  * @property integer $deleted
  */
 class Tag extends \yii\db\ActiveRecord
@@ -28,8 +29,9 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['slug'], 'required'],
             [['deleted'], 'integer'],
-            [['name'], 'string', 'max' => 128]
+            [['name', 'slug'], 'string', 'max' => 128]
         ];
     }
 
@@ -41,6 +43,7 @@ class Tag extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }

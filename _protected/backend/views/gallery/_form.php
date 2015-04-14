@@ -67,7 +67,26 @@ UploadAsset::register($this);
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">
                 <div class="large-12 columns">
-                    <div id="filelist" class="view-thumbnail row">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+                    <div id="filelist" class="view-thumbnail row">
+                        <?php
+                        foreach ($pictures as $index => $item) {
+                            ?>
+                            <div id="<?= $item->id ?>" class="photo-zone large-4 medium-6 columns">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr><td class="controls">
+                                            <label><input type="radio" name="Picture[<?= $item->id ?>][main]" value="<?= $item->id ?>" /> Main picture</label>
+                                            <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                        </td></tr>
+                                    <tr><td class="edit"><span class="name">
+                                                <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
+                                            </span></td></tr>
+                                    <tr><td class="caption">
+                                                <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>
+                                            <input type="hidden" name="Picture[<?= $item->id ?>][id]" value="<?= $item->id ?>"/>
+                                            </td></tr>
+                                    </table></div>
+                        <?php } ?>
+                    </div>
                     <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
                         <a id="pickfiles" href="javascript:;" class="tiny button radius">Select files</a>
                     </div>
