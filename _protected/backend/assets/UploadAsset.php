@@ -24,12 +24,17 @@ class UploadAsset extends AssetBundle
     public $baseUrl = '@themes';
 
     public $css = [
-        'plupload/jquery.ui.plupload/css/jquery.ui.plupload.css'
+        'textext/css/textext.core.css',
+        'textext/css/textext.plugin.autocomplete.css',
+        'textext/css/textext.plugin.tags.css'
 
     ];
     public $js = [
-        'plupload/plupload.full.min.js',
-        'js/app/upload.js'
+        'plupload//plupload.full.min.js',
+        'textext/js/textext.core.js',
+        'textext/js/textext.plugin.autocomplete.js',
+        'textext/js/textext.plugin.tags.js',
+        'js/global.min.js'
     ];
 
     public $depends = [

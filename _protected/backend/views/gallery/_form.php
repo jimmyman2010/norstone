@@ -63,6 +63,10 @@ UploadAsset::register($this);
                     <?= $form->field($model, 'product_id')->dropDownList(ArrayHelper::map(Product::findAll(['deleted'=>0]), 'id', 'name'), ['prompt'=>'- please select -']) ?>
                     <?= $form->field($model, 'color_id')->dropDownList(ArrayHelper::map(Color::findAll(['deleted'=>0]), 'id', 'name'), ['prompt'=>'- please select -']) ?>
                     <?= $form->field($model, 'application')->radioList(['0' => Yii::t('app', 'External'), '1' => Yii::t('app', 'Internal')]) ?>
+                    <div class="form-group field-gallery-tags">
+                        <label>Tags</label>
+                        <textarea id="textarea" class="example" rows="1"></textarea>
+                    </div>
                 </div>
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">
@@ -94,10 +98,15 @@ UploadAsset::register($this);
                 </div>
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-3">
-                <h2>Third panel content goes here...</h2>
+                <div class="columns">
+                    <?= $form->field($model, 'seo_keyword')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
+                    <?= $form->field($model, 'seo_description')->textarea(['maxlength' => 256, 'rows' => 5]) ?>
+                </div>
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-4">
-                <h2>Fourth panel content goes here...</h2>
+                <div class="columns">
+
+                </div>
             </section>
 
             <div class="large-12 columns">
