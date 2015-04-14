@@ -2,15 +2,19 @@
 
 namespace backend\controllers;
 
+use common\helpers\UtilHelper;
 use common\models\File;
 use common\models\FileSearch;
 use common\models\GalleryFile;
-use common\models\GalleryFileSearch;
+use common\models\GalleryTag;
+use common\models\GalleryTagSearch;
+use common\models\Tag;
 use common\models\TagSearch;
 use Yii;
 use common\models\Gallery;
 use common\models\GallerySearch;
-use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -79,11 +83,20 @@ class GalleryController extends Controller
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
+            $dataProvider = new TagSearch();
+            $tagObjects = $dataProvider->search([])->getModels();
+            $tagSuggestions = '';
+            foreach ($tagObjects as $obj) {
+                $tagSuggestions .= $obj->name . ',';
+            }
+            $tagSuggestions = rtrim($tagSuggestions, ',');
+
             $model->application = 1;
             return $this->render('create', [
                 'model' => $model,
                 'pictures' => [],
-                'tags' => []
+                'tags' => [],
+                'tagSuggestions' => Html::encode($tagSuggestions)
             ]);
         }
     }
@@ -116,6 +129,41 @@ class GalleryController extends Controller
     }
 
     /**
+     * @param int $galleryId
+     * @param string $tagString
+     */
+    protected function updateTags($galleryId, $tagString)
+    {
+        if(!empty($tagString))
+        {
+            $tagSearch = new TagSearch();
+            $galleryTagSearch = new GalleryTagSearch();
+            foreach (Json::decode($tagString) as $tagName) {
+                $tagObjects = $tagSearch->search(['name' => $tagName])->getModels();
+
+                if(count($tagObjects) !== 0){
+                    $tagObject = $tagObjects[0];
+                } else {
+                    $tagObject = new Tag();
+                    $tagObject->name = $tagName;
+                    $tagObject->slug = UtilHelper::slugify($tagName);
+                    $tagObject->save(false);
+                }
+
+                $galleryTagObjects = $galleryTagSearch
+                    ->search(['gallery_id' => $galleryId, 'tag_id' => $tagObject->id])->getModels();
+
+                if(count($galleryTagObjects) === 0){
+                    $model = new GalleryTag();
+                    $model->gallery_id = $galleryId;
+                    $model->tag_id = $tagObject->id;
+                    $model->save(false);
+                }
+            }
+        }
+    }
+
+    /**
      * Updates an existing Gallery model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -127,6 +175,7 @@ class GalleryController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+            $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
             return $this->redirect(['update', 'id' => $model->id]);
         } else {
             $dataProvider = new FileSearch();
@@ -135,10 +184,19 @@ class GalleryController extends Controller
             $dataProvider = new TagSearch();
             $tags= $dataProvider->search(['gallery_id' => $id])->getModels();
 
+            $dataProvider = new TagSearch();
+            $tagObjects = $dataProvider->search([])->getModels();
+            $tagSuggestions = '';
+            foreach ($tagObjects as $obj) {
+                $tagSuggestions .= $obj->name . ',';
+            }
+            $tagSuggestions = rtrim($tagSuggestions, ',');
+
             return $this->render('update', [
                 'model' => $model,
                 'pictures' => $pictures,
-                'tags' => $tags
+                'tags' => $tags,
+                'tagSuggestions' => $tagSuggestions
             ]);
         }
     }

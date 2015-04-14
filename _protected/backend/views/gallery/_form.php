@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 
-use backend\assets\UploadAsset;
+use backend\assets\GalleryAsset;
 use yii\helpers\Url;
 
 use yii\helpers\ArrayHelper;
@@ -15,7 +15,7 @@ use common\models\Color;
 /* @var $model common\models\Gallery */
 /* @var $form yii\widgets\ActiveForm */
 
-UploadAsset::register($this);
+GalleryAsset::register($this);
 ?>
 
 <div class="gallery-form row">
@@ -65,7 +65,7 @@ UploadAsset::register($this);
                     <?= $form->field($model, 'application')->radioList(['0' => Yii::t('app', 'External'), '1' => Yii::t('app', 'Internal')]) ?>
                     <div class="form-group field-gallery-tags">
                         <label>Tags</label>
-                        <textarea id="textarea" class="example" rows="1"></textarea>
+                        <textarea id="tags" rows="1" name="Tag" data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
                     </div>
                 </div>
             </section>

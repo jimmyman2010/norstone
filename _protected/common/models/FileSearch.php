@@ -42,8 +42,12 @@ class FileSearch extends File
     public function search($params)
     {
         $query = File::find();
-        $query->innerJoin('tbl_gallery_file', 'tbl_file.id = tbl_gallery_file.file_id');
-        $query->where(['tbl_file.deleted' => 0]);
+        if(isset($params['gallery_id'])) {
+            $query->innerJoin('tbl_gallery_file', 'tbl_file.id = tbl_gallery_file.file_id');
+            $query->where(['tbl_file.deleted' => 0, 'tbl_gallery_file.gallery_id' => intval($params['gallery_id'])]);
+        } else {
+            $query->where('deleted = 0');
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -60,10 +64,6 @@ class FileSearch extends File
             'width' => $this->width,
             'height' => $this->height,
         ]);
-
-        if(isset($params['gallery_id'])){
-            $query->andFilterWhere(['tbl_gallery_file.gallery_id' => intval($params['gallery_id'])]);
-        }
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'caption', $this->caption])

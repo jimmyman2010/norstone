@@ -15,18 +15,15 @@ use Yii;
 Yii::setAlias('@themes', Yii::$app->view->theme->baseUrl);
 
 /**
- * Class FullAsset
+ * Class GalleryAsset
  * @package backend\assets
  */
-class UploadAsset extends AssetBundle
+class GalleryAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@themes';
 
     public $css = [
-        'textext/css/textext.core.css',
-        'textext/css/textext.plugin.autocomplete.css',
-        'textext/css/textext.plugin.tags.css'
 
     ];
     public $js = [

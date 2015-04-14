@@ -42,8 +42,12 @@ class TagSearch extends Tag
     public function search($params)
     {
         $query = Tag::find();
-        $query->innerJoin('tbl_gallery_tag', 'tbl_tag.id = tbl_gallery_tag.tag_id');
-        $query->where(['tbl_tag.deleted' => 0]);
+        if(isset($params['gallery_id'])) {
+            $query->innerJoin('tbl_gallery_tag', 'tbl_tag.id = tbl_gallery_tag.tag_id');
+            $query->where(['tbl_tag.deleted' => 0]);
+        } else {
+            $query->where('deleted = 0');
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,8 +65,8 @@ class TagSearch extends Tag
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'slug', $this->slug]);
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andWhere('name=:name', [':name' => $this->name]);
+        //$query->andWhere(['like', 'slug', $this->slug]);
 
         return $dataProvider;
     }
