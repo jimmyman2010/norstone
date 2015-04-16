@@ -5,21 +5,21 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%tbl_gallery_file}}".
+ * This is the model class for table "{{%tbl_gallery_related}}".
  *
  * @property integer $gallery_id
- * @property integer $file_id
- * @property integer $main
+ * @property integer $related_id
+ * @property integer $sorting
  * @property integer $deleted
  */
-class GalleryFile extends \yii\db\ActiveRecord
+class GalleryRelated extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%tbl_gallery_file}}';
+        return '{{%tbl_gallery_related}}';
     }
 
     /**
@@ -28,8 +28,8 @@ class GalleryFile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['gallery_id', 'file_id'], 'required'],
-            [['gallery_id', 'file_id', 'main', 'deleted'], 'integer']
+            [['gallery_id', 'related_id'], 'required'],
+            [['gallery_id', 'related_id', 'sorting', 'deleted'], 'integer']
         ];
     }
 
@@ -40,8 +40,8 @@ class GalleryFile extends \yii\db\ActiveRecord
     {
         return [
             'gallery_id' => Yii::t('app', 'Gallery ID'),
-            'file_id' => Yii::t('app', 'File ID'),
-            'main' => Yii::t('app', 'Main'),
+            'related_id' => Yii::t('app', 'Related ID'),
+            'sorting' => Yii::t('app', 'Sorting'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }

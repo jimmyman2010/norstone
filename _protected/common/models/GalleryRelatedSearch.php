@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\GalleryFile;
+use common\models\GalleryRelated;
 
 /**
- * GalleryFileSearch represents the model behind the search form about `common\models\GalleryFile`.
+ * GalleryRelatedSearch represents the model behind the search form about `common\models\GalleryRelated`.
  */
-class GalleryFileSearch extends GalleryFile
+class GalleryRelatedSearch extends GalleryRelated
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class GalleryFileSearch extends GalleryFile
     public function rules()
     {
         return [
-            [['gallery_id', 'file_id', 'main', 'deleted'], 'integer'],
+            [['gallery_id', 'related_id', 'sorting', 'deleted'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class GalleryFileSearch extends GalleryFile
      */
     public function search($params)
     {
-        $query = GalleryFile::find();
+        $query = GalleryRelated::find();
         $query->where('deleted = 0');
 
         $dataProvider = new ActiveDataProvider([
@@ -57,8 +57,8 @@ class GalleryFileSearch extends GalleryFile
 
         $query->andFilterWhere([
             'gallery_id' => $this->gallery_id,
-            'file_id' => $this->file_id,
-            'main' => $this->main,
+            'related_id' => $this->related_id,
+            'sorting' => $this->sorting,
         ]);
 
         return $dataProvider;

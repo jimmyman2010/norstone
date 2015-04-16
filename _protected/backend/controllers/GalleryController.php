@@ -6,6 +6,7 @@ use common\helpers\UtilHelper;
 use common\models\File;
 use common\models\FileSearch;
 use common\models\GalleryFile;
+use common\models\GalleryFileSearch;
 use common\models\GalleryTag;
 use common\models\GalleryTagSearch;
 use common\models\Tag;
@@ -72,14 +73,16 @@ class GalleryController extends Controller
     {
         $model = new Gallery();
 
-        if($model->load(Yii::$app->request->post())) {
-            $model->status = Gallery::STATUS_PUBLISHED;
+        if($model->load(Yii::$app->request->post()))
+        {
+            $model->status = Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish') ? Gallery::STATUS_PUBLISHED : Gallery::STATUS_DRAFT;
             $model->publish_date = time();
             $model->created_date = time();
             $model->created_by = Yii::$app->user->identity->username;
 
             if ($model->save()) {
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+                $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
@@ -95,7 +98,7 @@ class GalleryController extends Controller
             return $this->render('create', [
                 'model' => $model,
                 'pictures' => [],
-                'tags' => [],
+                'tags' => '',
                 'tagSuggestions' => Html::encode($tagSuggestions)
             ]);
         }
@@ -108,6 +111,7 @@ class GalleryController extends Controller
      */
     protected function updatePicture($galleryId, $pictureData)
     {
+        $fileList = [];
         foreach ($pictureData as $index => $value) {
             if(($modelFile = File::findOne(intval($value['id']))) !== null) {
                 if(!empty($value['caption'])) {
@@ -115,6 +119,7 @@ class GalleryController extends Controller
                 }
                 $modelFile->deleted = 0;
                 $modelFile->save(false);
+                array_push($fileList, $modelFile->id);
 
                 if(($modelGalleryFile = GalleryFile::findOne(['gallery_id' => $galleryId, 'file_id' => intval($value['id'])])) !== null) {
                     $modelGalleryFile->deleted = 0;
@@ -126,41 +131,66 @@ class GalleryController extends Controller
                 $modelGalleryFile->save(false);
             }
         }
+        $galleryFileSearch = new GalleryFileSearch();
+        $galleryFileObjects = $galleryFileSearch->search(['gallery_id'=>$galleryId])->getModels();
+        foreach ($galleryFileObjects as $object) {
+            if(!in_array($object->file_id, $fileList)){
+                $object->delete();
+            }
+        }
     }
 
     /**
      * @param int $galleryId
      * @param string $tagString
+     * @return void
      */
     protected function updateTags($galleryId, $tagString)
     {
         if(!empty($tagString))
         {
-            $tagSearch = new TagSearch();
-            $galleryTagSearch = new GalleryTagSearch();
+            $tagList = [];
             foreach (Json::decode($tagString) as $tagName) {
-                $tagObjects = $tagSearch->search(['name' => $tagName])->getModels();
-
-                if(count($tagObjects) !== 0){
-                    $tagObject = $tagObjects[0];
+                $tagObject = Tag::findOne(['name' => $tagName]);
+                if($tagObject !== null) {
+                    $tagObject->deleted = 0;
                 } else {
                     $tagObject = new Tag();
                     $tagObject->name = $tagName;
                     $tagObject->slug = UtilHelper::slugify($tagName);
-                    $tagObject->save(false);
                 }
+                $tagObject->save(false);
+                array_push($tagList, $tagObject->id);
 
-                $galleryTagObjects = $galleryTagSearch
-                    ->search(['gallery_id' => $galleryId, 'tag_id' => $tagObject->id])->getModels();
+                $galleryTagObject = GalleryTag::findOne(['gallery_id'=>$galleryId, 'tag_id'=>$tagObject->id]);
+                if($galleryTagObject !== null) {
+                    $galleryTagObject->deleted = 0;
+                } else {
+                    $galleryTagObject = new GalleryTag();
+                    $galleryTagObject->gallery_id = $galleryId;
+                    $galleryTagObject->tag_id = $tagObject->id;
+                }
+                $galleryTagObject->save(false);
+            }
 
-                if(count($galleryTagObjects) === 0){
-                    $model = new GalleryTag();
-                    $model->gallery_id = $galleryId;
-                    $model->tag_id = $tagObject->id;
-                    $model->save(false);
+            $galleryTagSearch = new GalleryTagSearch();
+            $galleryTagObjects = $galleryTagSearch->search(['gallery_id'=>$galleryId])->getModels();
+            foreach ($galleryTagObjects as $object) {
+                if(!in_array($object->tag_id, $tagList)){
+                    $object->deleted = 1;
+                    $object->save(false);
                 }
             }
         }
+    }
+
+    /**
+     * @param int $galleryId
+     * @param array $relatedData
+     * @return void
+     */
+    protected function updateRelated($galleryId, $relatedData){
+
     }
 
     /**
@@ -173,16 +203,23 @@ class GalleryController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
-            $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
-            return $this->redirect(['update', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->status = Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish') ? Gallery::STATUS_PUBLISHED : Gallery::STATUS_DRAFT;
+            if($model->save()) {
+                $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+                $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
         } else {
             $dataProvider = new FileSearch();
             $pictures= $dataProvider->search(['gallery_id' => $id])->getModels();
 
             $dataProvider = new TagSearch();
             $tags= $dataProvider->search(['gallery_id' => $id])->getModels();
+            $tagList = [];
+            foreach ($tags as $tag) {
+                array_push($tagList, $tag->name);
+            }
 
             $dataProvider = new TagSearch();
             $tagObjects = $dataProvider->search([])->getModels();
@@ -195,7 +232,7 @@ class GalleryController extends Controller
             return $this->render('update', [
                 'model' => $model,
                 'pictures' => $pictures,
-                'tags' => $tags,
+                'tags' => Json::encode($tagList),
                 'tagSuggestions' => $tagSuggestions
             ]);
         }

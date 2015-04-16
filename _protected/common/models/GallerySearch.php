@@ -42,8 +42,16 @@ class GallerySearch extends Gallery
     public function search($params)
     {
         $query = Gallery::find();
-        $query->joinWith(['product', 'color']);
-        $query->where('tbl_gallery.deleted = 0');
+        if(isset($params['gallery_id'])) {
+            $query->innerJoin('tbl_gallery_related', 'tbl_gallery.id = tbl_gallery_related.related_id');
+            $query->where(['tbl_gallery.deleted' => 0,
+                'tbl_gallery_related.deleted' => 0,
+                'tbl_gallery_related.gallery_id' => intval($params['gallery_id'])
+            ]);
+        } else {
+            $query->joinWith(['product', 'color']);
+            $query->where('tbl_gallery.deleted = 0');
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

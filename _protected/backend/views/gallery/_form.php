@@ -65,7 +65,7 @@ GalleryAsset::register($this);
                     <?= $form->field($model, 'application')->radioList(['0' => Yii::t('app', 'External'), '1' => Yii::t('app', 'Internal')]) ?>
                     <div class="form-group field-gallery-tags">
                         <label>Tags</label>
-                        <textarea id="tags" rows="1" name="Tag" data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
+                        <textarea id="tags" rows="1" name="Tag" data-value='<?= Html::decode($tags) ?>' data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
                     </div>
                 </div>
             </section>
@@ -109,8 +109,10 @@ GalleryAsset::register($this);
                 </div>
             </section>
 
-            <div class="large-12 columns">
-                <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'small button success radius' : 'small button radius']) ?>
+            <div class="gallery-buttons">
+                <input type="hidden" name="type-submit" value="" />
+                <?= Html::submitButton(Yii::t('app', 'Publish'), ['class' => 'small button radius']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Save Draft'), ['class' => 'small button radius info']) ?>
                 <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
             </div>
         </div>
