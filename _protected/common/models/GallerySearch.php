@@ -18,7 +18,7 @@ class GallerySearch extends Gallery
     public function rules()
     {
         return [
-            [['id', 'application', 'publish_date', 'created_date', 'created_by', 'deleted'], 'integer'],
+            [['id', 'application', 'image_id', 'publish_date', 'created_date', 'created_by', 'deleted'], 'integer'],
             [['name', 'product_id', 'color_id', 'intro', 'description', 'lean_more_link', 'seo_keyword', 'seo_description', 'status'], 'safe'],
         ];
     }
@@ -48,9 +48,14 @@ class GallerySearch extends Gallery
                 'tbl_gallery_related.deleted' => 0,
                 'tbl_gallery_related.gallery_id' => intval($params['gallery_id'])
             ]);
+            $query->orderBy('sorting');
         } else {
             $query->joinWith(['product', 'color']);
             $query->where('tbl_gallery.deleted = 0');
+        }
+
+        if(isset($params['limit'])){
+            $query->limit(intval($params['limit']));
         }
 
         $dataProvider = new ActiveDataProvider([
@@ -76,6 +81,7 @@ class GallerySearch extends Gallery
         $query->andFilterWhere([
             'id' => $this->id,
             'application' => $this->application,
+            'image_id' => $this->image_id,
             'publish_date' => $this->publish_date,
             'created_date' => $this->created_date,
             'created_by' => $this->created_by,

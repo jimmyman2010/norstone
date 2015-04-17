@@ -9,7 +9,6 @@ use Yii;
  *
  * @property integer $gallery_id
  * @property integer $file_id
- * @property integer $main
  * @property integer $deleted
  */
 class GalleryFile extends \yii\db\ActiveRecord
@@ -29,7 +28,7 @@ class GalleryFile extends \yii\db\ActiveRecord
     {
         return [
             [['gallery_id', 'file_id'], 'required'],
-            [['gallery_id', 'file_id', 'main', 'deleted'], 'integer']
+            [['gallery_id', 'file_id', 'deleted'], 'integer']
         ];
     }
 
@@ -41,7 +40,6 @@ class GalleryFile extends \yii\db\ActiveRecord
         return [
             'gallery_id' => Yii::t('app', 'Gallery ID'),
             'file_id' => Yii::t('app', 'File ID'),
-            'main' => Yii::t('app', 'Main'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }

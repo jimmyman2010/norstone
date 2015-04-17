@@ -5,7 +5,6 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\GalleryFile;
 
 /**
  * GalleryFileSearch represents the model behind the search form about `common\models\GalleryFile`.
@@ -18,7 +17,7 @@ class GalleryFileSearch extends GalleryFile
     public function rules()
     {
         return [
-            [['gallery_id', 'file_id', 'main', 'deleted'], 'integer'],
+            [['gallery_id', 'file_id', 'deleted'], 'integer'],
         ];
     }
 
@@ -58,7 +57,6 @@ class GalleryFileSearch extends GalleryFile
         $query->andFilterWhere([
             'gallery_id' => $this->gallery_id,
             'file_id' => $this->file_id,
-            'main' => $this->main,
         ]);
 
         return $dataProvider;

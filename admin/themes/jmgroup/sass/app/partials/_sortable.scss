@@ -1,0 +1,66 @@
+.related {
+    .connected {
+        min-height: rem-calc(260);
+    }
+}
+.search {
+    .search-box{
+        padding: rem-calc(15) rem-calc(5) rem-calc(20);
+        border-bottom: 1px solid #3598dc;
+        margin-bottom: rem-calc(20);
+        input{
+            float: left;
+            width: 365px;
+        }
+        button{
+            padding: rem-calc(7) rem-calc(30);
+            margin-left: rem-calc(10);
+            color: #fff;
+        }
+    }
+    .connected {
+        min-height: rem-calc(100);
+    }
+}
+
+.connected, .sortable, .exclude, .handles {
+    margin: auto;
+    padding: 0;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    @include user-select(none);
+    li{
+        list-style: none;
+        border: 1px solid #CCC;
+        background: #F6F6F6;
+        color: #1C94C4;
+        margin: 5px;
+        padding: 5px;
+    }
+}
+.handles span {
+  cursor: move;
+}
+.sortable.grid {
+    overflow: hidden;
+    li {
+        line-height: 80px;
+        float: left;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+    }
+}
+li {
+    &.highlight {
+        background: #FEE25F;
+    }
+    &.disabled {
+        opacity: 0.5;
+    }
+    &.sortable-placeholder {
+        border: 1px dashed #CCC;
+        background: none;
+        height: 30px;
+    }
+}

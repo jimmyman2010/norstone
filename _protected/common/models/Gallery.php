@@ -12,6 +12,7 @@ use Yii;
  * @property integer $product_id
  * @property integer $color_id
  * @property integer $application
+ * @property integer $image_id
  * @property string $intro
  * @property string $description
  * @property string $lean_more_link
@@ -44,7 +45,7 @@ class Gallery extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'product_id', 'color_id', 'status', 'created_date', 'created_by'], 'required'],
-            [['product_id', 'color_id', 'application', 'publish_date', 'created_date', 'deleted'], 'integer'],
+            [['product_id', 'color_id', 'application', 'image_id', 'publish_date', 'created_date', 'deleted'], 'integer'],
             [['description', 'status'], 'string'],
             [['name', 'seo_description'], 'string', 'max' => 256],
             [['intro'], 'string', 'max' => 1024],
@@ -64,6 +65,7 @@ class Gallery extends \yii\db\ActiveRecord
             'product_id' => Yii::t('app', 'Product name'),
             'color_id' => Yii::t('app', 'Colour'),
             'application' => Yii::t('app', 'Application'),
+            'image_id' => Yii::t('app', 'Image ID'),
             'intro' => Yii::t('app', 'Intro'),
             'description' => Yii::t('app', 'Description'),
             'lean_more_link' => Yii::t('app', 'Lean More Link'),

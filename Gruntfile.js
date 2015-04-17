@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 				eqeqeq: true,
 				eqnull: true,
 				browser: true,
+				sub: true,
 				globals: {
 					jQuery: true
 				}

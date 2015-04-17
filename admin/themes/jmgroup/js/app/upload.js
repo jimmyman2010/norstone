@@ -80,7 +80,7 @@ $(function(){
                 //show control
                 var controlZone = document.getElementById(file.id).getElementsByClassName('controls')[0];
                 $(controlZone).empty()
-                    .append('<label><input type="radio" name="Picture['+file.id+'][main]" value="'+response.id+'" /> Main picture</label>')
+                    .append('<label><input type="radio" name="Gallery[image_id]" value="'+response.id+'" /> Main picture</label>')
                     .append('<a class="delete-image" data-id="'+response.id+'" href="javascript:;"><i class="fa fa-trash-o"></i></a>');
 
                 var captionZone = document.getElementById(file.id).getElementsByClassName('caption')[0];

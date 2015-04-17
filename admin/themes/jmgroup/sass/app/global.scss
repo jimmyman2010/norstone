@@ -1,8 +1,10 @@
 @import "../vendor/foundation/functions";
+@import "../vendor/foundation/components/global";
 @import "partials/general";
 @import "partials/form";
 @import "partials/upload";
 @import "partials/tags";
+@import "partials/sortable";
 @import "compass/css3";
 
 body{
@@ -115,16 +117,10 @@ body{
     .portlet-title{
         border-bottom: 1px solid #eee;
         min-height: rem-calc(44);
-        &:after, &:before {
-            content: " ";
-            display: table;
-        }
-        &:after{
-            clear: both;
-        }
+        @include clearfix();
         .caption{
             float: left;
-            font-size: rem-calc(15);
+            font-size: rem-calc(18);
             line-height: rem-calc(32);
             font-weight: 700;
             text-transform: uppercase;
@@ -139,6 +135,23 @@ body{
     }
     .portlet-body.has-padding{
         padding-top: rem-calc(15);
+    }
+    &.small{
+        border: 1px solid #0171B8;
+        padding: 0;
+        .portlet-title{
+            background: #3598dc;
+            min-height: initial;
+            .caption{
+                color: #fff;
+                font-size: rem-calc(14);
+                padding: rem-calc(2) rem-calc(10);
+                i{
+                    margin-right: rem-calc(5);
+                }
+            }
+        }
+
     }
 }
 .table {

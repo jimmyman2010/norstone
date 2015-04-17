@@ -27,10 +27,11 @@ class GalleryAsset extends AssetBundle
 
     ];
     public $js = [
-        'plupload//plupload.full.min.js',
+        'plupload/plupload.full.min.js',
         'textext/js/textext.core.js',
         'textext/js/textext.plugin.autocomplete.js',
         'textext/js/textext.plugin.tags.js',
+        'js/vendor/jquery.sortable.min.js',
         'js/global.min.js'
     ];
 

@@ -24,7 +24,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
         'model' => $model,
         'pictures' => $pictures,
         'tags' => $tags,
-        'tagSuggestions' => $tagSuggestions
+        'tagSuggestions' => $tagSuggestions,
+        'galleries' => $galleries,
+        'gallerySuggestion' => $gallerySuggestion
     ]) ?>
 
         </div>

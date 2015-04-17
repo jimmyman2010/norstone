@@ -10,6 +10,7 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use common\models\Product;
 use common\models\Color;
+use common\models\Gallery;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Gallery */
@@ -20,7 +21,9 @@ GalleryAsset::register($this);
 
 <div class="gallery-form row">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'gallery-form'
+    ]); ?>
 
     <div class="large-12 columns">
         <ul class="tabs" data-tab role="tablist">
@@ -78,7 +81,7 @@ GalleryAsset::register($this);
                             <div id="<?= $item->id ?>" class="photo-zone large-4 medium-6 columns">
                                 <table cellpadding="0" cellspacing="0">
                                     <tr><td class="controls">
-                                            <label><input type="radio" name="Picture[<?= $item->id ?>][main]" value="<?= $item->id ?>" /> Main picture</label>
+                                            <label><input type="radio" name="Gallery[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> Main picture</label>
                                             <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
                                         </td></tr>
                                     <tr><td class="edit"><span class="name">
@@ -104,15 +107,52 @@ GalleryAsset::register($this);
                 </div>
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-4">
-                <div class="columns">
+                <input id="relatedGallery" type="hidden" name="Related" value="" />
+                <div class="medium-6 columns related">
+                    <div class="portlet small">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-cogs"></i>Related Galleries
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="connected list">
+                                <?php foreach ($galleries as $index => $item) { ?>
+                                    <li data-id="<?= $item->id ?>"><?= $item->name ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="medium-6 columns search">
+                    <div class="portlet small">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-cogs"></i>All Galleries
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="search-box">
+                                <input type="text" placeholder="Search" />
+                                <button type="button" class="small round">Search</button>
+                            </div>
+                            <ul class="connected list no2">
+                                <?php foreach ($gallerySuggestion as $index => $item) { ?>
+                                    <li data-id="<?= $item->id ?>"><?= $item->name ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <div class="gallery-buttons">
                 <input type="hidden" name="type-submit" value="" />
                 <?= Html::submitButton(Yii::t('app', 'Publish'), ['class' => 'small button radius']) ?>
+                <?php if($model->status === Gallery::STATUS_DRAFT) { ?>
                 <?= Html::submitButton(Yii::t('app', 'Save Draft'), ['class' => 'small button radius info']) ?>
+                <?php } ?>
                 <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
             </div>
         </div>

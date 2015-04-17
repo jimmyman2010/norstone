@@ -7,6 +7,8 @@ use common\models\File;
 use common\models\FileSearch;
 use common\models\GalleryFile;
 use common\models\GalleryFileSearch;
+use common\models\GalleryRelated;
+use common\models\GalleryRelatedSearch;
 use common\models\GalleryTag;
 use common\models\GalleryTagSearch;
 use common\models\Tag;
@@ -25,6 +27,7 @@ use yii\filters\VerbFilter;
  */
 class GalleryController extends Controller
 {
+    public static $limitSuggestion = 7;
     public function behaviors()
     {
         return [
@@ -75,8 +78,12 @@ class GalleryController extends Controller
 
         if($model->load(Yii::$app->request->post()))
         {
-            $model->status = Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish') ? Gallery::STATUS_PUBLISHED : Gallery::STATUS_DRAFT;
-            $model->publish_date = time();
+            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+                $model->status = Gallery::STATUS_PUBLISHED;
+                $model->publish_date = time();
+            } else {
+                $model->status = Gallery::STATUS_DRAFT;
+            }
             $model->created_date = time();
             $model->created_by = Yii::$app->user->identity->username;
 
@@ -94,12 +101,16 @@ class GalleryController extends Controller
             }
             $tagSuggestions = rtrim($tagSuggestions, ',');
 
+            $gallerySuggestion = Gallery::find()->where("deleted = 0")->limit(self::$limitSuggestion)->all();
+
             $model->application = 1;
             return $this->render('create', [
                 'model' => $model,
                 'pictures' => [],
                 'tags' => '',
-                'tagSuggestions' => Html::encode($tagSuggestions)
+                'tagSuggestions' => Html::encode($tagSuggestions),
+                'galleries' => [],
+                'gallerySuggestion' => []
             ]);
         }
     }
@@ -107,9 +118,10 @@ class GalleryController extends Controller
     /**
      * @param int $galleryId
      * @param array $pictureData
+     * @param int $indexMain
      * @return void
      */
-    protected function updatePicture($galleryId, $pictureData)
+    protected function updatePicture($galleryId, $pictureData, $indexMain = 0)
     {
         $fileList = [];
         foreach ($pictureData as $index => $value) {
@@ -127,6 +139,11 @@ class GalleryController extends Controller
                     $modelGalleryFile = new GalleryFile();
                     $modelGalleryFile->gallery_id = $galleryId;
                     $modelGalleryFile->file_id = $modelFile->id;
+                }
+                if($index === $indexMain) {
+                    $modelGalleryFile->main = 1;
+                } else {
+                    $modelGalleryFile->main = 0;
                 }
                 $modelGalleryFile->save(false);
             }
@@ -186,11 +203,39 @@ class GalleryController extends Controller
 
     /**
      * @param int $galleryId
-     * @param array $relatedData
+     * @param string $relatedString
      * @return void
      */
-    protected function updateRelated($galleryId, $relatedData){
+    protected function updateRelated($galleryId, $relatedString)
+    {
+        if(!empty($relatedString))
+        {
+            $relatedList = [];
+            foreach (explode(',', $relatedString) as $index => $relatedId) {
+                array_push($relatedList, $relatedId);
 
+                $galleryRelatedObject = GalleryRelated::findOne(['gallery_id'=>$galleryId, 'related_id'=>$relatedId]);
+                if($galleryRelatedObject !== null) {
+                    $galleryRelatedObject->deleted = 0;
+                    $galleryRelatedObject->sorting = $index;
+                } else {
+                    $galleryRelatedObject = new GalleryRelated();
+                    $galleryRelatedObject->gallery_id = $galleryId;
+                    $galleryRelatedObject->related_id = $relatedId;
+                    $galleryRelatedObject->sorting = $index;
+                }
+                $galleryRelatedObject->save(false);
+            }
+
+            $galleryRelatedSearch = new GalleryRelatedSearch();
+            $galleryRelatedObjects = $galleryRelatedSearch->search(['gallery_id'=>$galleryId])->getModels();
+            foreach ($galleryRelatedObjects as $object) {
+                if(!in_array($object->related_id, $relatedList)){
+                    $object->deleted = 1;
+                    $object->save(false);
+                }
+            }
+        }
     }
 
     /**
@@ -204,10 +249,16 @@ class GalleryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->status = Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish') ? Gallery::STATUS_PUBLISHED : Gallery::STATUS_DRAFT;
+            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+                if($model->status !== Gallery::STATUS_PUBLISHED) {
+                    $model->status = Gallery::STATUS_PUBLISHED;
+                    $model->publish_date = time();
+                }
+            }
             if($model->save()) {
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
                 $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
+                $this->updateRelated($model->id, isset(Yii::$app->request->post()['Related']) ? Yii::$app->request->post()['Related'] : '');
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
@@ -229,11 +280,18 @@ class GalleryController extends Controller
             }
             $tagSuggestions = rtrim($tagSuggestions, ',');
 
+            $gallerySearch = new GallerySearch();
+            $galleries = $gallerySearch->search(['gallery_id' => $id])->getModels();
+
+            $gallerySuggestion = Gallery::find()->where("deleted = 0 AND id <> :id", [':id' => $id])->limit(self::$limitSuggestion)->all();
+
             return $this->render('update', [
                 'model' => $model,
                 'pictures' => $pictures,
                 'tags' => Json::encode($tagList),
-                'tagSuggestions' => $tagSuggestions
+                'tagSuggestions' => $tagSuggestions,
+                'galleries' => $galleries,
+                'gallerySuggestion' => $gallerySuggestion
             ]);
         }
     }
