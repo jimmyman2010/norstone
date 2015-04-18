@@ -121,7 +121,7 @@ class GalleryController extends Controller
      * @param int $indexMain
      * @return void
      */
-    protected function updatePicture($galleryId, $pictureData, $indexMain = 0)
+    protected function updatePicture($galleryId, $pictureData)
     {
         $fileList = [];
         foreach ($pictureData as $index => $value) {
@@ -139,11 +139,6 @@ class GalleryController extends Controller
                     $modelGalleryFile = new GalleryFile();
                     $modelGalleryFile->gallery_id = $galleryId;
                     $modelGalleryFile->file_id = $modelFile->id;
-                }
-                if($index === $indexMain) {
-                    $modelGalleryFile->main = 1;
-                } else {
-                    $modelGalleryFile->main = 0;
                 }
                 $modelGalleryFile->save(false);
             }
