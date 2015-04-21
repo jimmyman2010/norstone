@@ -27,7 +27,7 @@ use yii\filters\VerbFilter;
  */
 class GalleryController extends Controller
 {
-    public static $limitSuggestion = 7;
+    public static $limitSuggestion = null;
     public function behaviors()
     {
         return [
@@ -90,6 +90,7 @@ class GalleryController extends Controller
             if ($model->save()) {
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
                 $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
+                $this->updateRelated($model->id, isset(Yii::$app->request->post()['Related']) ? Yii::$app->request->post()['Related'] : '');
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
@@ -110,7 +111,7 @@ class GalleryController extends Controller
                 'tags' => '',
                 'tagSuggestions' => Html::encode($tagSuggestions),
                 'galleries' => [],
-                'gallerySuggestion' => []
+                'gallerySuggestion' => $gallerySuggestion
             ]);
         }
     }
@@ -118,29 +119,30 @@ class GalleryController extends Controller
     /**
      * @param int $galleryId
      * @param array $pictureData
-     * @param int $indexMain
      * @return void
      */
     protected function updatePicture($galleryId, $pictureData)
     {
         $fileList = [];
-        foreach ($pictureData as $index => $value) {
-            if(($modelFile = File::findOne(intval($value['id']))) !== null) {
-                if(!empty($value['caption'])) {
-                    $modelFile->caption = $value['caption'];
-                }
-                $modelFile->deleted = 0;
-                $modelFile->save(false);
-                array_push($fileList, $modelFile->id);
+        if(is_array($pictureData)) {
+            foreach ($pictureData as $index => $value) {
+                if (($modelFile = File::findOne(intval($value['id']))) !== null) {
+                    if (!empty($value['caption'])) {
+                        $modelFile->caption = $value['caption'];
+                    }
+                    $modelFile->deleted = 0;
+                    $modelFile->save(false);
+                    array_push($fileList, $modelFile->id);
 
-                if(($modelGalleryFile = GalleryFile::findOne(['gallery_id' => $galleryId, 'file_id' => intval($value['id'])])) !== null) {
-                    $modelGalleryFile->deleted = 0;
-                } else {
-                    $modelGalleryFile = new GalleryFile();
-                    $modelGalleryFile->gallery_id = $galleryId;
-                    $modelGalleryFile->file_id = $modelFile->id;
+                    if (($modelGalleryFile = GalleryFile::findOne(['gallery_id' => $galleryId, 'file_id' => intval($value['id'])])) !== null) {
+                        $modelGalleryFile->deleted = 0;
+                    } else {
+                        $modelGalleryFile = new GalleryFile();
+                        $modelGalleryFile->gallery_id = $galleryId;
+                        $modelGalleryFile->file_id = $modelFile->id;
+                    }
+                    $modelGalleryFile->save(false);
                 }
-                $modelGalleryFile->save(false);
             }
         }
         $galleryFileSearch = new GalleryFileSearch();
@@ -159,9 +161,9 @@ class GalleryController extends Controller
      */
     protected function updateTags($galleryId, $tagString)
     {
+        $tagList = [];
         if(!empty($tagString))
         {
-            $tagList = [];
             foreach (Json::decode($tagString) as $tagName) {
                 $tagObject = Tag::findOne(['name' => $tagName]);
                 if($tagObject !== null) {
@@ -185,13 +187,13 @@ class GalleryController extends Controller
                 $galleryTagObject->save(false);
             }
 
-            $galleryTagSearch = new GalleryTagSearch();
-            $galleryTagObjects = $galleryTagSearch->search(['gallery_id'=>$galleryId])->getModels();
-            foreach ($galleryTagObjects as $object) {
-                if(!in_array($object->tag_id, $tagList)){
-                    $object->deleted = 1;
-                    $object->save(false);
-                }
+        }
+        $galleryTagSearch = new GalleryTagSearch();
+        $galleryTagObjects = $galleryTagSearch->search(['gallery_id'=>$galleryId])->getModels();
+        foreach ($galleryTagObjects as $object) {
+            if(!in_array($object->tag_id, $tagList)){
+                $object->deleted = 1;
+                $object->save(false);
             }
         }
     }
@@ -203,9 +205,10 @@ class GalleryController extends Controller
      */
     protected function updateRelated($galleryId, $relatedString)
     {
+
+        $relatedList = [];
         if(!empty($relatedString))
         {
-            $relatedList = [];
             foreach (explode(',', $relatedString) as $index => $relatedId) {
                 array_push($relatedList, $relatedId);
 
@@ -222,13 +225,13 @@ class GalleryController extends Controller
                 $galleryRelatedObject->save(false);
             }
 
-            $galleryRelatedSearch = new GalleryRelatedSearch();
-            $galleryRelatedObjects = $galleryRelatedSearch->search(['gallery_id'=>$galleryId])->getModels();
-            foreach ($galleryRelatedObjects as $object) {
-                if(!in_array($object->related_id, $relatedList)){
-                    $object->deleted = 1;
-                    $object->save(false);
-                }
+        }
+        $galleryRelatedSearch = new GalleryRelatedSearch();
+        $galleryRelatedObjects = $galleryRelatedSearch->search(['gallery_id'=>$galleryId])->getModels();
+        foreach ($galleryRelatedObjects as $object) {
+            if(!in_array($object->related_id, $relatedList)){
+                $object->deleted = 1;
+                $object->save(false);
             }
         }
     }
@@ -277,8 +280,12 @@ class GalleryController extends Controller
 
             $gallerySearch = new GallerySearch();
             $galleries = $gallerySearch->search(['gallery_id' => $id])->getModels();
+            $idList = [$id];
+            foreach ($galleries as $index => $gallery) {
+                array_push($idList, $gallery->id);
+            }
 
-            $gallerySuggestion = Gallery::find()->where("deleted = 0 AND id <> :id", [':id' => $id])->limit(self::$limitSuggestion)->all();
+            $gallerySuggestion = Gallery::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->limit(self::$limitSuggestion)->all();
 
             return $this->render('update', [
                 'model' => $model,

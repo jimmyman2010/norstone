@@ -439,32 +439,27 @@ textarea:focus {
 
 /* line 2, ../../sass/app/partials/_sortable.scss */
 .related .connected {
-  min-height: 16.25rem;
+  height: 24.4375rem;
+  max-height: 24.4375rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-/* line 7, ../../sass/app/partials/_sortable.scss */
+/* line 10, ../../sass/app/partials/_sortable.scss */
 .search .search-box {
   padding: 0.9375rem 0.3125rem 1.25rem;
   border-bottom: 1px solid #3598dc;
   margin-bottom: 1.25rem;
 }
-/* line 11, ../../sass/app/partials/_sortable.scss */
-.search .search-box input {
-  float: left;
-  width: 365px;
-}
 /* line 15, ../../sass/app/partials/_sortable.scss */
-.search .search-box button {
-  padding: 0.4375rem 1.875rem;
-  margin-left: 0.625rem;
-  color: #fff;
-}
-/* line 21, ../../sass/app/partials/_sortable.scss */
 .search .connected {
-  min-height: 6.25rem;
+  height: 18.75rem;
+  max-height: 18.75rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-/* line 26, ../../sass/app/partials/_sortable.scss */
+/* line 23, ../../sass/app/partials/_sortable.scss */
 .connected, .sortable, .exclude, .handles {
   margin: auto;
   padding: 0;
@@ -475,7 +470,7 @@ textarea:focus {
   -webkit-user-select: none;
   user-select: none;
 }
-/* line 32, ../../sass/app/partials/_sortable.scss */
+/* line 29, ../../sass/app/partials/_sortable.scss */
 .connected li, .sortable li, .exclude li, .handles li {
   list-style: none;
   border: 1px solid #CCC;
@@ -485,16 +480,16 @@ textarea:focus {
   padding: 5px;
 }
 
-/* line 41, ../../sass/app/partials/_sortable.scss */
+/* line 38, ../../sass/app/partials/_sortable.scss */
 .handles span {
   cursor: move;
 }
 
-/* line 44, ../../sass/app/partials/_sortable.scss */
+/* line 41, ../../sass/app/partials/_sortable.scss */
 .sortable.grid {
   overflow: hidden;
 }
-/* line 46, ../../sass/app/partials/_sortable.scss */
+/* line 43, ../../sass/app/partials/_sortable.scss */
 .sortable.grid li {
   line-height: 80px;
   float: left;
@@ -503,15 +498,15 @@ textarea:focus {
   text-align: center;
 }
 
-/* line 55, ../../sass/app/partials/_sortable.scss */
+/* line 52, ../../sass/app/partials/_sortable.scss */
 li.highlight {
   background: #FEE25F;
 }
-/* line 58, ../../sass/app/partials/_sortable.scss */
+/* line 55, ../../sass/app/partials/_sortable.scss */
 li.disabled {
   opacity: 0.5;
 }
-/* line 61, ../../sass/app/partials/_sortable.scss */
+/* line 58, ../../sass/app/partials/_sortable.scss */
 li.sortable-placeholder {
   border: 1px dashed #CCC;
   background: none;

@@ -118,7 +118,7 @@ GalleryAsset::register($this);
                         <div class="portlet-body">
                             <ul class="connected list">
                                 <?php foreach ($galleries as $index => $item) { ?>
-                                    <li data-id="<?= $item->id ?>"><?= $item->name ?></li>
+                                    <li data-id="<?= $item->id ?>"><a href="javascript:;"><?= $item->name ?></a></li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -134,12 +134,11 @@ GalleryAsset::register($this);
                         </div>
                         <div class="portlet-body">
                             <div class="search-box">
-                                <input type="text" placeholder="Search" />
-                                <button type="button" class="small round">Search</button>
+                                <input type="text" placeholder="Enter keyword" />
                             </div>
                             <ul class="connected list no2">
                                 <?php foreach ($gallerySuggestion as $index => $item) { ?>
-                                    <li data-id="<?= $item->id ?>"><?= $item->name ?></li>
+                                    <li data-id="<?= $item->id ?>"><a href="javascript:;"><?= $item->name ?></a></li>
                                 <?php } ?>
                             </ul>
                         </div>
