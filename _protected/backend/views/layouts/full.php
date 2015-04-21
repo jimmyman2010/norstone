@@ -31,7 +31,7 @@ FullAsset::register($this);
                 <?= $content ?>
             </div>
             <div class="copyright">
-                <?= date('Y') ?> &copy; <?= Yii::t('app', Yii::$app->name) ?>. Powered by <a href="http://www.mantrandm.com/" rel="external">JM GROUP</a>
+                <?= date('Y') ?> &copy; <?= Yii::t('app', Yii::$app->name) ?>. Powered by <a href="http://www.mantrantd.com/" rel="external" target="_blank">JM GROUP</a>
             </div>
         </div>
 

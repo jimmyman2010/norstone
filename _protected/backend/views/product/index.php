@@ -31,12 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // buttons
             ['class' => 'yii\grid\ActionColumn',
                 'header' => "Menu",
-                'template' => '{view} {update} {delete}',
+                'template' => '{update} {delete}',
                 'buttons' => [
-                    'view' => function ($url, $model, $key) {
-                        return Html::a('', $url, ['title'=>'View product',
-                            'class'=>'fa fa-eye']);
-                    },
                     'update' => function ($url, $model, $key) {
                         return Html::a('', $url, ['title'=>'Manage product',
                             'class'=>'fa fa-pencil-square-o']);

@@ -703,58 +703,62 @@ body .copyright {
   margin-right: 0.3125rem;
 }
 
-/* line 158, ../../sass/app/global.scss */
+/* line 159, ../../sass/app/global.scss */
 .table tr th {
   font-weight: 500;
   color: #008CBA;
 }
-/* line 161, ../../sass/app/global.scss */
+/* line 162, ../../sass/app/global.scss */
 .table tr th .asc:after, .table tr th .desc:after {
   color: #0171B8;
   font-family: FontAwesome;
   margin-left: 0.3125rem;
 }
-/* line 166, ../../sass/app/global.scss */
+/* line 167, ../../sass/app/global.scss */
 .table tr th .asc:after {
   content: "\f106";
 }
-/* line 169, ../../sass/app/global.scss */
+/* line 170, ../../sass/app/global.scss */
 .table tr th .desc:after {
   content: "\f107";
 }
-/* line 173, ../../sass/app/global.scss */
+/* line 174, ../../sass/app/global.scss */
+.table tr td {
+  vertical-align: top;
+}
+/* line 179, ../../sass/app/global.scss */
 .table .fa {
   font-size: 1rem;
   margin: 0 0.3125rem;
 }
-/* line 176, ../../sass/app/global.scss */
+/* line 182, ../../sass/app/global.scss */
 .table .fa.fa-eye {
   color: #a0d3e8;
 }
-/* line 179, ../../sass/app/global.scss */
+/* line 185, ../../sass/app/global.scss */
 .table .fa.fa-pencil-square-o {
   color: #008CBA;
 }
-/* line 182, ../../sass/app/global.scss */
+/* line 188, ../../sass/app/global.scss */
 .table .fa.fa-trash-o {
   color: #e7e7e7;
 }
 
-/* line 187, ../../sass/app/global.scss */
+/* line 193, ../../sass/app/global.scss */
 .summary {
   font-size: 0.8125rem;
 }
 
-/* line 190, ../../sass/app/global.scss */
+/* line 196, ../../sass/app/global.scss */
 .form-group {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 193, ../../sass/app/global.scss */
+/* line 199, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 196, ../../sass/app/global.scss */
+/* line 202, ../../sass/app/global.scss */
 .form-group .help-block {
   position: absolute;
   -moz-border-radius: 0.3125rem;
@@ -766,7 +770,7 @@ body .copyright {
   color: #fff;
   left: 25%;
 }
-/* line 204, ../../sass/app/global.scss */
+/* line 210, ../../sass/app/global.scss */
 .form-group .help-block:before {
   content: "\f0d8";
   color: #444;
@@ -776,32 +780,32 @@ body .copyright {
   font-family: FontAwesome;
   font-size: 1.75rem;
 }
-/* line 213, ../../sass/app/global.scss */
+/* line 219, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 218, ../../sass/app/global.scss */
+/* line 224, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 221, ../../sass/app/global.scss */
+/* line 227, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 226, ../../sass/app/global.scss */
+/* line 232, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 228, ../../sass/app/global.scss */
+/* line 234, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 231, ../../sass/app/global.scss */
+/* line 237, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;

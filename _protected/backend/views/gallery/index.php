@@ -28,7 +28,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
+            [
+                'attribute' => '#',
+                'format' => 'html',
+                'value' => function($data) {
+                    if($data->image !== null)
+                    {
+                        $image = $data->image;
+                        $img = $image->show_url . $image->file_name . '-thumb-list.' . $image->file_ext;
+                    } else {
+                        $img = '/admin/themes/jmgroup/images/NoImage_592x444.jpg';
+                    }
+                    return Html::img($img, ['width'=>'100']);
+                }
+            ],
+            [
+                'attribute'=>'name',
+                'format'=>'html',
+                'value'=> function($data) {
+                    return Html::a($data->name, ['update', 'id' => $data->id]);
+                }
+            ],
             [
                 'attribute' => 'product_id',
                 'value' => 'product.name'
@@ -47,12 +67,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // buttons
             ['class' => 'yii\grid\ActionColumn',
                 'header' => "Menu",
-                'template' => '{view} {update} {delete}',
+                'template' => '{update} {delete}',
                 'buttons' => [
-                    'view' => function ($url, $model, $key) {
-                        return Html::a('', $url, ['title'=>'View gallery',
-                            'class'=>'fa fa-eye']);
-                    },
                     'update' => function ($url, $model, $key) {
                         return Html::a('', $url, ['title'=>'Manage gallery',
                             'class'=>'fa fa-pencil-square-o']);

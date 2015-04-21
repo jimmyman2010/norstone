@@ -141,7 +141,7 @@ AppAsset::register($this);
         <?php $this->endBody() ?>
     </div>
     <div class="copyright">
-        2015 © Gallery. Powered by <a href="http://www.mantrandm.com/" rel="external">JM GROUP</a>
+        2015 © Gallery. Powered by <a href="http://www.mantrantd.com/" rel="external" target="_blank">JM GROUP</a>
     </div>
     <script>
         $(document).foundation();

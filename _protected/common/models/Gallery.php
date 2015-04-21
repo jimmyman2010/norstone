@@ -96,6 +96,14 @@ class Gallery extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->hasOne(File::className(), ['id' => 'image_id']);
+    }
+
+    /**
      * Returns the array of possible gallery status values.
      *
      * @return array

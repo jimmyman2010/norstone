@@ -155,19 +155,25 @@ body{
     }
 }
 .table {
-    tr th{
-        font-weight: 500;
-        color: #008CBA;
-        .asc:after, .desc:after{
-            color: #0171B8;
-            font-family: FontAwesome;
-            margin-left: rem-calc(5);
+    tr {
+        th {
+            font-weight: 500;
+            color: #008CBA;
+            .asc:after, .desc:after {
+                color: #0171B8;
+                font-family: FontAwesome;
+                margin-left: rem-calc(5);
+            }
+            .asc:after {
+                content: "\f106";
+            }
+            .desc:after {
+                content: "\f107";
+            }
         }
-        .asc:after{
-            content: "\f106";
-        }
-        .desc:after{
-            content: "\f107";
+        td{
+            vertical-align: top;
+
         }
     }
     .fa{
