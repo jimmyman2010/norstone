@@ -145,8 +145,8 @@ class GalleryController extends Controller
                 }
             }
         }
-        $galleryFileSearch = new GalleryFileSearch();
-        $galleryFileObjects = $galleryFileSearch->search(['gallery_id'=>$galleryId])->getModels();
+
+        $galleryFileObjects = GalleryFile::findAll(['gallery_id'=>$galleryId]);
         foreach ($galleryFileObjects as $object) {
             if(!in_array($object->file_id, $fileList)){
                 $object->delete();
@@ -188,8 +188,8 @@ class GalleryController extends Controller
             }
 
         }
-        $galleryTagSearch = new GalleryTagSearch();
-        $galleryTagObjects = $galleryTagSearch->search(['gallery_id'=>$galleryId])->getModels();
+
+        $galleryTagObjects = GalleryTag::findAll(['gallery_id'=>$galleryId]);
         foreach ($galleryTagObjects as $object) {
             if(!in_array($object->tag_id, $tagList)){
                 $object->deleted = 1;
@@ -226,8 +226,8 @@ class GalleryController extends Controller
             }
 
         }
-        $galleryRelatedSearch = new GalleryRelatedSearch();
-        $galleryRelatedObjects = $galleryRelatedSearch->search(['gallery_id'=>$galleryId])->getModels();
+
+        $galleryRelatedObjects = GalleryRelated::findAll(['gallery_id'=>$galleryId]);
         foreach ($galleryRelatedObjects as $object) {
             if(!in_array($object->related_id, $relatedList)){
                 $object->deleted = 1;
