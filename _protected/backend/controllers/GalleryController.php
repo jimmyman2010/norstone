@@ -21,6 +21,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * GalleryController implements the CRUD actions for Gallery model.
@@ -328,5 +329,20 @@ class GalleryController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function actionCheckduplicate($name, $id = 0)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if($id === 0)
+            $exist = Gallery::findOne(['name' => $name]);
+        else
+            $exist = Gallery::findOne(['AND', ['=', 'name', $name], ['<>', 'id', $id]]);
+        return $exist === null;
     }
 }
