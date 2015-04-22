@@ -80,7 +80,7 @@ AppAsset::register($this);
                                         'options' => ['class' => 'group-item']
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Home'),
+                                        'label' => Yii::t('app', 'Dashboard'),
                                         'url' => ['site/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-home"></i>{label}</a>'
                                     ],

@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </div>
         </div>
-        <div class="portlet-body">
+        <div class="portlet-body has-padding">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     } else {
                         $img = '/admin/themes/jmgroup/images/NoImage_592x444.jpg';
                     }
-                    return Html::img($img, ['width'=>'100']);
+                    return Html::a(Html::img($img, ['width'=>'100']), ['update', 'id' => $data->id]);
                 }
             ],
             [
@@ -86,6 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ], // ActionColumn
         ],
     ]); ?>
+
 
         </div>
     </div>

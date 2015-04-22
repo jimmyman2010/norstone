@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </div>
         </div>
-        <div class="portlet-body">
+        <div class="portlet-body has-padding">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([

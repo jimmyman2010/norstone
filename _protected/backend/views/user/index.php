@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </div>
         </div>
-        <div class="portlet-body">
+        <div class="portlet-body has-padding">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

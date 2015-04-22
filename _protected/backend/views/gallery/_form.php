@@ -57,6 +57,7 @@ GalleryAsset::register($this);
                         'editorOptions' => [
                             'preset' => 'basic',
                             'inline' => false,
+                            'language' => 'en'
                         ],
                     ]) ?>
 

@@ -663,7 +663,7 @@ body .copyright {
 }
 /* line 121, ../../sass/app/global.scss */
 .portlet .portlet-title .caption {
-  float: left;
+  float: right;
   font-size: 1.125rem;
   line-height: 2rem;
   font-weight: 700;
@@ -672,11 +672,11 @@ body .copyright {
 }
 /* line 129, ../../sass/app/global.scss */
 .portlet .portlet-title .action {
-  float: right;
+  float: left;
 }
 /* line 131, ../../sass/app/global.scss */
 .portlet .portlet-title .action a {
-  margin: 0 0 0.625rem 0.625rem;
+  margin: 0 0.625rem 0.625rem 0;
 }
 /* line 136, ../../sass/app/global.scss */
 .portlet .portlet-body.has-padding {
@@ -703,62 +703,66 @@ body .copyright {
   margin-right: 0.3125rem;
 }
 
-/* line 159, ../../sass/app/global.scss */
+/* line 157, ../../sass/app/global.scss */
+.table {
+  width: 100%;
+}
+/* line 160, ../../sass/app/global.scss */
 .table tr th {
   font-weight: 500;
   color: #008CBA;
 }
-/* line 162, ../../sass/app/global.scss */
+/* line 163, ../../sass/app/global.scss */
 .table tr th .asc:after, .table tr th .desc:after {
   color: #0171B8;
   font-family: FontAwesome;
   margin-left: 0.3125rem;
 }
-/* line 167, ../../sass/app/global.scss */
+/* line 168, ../../sass/app/global.scss */
 .table tr th .asc:after {
   content: "\f106";
 }
-/* line 170, ../../sass/app/global.scss */
+/* line 171, ../../sass/app/global.scss */
 .table tr th .desc:after {
   content: "\f107";
 }
-/* line 174, ../../sass/app/global.scss */
+/* line 175, ../../sass/app/global.scss */
 .table tr td {
   vertical-align: top;
 }
-/* line 179, ../../sass/app/global.scss */
+/* line 180, ../../sass/app/global.scss */
 .table .fa {
   font-size: 1rem;
   margin: 0 0.3125rem;
 }
-/* line 182, ../../sass/app/global.scss */
+/* line 183, ../../sass/app/global.scss */
 .table .fa.fa-eye {
   color: #a0d3e8;
 }
-/* line 185, ../../sass/app/global.scss */
+/* line 186, ../../sass/app/global.scss */
 .table .fa.fa-pencil-square-o {
   color: #008CBA;
 }
-/* line 188, ../../sass/app/global.scss */
+/* line 189, ../../sass/app/global.scss */
 .table .fa.fa-trash-o {
   color: #e7e7e7;
 }
 
-/* line 193, ../../sass/app/global.scss */
+/* line 194, ../../sass/app/global.scss */
 .summary {
   font-size: 0.8125rem;
 }
 
-/* line 196, ../../sass/app/global.scss */
+/* line 197, ../../sass/app/global.scss */
 .form-group {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 199, ../../sass/app/global.scss */
+/* line 200, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 202, ../../sass/app/global.scss */
+/* line 203, ../../sass/app/global.scss */
 .form-group .help-block {
   position: absolute;
   -moz-border-radius: 0.3125rem;
@@ -770,7 +774,7 @@ body .copyright {
   color: #fff;
   left: 25%;
 }
-/* line 210, ../../sass/app/global.scss */
+/* line 211, ../../sass/app/global.scss */
 .form-group .help-block:before {
   content: "\f0d8";
   color: #444;
@@ -780,32 +784,32 @@ body .copyright {
   font-family: FontAwesome;
   font-size: 1.75rem;
 }
-/* line 219, ../../sass/app/global.scss */
+/* line 220, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 224, ../../sass/app/global.scss */
+/* line 225, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 227, ../../sass/app/global.scss */
+/* line 228, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 232, ../../sass/app/global.scss */
+/* line 233, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 234, ../../sass/app/global.scss */
+/* line 235, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 237, ../../sass/app/global.scss */
+/* line 238, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;

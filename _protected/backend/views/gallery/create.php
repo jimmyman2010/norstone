@@ -15,6 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="portlet">
         <div class="portlet-title">
             <div class="caption"><?= Html::encode($this->title) ?></div>
+            <div class="action">
+                <ul class="button-group">
+                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
+                </ul>
+            </div>
         </div>
         <div class="portlet-body">
 

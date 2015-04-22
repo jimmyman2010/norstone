@@ -11,11 +11,17 @@ $this->params['breadcrumbs'][] = ['label' => $user->username, 'url' => ['view', 
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <article class="user-update">
-    <div class="portlet large-6">
+    <div class="portlet">
         <div class="portlet-title">
             <div class="caption"><?= Html::encode($this->title) ?></div>
+            <div class="action">
+                <ul class="button-group">
+                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
+                </ul>
+            </div>
         </div>
-        <div class="portlet-body">
+        <div class="portlet-body has-padding">
         <?= $this->render('_form', [
             'user' => $user,
             'role' => $role,
