@@ -1,5 +1,5 @@
 /*
-SQLyog Community v9.60 Beta2
+SQLyog Community v11.31 (64 bit)
 MySQL - 5.6.21 : Database - norstone
 *********************************************************************
 */
@@ -135,7 +135,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`expire`,`data`) values ('0a5oaue47j9834ubus54o7da32',1429767868,'__flash|a:0:{}__id|i:88;'),('4lqkr04up81t8l3981lndl0a91',1429767464,'__flash|a:0:{}');
+insert  into `session`(`id`,`expire`,`data`) values ('3u85dideg5srtu91qv846b1hl6',1429791691,'__flash|a:0:{}__captcha/site/captcha|s:7:\"gctipos\";__captcha/site/captchacount|i:1;'),('9bg5425u8ivhut7qu3j3ahkri2',1429787724,'__flash|a:0:{}__id|i:88;');
 
 /*Table structure for table `tbl_color` */
 
@@ -172,11 +172,11 @@ CREATE TABLE `tbl_file` (
   `file_ext` varchar(8) NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_file` */
 
-insert  into `tbl_file`(`id`,`name`,`caption`,`media`,`show_url`,`directory`,`dimension`,`width`,`height`,`file_name`,`file_type`,`file_size`,`file_ext`,`deleted`) values (52,'img-1067-jpg',NULL,'image','/uploads/images/img-1067-jpg/','\\images\\img-1067-jpg\\','2592x1936',2592,1936,'img-1067-jpg','image/jpeg','','jpg',0),(53,'img-1075-jpg',NULL,'image','/uploads/images/img-1075-jpg/','\\images\\img-1075-jpg\\','2592x1936',2592,1936,'img-1075-jpg','image/jpeg','','jpg',0),(54,'img-1046-jpg',NULL,'image','/uploads/images/img-1046-jpg/','\\images\\img-1046-jpg\\','2592x1936',2592,1936,'img-1046-jpg','image/jpeg','','jpg',0);
+insert  into `tbl_file`(`id`,`name`,`caption`,`media`,`show_url`,`directory`,`dimension`,`width`,`height`,`file_name`,`file_type`,`file_size`,`file_ext`,`deleted`) values (61,'alberteinstein-jpg-3',NULL,'image','/uploads/images/alberteinstein-jpg-3/','\\images\\alberteinstein-jpg-3\\','5333x3333',5333,3333,'alberteinstein-jpg-3','image/jpeg','','jpg',0),(62,'bargain-jpg-3',NULL,'image','/uploads/images/bargain-jpg-3/','\\images\\bargain-jpg-3\\','402x263',402,263,'bargain-jpg-3','image/jpeg','','jpg',0),(63,'basement-jpg-3',NULL,'image','/uploads/images/basement-jpg-3/','\\images\\basement-jpg-3\\','259x194',259,194,'basement-jpg-3','image/jpeg','','jpg',0);
 
 /*Table structure for table `tbl_gallery` */
 
@@ -206,7 +206,7 @@ CREATE TABLE `tbl_gallery` (
 
 /*Data for the table `tbl_gallery` */
 
-insert  into `tbl_gallery`(`id`,`name`,`slug`,`product_id`,`color_id`,`application`,`image_id`,`intro`,`description`,`lean_more_link`,`seo_keyword`,`seo_description`,`status`,`publish_date`,`created_date`,`created_by`,`deleted`) values (9,'this is the name','this-is-the-name',1,4,1,53,'this is the introduction','<p>this is the description</p>\r\n','','picture','picture is picture','published',1428963763,1428963763,'admin',0),(10,'gallery 2','gallery-2',1,3,0,52,'gallery 2','<p>gallery 2</p>\r\n','','','','published',1429251934,1429251934,'admin',0),(11,'gallery 3','gallery-3',1,3,1,54,'gallery 3','<p>gallery 3</p>\r\n','','','','published',1429251951,1429251951,'admin',0),(12,'gallery 4','gallery-4',1,4,1,NULL,'gallery 4','<p>gallery 4</p>\r\n','','','','published',1429251967,1429251967,'admin',0),(13,'gallery 5','gallery-5',1,2,1,NULL,'gallery 5','<p>gallery 5</p>\r\n','','','','published',1429251979,1429251979,'admin',0),(14,'gallery 6','gallery-6',1,3,1,NULL,'gallery 6','<p>gallery 6</p>\r\n','','','','published',1429593731,1429593731,'admin',0),(15,'gallery 7','gallery-7',1,3,1,NULL,'gallery 7','<p>gallery 7</p>\r\n','','','','published',1429593786,1429593786,'admin',0),(16,'gallery 8','gallery-8',1,3,0,NULL,'gallery 8','<p>gallery 8</p>\r\n','','','','published',1429594054,1429594054,'admin',0),(17,'gallery 9','gallery-9',1,2,0,NULL,'gallery 9','<p>gallery 9</p>\r\n','','','','published',1429594116,1429594116,'admin',0),(18,'gallery 10','gallery-10',1,2,0,NULL,'gallery 10','<p>gallery 10</p>\r\n','','','','published',1429594170,1429594170,'admin',0),(19,'gallery 12','gallery-12',1,4,0,NULL,'gallery 12','<p>gallery 12</p>\r\n','','','','published',1429685019,1429685019,'admin',0),(20,'gallery 11','gallery-11',1,3,1,NULL,'gallery 11','<p>gallery 11</p>\r\n','','','','published',1429685314,1429685314,'admin',0),(21,'gallery 22','gallery-22',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','published',1429763305,1429763268,'admin',0),(22,'gallery 22','gallery-221',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','draft',0,1429764898,'admin',0),(23,'gallery 23','gallery-222',1,4,1,NULL,'gallery 23','<p>gallery 23</p>\r\n','','','','draft',0,1429764921,'admin',0),(24,'gallery d','gallery-d',1,3,1,NULL,'sdf sd fsd','<p>sdf sdf sdf</p>\r\n','','','','draft',0,1429766698,'admin',0);
+insert  into `tbl_gallery`(`id`,`name`,`slug`,`product_id`,`color_id`,`application`,`image_id`,`intro`,`description`,`lean_more_link`,`seo_keyword`,`seo_description`,`status`,`publish_date`,`created_date`,`created_by`,`deleted`) values (9,'this is the name','this-is-the-name',1,4,1,61,'this is the introduction','<p>this is the description</p>\r\n','','picture','picture is picture','published',1428963763,1428963763,'admin',0),(10,'gallery 2','gallery-2',1,3,0,NULL,'gallery 2','<p>gallery 2</p>\r\n','','','','published',1429251934,1429251934,'admin',0),(11,'gallery 3','gallery-3',1,3,1,NULL,'gallery 3','<p>gallery 3</p>\r\n','','','','published',1429251951,1429251951,'admin',0),(12,'gallery 4','gallery-4',1,4,1,NULL,'gallery 4','<p>gallery 4</p>\r\n','','','','published',1429251967,1429251967,'admin',0),(13,'gallery 5','gallery-5',1,2,1,NULL,'gallery 5','<p>gallery 5</p>\r\n','','','','published',1429251979,1429251979,'admin',0),(14,'gallery 6','gallery-6',1,3,1,NULL,'gallery 6','<p>gallery 6</p>\r\n','','','','published',1429593731,1429593731,'admin',0),(15,'gallery 7','gallery-7',1,3,1,NULL,'gallery 7','<p>gallery 7</p>\r\n','','','','published',1429593786,1429593786,'admin',0),(16,'gallery 8','gallery-8',1,3,0,NULL,'gallery 8','<p>gallery 8</p>\r\n','','','','published',1429594054,1429594054,'admin',0),(17,'gallery 9','gallery-9',1,2,0,NULL,'gallery 9','<p>gallery 9</p>\r\n','','','','published',1429594116,1429594116,'admin',0),(18,'gallery 10','gallery-10',1,2,0,NULL,'gallery 10','<p>gallery 10</p>\r\n','','','','published',1429594170,1429594170,'admin',0),(19,'gallery 12','gallery-12',1,4,0,NULL,'gallery 12','<p>gallery 12</p>\r\n','','','','published',1429685019,1429685019,'admin',0),(20,'gallery 11','gallery-11',1,3,1,NULL,'gallery 11','<p>gallery 11</p>\r\n','','','','published',1429685314,1429685314,'admin',0),(21,'gallery 22','gallery-22',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','published',1429763305,1429763268,'admin',0),(22,'gallery 22','gallery-221',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','draft',0,1429764898,'admin',0),(23,'gallery 23','gallery-222',1,4,1,NULL,'gallery 23','<p>gallery 23</p>\r\n','','','','draft',0,1429764921,'admin',0),(24,'gallery d','gallery-d',1,3,1,NULL,'sdf sd fsd','<p>sdf sdf sdf</p>\r\n','','','','draft',0,1429766698,'admin',0);
 
 /*Table structure for table `tbl_gallery_file` */
 
@@ -221,7 +221,7 @@ CREATE TABLE `tbl_gallery_file` (
 
 /*Data for the table `tbl_gallery_file` */
 
-insert  into `tbl_gallery_file`(`gallery_id`,`file_id`,`deleted`) values (9,53,0),(10,52,0),(11,54,0);
+insert  into `tbl_gallery_file`(`gallery_id`,`file_id`,`deleted`) values (9,61,0),(9,62,0),(9,63,0);
 
 /*Table structure for table `tbl_gallery_related` */
 
