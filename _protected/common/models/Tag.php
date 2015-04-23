@@ -28,10 +28,10 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['slug'], 'required'],
+            [['name', 'slug'], 'required'],
             [['deleted'], 'integer'],
-            [['name', 'slug'], 'string', 'max' => 128]
+            [['name', 'slug'], 'string', 'max' => 128],
+            //[['slug'], 'unique']
         ];
     }
 

@@ -85,6 +85,7 @@ class GalleryController extends Controller
             } else {
                 $model->status = Gallery::STATUS_DRAFT;
             }
+            $model->slug = $this->getSlug(UtilHelper::slugify($model->name));
             $model->created_date = time();
             $model->created_by = Yii::$app->user->identity->username;
 
@@ -115,6 +116,27 @@ class GalleryController extends Controller
                 'gallerySuggestion' => $gallerySuggestion
             ]);
         }
+    }
+
+    protected function getSlug($slug, $id = 0)
+    {
+        $result = $slug;
+        $i = 0;
+        while (true) {
+            if($i > 0)
+                $result = $slug . $i;
+            if ($id === 0) {
+                $exist = Gallery::findOne(['slug' => $result]);
+            }
+            else {
+                $exist = Gallery::findOne(['AND', ['=', 'slug', $result], ['<>', 'id', $id]]);
+            }
+            if($exist === null) {
+                break;
+            }
+            $i++;
+        }
+        return $result;
     }
 
     /**
@@ -331,18 +353,15 @@ class GalleryController extends Controller
         }
     }
 
-    /**
-     * @param string $name
-     * @param int $id
-     * @return bool
-     */
-    public function actionCheckduplicate($name, $id = 0)
+    public function actionCheckingduplicated($name, $id = 0)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        if($id === 0)
+        if ($id === 0) {
             $exist = Gallery::findOne(['name' => $name]);
-        else
+        }
+        else {
             $exist = Gallery::findOne(['AND', ['=', 'name', $name], ['<>', 'id', $id]]);
+        }
         return $exist === null;
     }
 }

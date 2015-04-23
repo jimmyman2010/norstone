@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $slug
  * @property integer $product_id
  * @property integer $color_id
  * @property integer $application
@@ -44,13 +45,14 @@ class Gallery extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'product_id', 'color_id', 'status', 'created_date', 'created_by'], 'required'],
+            [['name', 'slug', 'product_id', 'color_id', 'status', 'created_date', 'created_by'], 'required'],
             [['product_id', 'color_id', 'application', 'image_id', 'publish_date', 'created_date', 'deleted'], 'integer'],
             [['description', 'status'], 'string'],
             [['name', 'seo_description'], 'string', 'max' => 256],
+            [['slug', 'lean_more_link', 'seo_keyword'], 'string', 'max' => 128],
             [['intro'], 'string', 'max' => 1024],
-            [['lean_more_link', 'seo_keyword'], 'string', 'max' => 128],
-            [['created_by'], 'string', 'max' => 32]
+            [['created_by'], 'string', 'max' => 32],
+            [['slug'], 'unique']
         ];
     }
 
@@ -62,10 +64,11 @@ class Gallery extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
-            'product_id' => Yii::t('app', 'Product name'),
+            'slug' => Yii::t('app', 'Slug'),
+            'product_id' => Yii::t('app', 'Product'),
             'color_id' => Yii::t('app', 'Colour'),
             'application' => Yii::t('app', 'Application'),
-            'image_id' => Yii::t('app', 'Image ID'),
+            'image_id' => Yii::t('app', 'Image'),
             'intro' => Yii::t('app', 'Intro'),
             'description' => Yii::t('app', 'Description'),
             'lean_more_link' => Yii::t('app', 'Lean More Link'),
@@ -111,8 +114,8 @@ class Gallery extends \yii\db\ActiveRecord
     public function getStatusList()
     {
         $statusArray = [
-            self::STATUS_PUBLISHED     => 'Published',
-            self::STATUS_WAITING    => 'Waiting',
+            self::STATUS_PUBLISHED    => 'Published',
+            self::STATUS_WAITING   => 'Waiting',
             self::STATUS_DRAFT => 'Draft'
         ];
 
@@ -122,8 +125,8 @@ class Gallery extends \yii\db\ActiveRecord
     /**
      * Returns the gallery status in nice format.
      *
-     * @param  null|integer $status Status integer value if sent to method.
-     * @return string               Nicely formatted status.
+     * @param null|integer $status Status integer value if sent to method.
+     * @return string              Nicely formatted status.
      */
     public function getStatusName($status = null)
     {

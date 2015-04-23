@@ -19,7 +19,7 @@ class GallerySearch extends Gallery
     {
         return [
             [['id', 'application', 'image_id', 'publish_date', 'created_date', 'created_by', 'deleted'], 'integer'],
-            [['name', 'product_id', 'color_id', 'intro', 'description', 'lean_more_link', 'seo_keyword', 'seo_description', 'status'], 'safe'],
+            [['name', 'slug', 'product_id', 'color_id', 'intro', 'description', 'lean_more_link', 'seo_keyword', 'seo_description', 'status'], 'safe'],
         ];
     }
 
@@ -83,6 +83,7 @@ class GallerySearch extends Gallery
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'slug' => $this->slug,
             'application' => $this->application,
             'image_id' => $this->image_id,
             'publish_date' => $this->publish_date,

@@ -2,8 +2,7 @@
 SQLyog Community v9.60 Beta2
 MySQL - 5.6.21 : Database - norstone
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -136,7 +135,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`expire`,`data`) values ('088gtlfg1hcj2ciruojshijhf3',1428386340,'__flash|a:0:{}'),('322lkba0the9jao5iid06updk2',1428774609,'__flash|a:0:{}__returnUrl|s:7:\"/admin/\";__id|i:88;'),('3s1gspp5dpovao1o19648do8n4',1428385381,'__flash|a:0:{}__returnUrl|s:7:\"/admin/\";__id|i:88;'),('4iji31gm8r564r0f6plgeh9cd4',1428686574,'__flash|a:0:{}'),('50hjlqiqjvod0v0m2dittgm1r1',1428471823,'__flash|a:0:{}__id|i:88;'),('5heilphn1br5juoau0g60v5qf2',1428774065,'__flash|a:0:{}'),('7r6j907bejf96s8vg5i6gpi460',1428692408,'__flash|a:0:{}'),('9vpbvbds3ue83nta0j5bq7uku5',1428386229,'__flash|a:0:{}__returnUrl|s:18:\"/admin/site/logout\";__id|i:88;'),('a7dkq94bnhdtbsgnc81asmslt0',1428388228,'__flash|a:0:{}__id|i:88;'),('bm4gp99et377jjmskla9d1jtn2',1428595175,'__flash|a:0:{}'),('dfq3d13l2j0jor989ppl39ld54',1428688076,'__flash|a:0:{}'),('dgpffc77p4n9ucnmgksd91lk31',1428386221,'__flash|a:0:{}'),('it243f4nqs45h4km7vh6oipae7',1428546623,'__flash|a:0:{}'),('k6gpffmskrf83keb8m5m49h7u0',1428473012,'__flash|a:0:{}'),('kt386c8cg88vmqvslpo0o76bg6',1428595170,'__flash|a:0:{}__id|i:88;'),('llor2fr6jd4sdlob2nhcq0jkm7',1428648447,'__flash|a:0:{}__id|i:88;'),('nd0p4mpltqldin3nfvf8enksl4',1428648450,'__flash|a:0:{}'),('q9vr707l0f80b21bdq5v0ag4h6',1428774201,'__flash|a:0:{}'),('ruubs7lqrh0fe6mqdrt63u8gk6',1428686585,'__flash|a:0:{}__returnUrl|s:7:\"/admin/\";__id|i:88;'),('s5ejn41qn85cb79eutgaqmf8f4',1428473007,'__flash|a:0:{}__id|i:88;'),('sdbqsm09jgjntmdmfcbudjnda3',1428562533,'__flash|a:0:{}__id|i:88;'),('svch5m1liheic8nrms3vcna130',1428595175,'__flash|a:0:{}'),('v4hfc9trt1epjl7v3ggm0n4tc1',1428385458,'__flash|a:0:{}'),('vg3m74kb5l5r57dievs2vu9650',1428385463,'__flash|a:0:{}__returnUrl|s:7:\"/admin/\";__id|i:88;');
+insert  into `session`(`id`,`expire`,`data`) values ('0a5oaue47j9834ubus54o7da32',1429767868,'__flash|a:0:{}__id|i:88;'),('4lqkr04up81t8l3981lndl0a91',1429767464,'__flash|a:0:{}');
 
 /*Table structure for table `tbl_color` */
 
@@ -151,7 +150,7 @@ CREATE TABLE `tbl_color` (
 
 /*Data for the table `tbl_color` */
 
-insert  into `tbl_color`(`id`,`name`,`deleted`) values (2,'red',0),(3,'green',1),(4,'blue',0);
+insert  into `tbl_color`(`id`,`name`,`deleted`) values (2,'red',0),(3,'green',0),(4,'blue',0);
 
 /*Table structure for table `tbl_file` */
 
@@ -173,9 +172,11 @@ CREATE TABLE `tbl_file` (
   `file_ext` varchar(8) NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_file` */
+
+insert  into `tbl_file`(`id`,`name`,`caption`,`media`,`show_url`,`directory`,`dimension`,`width`,`height`,`file_name`,`file_type`,`file_size`,`file_ext`,`deleted`) values (52,'img-1067-jpg',NULL,'image','/uploads/images/img-1067-jpg/','\\images\\img-1067-jpg\\','2592x1936',2592,1936,'img-1067-jpg','image/jpeg','','jpg',0),(53,'img-1075-jpg',NULL,'image','/uploads/images/img-1075-jpg/','\\images\\img-1075-jpg\\','2592x1936',2592,1936,'img-1075-jpg','image/jpeg','','jpg',0),(54,'img-1046-jpg',NULL,'image','/uploads/images/img-1046-jpg/','\\images\\img-1046-jpg\\','2592x1936',2592,1936,'img-1046-jpg','image/jpeg','','jpg',0);
 
 /*Table structure for table `tbl_gallery` */
 
@@ -184,23 +185,28 @@ DROP TABLE IF EXISTS `tbl_gallery`;
 CREATE TABLE `tbl_gallery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
+  `slug` varchar(128) NOT NULL,
   `product_id` int(11) NOT NULL,
   `color_id` int(11) NOT NULL,
   `application` tinyint(1) NOT NULL DEFAULT '1',
+  `image_id` int(11) DEFAULT NULL,
   `intro` varchar(1024) DEFAULT NULL,
   `description` text,
   `lean_more_link` varchar(128) DEFAULT NULL,
+  `seo_keyword` varchar(128) DEFAULT NULL,
+  `seo_description` varchar(256) DEFAULT NULL,
   `status` enum('draft','waiting','published') NOT NULL,
   `publish_date` int(10) NOT NULL DEFAULT '0',
   `created_date` int(10) NOT NULL,
   `created_by` varchar(32) NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQUE` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_gallery` */
 
-insert  into `tbl_gallery`(`id`,`name`,`product_id`,`color_id`,`application`,`intro`,`description`,`lean_more_link`,`status`,`publish_date`,`created_date`,`created_by`,`deleted`) values (1,'this is the name',1,4,1,'this is the intro','<p>this is the description</p>\r\n','','published',1428186223,1428186223,'mantran',0),(2,'sdfds',1,2,1,'sd fds f','<p>sd fsdf sd</p>\r\n','','published',1428252708,1428252708,'admin',0);
+insert  into `tbl_gallery`(`id`,`name`,`slug`,`product_id`,`color_id`,`application`,`image_id`,`intro`,`description`,`lean_more_link`,`seo_keyword`,`seo_description`,`status`,`publish_date`,`created_date`,`created_by`,`deleted`) values (9,'this is the name','this-is-the-name',1,4,1,53,'this is the introduction','<p>this is the description</p>\r\n','','picture','picture is picture','published',1428963763,1428963763,'admin',0),(10,'gallery 2','gallery-2',1,3,0,52,'gallery 2','<p>gallery 2</p>\r\n','','','','published',1429251934,1429251934,'admin',0),(11,'gallery 3','gallery-3',1,3,1,54,'gallery 3','<p>gallery 3</p>\r\n','','','','published',1429251951,1429251951,'admin',0),(12,'gallery 4','gallery-4',1,4,1,NULL,'gallery 4','<p>gallery 4</p>\r\n','','','','published',1429251967,1429251967,'admin',0),(13,'gallery 5','gallery-5',1,2,1,NULL,'gallery 5','<p>gallery 5</p>\r\n','','','','published',1429251979,1429251979,'admin',0),(14,'gallery 6','gallery-6',1,3,1,NULL,'gallery 6','<p>gallery 6</p>\r\n','','','','published',1429593731,1429593731,'admin',0),(15,'gallery 7','gallery-7',1,3,1,NULL,'gallery 7','<p>gallery 7</p>\r\n','','','','published',1429593786,1429593786,'admin',0),(16,'gallery 8','gallery-8',1,3,0,NULL,'gallery 8','<p>gallery 8</p>\r\n','','','','published',1429594054,1429594054,'admin',0),(17,'gallery 9','gallery-9',1,2,0,NULL,'gallery 9','<p>gallery 9</p>\r\n','','','','published',1429594116,1429594116,'admin',0),(18,'gallery 10','gallery-10',1,2,0,NULL,'gallery 10','<p>gallery 10</p>\r\n','','','','published',1429594170,1429594170,'admin',0),(19,'gallery 12','gallery-12',1,4,0,NULL,'gallery 12','<p>gallery 12</p>\r\n','','','','published',1429685019,1429685019,'admin',0),(20,'gallery 11','gallery-11',1,3,1,NULL,'gallery 11','<p>gallery 11</p>\r\n','','','','published',1429685314,1429685314,'admin',0),(21,'gallery 22','gallery-22',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','published',1429763305,1429763268,'admin',0),(22,'gallery 22','gallery-221',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','draft',0,1429764898,'admin',0),(23,'gallery 23','gallery-222',1,4,1,NULL,'gallery 23','<p>gallery 23</p>\r\n','','','','draft',0,1429764921,'admin',0),(24,'gallery d','gallery-d',1,3,1,NULL,'sdf sd fsd','<p>sdf sdf sdf</p>\r\n','','','','draft',0,1429766698,'admin',0);
 
 /*Table structure for table `tbl_gallery_file` */
 
@@ -215,6 +221,24 @@ CREATE TABLE `tbl_gallery_file` (
 
 /*Data for the table `tbl_gallery_file` */
 
+insert  into `tbl_gallery_file`(`gallery_id`,`file_id`,`deleted`) values (9,53,0),(10,52,0),(11,54,0);
+
+/*Table structure for table `tbl_gallery_related` */
+
+DROP TABLE IF EXISTS `tbl_gallery_related`;
+
+CREATE TABLE `tbl_gallery_related` (
+  `gallery_id` int(11) NOT NULL,
+  `related_id` int(11) NOT NULL,
+  `sorting` int(11) NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`gallery_id`,`related_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_gallery_related` */
+
+insert  into `tbl_gallery_related`(`gallery_id`,`related_id`,`sorting`,`deleted`) values (9,10,0,1),(9,11,0,1),(9,12,2,0),(9,13,1,0),(9,14,0,0),(9,15,2,1),(9,16,1,1),(10,11,1,0),(10,12,0,0),(10,13,0,1),(11,16,0,0),(11,17,2,0),(11,18,1,0);
+
 /*Table structure for table `tbl_gallery_tag` */
 
 DROP TABLE IF EXISTS `tbl_gallery_tag`;
@@ -227,6 +251,8 @@ CREATE TABLE `tbl_gallery_tag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_gallery_tag` */
+
+insert  into `tbl_gallery_tag`(`gallery_id`,`tag_id`,`deleted`) values (9,2,1),(9,3,0),(9,4,1),(9,5,0),(10,2,0);
 
 /*Table structure for table `tbl_product` */
 
@@ -250,13 +276,15 @@ DROP TABLE IF EXISTS `tbl_tag`;
 CREATE TABLE `tbl_tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
+  `slug` varchar(128) NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQUE` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_tag` */
 
-insert  into `tbl_tag`(`id`,`name`,`deleted`) values (2,'lightroom',0);
+insert  into `tbl_tag`(`id`,`name`,`slug`,`deleted`) values (2,'Lightroom','lightroom',0),(3,'Man','man',0),(4,'Cute','cute',0),(5,'Minh','minh',0);
 
 /*Table structure for table `user` */
 
