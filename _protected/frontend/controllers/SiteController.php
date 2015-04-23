@@ -1,6 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Gallery;
+use common\models\GallerySearch;
+use common\models\Product;
 use common\models\User;
 use common\models\LoginForm;
 use frontend\models\AccountActivation;
@@ -86,7 +89,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $pageSize = 9;
+        $published = true;
+
+        $searchModel = new GallerySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize, $published);
+
+        $products = Product::findAll(['deleted' => 0]);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'products' => $products
+        ]);
     }
 
     /**

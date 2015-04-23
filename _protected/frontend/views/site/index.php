@@ -1,67 +1,85 @@
 <?php
 
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 $this->title = Yii::t('app', Yii::$app->name);
 ?>
-<div class="site-index">
+<section class="welcome text-center">
+    <h2><span>Norstone Image Gallery</span> When images speak louder than words</h2>
+    <p>Welcome to our Norstone image gallery. We are excited to show you how can our eco friendly stone products contribute to a better aesthetics of architecture and spaces that surrounds us. Stone is universal material suitable for various applications. Use our <a href="#">"Choose the products"</a> searching tool to find inspiration you are looking for.</p>
+</section><!--end welcome-->
+<section class="gallery-list">
+    <div class="filter-gallery">
+        <div class="text-center"><span id="drop-view" data-target="drop-content">Choose the product</span></div>
+        <div class="filter-content" id="drop-content" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+            <div class="row text-left">
+                <div class="small-12 medium-12 large-4 columns text-center">
+                    <div class="dropdown">Product name <span class="ti-angle-down" data-dropdown="drop1" aria-expanded="false"></span>
+                    </div>
+                    <ul id="drop1" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
+                        <?php foreach ($products as $item) { ?>
+                            <li><a href="#">Group 1</a></li>
+                        <?php } ?>
+                        <li><a href="#">Group 1</a></li>
+                        <li><a href="#">Group 2</a></li>
+                        <li><a href="#">Group 3</a></li>
+                    </ul>
+                </div>
+                <div class="small-12 medium-12 large-4 columns text-center">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully installed Yii2 improved application template</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.freetuts.org/tutorial/view?id=6">Read our tutorial</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-3">
-                <h3>Yii documentation</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-3">
-                <h3>Yii forum</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-3">
-                <h3>Yii extensions</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-            <div class="col-lg-3">
-                <h3>Freetuts.org</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.freetuts.org/">Freetuts.org &raquo;</a></p>
+                    <div class="dropdown">Select the colour <span class="ti-angle-down" data-dropdown="drop2" aria-expanded="false"></span>
+                    </div>
+                    <ul id="drop2" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
+                        <li><a href="#">Colour 1</a></li>
+                        <li><a href="#">Colour 2</a></li>
+                        <li><a href="#">Colour 3</a></li>
+                    </ul>
+                </div>
+                <div class="small-12 medium-12 large-4 columns type-show text-center">
+                    <input type="radio" name="choose" checked="true" value="Show All" id="show-all"><label for="show-all">Show all</label>
+                    <input type="radio" name="choose" value="Internal" id="internal"><label for="internal">Internal</label>
+                    <input type="radio" name="choose" value="External" id="external"><label for="external">Internal</label>
+                </div>
             </div>
         </div>
-
     </div>
-</div>
+    <p class="line text-center"><span></span></p>
+    <div class="tags text-center">
+        <a href="#" class="tag-name">Kitchen</a>
+        <a href="#" class="tag-name">Gardens</a>
+        <a href="#" class="tag-name">Water features</a>
+        <a href="#" class="tag-name">Living rooms</a>
+        <a href="#" class="tag-name">Landscapes</a>
+        <a href="#" class="tag-name">Installation</a>
+        <a href="#" class="tag-name">Bathrooms</a>
+        <a href="#" class="tag-name">Expos</a>
+        <a href="#" class="tag-name">Water features</a>
+        <a href="#" class="tag-name">Living rooms</a>
+        <a href="#" class="tag-name active">Landscapes</a>
+        <a href="#" class="tag-name">Installation</a>
+        <a href="#" class="tag-name">Bathrooms</a>
+        <a href="#" class="tag-name">Expos</a>
+    </div>
+    <?php Pjax::begin(['id' => 'galleries']) ?>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+        <?php foreach ($dataProvider->getModels() as $index => $item) { ?>
+            <li class="gallery-thumb">
+                <?= $this->render('../gallery/_item_details', ['model' => $item]) ?>
+            </li>
+        <?php } ?>
+    </ul>
+    <nav class="text-center pagination-wrapper">
+        <?= LinkPager::widget([
+            'pagination'=>$dataProvider->pagination,
+            'nextPageLabel' => Yii::t('app', 'Next') . '&nbsp; <span class="ti-arrow-right"></span>',
+            'prevPageLabel' => '<span class="ti-arrow-left"></span> &nbsp;' . Yii::t('app', 'Previous'),
+        ]) ?>
+    </nav><!--end pagination-->
+    <?php Pjax::end() ?>
+</section><!--end gallery list-->
+
 

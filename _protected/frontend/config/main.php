@@ -22,8 +22,8 @@ return [
         ],
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@webroot/themes/cerulean/views'],
-                'baseUrl' => '@web/themes/cerulean',
+                'pathMap' => ['@app/views' => '@webroot/themes/norstone/views'],
+                'baseUrl' => '@web/themes/norstone',
             ],
         ],
         'user' => [

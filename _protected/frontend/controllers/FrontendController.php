@@ -43,7 +43,7 @@ class FrontendController extends Controller
                         'allow' => true
                     ],
                     [
-                        // other rules
+                        'allow' => true
                     ],
 
                 ], // rules

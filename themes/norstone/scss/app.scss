@@ -21,7 +21,7 @@
    "../bower_components/foundation/scss/foundation/components/inline-lists",
 //   "../bower_components/foundation/scss/foundation/components/joyride",
 //   "../bower_components/foundation/scss/foundation/components/keystrokes",
-//   "../bower_components/foundation/scss/foundation/components/labels",
+   "../bower_components/foundation/scss/foundation/components/labels",
 //   "../bower_components/foundation/scss/foundation/components/magellan",
    "../bower_components/foundation/scss/foundation/components/orbit",
    "../bower_components/foundation/scss/foundation/components/pagination",
@@ -264,7 +264,7 @@ $font-icon-themify: 'themify';
  	&.active{
 		background: $black;
 		color: $white;
-		cursor: default;
+		cursor: pointer;
 		&:after{
 			content: "\e646";
 			font-family: $font-icon-themify;
@@ -326,6 +326,10 @@ $font-icon-themify: 'themify';
 	width: 100%;
 	.pagination{
 		display: inline-block;
+        .disabled{
+            color: #999;
+            cursor: default;
+        }
 	}
 }
 
@@ -423,6 +427,10 @@ $font-icon-themify: 'themify';
 		&:hover{
 				color: $primary-color;
 			}
+        &.disabled, &.disabled:hover{
+            color: #ccc;
+            cursor: default;
+        }
 	}
 	.next-prev{
 		border-bottom: 1px solid $border-header-color;

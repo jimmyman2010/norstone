@@ -28,9 +28,12 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@themes';
     
     public $css = [
-        'css/site.css',
+        'stylesheets/themify-icons.min.css',
+        'stylesheets/app.min.css'
     ];
     public $js = [
+        'bower_components/foundation/js/foundation.min.js',
+        'js/app.min.js'
     ];
     
     public $depends = [

@@ -36,10 +36,12 @@ class GallerySearch extends Gallery
      * Creates data provider instance with search query applied
      *
      * @param array $params
+     * @param int $pageSize
+     * @param bool $published
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $pageSize = 10, $published = false)
     {
         $query = Gallery::find();
         if(isset($params['gallery_id'])) {
@@ -54,14 +56,14 @@ class GallerySearch extends Gallery
             $query->where('tbl_gallery.deleted = 0');
         }
 
-        if(isset($params['limit'])){
-            $query->limit(intval($params['limit']));
+        if($published) {
+            $this->status = Gallery::STATUS_PUBLISHED;
         }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => $pageSize,
             ],
         ]);
         $dataProvider->sort->attributes['product'] = [

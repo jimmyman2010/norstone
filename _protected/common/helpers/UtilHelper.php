@@ -3,8 +3,10 @@
 namespace common\helpers;
 
 use backend\models\FileForm;
+use common\models\File;
 use Imagine\Image\Box;
 use Yii;
+use yii\helpers\Html;
 use yii\imagine\Image;
 
 /**
@@ -225,5 +227,47 @@ class UtilHelper{
             (is_dir("$dir/$file")) ? self::delTree("$dir/$file") : unlink("$dir/$file");
         }
         return rmdir($dir);
+    }
+
+    /**
+     * @param File $data
+     * @param string $identifier
+     * @param bool $linkOnly
+     * @return string
+     */
+    public static function getPicture($data, $identifier = '', $linkOnly = false)
+    {
+        if($data == null) {
+            $href = Yii::$app->view->theme->baseUrl . '/images/no-images/no-image-' . $identifier . '.jpg';
+            $alt = '';
+        }
+        else {
+            if (is_int($data)) {
+                $data = File::findOne(['id' => $data]);
+            }
+            if(empty($identifier)) {
+                $href = $data->show_url . $data->file_name . '.' . $data->file_ext;
+            }
+            else {
+                $filePath = Yii::getAlias('@uploads') . $data->directory . $data->file_name . '-' . $identifier . '.' . $data->file_ext;
+                if (is_file($filePath)) {
+                    $href = $data->show_url . $data->file_name . '-' . $identifier . '.' . $data->file_ext;
+                } else {
+                    $originPath = Yii::getAlias('@uploads') . $data->directory . $data->file_name . '.' . $data->file_ext;
+                    if (is_file($originPath)) {
+                        $imageSize = Yii::$app->params['image_sizes'][$identifier];
+                        self::generateImage($originPath, $filePath, $imageSize[0], $imageSize[1]);
+                        $href = $data->show_url . $data->file_name . '-' . $identifier . '.' . $data->file_ext;
+                    } else {
+                        $href = Yii::$app->view->theme->baseUrl . '/images/no-images/no-image-' . $identifier . '.jpg';
+                    }
+                }
+            }
+            $alt = $data->name;
+        }
+        if($linkOnly) {
+            return $href;
+        }
+        return Html::img($href, ['alt' => $alt]);
     }
 }

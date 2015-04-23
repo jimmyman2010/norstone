@@ -10,7 +10,7 @@ $(function(){
 
 	//search form responsive (641 to 1023)	
 	$('#search-box button').click(function(){
-		w = $( window ).width();
+		var w = $( window ).width();
 		if (w > 640 && w < 1024){
 			$(this).parent().toggleClass('show');
 		}
