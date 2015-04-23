@@ -3,27 +3,31 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\UtilHelper;
+use frontend\assets\GalleryAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Gallery */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
+
+GalleryAsset::register($this);
 ?>
 
 <div class="row">
     <div class="left-content small-12 large-8 columns">
 
         <div class="gallery-slide">
-            <ul data-orbit data-options="animation:slide;
-                                                             timer: false;
-                                                             slide_number: false;
-                                                             animation_speed:500;
-                                                             navigation_arrows:true;
-                                                             bullets:false;">
+            <ul data-orbit
+                data-options="pause_on_hover:true;
+                slide_number:false;
+                resume_on_mouseout:true;
+                  next_on_click:false;
+                  animation_speed:700;
+                  bullets:false;">
                 <?php foreach ($pictures as $index => $picture) { ?>
                     <li data-orbit-slide="slide-<?=($index + 1)?>">
-                        <a href="<?= UtilHelper::getPicture($picture, '', true) ?>" class="view-large ti-fullscreen" data-lightbox="gallery" title="<h4>1 Sint occaecati cupiditate non provident</h4><p>At vero eos et accusamus et iusto odio dignissimos <a href='#'>ducimus qui blanditiis</a> praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, <a href=''>id est laborum</a> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>"></a>
+                        <a href="<?= UtilHelper::getPicture($picture, '', true) ?>" class="view-large ti-fullscreen" data-lightbox="gallery" <?= !empty($picture->caption) ? 'title="' . Html::encode($picture->caption) . '"' : ''?>></a>
 
                         <?= UtilHelper::getPicture($picture, 'slide') ?>
                         <?php if(!empty($picture->caption)) { ?>
