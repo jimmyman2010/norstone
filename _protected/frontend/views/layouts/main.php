@@ -2,7 +2,6 @@
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Menu;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
@@ -87,10 +86,7 @@ AppAsset::register($this);
 
         <div class="row content">
             <div class="large-12 columns">
-                <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    'options' => ['class' => 'breadcrumbs']
-                ]) ?>
+
                 <?= $content ?>
 
                 <section class="socials text-center">

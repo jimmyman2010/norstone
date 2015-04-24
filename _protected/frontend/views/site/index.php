@@ -18,25 +18,22 @@ $this->title = Yii::t('app', Yii::$app->name);
         <div class="filter-content" id="drop-content" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
             <div class="row text-left">
                 <div class="small-12 medium-12 large-4 columns text-center">
-                    <div class="dropdown">Product name <span class="ti-angle-down" data-dropdown="drop1" aria-expanded="false"></span>
+                    <div class="dropdown" data-dropdown="drop1" aria-expanded="false">Product name <span class="ti-angle-down"></span>
                     </div>
                     <ul id="drop1" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
-                        <?php foreach ($products as $item) { ?>
-                            <li><a href="#">Group 1</a></li>
+                        <?php foreach ($products as $product) { ?>
+                            <li><a href="javascript:;" data-id="<?= $product->id ?>"><?= $product->name ?></a></li>
                         <?php } ?>
-                        <li><a href="#">Group 1</a></li>
-                        <li><a href="#">Group 2</a></li>
-                        <li><a href="#">Group 3</a></li>
                     </ul>
                 </div>
                 <div class="small-12 medium-12 large-4 columns text-center">
 
-                    <div class="dropdown">Select the colour <span class="ti-angle-down" data-dropdown="drop2" aria-expanded="false"></span>
+                    <div class="dropdown" data-dropdown="drop2" aria-expanded="false">Select the colour <span class="ti-angle-down"></span>
                     </div>
                     <ul id="drop2" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
-                        <li><a href="#">Colour 1</a></li>
-                        <li><a href="#">Colour 2</a></li>
-                        <li><a href="#">Colour 3</a></li>
+                        <?php foreach ($colors as $color) { ?>
+                            <li><a href="javascript:;" data-id="<?= $color->id ?>"><?= $color->name ?></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <div class="small-12 medium-12 large-4 columns type-show text-center">
@@ -49,20 +46,9 @@ $this->title = Yii::t('app', Yii::$app->name);
     </div>
     <p class="line text-center"><span></span></p>
     <div class="tags text-center">
-        <a href="#" class="tag-name">Kitchen</a>
-        <a href="#" class="tag-name">Gardens</a>
-        <a href="#" class="tag-name">Water features</a>
-        <a href="#" class="tag-name">Living rooms</a>
-        <a href="#" class="tag-name">Landscapes</a>
-        <a href="#" class="tag-name">Installation</a>
-        <a href="#" class="tag-name">Bathrooms</a>
-        <a href="#" class="tag-name">Expos</a>
-        <a href="#" class="tag-name">Water features</a>
-        <a href="#" class="tag-name">Living rooms</a>
-        <a href="#" class="tag-name active">Landscapes</a>
-        <a href="#" class="tag-name">Installation</a>
-        <a href="#" class="tag-name">Bathrooms</a>
-        <a href="#" class="tag-name">Expos</a>
+        <?php foreach ($tags as $tag) { ?>
+            <a href="javascript:;" class="tag-name" data-id="<?= $tag->id ?>"><?= $tag->name ?></a>
+        <?php } ?>
     </div>
     <?php Pjax::begin(['id' => 'galleries']) ?>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">

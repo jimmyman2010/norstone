@@ -20,6 +20,15 @@ return [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'XaF3GmqD-Z3O8trcZ00-7v3oi38_vmIH',
         ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '<controller:\w+>/<slug>' => '<controller>/view',
+                '<action:\w+>' => 'site/<action>'
+            ]
+        ],
         'view' => [
             'theme' => [
                 'pathMap' => ['@app/views' => '@webroot/themes/norstone/views'],

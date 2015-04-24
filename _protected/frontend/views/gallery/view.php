@@ -4,19 +4,23 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\UtilHelper;
 use frontend\assets\GalleryAsset;
+use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Gallery */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = ucfirst($model->name) . ' | ' . Yii::t('app', Yii::$app->name);
+$this->params['breadcrumbs'][] = $model->name;
 
 GalleryAsset::register($this);
 ?>
 
 <div class="row">
     <div class="left-content small-12 large-8 columns">
-
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            'options' => ['class' => 'breadcrumbs']
+        ]) ?>
         <div class="gallery-slide">
             <ul data-orbit
                 data-options="pause_on_hover:true;
@@ -57,11 +61,11 @@ GalleryAsset::register($this);
     </div><!--end left content-->
     <div class="right-content small-12 large-4 columns">
         <div class="next-prev">
-            <a class="prev left<?= $previous ? '' : ' disabled' ?>" href="<?= $previous ? Url::toRoute(['gallery/view', 'id' => $previous]) : 'javascript:;' ?>"><span class="ti-arrow-circle-left"></span> &nbsp;<?= Yii::t('app', 'Previous') ?></a>
-            <a class="next right<?= $next ? '' : ' disabled' ?>" href="<?= $next ? Url::toRoute(['gallery/view', 'id' => $next]) : 'javascript:;' ?>"><?= Yii::t('app', 'Next') ?> &nbsp;<span class="ti-arrow-circle-right"></span></a>
+            <a class="prev left<?= $previous ? '' : ' disabled' ?>" href="<?= $previous ? Url::toRoute(['gallery/view', 'slug' => $previous->slug]) : 'javascript:;' ?>"><span class="ti-arrow-circle-left"></span> &nbsp;<?= Yii::t('app', 'Previous') ?></a>
+            <a class="next right<?= $next ? '' : ' disabled' ?>" href="<?= $next ? Url::toRoute(['gallery/view', 'slug' => $next->slug]) : 'javascript:;' ?>"><?= Yii::t('app', 'Next') ?> &nbsp;<span class="ti-arrow-circle-right"></span></a>
         </div>
         <div class="close"><a href="<?= Url::home() ?>" class="right">Close <span class="ti-close"></span></a></div>
-        <h2><?= Html::encode($this->title) ?></h2>
+        <h2><?= Html::encode($model->name) ?></h2>
         <div class="des"><?= $model->description ?></div>
 
         <?php if(!empty($model->lean_more_link)) { ?>

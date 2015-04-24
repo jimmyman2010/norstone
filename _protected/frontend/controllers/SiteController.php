@@ -1,9 +1,11 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Color;
 use common\models\Gallery;
 use common\models\GallerySearch;
 use common\models\Product;
+use common\models\Tag;
 use common\models\User;
 use common\models\LoginForm;
 use frontend\models\AccountActivation;
@@ -11,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -92,15 +95,49 @@ class SiteController extends Controller
         $pageSize = 9;
         $published = true;
 
-        $searchModel = new GallerySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize, $published);
+        $query = Gallery::find();
+        $where = [
+            'tbl_gallery.deleted' => 0,
+            'status' => Gallery::STATUS_PUBLISHED
+        ];
+
+        $request = Yii::$app->request->queryParams;
+        if(isset($request['color'])) {
+            $where['color_id'] = intval($request['color']);
+        }
+        if(isset($request['product'])) {
+            $where['product_id'] = intval($request['product']);
+        }
+        if(isset($request['internal'])) {
+            $where['application'] = 1;
+        }
+        if(isset($request['external'])) {
+            $where['application'] = 0;
+        }
+
+        if(isset($request['tag'])) {
+            $query->innerJoin('tbl_gallery_tag', 'tbl_gallery.id = tbl_gallery_tag.gallery_id');
+            $where['tag_id'] = explode(',', $request['tag']);
+        }
+
+        $query->where($where);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ],
+        ]);
 
         $products = Product::findAll(['deleted' => 0]);
+        $colors = Color::findAll(['deleted' => 0]);
+        $tags = Tag::findAll(['deleted' => 0]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'products' => $products
+            'products' => $products,
+            'colors' => $colors,
+            'tags' => $tags
         ]);
     }
 

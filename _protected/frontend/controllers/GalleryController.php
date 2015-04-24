@@ -48,11 +48,14 @@ class GalleryController extends FrontendController
     /**
      * Displays a single Article model.
      * 
-     * @param  integer $id
+     * @param  string $slug
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($slug)
     {
+        $model = $this->findModelBySlug($slug);
+        $id = $model->id;
+
         $searchRelated = new GallerySearch();
         $relatedList = $searchRelated->search(['gallery_id' => $id]);
 
@@ -96,6 +99,31 @@ class GalleryController extends FrontendController
         }
     }
 
+    /**
+     * @param string $slug
+     * @return null|static
+     * @throws NotFoundHttpException
+     */
+    protected function findModelBySlug($slug)
+    {
+        if (($model = Gallery::findOne([
+                'slug' => $slug,
+                'deleted' => 0,
+                'status' => Gallery::STATUS_PUBLISHED
+            ])) !== null)
+        {
+            return $model;
+        }
+        else
+        {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
+     * @param int $id
+     * @return null|static
+     */
     protected function nextGallery($id)
     {
         $max = Gallery::find()->max('id');
@@ -107,15 +135,15 @@ class GalleryController extends FrontendController
                 'status' => Gallery::STATUS_PUBLISHED
             ]);
             if($previousModel !== null) {
-                return $id;
+                return $previousModel;
             }
         } while ($id < $max);
-        return 0;
+        return null;
     }
 
     /**
      * @param int $id
-     * @return int
+     * @return null|static
      */
     protected function previousGallery($id)
     {
@@ -127,9 +155,9 @@ class GalleryController extends FrontendController
                 'status' => Gallery::STATUS_PUBLISHED
             ]);
             if($previousModel !== null) {
-                return $id;
+                return $previousModel;
             }
         } while ($id > 0);
-        return 0;
+        return null;
     }
 }

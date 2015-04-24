@@ -567,10 +567,11 @@ $font-icon-themify: 'themify';
 		background: $oil;
 		text-align: center;
 		img{
-			
+			max-height: 432px;
 			display: inline-block;
-
+			max-width: 650px;
 		}
+
 	}
 	.view-large{
 		position: absolute;
