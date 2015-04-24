@@ -2,6 +2,7 @@
 use common\helpers\CssHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
@@ -21,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="portlet-body has-padding">
-
+            <?php Pjax::begin(['id' => 'colors']) ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -79,6 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ], // ActionColumn
         ], // columns
     ]); ?>
+            <?php Pjax::end() ?>
         </div>
     </div>
 </article>

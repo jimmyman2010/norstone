@@ -13,6 +13,7 @@ $this->title = Yii::t('app', Yii::$app->name);
     <p>Welcome to our Norstone image gallery. We are excited to show you how can our eco friendly stone products contribute to a better aesthetics of architecture and spaces that surrounds us. Stone is universal material suitable for various applications. Use our <a href="#">"Choose the products"</a> searching tool to find inspiration you are looking for.</p>
 </section><!--end welcome-->
 <section class="gallery-list">
+
     <div class="filter-gallery">
         <div class="text-center"><span id="drop-view" data-target="drop-content">Choose the product</span></div>
         <div class="filter-content" id="drop-content" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
@@ -50,6 +51,7 @@ $this->title = Yii::t('app', Yii::$app->name);
             <a href="javascript:;" class="tag-name" data-id="<?= $tag->id ?>"><?= $tag->name ?></a>
         <?php } ?>
     </div>
+
     <?php Pjax::begin(['id' => 'galleries']) ?>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
         <?php foreach ($dataProvider->getModels() as $index => $item) { ?>

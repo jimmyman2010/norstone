@@ -4,6 +4,6 @@
   "private": "true",
   "dependencies": {
     "foundation": "zurb/bower-foundation",
-    "lightbox": "lokesh/lightbox2"
+    "fancyBox": "fancyapps/fancyBox"
   }
 }

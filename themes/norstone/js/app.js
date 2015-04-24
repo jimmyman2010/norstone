@@ -21,11 +21,9 @@ $(function(){
   	});
 
   	//gallery large view
-  	/*
-  	$(".view-large").click(function() 
-	{
-		index = $(this).parents("li").index();
-		$("#large-gallery li a :eq("+index+")").trigger('click');
-
-	});*/
+    if($('.fancybox').length > 0) {
+        $('.fancybox').fancybox({
+            padding: 0
+        });
+    }
 });

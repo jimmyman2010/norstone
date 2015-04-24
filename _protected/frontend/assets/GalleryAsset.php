@@ -15,11 +15,8 @@ use Yii;
 Yii::setAlias('@themes', Yii::$app->view->theme->baseUrl);
 
 /**
- * -----------------------------------------------------------------------------
- * @author Qiang Xue <qiang.xue@gmail.com>
- *
- * @since 2.0
- * -----------------------------------------------------------------------------
+ * Class GalleryAsset
+ * @package frontend\assets
  */
 class GalleryAsset extends AssetBundle
 {
@@ -27,10 +24,11 @@ class GalleryAsset extends AssetBundle
     public $baseUrl = '@themes';
 
     public $css = [
-        'bower_components/lightbox/css/lightbox.css'
+        'bower_components/fancyBox/source/jquery.fancybox.css'
     ];
     public $js = [
-        'bower_components/lightbox/js/lightbox.min.js',
+        'bower_components/fancyBox/source/jquery.fancybox.pack.js',
+        'js/app.min.js',
         'http://w.sharethis.com/button/buttons.js'
     ];
 
