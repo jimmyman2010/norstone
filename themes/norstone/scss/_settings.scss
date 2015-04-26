@@ -121,7 +121,7 @@ $font-weight-bold: bold;
  $black       : #000000;
 
 // We use these as default colors throughout
- $primary-color: #ED1C24;
+ $primary-color: #4d4d4d;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -260,8 +260,8 @@ $font-weight-bold: bold;
 // We use these to style anchors
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
-// $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
+ $anchor-font-color: #ED1C24;
+ $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
@@ -400,7 +400,7 @@ $font-weight-bold: bold;
  $crumb-bg: $white;
 
 // We use these to set the padding around the breadcrumbs.
- $crumb-padding: rem-calc(9 14 9 0);
+ $crumb-padding: rem-calc(9 14 3 0);
 // $crumb-side-padding: rem-calc(12);
 
 // We use these to control border styles.
@@ -412,8 +412,8 @@ $font-weight-bold: bold;
 
 // We use these to set various text styles for breadcrumbs.
  $crumb-font-size: rem-calc(14);
-// $crumb-font-color: $primary-color;
-// $crumb-font-color-current: $oil;
+ $crumb-font-color: $anchor-font-color;
+ $crumb-font-color-current: $primary-color;
 // $crumb-font-color-unavailable: $aluminum;
  $crumb-font-transform: capitalize;
  $crumb-link-decor: underline;

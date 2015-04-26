@@ -32,11 +32,10 @@ AppAsset::register($this);
                         <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
                             <ul class="title-area">
                                 <li class="name">
-                                    <h1><a href="<?= Yii::$app->homeUrl ?>">
-                                            <img class="logo-fix" src="<?= Yii::$app->view->theme->baseUrl ?>/images/norstone_logo_white.png" alt="" />
-                                            <img class="logo-normal" src="<?= Yii::$app->view->theme->baseUrl ?>/images/norstone_logo.png" alt="" />
-                                        </a>
-                                    </h1>
+                                    <a href="<?= Yii::$app->homeUrl ?>">
+                                        <img class="logo-fix" src="<?= Yii::$app->view->theme->baseUrl ?>/images/norstone_logo_white.png" alt="" />
+                                        <img class="logo-normal" src="<?= Yii::$app->view->theme->baseUrl ?>/images/norstone_logo.png" alt="" />
+                                    </a>
                                 </li>
                                 <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
                             </ul>
@@ -51,17 +50,17 @@ AppAsset::register($this);
                                         [
                                             'label' => Yii::t('app', 'Home'),
                                             'url' => ['site/index'],
-                                            'template' => '<a href="{url}"><span class="ti-home"></span> {label}</a>'
+                                            'template' => '<a href="{url}"><i class="flaticon-house129"></i> {label}</a>'
                                         ],
                                         [
                                             'label' => Yii::t('app', 'News'),
                                             'url' => ['article/index'],
-                                            'template' => '<a href="{url}"><span class="ti-star"></span> {label}</a>'
+                                            'template' => '<a href="{url}"><i class="flaticon-star105"></i> {label}</a>'
                                         ],
                                         [
                                             'label' => Yii::t('app', 'Contact us'),
                                             'url' => ['site/contact'],
-                                            'template' => '<a href="{url}"><span class="ti-comment"></span> {label}</a>'
+                                            'template' => '<a href="{url}"><i class="flaticon-speech102"></i> {label}</a>'
                                         ]
                                     ]
                                 ]);
@@ -106,10 +105,13 @@ AppAsset::register($this);
             <div class="row">
                 <div class="large-12 columns">
                     <div class="links">
-                        <a href="<?= Url::to('official') ?>">Official Norstone Website</a> ・
-                        <a href="<?= Url::to('legal') ?>">Legal</a>  ・
-                        <a href="<?= Url::to('trademarks') ?>">Trademarks</a>  ・
-                        <a href="<?= Url::to('contact') ?>">Contact Us</a>
+                        <a href="<?= Url::toRoute('site/official') ?>">Official Norstone Website</a>
+                        <span>&nbsp;&bull;&nbsp;</span>
+                        <a href="<?= Url::toRoute('site/legal') ?>">Legal</a>
+                        <span>&nbsp;&bull;&nbsp;</span>
+                        <a href="<?= Url::toRoute('site/trademarks') ?>">Trademarks</a>
+                        <span>&nbsp;&bull;&nbsp;</span>
+                        <a href="<?= Url::toRoute('site/contact') ?>">Contact Us</a>
                     </div>
                     <p class="copyright">Copyright &copy; <?= date('Y') ?> Norstone<p>
                 </div>

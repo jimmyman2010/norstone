@@ -108,16 +108,15 @@ class SiteController extends Controller
         if(isset($request['product'])) {
             $where['product_id'] = intval($request['product']);
         }
-        if(isset($request['internal'])) {
-            $where['application'] = 1;
-        }
-        if(isset($request['external'])) {
-            $where['application'] = 0;
+        if(isset($request['application'])) {
+            $where['application'] = intval($request['application']);
         }
 
         if(isset($request['tag'])) {
             $query->innerJoin('tbl_gallery_tag', 'tbl_gallery.id = tbl_gallery_tag.gallery_id');
-            $where['tag_id'] = explode(',', $request['tag']);
+            foreach (explode(',', $request['tag']) as $tag) {
+                $where['tag_id'] = $tag;
+            }
         }
 
         $query->where($where);
@@ -137,7 +136,8 @@ class SiteController extends Controller
             'dataProvider' => $dataProvider,
             'products' => $products,
             'colors' => $colors,
-            'tags' => $tags
+            'tags' => $tags,
+            'request' => $request
         ]);
     }
 

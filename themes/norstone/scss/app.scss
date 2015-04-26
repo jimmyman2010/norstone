@@ -43,6 +43,12 @@
 //   "../bower_components/foundation/scss/foundation/components/visibility";
 
 $font-icon-themify: 'themify';
+[class^="flaticon-"], [class*=" flaticon-"]{
+  	&:before, &:after{
+	  	font-size: inherit;
+	  	margin: 0;
+	}
+}
 
 .f-topbar-fixed{
 
@@ -56,19 +62,34 @@ $font-icon-themify: 'themify';
 		}
 		.contain-to-grid{
 			background: #505050;
-			height: rem-calc(70);
+			height: auto;
+		  	&.fixed {
+			  	@include box-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
+			}
 		}
 		.top-bar-section{
 			.has-form{
 				@extend .contain-to-grid;
-				line-height: rem-calc(70);
-				height: rem-calc(70);
+			  	height: auto;
 			}
-			li:not(.has-form) a:not(.button){
-				@extend .contain-to-grid;
-				color: $white;
-				line-height: rem-calc(63);
-				border-color: transparent;
+			li:not(.has-form), li.active:not(.has-form) {
+				a:not(.button) {
+					@extend .contain-to-grid;
+					color: $white;
+					border-color: transparent;
+				  	padding: rem-calc(22) rem-calc(15) rem-calc(11);
+				  	font-size: rem-calc(15);
+				  	i{
+					  	&:before{
+						  	font-size: rem-calc(18);
+						}
+						&.flaticon-star105{
+							&:before{
+							  	font-size: rem-calc(20);
+							}
+						}
+					}
+				}
 			}
 		}
 		.top-bar{
@@ -77,7 +98,7 @@ $font-icon-themify: 'themify';
 				margin-top: rem-calc(-28);
 			}
 			.name{
-				height: rem-calc(70);
+				margin-top: rem-calc(10);
 			}
 		}
 		.top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"]{
@@ -87,25 +108,55 @@ $font-icon-themify: 'themify';
 		.search-box{
 			input{
 				top:  rem-calc(14);
+			  	background: transparent;
+			  	color: #fff;
 			}
 			button{
 				top: rem-calc(14);
+			  	color: #fff;
 			}
 		}
 	}
 }
-
 // header page
 .header{
 	border-bottom: 1px solid $border-header-color;
 	.top-bar-section{
-		a{
-			border-left: 1px solid $border-header-color;
+	  	li:not(.has-form), li.active:not(.has-form) {
+			a:not(.button) {
+				border-left: 1px solid $border-header-color;
+				color: #4d4d4d;
+				line-height: rem-calc(30);
+				padding: rem-calc(34) rem-calc(15) rem-calc(26);
+			  	background: #fff;
+				i {
+					float: left;
+				  	margin-top: -2px;
+					&:before {
+						font-size: rem-calc(24);
+						margin: 0 rem-calc(8) 0 0;
+					}
+				  	&.flaticon-star105{
+					  	&:before{
+						  	font-size: rem-calc(26);
+						}
+					}
+				}
+			}
+		  	&:last-child a:not(.button){
+			  	padding-right: 0;
+			}
 		}
 		.has-form{
 			@media #{$medium-only} {
 				padding: 0;
 			}
+		}
+	}
+  	.top-bar{
+	  	.name{
+		  	height: auto;
+		  	margin-top: rem-calc(14);
 		}
 	}
 	.logo-fix{
@@ -250,6 +301,29 @@ $font-icon-themify: 'themify';
 	}
 }
 
+.f-dropdown li.active{
+   background: #eee;
+}
+.application-filter{
+	a{
+	  	font-size: rem-calc(15);
+	  	color: $primary-color;
+	  	margin-left: rem-calc(10);
+	  	&:first-child{
+		  	margin-left: 0;
+		}
+	  	&:before{
+		  font-family: Flaticon;
+		  content: "\e004";
+		}
+	  	&.active{
+		  	&:before{
+			  	content: "\e00b";
+			}
+		}
+	}
+}
+
 .tags{
 	margin-bottom: rem-calc(20);
 }
@@ -258,13 +332,14 @@ $font-icon-themify: 'themify';
 	display: inline-block;
 	margin: rem-calc(5) rem-calc(2);
 	border: 1px solid $border-header-color;
-	padding: rem-calc(5) rem-calc(10);
+	padding: rem-calc(3) rem-calc(10);
 	color: $black;
 	@include border-radius(rem-calc(10));
  	&.active{
 		background: $black;
 		color: $white;
 		cursor: pointer;
+	  	border-color: transparent;
 		&:after{
 			content: "\e646";
 			font-family: $font-icon-themify;
@@ -307,13 +382,25 @@ $font-icon-themify: 'themify';
 				visibility: visible;
 			}
 		}
+	  	&:hover ~ h4 a{
+		  	text-decoration: underline;
+		}
 	}
 	h4{
 		font-size: rem-calc(14);
 		line-height: rem-calc(18);
 		font-family: $font-family-ralewhite;
 		font-weight: 500;
-		margin: rem-calc(10) 0 0;
+		margin: rem-calc(10) 0 rem-calc(5);
+	  	a{
+		  	color:#4d4d4d;
+		  	&:hover{
+			  	text-decoration: underline;
+			}
+		}
+		&:first-letter{
+		  	text-transform: uppercase;
+		}
 	}
 	p{
 		font-size: rem-calc(12);
@@ -334,7 +421,7 @@ $font-icon-themify: 'themify';
 }
 
 .content{
-	margin-top: rem-calc(30);
+	margin-top: rem-calc(16);
 }
 
 .socials{
@@ -353,13 +440,13 @@ $font-icon-themify: 'themify';
 		display: inline-block;
 		font-size: rem-calc(14);
 		a{
-			font-size: rem-calc(28);
+			font-size: rem-calc(35);
 			color: $black;
 			.ti-facebook{
 				@include border-radius(rem-calc(5));
 				padding: rem-calc(4) 1px 0 rem-calc(4);
-				border: 1px solid $black;
-				font-size: rem-calc(20);
+				border: 2px solid $black;
+				font-size: rem-calc(24);
 				position: relative;
 				top: -3px;
 				&:hover{
@@ -414,7 +501,8 @@ $font-icon-themify: 'themify';
 		}
 		&:first-child{
 			&:before{
-				content: "\e69b";
+			  	font-family: Flaticon;
+				content: "\e007";
 				margin-right: rem-calc(10);
 			}
 		}
@@ -422,6 +510,7 @@ $font-icon-themify: 'themify';
 }
 
 .right-content{
+  	padding-left: 0;
 	> div > a{
 		color: $black;
 		&:hover{
@@ -434,10 +523,11 @@ $font-icon-themify: 'themify';
 	}
 	.next-prev{
 		border-bottom: 1px solid $border-header-color;
-		padding-bottom: rem-calc(55);
+		padding-bottom: rem-calc(48);
 		a{
+		  	font-size: rem-calc(14);
 			span{
-				font-size: rem-calc(30);
+				font-size: rem-calc(28);
 				position: relative;
 				top: rem-calc(6);
 			}
@@ -449,9 +539,9 @@ $font-icon-themify: 'themify';
 		margin-bottom: rem-calc(10);
 		font-size: rem-calc(22);
 		span{
-			font-size: rem-calc(30);
+			font-size: rem-calc(24);
 			position:relative;
-			top: rem-calc(7);
+			top: rem-calc(3);
 		}
 	}
 	h3{
@@ -598,9 +688,19 @@ $font-icon-themify: 'themify';
 			@include block-grid(
 	    		$spacing: rem-calc(5)
 			);
+			li{
+				width: rem-calc(127);
+				height: rem-calc(85);
+				background: #EBEBEB;
+			  	margin-left: rem-calc(4);
+			  	padding: 0;
+			  	&:first-child{
+				  	margin-left: rem-calc(2);
+				}
+			}
 			.active{
 				img{
-					border-color: $primary-color;
+					//@include opacity(0.5);
 				}
 			}
 		}
@@ -669,7 +769,7 @@ $font-icon-themify: 'themify';
 
 .footer{
 	background: url(../images/bg-footer.png) 50% 0 no-repeat;
-	padding: rem-calc(25) 0 rem-calc(20);
+	padding: rem-calc(25) 0 rem-calc(5);
 	font-size: rem-calc(14);
 	.links{
 		margin-bottom: rem-calc(10);
@@ -682,150 +782,5 @@ $font-icon-themify: 'themify';
 	}
 	.copyright{
 		font-size: rem-calc(12);
-	}
-}
-
-
-//lightbox
-.lightboxOverlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 9999;
-	background-color: black;
-	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-	opacity: 0.8;
-	display: none;
-}
-
-.lightbox{
-	position: absolute;
-	left: 0;
-	width: 100%;
-	z-index: 10000;
-	text-align: center;
-	line-height: 0;
-	font-weight: normal;
-	
-	.lb-container{
-		position: relative;
-	}
-	.lb-image{
- 		display: block;
-  		height: auto;
-  		max-width: inherit;
- 	}
-
- 	.lb-outerContainer {
-		position: relative;
-		background-color: white;
-		*zoom: 1;
-		width: 250px;
-		height: 250px;
-		margin: 0 auto;
-		&:after{
-			content: "";
-		  	display: table;
-		  	clear: both;
-		}
-	}
-	.lb-dataContainer{
-		background:$white;
-		margin: 0 auto;
-		*zoom: 1;
-  		width: 100%;
-  		padding-top: rem-calc(10);
-  		&:after{
-  			content: "";
-			display: table;
-			clear: both;
-  		}
-  		.lb-data{
-  			padding: rem-calc(0 4);
-  		}
-		.lb-details{
-			text-align: left;
-			.lb-caption{
-				h4{
-					font-size: rem-calc(22);
-					line-height: rem-calc(24);
-					font-weight: 600;
-					margin-bottom: 0;
-					padding: rem-calc(0 15 5 15);
-				}
-				p{
-					line-height: rem-calc(18);
-					font-size: rem-calc(14);
-					color: $black;
-					padding: rem-calc(0 15 0);
-				}
-			}
-			.lb-number{
-				display: none!important;
-			}
-		}
-	}
-
-	.lb-nav a.lb-prev {
-		@extend .prev-button-template;
-		position: absolute;
-		top: 50%;
-		left: rem-calc(10);
-		span{
-			&:before{
-				top: rem-calc(25);
-				left: rem-calc(-15);
-			}
-		}
-		&:hover{
-			background: $primary-color;
-			span{
-				&:before{
-					color: $white;
-				}
-			}
-		}
-	}
-	.lb-nav a.lb-next {
-		@extend .next-button-template;
-		position: absolute;
-		top: 50%;
-		right: rem-calc(10);
-		span{
-			&:before{
-				top: rem-calc(25);
-				left: rem-calc(-15);
-			}
-		}
-		&:hover{
-			background: $primary-color;
-			span{
-				&:before{
-					color: $white;
-				}
-			}
-		}
-	}
-
-	.lb-close{
-		color: $black;
-		position: absolute;
-		right: rem-calc(10);
-		top: rem-calc(10);
-		padding: rem-calc(8 20 10);
-		background: $white;
-		font-size: rem-calc(18);
-		line-height: rem-calc(20);
-		span{
-			&:before{
-				font-size: rem-calc(20);
-				position: relative;
-				top: rem-calc(3);
-			}
-		}
-		&:hover{
-			background: $primary-color;
-			color: $white;
-		}
 	}
 }

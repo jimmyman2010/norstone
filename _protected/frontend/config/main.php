@@ -26,7 +26,9 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/<slug>' => '<controller>/view',
-                '<action:\w+>' => 'site/<action>'
+                '/' => 'site/index',
+                'gallery' => 'site/index',
+                '<action:\w+>' => 'site/<action>',
             ]
         ],
         'view' => [

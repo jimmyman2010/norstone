@@ -29,6 +29,7 @@ class AppAsset extends AssetBundle
     
     public $css = [
         'stylesheets/themify-icons.min.css',
+        'MyIcons/flaticon.css',
         'stylesheets/app.min.css'
     ];
     public $js = [

@@ -19,7 +19,8 @@ GalleryAsset::register($this);
     <div class="left-content small-12 large-8 columns">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            'options' => ['class' => 'breadcrumbs']
+            'options' => ['class' => 'breadcrumbs'],
+            'activeItemTemplate' => "<li class=\"current\">{link}</li>\n"
         ]) ?>
         <div class="gallery-slide">
             <ul data-orbit
