@@ -766,7 +766,9 @@ $font-icon-themify: 'themify';
 		}
 	}
 }
-
+.welcome{
+  	padding-top: rem-calc(15);
+}
 .orbit-container .orbit-timer{
   	right: auto;
   	left: 10px;

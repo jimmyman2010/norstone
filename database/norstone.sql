@@ -1,8 +1,9 @@
 /*
-SQLyog Community v11.31 (64 bit)
+SQLyog Community v9.60 Beta2
 MySQL - 5.6.21 : Database - norstone
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -12,9 +13,9 @@ MySQL - 5.6.21 : Database - norstone
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`norstone` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `norstone`;
+-- CREATE DATABASE /*!32312 IF NOT EXISTS*/`norstone` /*!40100 DEFAULT CHARACTER SET utf8 */;
+--
+-- USE `norstone`;
 
 /*Table structure for table `article` */
 
@@ -135,7 +136,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`expire`,`data`) values ('3u85dideg5srtu91qv846b1hl6',1429791691,'__flash|a:0:{}__captcha/site/captcha|s:7:\"gctipos\";__captcha/site/captchacount|i:1;'),('9bg5425u8ivhut7qu3j3ahkri2',1429787724,'__flash|a:0:{}__id|i:88;');
+insert  into `session`(`id`,`expire`,`data`) values ('06ffejselkdjleb47rvq4oons1',1430014026,'__flash|a:0:{}'),('0qm58enoge9otgl14gt58atug6',1429852757,'__flash|a:0:{}'),('21fe0hbiv81t0v0sqk0c0d3116',1429852755,'__flash|a:0:{}'),('4lqkr04up81t8l3981lndl0a91',1429860682,'__flash|a:0:{}'),('6s2igce1jggvgda83o3ldbd454',1429992913,'__flash|a:0:{}'),('88obn3ttl47tu1orr5licklmd4',1430012942,'__flash|a:0:{}__id|i:88;'),('8obaedeuuq4p863k7irjck27m2',1429849798,'__flash|a:0:{}'),('8tl55me900bmb9pd62kbnaui14',1429849790,'__flash|a:0:{}'),('93v0usrg9jk69jjcgmhv82j0s3',1429993347,'__flash|a:0:{}'),('9rvsusb0nqc825mvj3ko6cs671',1429851247,'__flash|a:0:{}'),('a48a0rlkpujohblrr50neaadv6',1429847921,'__flash|a:0:{}'),('alehcldo7cb54ej7f6d73idja7',1429851109,'__flash|a:0:{}'),('b0u1aufnk0b4cu5984eji6b2e2',1429849791,'__flash|a:0:{}'),('bhqrmk8iii23vov5te6th0gmb2',1429993505,'__flash|a:0:{}'),('cjvdni7ni3m9n3tb11dd922835',1429992905,'__flash|a:0:{}'),('euv0vn97qbohltrp1mv2hnh386',1429848258,'__flash|a:0:{}'),('kae0pg5t0l0okgubf072mrhgm6',1429992905,'__flash|a:0:{}'),('kc5o8m8q25lo48su1sgtlnbfl6',1429851235,'__flash|a:0:{}'),('kgvns0uqgjc3phn66846rb77s3',1429992550,'__flash|a:0:{}'),('kkoi99vufjqnh1to803ovh95h4',1429850963,'__flash|a:0:{}'),('lpvtq9infaurlba6lh3nfd7982',1429992913,'__flash|a:0:{}'),('n7etuett4tu73kr10k0bilr4b2',1429993347,'__flash|a:0:{}'),('o9mra8g9at1sp5kc498i3jois6',1429993435,'__flash|a:0:{}'),('qgab7a6nl0eubsn9il9aa2j2d3',1429993368,'__flash|a:0:{}'),('qo7776dhiee1jcln6i6t2hlq63',1429852526,'__flash|a:0:{}__id|i:88;'),('qootdnkqnvroe6ukg1dirvdf75',1429852746,'__flash|a:0:{}'),('rtgc64hdvlb3hq0m4ogr7nocp6',1429993370,'__flash|a:0:{}'),('uh91aqk170iaemq705robini17',1429850948,'__flash|a:0:{}'),('vfa0231og6dnpg8atpul028n12',1429852759,'__flash|a:0:{}__captcha/site/captcha|s:6:\"vilayd\";__captcha/site/captchacount|i:1;');
 
 /*Table structure for table `tbl_color` */
 
@@ -172,11 +173,11 @@ CREATE TABLE `tbl_file` (
   `file_ext` varchar(8) NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_file` */
 
-insert  into `tbl_file`(`id`,`name`,`caption`,`media`,`show_url`,`directory`,`dimension`,`width`,`height`,`file_name`,`file_type`,`file_size`,`file_ext`,`deleted`) values (61,'alberteinstein-jpg-3',NULL,'image','/uploads/images/alberteinstein-jpg-3/','\\images\\alberteinstein-jpg-3\\','5333x3333',5333,3333,'alberteinstein-jpg-3','image/jpeg','','jpg',0),(62,'bargain-jpg-3',NULL,'image','/uploads/images/bargain-jpg-3/','\\images\\bargain-jpg-3\\','402x263',402,263,'bargain-jpg-3','image/jpeg','','jpg',0),(63,'basement-jpg-3',NULL,'image','/uploads/images/basement-jpg-3/','\\images\\basement-jpg-3\\','259x194',259,194,'basement-jpg-3','image/jpeg','','jpg',0);
+insert  into `tbl_file`(`id`,`name`,`caption`,`media`,`show_url`,`directory`,`dimension`,`width`,`height`,`file_name`,`file_type`,`file_size`,`file_ext`,`deleted`) values (52,'img-1067-jpg',NULL,'image','/uploads/images/img-1067-jpg/','\\images\\img-1067-jpg\\','2592x1936',2592,1936,'img-1067-jpg','image/jpeg','','jpg',0),(53,'img-1075-jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.','image','/uploads/images/img-1075-jpg/','\\images\\img-1075-jpg\\','2592x1936',2592,1936,'img-1075-jpg','image/jpeg','','jpg',0),(54,'img-1046-jpg',NULL,'image','/uploads/images/img-1046-jpg/','\\images\\img-1046-jpg\\','2592x1936',2592,1936,'img-1046-jpg','image/jpeg','','jpg',0),(55,'dsc-0155-jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,','image','/uploads/images/dsc-0155-jpg/','\\images\\dsc-0155-jpg\\','4288x2848',4288,2848,'dsc-0155-jpg','image/jpeg','','jpg',0);
 
 /*Table structure for table `tbl_gallery` */
 
@@ -206,7 +207,7 @@ CREATE TABLE `tbl_gallery` (
 
 /*Data for the table `tbl_gallery` */
 
-insert  into `tbl_gallery`(`id`,`name`,`slug`,`product_id`,`color_id`,`application`,`image_id`,`intro`,`description`,`lean_more_link`,`seo_keyword`,`seo_description`,`status`,`publish_date`,`created_date`,`created_by`,`deleted`) values (9,'this is the name','this-is-the-name',1,4,1,61,'this is the introduction','<p>this is the description</p>\r\n','','picture','picture is picture','published',1428963763,1428963763,'admin',0),(10,'gallery 2','gallery-2',1,3,0,NULL,'gallery 2','<p>gallery 2</p>\r\n','','','','published',1429251934,1429251934,'admin',0),(11,'gallery 3','gallery-3',1,3,1,NULL,'gallery 3','<p>gallery 3</p>\r\n','','','','published',1429251951,1429251951,'admin',0),(12,'gallery 4','gallery-4',1,4,1,NULL,'gallery 4','<p>gallery 4</p>\r\n','','','','published',1429251967,1429251967,'admin',0),(13,'gallery 5','gallery-5',1,2,1,NULL,'gallery 5','<p>gallery 5</p>\r\n','','','','published',1429251979,1429251979,'admin',0),(14,'gallery 6','gallery-6',1,3,1,NULL,'gallery 6','<p>gallery 6</p>\r\n','','','','published',1429593731,1429593731,'admin',0),(15,'gallery 7','gallery-7',1,3,1,NULL,'gallery 7','<p>gallery 7</p>\r\n','','','','published',1429593786,1429593786,'admin',0),(16,'gallery 8','gallery-8',1,3,0,NULL,'gallery 8','<p>gallery 8</p>\r\n','','','','published',1429594054,1429594054,'admin',0),(17,'gallery 9','gallery-9',1,2,0,NULL,'gallery 9','<p>gallery 9</p>\r\n','','','','published',1429594116,1429594116,'admin',0),(18,'gallery 10','gallery-10',1,2,0,NULL,'gallery 10','<p>gallery 10</p>\r\n','','','','published',1429594170,1429594170,'admin',0),(19,'gallery 12','gallery-12',1,4,0,NULL,'gallery 12','<p>gallery 12</p>\r\n','','','','published',1429685019,1429685019,'admin',0),(20,'gallery 11','gallery-11',1,3,1,NULL,'gallery 11','<p>gallery 11</p>\r\n','','','','published',1429685314,1429685314,'admin',0),(21,'gallery 22','gallery-22',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','published',1429763305,1429763268,'admin',0),(22,'gallery 22','gallery-221',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','draft',0,1429764898,'admin',0),(23,'gallery 23','gallery-222',1,4,1,NULL,'gallery 23','<p>gallery 23</p>\r\n','','','','draft',0,1429764921,'admin',0),(24,'gallery d','gallery-d',1,3,1,NULL,'sdf sd fsd','<p>sdf sdf sdf</p>\r\n','','','','draft',0,1429766698,'admin',0);
+insert  into `tbl_gallery`(`id`,`name`,`slug`,`product_id`,`color_id`,`application`,`image_id`,`intro`,`description`,`lean_more_link`,`seo_keyword`,`seo_description`,`status`,`publish_date`,`created_date`,`created_by`,`deleted`) values (9,'this is the name','this-is-the-name',1,4,1,53,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,','<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s,</p>\r\n','','picture','picture is picture','published',1428963763,1428963763,'admin',0),(10,'gallery 2','gallery-2',1,3,0,52,'gallery 2','<p>gallery 2</p>\r\n','','','','published',1429251934,1429251934,'admin',0),(11,'gallery 3','gallery-3',1,3,1,54,'gallery 3','<p>gallery 3</p>\r\n','','','','published',1429251951,1429251951,'admin',0),(12,'gallery 4','gallery-4',1,4,1,NULL,'gallery 4','<p>gallery 4</p>\r\n','','','','published',1429251967,1429251967,'admin',0),(13,'gallery 5','gallery-5',1,2,1,NULL,'gallery 5','<p>gallery 5</p>\r\n','','','','published',1429251979,1429251979,'admin',1),(14,'gallery 6','gallery-6',1,3,1,NULL,'gallery 6','<p>gallery 6</p>\r\n','','','','published',1429593731,1429593731,'admin',0),(15,'gallery 7','gallery-7',1,3,1,NULL,'gallery 7','<p>gallery 7</p>\r\n','','','','published',1429593786,1429593786,'admin',0),(16,'gallery 8','gallery-8',1,3,0,NULL,'gallery 8','<p>gallery 8</p>\r\n','','','','published',1429594054,1429594054,'admin',0),(17,'gallery 9','gallery-9',1,2,0,NULL,'gallery 9','<p>gallery 9</p>\r\n','','','','published',1429594116,1429594116,'admin',0),(18,'gallery 10','gallery-10',1,2,0,NULL,'gallery 10','<p>gallery 10</p>\r\n','','','','published',1429594170,1429594170,'admin',0),(19,'gallery 12','gallery-12',1,4,0,NULL,'gallery 12','<p>gallery 12</p>\r\n','','','','published',1429685019,1429685019,'admin',0),(20,'gallery 11','gallery-11',1,3,1,NULL,'gallery 11','<p>gallery 11</p>\r\n','','','','published',1429685314,1429685314,'admin',0),(21,'gallery 22','gallery-22',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','published',1429763305,1429763268,'admin',0),(22,'gallery 22','gallery-221',1,2,1,NULL,'gallery 22','<p>gallery 22</p>\r\n','','','','draft',0,1429764898,'admin',0),(23,'gallery 23','gallery-222',1,4,1,NULL,'gallery 23','<p>gallery 23</p>\r\n','','','','draft',0,1429764921,'admin',0),(24,'gallery d','gallery-d',1,3,1,NULL,'sdf sd fsd','<p>sdf sdf sdf</p>\r\n','','','','draft',0,1429766698,'admin',0);
 
 /*Table structure for table `tbl_gallery_file` */
 
@@ -221,7 +222,7 @@ CREATE TABLE `tbl_gallery_file` (
 
 /*Data for the table `tbl_gallery_file` */
 
-insert  into `tbl_gallery_file`(`gallery_id`,`file_id`,`deleted`) values (9,61,0),(9,62,0),(9,63,0);
+insert  into `tbl_gallery_file`(`gallery_id`,`file_id`,`deleted`) values (9,53,0),(9,55,0),(10,52,0),(11,54,0);
 
 /*Table structure for table `tbl_gallery_related` */
 
@@ -237,7 +238,7 @@ CREATE TABLE `tbl_gallery_related` (
 
 /*Data for the table `tbl_gallery_related` */
 
-insert  into `tbl_gallery_related`(`gallery_id`,`related_id`,`sorting`,`deleted`) values (9,10,0,1),(9,11,0,1),(9,12,2,0),(9,13,1,0),(9,14,0,0),(9,15,2,1),(9,16,1,1),(10,11,1,0),(10,12,0,0),(10,13,0,1),(11,16,0,0),(11,17,2,0),(11,18,1,0);
+insert  into `tbl_gallery_related`(`gallery_id`,`related_id`,`sorting`,`deleted`) values (9,10,0,1),(9,11,0,1),(9,12,1,0),(9,13,1,1),(9,14,0,0),(9,15,2,1),(9,16,1,1),(10,11,1,0),(10,12,0,0),(10,13,0,1),(11,16,0,0),(11,17,2,0),(11,18,1,0);
 
 /*Table structure for table `tbl_gallery_tag` */
 

@@ -32,7 +32,10 @@ $(function(){
 				title : { type : 'inside' }
 			},
 			beforeShow: function(){
-				this.title = '<div class="my-title">'+$(this.element).siblings('div').html()+'</div>';
+				var caption = $(this.element).siblings('div');
+				if(caption.length > 0) {
+					this.title = '<div class="my-title">' + caption.html() + '</div>';
+				}
 			}
         });
     }
