@@ -767,6 +767,38 @@ $font-icon-themify: 'themify';
 	}
 }
 
+.orbit-container .orbit-timer{
+  	right: auto;
+  	left: 10px;
+  	span{
+	  	right: auto;
+	  	left: 0;
+	}
+  	.orbit-progress{
+	  	right: auto;
+	  	left: 20px;
+	}
+}
+
+.fancybox-wrap {
+  	.fancybox-skin{
+	  	@include border-radius(0);
+	}
+	.fancybox-close {
+		background: #fff;
+		width: auto;
+		height: auto;
+		top: rem-calc(10);
+		right: rem-calc(10);
+		padding: rem-calc(5 10);
+		color: $black;
+		font-size: rem-calc(20);
+	}
+  	.fancybox-title{
+	   padding: rem-calc(20);
+	}
+}
+
 .footer{
 	background: url(../images/bg-footer.png) 50% 0 no-repeat;
 	padding: rem-calc(25) 0 rem-calc(5);

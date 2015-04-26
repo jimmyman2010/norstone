@@ -6648,24 +6648,62 @@ blockquote p {
 }
 
 /* line 770, ../scss/app.scss */
+.orbit-container .orbit-timer {
+  right: auto;
+  left: 10px;
+}
+/* line 773, ../scss/app.scss */
+.orbit-container .orbit-timer span {
+  right: auto;
+  left: 0;
+}
+/* line 777, ../scss/app.scss */
+.orbit-container .orbit-timer .orbit-progress {
+  right: auto;
+  left: 20px;
+}
+
+/* line 784, ../scss/app.scss */
+.fancybox-wrap .fancybox-skin {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+/* line 787, ../scss/app.scss */
+.fancybox-wrap .fancybox-close {
+  background: #fff;
+  width: auto;
+  height: auto;
+  top: 0.625rem;
+  right: 0.625rem;
+  padding: 0.3125rem 0.625rem;
+  color: #000000;
+  font-size: 1.25rem;
+}
+/* line 797, ../scss/app.scss */
+.fancybox-wrap .fancybox-title {
+  padding: 1.25rem;
+}
+
+/* line 802, ../scss/app.scss */
 .footer {
   background: url(../images/bg-footer.png) 50% 0 no-repeat;
   padding: 1.5625rem 0 0.3125rem;
   font-size: 0.875rem;
 }
-/* line 774, ../scss/app.scss */
+/* line 806, ../scss/app.scss */
 .footer .links {
   margin-bottom: 0.625rem;
 }
-/* line 776, ../scss/app.scss */
+/* line 808, ../scss/app.scss */
 .footer .links a {
   color: #000000;
 }
-/* line 778, ../scss/app.scss */
+/* line 810, ../scss/app.scss */
 .footer .links a:hover {
   color: #4d4d4d;
 }
-/* line 783, ../scss/app.scss */
+/* line 815, ../scss/app.scss */
 .footer .copyright {
   font-size: 0.75rem;
 }

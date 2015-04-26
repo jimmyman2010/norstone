@@ -32,7 +32,7 @@ GalleryAsset::register($this);
                   bullets:false;">
                 <?php foreach ($pictures as $index => $picture) { ?>
                     <li data-orbit-slide="slide-<?=($index + 1)?>">
-                        <a href="<?= UtilHelper::getPicture($picture, '', true) ?>" class="view-large ti-fullscreen fancybox" data-fancybox-group="gallery" <?= !empty($picture->caption) ? 'title="' . Html::encode($picture->caption) . '"' : ''?>></a>
+                        <a href="<?= UtilHelper::getPicture($picture, '', true) ?>" class="view-large ti-fullscreen fancybox" data-fancybox-group="gallery"></a>
 
                         <?= UtilHelper::getPicture($picture, 'slide') ?>
                         <?php if(!empty($picture->caption)) { ?>

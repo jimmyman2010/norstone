@@ -23,7 +23,17 @@ $(function(){
   	//gallery large view
     if($('.fancybox').length > 0) {
         $('.fancybox').fancybox({
-            padding: 0
+            padding: 0,
+			margin: 0,
+			tpl : {
+				closeBtn : '<a title="Close" class="fancybox-item fancybox-close close" href="javascript:;">Close <i class="ti-close"></i></a>'
+			},
+			helpers : {
+				title : { type : 'inside' }
+			},
+			beforeShow: function(){
+				this.title = '<div class="my-title">'+$(this.element).siblings('div').html()+'</div>';
+			}
         });
     }
 });
