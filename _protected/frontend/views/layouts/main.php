@@ -28,8 +28,8 @@ AppAsset::register($this);
         <header class="header">
             <div class="row">
                 <div class="large-12 columns">
-                    <div class="sticky contain-to-grid">
-                        <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+                    <div class="contain-to-grid">
+                        <nav class="top-bar" role="navigation">
                             <ul class="title-area">
                                 <li class="name">
                                     <a href="<?= Yii::$app->homeUrl ?>">

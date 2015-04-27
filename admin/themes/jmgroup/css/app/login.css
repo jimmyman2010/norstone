@@ -107,20 +107,28 @@ body {
   margin-bottom: 25px;
 }
 /* line 29, ../../sass/app/login.scss */
+.site-wrapper .content h5 {
+  color: #44b6ae;
+}
+/* line 31, ../../sass/app/login.scss */
+.site-wrapper .content h5 i {
+  margin: 0 12px;
+}
+/* line 35, ../../sass/app/login.scss */
 .site-wrapper .content .form-group {
   margin-bottom: 15px;
 }
-/* line 31, ../../sass/app/login.scss */
+/* line 37, ../../sass/app/login.scss */
 .site-wrapper .content .form-group .control-label {
   display: none;
 }
-/* line 34, ../../sass/app/login.scss */
+/* line 40, ../../sass/app/login.scss */
 .site-wrapper .content .form-group .input-icon {
   border-left: 2px solid #44B6AE;
   border-radius: 5px;
   position: relative;
 }
-/* line 38, ../../sass/app/login.scss */
+/* line 44, ../../sass/app/login.scss */
 .site-wrapper .content .form-group .input-icon i {
   position: absolute;
   top: 9px;
@@ -128,20 +136,20 @@ body {
   color: #ccc;
   font-size: 1.2rem;
 }
-/* line 45, ../../sass/app/login.scss */
+/* line 51, ../../sass/app/login.scss */
 .site-wrapper .content .form-group .input-icon input {
   padding-left: 34px;
 }
-/* line 49, ../../sass/app/login.scss */
+/* line 55, ../../sass/app/login.scss */
 .site-wrapper .content .form-group .help-block {
   margin-bottom: 5px;
   display: block;
 }
-/* line 54, ../../sass/app/login.scss */
+/* line 60, ../../sass/app/login.scss */
 .site-wrapper .content .field-loginform-rememberme {
   float: left;
 }
-/* line 57, ../../sass/app/login.scss */
+/* line 63, ../../sass/app/login.scss */
 .site-wrapper .content .btn {
   border-width: 0;
   padding: 6px 14px;
@@ -155,7 +163,7 @@ body {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 65, ../../sass/app/login.scss */
+/* line 71, ../../sass/app/login.scss */
 .site-wrapper .content .btn.green-haze {
   float: right;
   color: #FFFFFF;

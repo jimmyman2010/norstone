@@ -6,10 +6,10 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-$this->title = Yii::t('app', 'Login');
+$this->title = Yii::t('app', 'Login to your account');
 ?>
     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-    <h3 class="form-title">Login to your account</h3>
+    <h3 class="form-title"><?= $this->title ?></h3>
     <?php //-- use email or username field depending on model scenario --// ?>
 
     <?php if (false): ?>

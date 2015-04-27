@@ -3,22 +3,30 @@
 $(document).foundation();
 
 $(function(){
-	//dropdown choose the product
-	$('#drop-view').click(function(){
-		$( '#'+ $(this).data('target')).slideToggle();
-	});
+    //fixed menu
+    $(".header").before($(".header").clone().addClass("animateIt"));
+    $(window).on("scroll", function () {
+        $("body").toggleClass("down", ($(window).scrollTop() > 63));
+        $(".header").eq(1).find('.expanded').removeClass('expanded');
+    });
 
-	//search form responsive (641 to 1023)	
-	$('#search-box button').click(function(){
-		var w = $( window ).width();
-		if (w > 640 && w < 1024){
-			$(this).parent().toggleClass('show');
-		}
-	});
-	$( window ).resize(function() {
-  		//reset display search box
-  		$('#search-box').removeClass('show');
-  	});
+    //search form responsive (641 to 1023)
+    $('#search-box button').click(function(){
+        w = $( window ).width();
+        if (w > 640 && w < 1024){
+            $(this).parent().toggleClass('show');
+        }
+    });
+    $( window ).resize(function() {
+        //reset display search box
+        $('#search-box').removeClass('show');
+    });
+
+
+    //dropdown choose the product
+    $('#drop-view').click(function(){
+        $( '#'+ $(this).data('target')).slideToggle();
+    });
 
   	//gallery large view
     if($('.fancybox').length > 0) {

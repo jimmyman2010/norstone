@@ -26,11 +26,11 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'lock-screen', 'error'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'lock-screen', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -74,9 +74,10 @@ class SiteController extends Controller
      * Logs in the user if his account is activated,
      * if not, displays standard error message.
      *
+     * @param string $previous
      * @return string|\yii\web\Response
      */
-    public function actionLogin()
+    public function actionLogin($previous = '')
     {
         if (!Yii::$app->user->isGuest) 
         {
@@ -95,7 +96,12 @@ class SiteController extends Controller
         // everything went fine, log in the user
         if ($model->load(Yii::$app->request->post()) && $model->login()) 
         {
-            return $this->goBack();
+            if(!empty($previous)){
+                return $this->redirect($previous);
+            }
+            else{
+                return $this->goBack();
+            }
         } 
         // errors will be displayed
         else 
@@ -103,6 +109,33 @@ class SiteController extends Controller
             return $this->render('login', [
                 'model' => $model,
             ]);
+        }
+    }
+
+    /**
+     * @param string $previous
+     * @return string|\yii\web\Response
+     */
+    public function actionLockScreen($previous)
+    {
+        // Set the special layout
+        $this->layout = 'full';
+
+        if(isset(Yii::$app->user->identity->username)){
+            // save current username
+            $username = Yii::$app->user->identity->username;
+            // force logout
+            Yii::$app->user->logout();
+            // render form lockscreen
+            $model = new LoginForm();
+            $model->username = $username;    //set default value
+            return $this->render('lockScreen', [
+                'model' => $model,
+                'previous' => $previous,
+            ]);
+        }
+        else{
+            return $this->redirect(['login']);
         }
     }
 

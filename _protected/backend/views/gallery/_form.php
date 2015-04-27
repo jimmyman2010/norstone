@@ -152,9 +152,9 @@ GalleryAsset::register($this);
 
             <div class="gallery-buttons">
                 <input type="hidden" name="type-submit" value="" />
-                <?= Html::submitButton(Yii::t('app', 'Publish'), ['class' => 'small button radius']) ?>
+                <?= Html::submitButton($model->id ? Yii::t('app', 'Update') : Yii::t('app', 'Publish'), ['class' => 'small button radius']) ?>
                 <?php if($model->status === null || $model->status === Gallery::STATUS_DRAFT) { ?>
-                <?= Html::submitButton(Yii::t('app', 'Save Draft'), ['class' => 'small button radius info']) ?>
+                <?= Html::submitButton($model->id ? Yii::t('app', 'Save Draft') : Yii::t('app', 'Update Draft'), ['class' => 'small button radius info']) ?>
                 <?php } ?>
                 <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
             </div>

@@ -14,7 +14,7 @@ return [
     'components' => [
         'session' => [
             'name' => 'PHPBACKSESSID',
-            'savePath' => __DIR__ . '/../../../admin/assets',
+            'savePath' => __DIR__ . '/../../../admin/assets'
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

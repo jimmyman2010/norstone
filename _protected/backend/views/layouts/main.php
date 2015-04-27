@@ -1,9 +1,9 @@
 <?php
 use backend\assets\AppAsset;
-use frontend\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -143,9 +143,48 @@ AppAsset::register($this);
     <div class="copyright">
         2015 © Gallery. Powered by <a href="http://www.mantrantd.com/" rel="external" target="_blank">JM GROUP</a>
     </div>
-    <script>
+    <?php
+    $this->registerJs("
+        var goLockScreen = false;
+        var stop = false;
+        var autoLockTimer;
+        window.onload = resetTimer;
+        window.onmousemove = resetTimer;
+        window.onmousedown = resetTimer; // catches touchscreen presses
+        window.onclick = resetTimer;     // catches touchpad clicks
+        window.onscroll = resetTimer;    // catches scrolling with arrow keys
+        window.onkeypress = resetTimer;
+
+        function lockScreen() {
+            stop = true;
+            window.location.href = '" . Url::toRoute(['/site/lock-screen']) . "?previous='+encodeURIComponent(window.location.href);
+        }
+
+        function lockIdentity(){
+            goLockScreen = true;
+        }
+
+        function resetTimer() {
+            if(stop==true){
+
+            }
+            else if (goLockScreen) {
+                lockScreen();
+            }
+            else{
+                clearTimeout(autoLockTimer);
+                autoLockTimer = setTimeout(lockIdentity, " . (Yii::$app->session->timeout * 1000) . ");  // time is in milliseconds
+            }
+
+        }
+
         $(document).foundation();
-    </script>
+    ");
+    echo "<pre>";
+    print_r(Yii::$app->session);
+    echo "</pre>";
+    //exit();
+    ?>
 </body>
 </html>
 <?php $this->endPage() ?>
