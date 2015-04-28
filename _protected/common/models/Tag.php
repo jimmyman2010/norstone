@@ -31,7 +31,7 @@ class Tag extends \yii\db\ActiveRecord
             [['name', 'slug'], 'required'],
             [['deleted'], 'integer'],
             [['name', 'slug'], 'string', 'max' => 128],
-            //[['slug'], 'unique']
+            [['slug'], 'unique']
         ];
     }
 
@@ -46,5 +46,31 @@ class Tag extends \yii\db\ActiveRecord
             'slug' => Yii::t('app', 'Slug'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
+    }
+
+    /**
+     * @param string $slug
+     * @param int $id
+     * @return string
+     */
+    public function getSlug($slug, $id = 0)
+    {
+        $result = $slug;
+        $i = 0;
+        while (true) {
+            if($i > 0)
+                $result = $slug . $i;
+            if ($id === 0) {
+                $exist = Tag::findOne(['slug' => $result]);
+            }
+            else {
+                $exist = Tag::findOne(['AND', ['=', 'slug', $result], ['<>', 'id', $id]]);
+            }
+            if($exist === null) {
+                break;
+            }
+            $i++;
+        }
+        return $result;
     }
 }

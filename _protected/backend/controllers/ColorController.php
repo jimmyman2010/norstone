@@ -8,6 +8,7 @@ use common\models\ColorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * ColorController implements the CRUD actions for Color model.
@@ -120,5 +121,25 @@ class ColorController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function actionCheckingduplicated($name, $id = 0)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($id === 0) {
+            $exist = Color::findOne(['name' => $name]);
+        }
+        else {
+            $exist = Color::findOne(['name' => $name]);
+            if(is_object($exist) && $exist->id === intval($id)) {
+                $exist = null;
+            }
+        }
+        return $exist === null;
     }
 }

@@ -2,12 +2,14 @@
 
 namespace backend\controllers;
 
+use common\helpers\UtilHelper;
 use Yii;
 use common\models\Tag;
 use common\models\TagSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * TagController implements the CRUD actions for Tag model.
@@ -62,8 +64,11 @@ class TagController extends Controller
     {
         $model = new Tag();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->slug = $model->getSlug(UtilHelper::slugify($model->name));
+            if($model->save()) {
+                return $this->redirect(['index']);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -81,8 +86,11 @@ class TagController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->slug = $model->getSlug(UtilHelper::slugify($model->name), $id);
+            if($model->save()) {
+                return $this->redirect(['index']);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -120,5 +128,25 @@ class TagController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function actionCheckingduplicated($name, $id = 0)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($id === 0) {
+            $exist = Tag::findOne(['name' => $name]);
+        }
+        else {
+            $exist = Tag::findOne(['name' => $name]);
+            if(is_object($exist) && $exist->id === intval($id)) {
+                $exist = null;
+            }
+        }
+        return $exist === null;
     }
 }

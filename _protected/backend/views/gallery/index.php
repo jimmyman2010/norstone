@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use common\helpers\UtilHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\GallerySearch */
@@ -33,13 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => '#',
                 'format' => 'html',
                 'value' => function($data) {
-                    if($data->image !== null)
-                    {
-                        $image = $data->image;
-                        $img = $image->show_url . $image->file_name . '-thumb-list.' . $image->file_ext;
-                    } else {
-                        $img = '/admin/themes/jmgroup/images/NoImage_592x444.jpg';
-                    }
+                    $img = UtilHelper::getPicture($data->image, 'thumb-list', true);
                     return Html::a(Html::img($img, ['width'=>'100']), ['update', 'id' => $data->id]);
                 }
             ],

@@ -145,4 +145,30 @@ class Gallery extends \yii\db\ActiveRecord
             return "Draft";
         }
     }
+
+    /**
+     * @param string $slug
+     * @param int $id
+     * @return string
+     */
+    public function getSlug($slug, $id = 0)
+    {
+        $result = $slug;
+        $i = 0;
+        while (true) {
+            if($i > 0)
+                $result = $slug . $i;
+            if ($id === 0) {
+                $exist = Gallery::findOne(['slug' => $result]);
+            }
+            else {
+                $exist = Gallery::findOne(['AND', ['=', 'slug', $result], ['<>', 'id', $id]]);
+            }
+            if($exist === null) {
+                break;
+            }
+            $i++;
+        }
+        return $result;
+    }
 }

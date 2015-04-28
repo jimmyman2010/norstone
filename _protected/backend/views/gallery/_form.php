@@ -17,6 +17,25 @@ use common\models\Gallery;
 /* @var $form yii\widgets\ActiveForm */
 
 GalleryAsset::register($this);
+
+$this->registerJs("
+    $('#gallery-name').on('blur', function(){
+        var that = $(this),
+            name = $(this).val();
+        $.get(
+            '" . Url::toRoute('gallery/checkingduplicated') . "',
+            {'name': name" . ($model->id ? ", 'id': $model->id" : '') . "},
+            function(data){
+                if(data === true){
+                    that.parent().removeClass('duplicated');
+                } else {
+                    that.parent().addClass('duplicated');
+                }
+            }
+        );
+    });
+");
+
 ?>
 
 <div class="gallery-form row">
@@ -154,7 +173,7 @@ GalleryAsset::register($this);
                 <input type="hidden" name="type-submit" value="" />
                 <?= Html::submitButton($model->id ? Yii::t('app', 'Update') : Yii::t('app', 'Publish'), ['class' => 'small button radius']) ?>
                 <?php if($model->status === null || $model->status === Gallery::STATUS_DRAFT) { ?>
-                <?= Html::submitButton($model->id ? Yii::t('app', 'Save Draft') : Yii::t('app', 'Update Draft'), ['class' => 'small button radius info']) ?>
+                <?= Html::submitButton($model->id ? Yii::t('app', 'Update Draft') : Yii::t('app', 'Save Draft'), ['class' => 'small button radius info']) ?>
                 <?php } ?>
                 <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
             </div>

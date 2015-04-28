@@ -95,7 +95,7 @@ AppAsset::register($this);
                                         'template' => '<a href="{url}"><i class="fa fa-archive"></i>{label}</a>'
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Colors'),
+                                        'label' => Yii::t('app', 'Colours'),
                                         'url' => ['color/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-magic"></i>{label}</a>'
                                     ],
@@ -180,10 +180,7 @@ AppAsset::register($this);
 
         $(document).foundation();
     ");
-    echo "<pre>";
-    print_r(Yii::$app->session);
-    echo "</pre>";
-    //exit();
+
     ?>
 </body>
 </html>
