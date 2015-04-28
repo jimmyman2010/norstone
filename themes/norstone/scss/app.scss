@@ -703,6 +703,7 @@ body.down{
 	    		$spacing: rem-calc(5)
 			);
 			li{
+			  	cursor: pointer;
 				width: rem-calc(127);
 				height: rem-calc(85);
 				background: #EBEBEB;
@@ -711,10 +712,15 @@ body.down{
 			  	&:first-child{
 				  	margin-left: rem-calc(2);
 				}
+				img{
+					&:hover{
+					  	@include opacity(0.5);
+					}
+				}
 			}
 			.active{
 				img{
-					//@include opacity(0.5);
+				  	@include opacity(0.5);
 				}
 			}
 		}

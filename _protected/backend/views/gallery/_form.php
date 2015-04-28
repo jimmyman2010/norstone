@@ -74,9 +74,16 @@ $this->registerJs("
                     <?= $form->field($model, 'intro')->textarea(['maxlength' => 1024, 'rows' => 3]) ?>
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
                         'editorOptions' => [
-                            'preset' => 'basic',
                             'inline' => false,
-                            'language' => 'en'
+                            'language' => 'en',
+                            'toolbar' => [
+                                ['name' => 'styles', 'items' => [ 'Format' ]],
+                                ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+                                ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
+                                ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+                                ['name' => 'tools', 'items' => [ 'Maximize' ]],
+                                ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+                            ]
                         ],
                     ]) ?>
 

@@ -70,7 +70,7 @@ GalleryAsset::register($this);
         <div class="des"><?= $model->description ?></div>
 
         <?php if(!empty($model->lean_more_link)) { ?>
-        <p><a href="<?= Url::to($model->lean_more_link) ?>" class="more-btn button radius">Learn more</a></p>
+        <p><a href="<?= Url::to($model->lean_more_link) ?>" target="_blank" class="more-btn button radius">Learn more</a></p>
         <?php } ?>
 
         <ul class="info">
