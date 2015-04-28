@@ -93,7 +93,6 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $pageSize = 9;
-        $published = true;
 
         $query = Gallery::find();
         $where = [
@@ -113,9 +112,8 @@ class SiteController extends Controller
         }
 
         if(isset($request['tag'])) {
-            $query->innerJoin('tbl_gallery_tag', 'tbl_gallery.id = tbl_gallery_tag.gallery_id');
-            foreach (explode(',', $request['tag']) as $tag) {
-                $where['tag_id'] = $tag;
+            foreach (explode(',', $request['tag']) as $index => $tag) {
+                $query->innerJoin("tbl_gallery_tag gt$index", "tbl_gallery.id = gt$index.gallery_id AND gt$index.tag_id = $tag AND gt$index.deleted = 0");
             }
         }
 

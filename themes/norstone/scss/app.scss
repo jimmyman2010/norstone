@@ -296,7 +296,7 @@ body.down{
 
 .dropdown{
 	@include border-radius(rem-calc(10));
-	padding: rem-calc(8) rem-calc(20) rem-calc(8) rem-calc(10);
+	padding: rem-calc(8 20 8 10);
 	position: relative;
 	border: 1px solid $border-header-color;
 	background: $white;
@@ -304,6 +304,7 @@ body.down{
 	width: rem-calc(260);
 	margin-bottom: rem-calc(20);
 	text-align: left;
+  	cursor: pointer;
 	> span{
 		position: absolute;
 		right: 5px;
@@ -344,9 +345,9 @@ body.down{
 
 .tag-name{
 	display: inline-block;
-	margin: rem-calc(5) rem-calc(2);
+	margin: rem-calc(5 2);
 	border: 1px solid $border-header-color;
-	padding: rem-calc(3) rem-calc(10);
+	padding: rem-calc(3 10);
 	color: $black;
 	@include border-radius(rem-calc(10));
  	&.active{
