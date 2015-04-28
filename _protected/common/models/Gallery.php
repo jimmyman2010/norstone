@@ -91,11 +91,27 @@ class Gallery extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getProducts()
+    {
+        return Product::find()->where(['deleted' => 0])->all();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getColor()
     {
         return $this->hasOne(Color::className(), ['id' => 'color_id']);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getColors()
+    {
+        return Color::find()->where(['deleted' => 0])->all();
     }
 
     /**

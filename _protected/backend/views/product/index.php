@@ -29,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
+            [
+                'attribute'=>'name',
+                'format'=>'html',
+                'value'=> function($data) {
+                    return Html::a($data->name, ['update', 'id' => $data->id]);
+                }
+            ],
             // buttons
             ['class' => 'yii\grid\ActionColumn',
                 'header' => "Menu",

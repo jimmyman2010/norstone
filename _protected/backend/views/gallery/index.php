@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use common\helpers\UtilHelper;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\GallerySearch */
@@ -47,10 +48,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'product_id',
+                'filter' => ArrayHelper::map($searchModel->getProducts(), 'id', 'name'),
                 'value' => 'product.name'
             ],
             [
                 'attribute' => 'color_id',
+                'filter' => ArrayHelper::map($searchModel->getColors(), 'id', 'name'),
                 'value' => 'color.name'
             ],
             [

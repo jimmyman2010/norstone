@@ -91,6 +91,8 @@ class GallerySearch extends Gallery
             'publish_date' => $this->publish_date,
             'created_date' => $this->created_date,
             'created_by' => $this->created_by,
+            'product_id' => $this->product_id,
+            'color_id' => $this->color_id,
         ]);
 
         $query->andFilterWhere(['like', 'tbl_gallery.name', $this->name])
@@ -99,9 +101,7 @@ class GallerySearch extends Gallery
             ->andFilterWhere(['like', 'lean_more_link', $this->lean_more_link])
             ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
             ->andFilterWhere(['like', 'seo_description', $this->seo_description])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'tbl_product.name', $this->product_id])
-            ->andFilterWhere(['like', 'tbl_color.name', $this->color_id]);
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }
