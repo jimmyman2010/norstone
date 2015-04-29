@@ -7,11 +7,8 @@ use common\helpers\UtilHelper;
 
 ?>
 
-<div class="gallery-img">
-    <a href="<?= Url::toRoute(['gallery/view', 'slug' => $model->slug])?>">
-        <?= UtilHelper::getPicture($model->image, 'thumbnail') ?>
-        <span class="ti-fullscreen"></span>
-    </a>
-</div>
+<a href="<?= Url::toRoute(['gallery/view', 'slug' => $model->slug])?>">
+    <?= UtilHelper::getPicture($model->image, 'thumbnail-search') ?>
+</a>
 <h4><?= Html::a($model->name, ['gallery/view', 'slug' => $model->slug]) ?></h4>
 <p><?= $model->intro ?><?= Html::a(Yii::t('app', '...more'), ['gallery/view', 'slug' => $model->slug]) ?></p>

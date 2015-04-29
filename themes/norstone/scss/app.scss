@@ -50,6 +50,10 @@ $font-icon-themify: 'themify';
 	}
 }
 
+.highlight {
+    background-color: #FFFF88;
+}
+
 //fixed menu
 body.down{
   .header.animateIt {
@@ -787,6 +791,36 @@ body.down{
 		}
 	}
 }
+.search-header {
+    @include clearfix;
+    .title{
+        margin: 0 1.1rem;
+        float: left;
+    }
+    .search-inline {
+        @extend .search-box;
+        float: left;
+        button{
+            top: rem-calc(5);
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+.search-results{
+    li{
+        @extend .gallery-thumb;
+        @include clearfix;
+        list-style: none;
+        padding-top: rem-calc(10);
+        border-top: 1px solid #eee;
+        > a {
+            float: left;
+            margin: rem-calc(0 15 10 0);
+        }
+    }
+}
+
 .welcome{
   	padding-top: rem-calc(15);
 }

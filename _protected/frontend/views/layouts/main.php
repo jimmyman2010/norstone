@@ -54,7 +54,7 @@ AppAsset::register($this);
                                         ],
                                         [
                                             'label' => Yii::t('app', 'News'),
-                                            'url' => ['article/index'],
+                                            'url' => ['#'],
                                             'template' => '<a href="{url}"><i class="flaticon-star105"></i> {label}</a>'
                                         ],
                                         [
@@ -68,9 +68,9 @@ AppAsset::register($this);
 
                                 <ul class="right">
                                     <li class="has-form">
-                                        <form method="get" action="#">
+                                        <form method="get" action="<?= Url::toRoute('site/search') ?>">
                                             <div class="search-box" id="search-box">
-                                                <input type="text" placeholder="Search" />
+                                                <input type="text" name="term" placeholder="Search" />
                                                 <button type="submit"><span class="ti-search"></span></button>
                                             </div>
                                         </form>
@@ -105,11 +105,11 @@ AppAsset::register($this);
             <div class="row">
                 <div class="large-12 columns">
                     <div class="links">
-                        <a href="<?= Url::toRoute('site/official') ?>">Official Norstone Website</a>
+                        <a href="<?= Url::to('http://www.norstone.global/') ?>">Official Norstone Website</a>
                         <span>&nbsp;&bull;&nbsp;</span>
-                        <a href="<?= Url::toRoute('site/legal') ?>">Legal</a>
+                        <a href="<?= Url::to('http://www.norstone.global/legal/') ?>">Legal</a>
                         <span>&nbsp;&bull;&nbsp;</span>
-                        <a href="<?= Url::toRoute('site/trademarks') ?>">Trademarks</a>
+                        <a href="<?= Url::to('http://www.norstone.global/trademarks/') ?>">Trademarks</a>
                         <span>&nbsp;&bull;&nbsp;</span>
                         <a href="<?= Url::toRoute('site/contact') ?>">Contact Us</a>
                     </div>

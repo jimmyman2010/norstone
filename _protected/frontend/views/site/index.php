@@ -5,6 +5,11 @@ use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
+/* @var $products array */
+/* @var $colors array */
+/* @var $tags array */
+/* @var $dataProvider yii\data\ActiveDataProvider; */
+
 $this->title = Yii::t('app', Yii::$app->name);
 
 /**

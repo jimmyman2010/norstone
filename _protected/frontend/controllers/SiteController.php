@@ -3,7 +3,6 @@ namespace frontend\controllers;
 
 use common\models\Color;
 use common\models\Gallery;
-use common\models\GallerySearch;
 use common\models\Product;
 use common\models\Tag;
 use common\models\User;
@@ -136,6 +135,36 @@ class SiteController extends Controller
             'colors' => $colors,
             'tags' => $tags,
             'request' => $request
+        ]);
+    }
+
+    /**
+     * @param string $term
+     * @return string
+     */
+    public function actionSearch($term = '')
+    {
+        $pageSize = 10;
+
+        $query = Gallery::find();
+        $query->where([
+            'tbl_gallery.deleted' => 0,
+            'status' => Gallery::STATUS_PUBLISHED
+        ]);
+
+        if(!empty($term)) {
+            $query->andWhere(["OR", "name LIKE '%$term%'", "intro LIKE '%$term%'", "description LIKE '%$term%'"]);
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ],
+        ]);
+
+        return $this->render('search', [
+            'dataProvider' => $dataProvider,
         ]);
     }
 

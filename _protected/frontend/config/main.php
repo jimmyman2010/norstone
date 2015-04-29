@@ -26,10 +26,16 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/<slug>' => '<controller>/view',
+                '<action:\w+>' => 'site/<action>',
                 '/' => 'site/index',
                 'gallery' => 'site/index',
-                '<action:\w+>' => 'site/<action>',
             ]
+        ],
+        'search' => [
+            'class' => 'himiklab\yii2\search\Search',
+            'models' => [
+                'common\models\Search',
+            ],
         ],
         'view' => [
             'theme' => [
