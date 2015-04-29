@@ -8,6 +8,11 @@ use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Gallery */
+/* @var $previous common\models\Gallery */
+/* @var $next common\models\Gallery */
+/* @var $pictures array */
+/* @var $tags array */
+/* @var $relatedList array */
 
 $this->title = ucfirst($model->name) . ' | ' . Yii::t('app', Yii::$app->name);
 $this->params['breadcrumbs'][] = $model->name;
