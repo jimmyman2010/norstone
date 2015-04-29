@@ -83,7 +83,9 @@ $this->registerJs("
                                 ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
                                 ['name' => 'tools', 'items' => [ 'Maximize' ]],
                                 ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
-                            ]
+                            ],
+                            'removePlugins' => 'elementspath',
+                            'resize_enabled' => false,
                         ],
                     ]) ?>
 
