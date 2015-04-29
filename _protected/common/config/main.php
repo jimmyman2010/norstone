@@ -30,7 +30,7 @@ return [
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
-            'timeout' => 900,
+            'timeout' => 1100,
 
         ],
         'authManager' => [
