@@ -109,6 +109,9 @@ body.down{
                         }
                     }
                 }
+                &:hover{
+                    background-color: #505050;
+                }
             }
         }
     }
@@ -160,9 +163,9 @@ body.down{
 						}
 					}
 				}
-			}
-		  	&:last-child a:not(.button){
-			  	padding-right: 0;
+                &:hover{
+                    background-color: #EBEBEB;
+                }
 			}
 		}
 		.has-form{
@@ -320,8 +323,13 @@ body.down{
 	}
 }
 
-.f-dropdown li.active{
-   background: #eee;
+.f-dropdown {
+    &:focus{
+        outline: none;
+    }
+    li.active {
+        background: #eee;
+    }
 }
 .application-filter{
 	a{
@@ -444,9 +452,10 @@ body.down{
 }
 
 .socials{
-	margin-top: rem-calc(60);
+	margin: rem-calc(60) auto 0;
 	display: table;
 	width: 100%;
+    max-width: rem-calc(657);
 	h2{
 		font-size: rem-calc(24);
 		line-height: rem-calc(26);
@@ -458,24 +467,34 @@ body.down{
 	.inline-list{
 		display: inline-block;
 		font-size: rem-calc(14);
+        li {
+            margin-left: rem-calc(14);
+            &:first-child {
+                margin-left: 0;
+            }
+        }
 		a{
-			font-size: rem-calc(35);
+			font-size: 0;
+            text-indent: rem-calc(1000);
 			color: $black;
-			.ti-facebook{
-				@include border-radius(rem-calc(5));
-				padding: rem-calc(4) 1px 0 rem-calc(4);
-				border: 2px solid $black;
-				font-size: rem-calc(24);
-				position: relative;
-				top: -3px;
-				&:hover{
-					border-color: $primary-color;
-				}
-			}
-			&:hover{
-				color: $primary-color;
-			}
+            display: block;
+            width: rem-calc(42);
+            height: rem-calc(42);
+			background: url(../images/socials.png) no-repeat;
+            background-size: 148px auto;
 		}
+        .tw{
+            background-position: -53px 0;
+        }
+        .pin{
+            background-position: -106px 0;
+        }
+        .ins{
+            background-position: 0 bottom;
+        }
+        .mail{
+            background-position: -53px bottom;
+        }
 	}
 }
 

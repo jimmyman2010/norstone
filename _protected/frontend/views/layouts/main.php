@@ -11,7 +11,7 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +53,7 @@ AppAsset::register($this);
                                             'template' => '<a href="{url}"><i class="flaticon-house129"></i> {label}</a>'
                                         ],
                                         [
-                                            'label' => Yii::t('app', 'News'),
+                                            'label' => Yii::t('app', 'New'),
                                             'url' => ['#'],
                                             'template' => '<a href="{url}"><i class="flaticon-star105"></i> {label}</a>'
                                         ],
@@ -89,12 +89,14 @@ AppAsset::register($this);
                 <?= $content ?>
 
                 <section class="socials text-center">
-                    <h2>Share with you friends</h2>
-                    <p>Do you like this page? Feel free to share it with your friends and architecture enthusiasts.</p>
+                    <h2>Follow us</h2>
+                    <p>If you like our products follow us on social media websites. Please feel free to drop us your comment or feedback.</p>
                     <ul class="inline-list">
-                        <li><a href="#" title="Facebook"><span class="ti-facebook"></span></a></li>
-                        <li><a href="#" title="Twitter"><span class="ti-twitter"></span></a></li>
-                        <li><a href="mailto:#" title="Email"><span class="ti-email"></span></a></li>
+                        <li><a class="fb" href="https://www.facebook.com/norstoneglobal" title="Facebook" target="_blank">Facebook</a></li>
+                        <li><a class="tw" href="https://twitter.com/NorstoneGlobal" title="Twitter" target="_blank">Twitter</a></li>
+                        <li><a class="pin" href="https://www.pinterest.com/norstoneglobal/" title="Pinterest" target="_blank">Pinterest</a></li>
+                        <li><a class="ins" href="https://instagram.com/norstoneglobal/" title="Instagram" target="_blank">Instagram</a></li>
+                        <li><a class="mail" href="mailto:#" title="Email">Email</a></li>
                     </ul>
                 </section><!--end socials-->
 

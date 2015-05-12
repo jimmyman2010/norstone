@@ -77,7 +77,7 @@ function getUrl($type, $id, $request, $remove = false)
                         <span class="ti-angle-down"></span>
                     </div>
                     <ul id="drop1" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
-                        <li><a href="<?= getUrl('product', null, $request) ?>">&nbsp;</a></li>
+                        <li><a href="<?= getUrl('product', null, $request) ?>"><?= Yii::t('app', 'Show all') ?></a></li>
                         <?php foreach ($products as $product) { ?>
                             <li <?= (isset($request['product']) && $product->id === intval($request['product'])) ? 'class="active"' : '' ?>>
                                 <a href="<?= getUrl('product', $product->id, $request) ?>" data-id="<?= $product->id ?>"><?= $product->name ?></a>
@@ -104,7 +104,7 @@ function getUrl($type, $id, $request, $remove = false)
                         <span class="ti-angle-down"></span>
                     </div>
                     <ul id="drop2" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
-                        <li><a href="<?= getUrl('color', null, $request) ?>">&nbsp;</a></li>
+                        <li><a href="<?= getUrl('color', null, $request) ?>"><?= Yii::t('app', 'Show all') ?></a></li>
                         <?php foreach ($colors as $color) { ?>
                             <li <?= (isset($request['color']) && $color->id === intval($request['color'])) ? 'class="active"' : '' ?>>
                                 <a href="<?= getUrl('color', $color->id, $request) ?>" data-id="<?= $color->id ?>"><?= $color->name ?></a>
