@@ -51,7 +51,7 @@ function getUrl($type, $id, $request, $remove = false)
 <section class="gallery-list">
 
     <div class="filter-gallery">
-        <div class="text-center"><span id="drop-view" data-target="drop-content">Choose the product</span></div>
+        <div class="text-center"><span id="drop-view" data-target="drop-content" class="button">Choose the product</span></div>
     </div>
     <?php Pjax::begin(['id' => 'galleries']) ?>
     <div class="filter-gallery">
@@ -141,7 +141,11 @@ function getUrl($type, $id, $request, $remove = false)
             $galleries = $dataProvider->getModels();
             if(count($galleries) === 0) {
         ?>
-            <li class="text-center"><em><?= Yii::t('app', 'No results.') ?></em></li>
+            <li class="no-results text-center">
+                <h2>We are sorry but now image matched your search criteria</h2>
+                <a class="button">Please try again</a>
+            </li>
+
         <?php
             }
             else {
@@ -163,4 +167,12 @@ function getUrl($type, $id, $request, $remove = false)
     <?php Pjax::end() ?>
 </section><!--end gallery list-->
 
-
+<?php
+if(isset($request['product']) || isset($request['color']) || isset($request['application']) || isset($request['tag']))
+{
+    $this->registerJs("$(document).ready(function(){
+        $('html, body').animate({
+            scrollTop: $('#drop-view').offset().top
+        }, 800);
+    });");
+}

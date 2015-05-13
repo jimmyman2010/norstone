@@ -1,25 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tdmman
- * Date: 4/29/2015
- * Time: 10:05 AM
- */
 
-use yii\widgets\LinkPager;
-use frontend\assets\SearchAsset;
-use yii\helpers\Html;
-use yii\widgets\Pjax;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
+/* @var $products array */
+/* @var $colors array */
+/* @var $tags array */
 /* @var $dataProvider yii\data\ActiveDataProvider; */
 
-SearchAsset::register($this);
+$this->title = Yii::t('app', 'New Images');
 
 ?>
 <section class="new welcome text-center">
-    <h2><span>Search results for</span> "<?= Html::decode($_REQUEST['term']) ?>"</h2>
+    <h2><span>Check out our</span> New Images</h2>
     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
 </section><!--end welcome-->
 <section class="gallery-list">
@@ -58,7 +53,5 @@ SearchAsset::register($this);
     </nav><!--end pagination-->
     <?php Pjax::end() ?>
 </section><!--end gallery list-->
-<?php
-$this->registerJs("
-    $('.search-results').highlight(\"" . Html::decode($_REQUEST['term']) . "\");
-");
+
+

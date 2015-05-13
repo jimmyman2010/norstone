@@ -139,12 +139,38 @@ class SiteController extends Controller
     }
 
     /**
+     * @return string
+     */
+    public function actionNew()
+    {
+        $pageSize = 9;
+
+        $query = Gallery::find();
+        $where = [
+            'tbl_gallery.deleted' => 0,
+            'status' => Gallery::STATUS_PUBLISHED
+        ];
+        $query->where($where);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ],
+        ]);
+
+        return $this->render('new', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * @param string $term
      * @return string
      */
     public function actionSearch($term = '')
     {
-        $pageSize = 10;
+        $pageSize = 9;
 
         $query = Gallery::find();
         $query->where([

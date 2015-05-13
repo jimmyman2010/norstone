@@ -79,12 +79,19 @@ GalleryAsset::register($this);
         <?php } ?>
 
         <ul class="info">
-            <li><strong>Product name:</strong> <?= $model->product->name ?> </li>
-            <li><strong>Colour:</strong> <?= $model->color->name ?></li>
-            <li><strong>Application:</strong> <?= $model->application ? Yii::t('app', 'Internal') : Yii::t('app', 'External') ?> </li>
+            <li><strong>Product name:</strong>
+                <?= Html::a($model->product->name, ['site/index', 'product'=>$model->product_id], ['class'=> 'link']) ?>
+            </li>
+            <li><strong>Colour:</strong>
+                <?= Html::a($model->color->name, ['site/index', 'color'=>$model->color_id], ['class'=> 'link']) ?>
+            </li>
+            <li><strong>Application:</strong>
+                <?= Html::a($model->application ? Yii::t('app', 'Internal') : Yii::t('app', 'External'),
+                    ['site/index', 'application'=>$model->application], ['class'=> 'link']) ?>
+            </li>
             <li><strong>Tags:</strong>
                 <?php foreach ($tags as $item) { ?>
-                <span class="label success round"><?= $item->name ?></span>
+                    <?= Html::a($item->name, ['site/index', 'tag'=>$item->id], ['class'=> 'label success round']) ?>
                 <?php } ?>
             </li>
         </ul>
@@ -97,7 +104,9 @@ GalleryAsset::register($this);
     <span class='st_facebook_hcount' displayText='Facebook'></span>
     <span class='st_twitter_hcount' displayText='Tweet'></span>
     <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-    <span class='st_sharethis_hcount' displayText='ShareThis'></span>
+    <span class='st_googleplus_hcount' displayText='Google +'></span>
+    <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+    <span class='st_email_hcount' displayText='Email'></span>
 </div><!--end viral tools-->
 
 <?php if(count($relatedList) > 0) { ?>
@@ -111,4 +120,6 @@ GalleryAsset::register($this);
         <?php } ?>
     </ul>
 </aside><!--end related gallery-->
-<?php } ?>
+<?php }
+$this->registerJs("var switchTo5x=true;");
+$this->registerJs("stLight.options({publisher: \"f5aa822b-dd9d-40c5-ab1d-949e4ccb9e9c\", doNotHash: false, doNotCopy: false, hashAddressBar: false});");

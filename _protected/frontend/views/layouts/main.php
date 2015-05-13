@@ -27,7 +27,7 @@ AppAsset::register($this);
     <div class="site-wrapper">
         <header class="header">
             <div class="row">
-                <div class="large-12 columns">
+                <div class="large-12 header-nav">
                     <div class="contain-to-grid">
                         <nav class="top-bar" role="navigation">
                             <ul class="title-area">
@@ -37,7 +37,7 @@ AppAsset::register($this);
                                         <img class="logo-normal" src="<?= Yii::$app->view->theme->baseUrl ?>/images/norstone_logo.png" alt="" />
                                     </a>
                                 </li>
-                                <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+                                <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
                             </ul>
 
                             <section class="top-bar-section">
@@ -54,7 +54,7 @@ AppAsset::register($this);
                                         ],
                                         [
                                             'label' => Yii::t('app', 'New'),
-                                            'url' => ['#'],
+                                            'url' => ['site/new'],
                                             'template' => '<a href="{url}"><i class="flaticon-star105"></i> {label}</a>'
                                         ],
                                         [

@@ -6,13 +6,16 @@ $(function(){
     //fixed menu
     $(".header").before($(".header").clone().addClass("animateIt"));
     $(window).on("scroll", function () {
+        $('.top-bar-section').removeClass('open');
         $("body").toggleClass("down", ($(window).scrollTop() > 63));
-        $(".header").eq(1).find('.expanded').removeClass('expanded');
+        if($(window).width() > 640) {
+            $(".header").eq(1).find('.expanded').removeClass('expanded');
+        }
     });
 
     //search form responsive (641 to 1023)
     $('#search-box button').click(function(){
-        w = $( window ).width();
+        var w = $( window ).width();
         if (w > 640 && w < 1024){
             $(this).parent().toggleClass('show');
         }
@@ -20,12 +23,26 @@ $(function(){
     $( window ).resize(function() {
         //reset display search box
         $('#search-box').removeClass('show');
+        $('.top-bar-section').removeClass('open');
     });
 
+    $('.toggle-topbar.menu-icon').on('click', function(e){
+        e.preventDefault();
+        $('.top-bar-section').toggleClass('open');
+    });
 
     //dropdown choose the product
     $('#drop-view').click(function(){
-        $( '#'+ $(this).data('target')).slideToggle();
+        var headerHeight = $('.header').height();
+        var searchBox = $( '#'+ $(this).data('target')).slideToggle(function(){
+            if(searchBox.is(":visible")){
+                $('html, body').animate({
+                    scrollTop: parseInt($(this).offset().top, 10) - headerHeight
+                }, 800);
+            }
+        });
+
+
     });
 
   	//gallery large view
