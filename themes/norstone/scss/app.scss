@@ -153,7 +153,6 @@ body.down{
     }
 	.top-bar-section{
         display: none;
-        @include transition(0.5s all cubic-bezier(.3, .73, .3, .74));
         &.open{
             display: block;
             position: absolute;
@@ -267,12 +266,11 @@ body.down{
 
 // welcome section
 .welcome{
-    max-width: rem-calc(789);
     margin: 0 auto;
 	h2{
 		margin: rem-calc(30 0 12);
-		font-size: rem-calc(38);
-		line-height: rem-calc(40);
+		font-size: rem-calc(30);
+		line-height: rem-calc(34);
 		font-family: $font-family-ralewhite;
 		font-weight: 300;
 		padding-bottom: rem-calc(10);
@@ -280,13 +278,13 @@ body.down{
 		span{
             padding-bottom: rem-calc(10);
 			display: block;
-			font-size: rem-calc(26);
+			font-size: rem-calc(20);
 			line-height: rem-calc(29);
 		}
 	}
     p{
-        font-size: rem-calc(18);
-        line-height: rem-calc(29);
+        font-size: rem-calc(16);
+        line-height: rem-calc(26);
         margin-bottom: rem-calc(32);
     }
     &.new{
@@ -294,12 +292,12 @@ body.down{
         h2{
             margin: rem-calc(25 0 12);
             span{
-                font-size: rem-calc(23);
+                font-size: rem-calc(20);
                 padding-bottom: 0;
             }
         }
         p{
-            margin-bottom: rem-calc(50);
+            margin-bottom: rem-calc(30);
         }
     }
 }
@@ -399,7 +397,8 @@ body.down{
 	display: inline-block;
 	margin: rem-calc(5 2);
 	border: 1px solid $border-header-color;
-	padding: rem-calc(3 10);
+	padding: rem-calc(1 10);
+    font-size: rem-calc(14.5);
 	color: $black;
 	@include border-radius(rem-calc(10));
  	&.active{
@@ -877,18 +876,18 @@ li.no-results{
     background: #E5F3EC;
     @include border-radius(rem-calc(20));
     @include clearfix();
-    padding: rem-calc(26 0);
+    padding: rem-calc(26 10);
     h2{
         margin: rem-calc(0 0 12);
-        font-size: rem-calc(38);
-        line-height: rem-calc(40);
+        font-size: rem-calc(30);
+        line-height: rem-calc(34);
         font-family: $font-family-ralewhite;
         font-weight: 300;
         padding-bottom: rem-calc(10);
         letter-spacing: rem-calc(0.4);
     }
     .button{
-        font-size: rem-calc(18);
+        font-size: rem-calc(16);
         padding: rem-calc(6) rem-calc(20);
         @include border-radius(rem-calc(10));
     }
@@ -1012,6 +1011,10 @@ li.no-results{
                         padding: rem-calc(22 15 11);
                     }
                 }
+                .has-form{
+                    border-top: none;
+                    padding-top: 0;
+                }
             }
             .search-box button {
                 top: rem-calc(15);
@@ -1023,5 +1026,42 @@ li.no-results{
     }
     .search-box button{
         top: rem-calc(28);
+    }
+
+    // welcome section
+    .welcome{
+        max-width: rem-calc(789);
+        h2{
+            font-size: rem-calc(38);
+            line-height: rem-calc(40);
+            span{
+                font-size: rem-calc(26);
+                line-height: rem-calc(29);
+            }
+        }
+        p{
+            font-size: rem-calc(18);
+            line-height: rem-calc(29);
+        }
+        &.new{
+            h2{
+                span{
+                    font-size: rem-calc(23);
+                }
+            }
+            p{
+                margin-bottom: rem-calc(50);
+            }
+        }
+    }
+
+    li.no-results{
+        h2{
+            font-size: rem-calc(38);
+            line-height: rem-calc(40);
+        }
+        .button{
+            font-size: rem-calc(18);
+        }
     }
 }
