@@ -7058,7 +7058,7 @@ li.no-results .button {
   }
   /* line 1006, ../scss/app.scss */
   .header .logo-normal {
-    width: auto;
+    width: 221px;
     margin: 0;
   }
   /* line 1013, ../scss/app.scss */
@@ -7076,7 +7076,7 @@ li.no-results .button {
   }
   /* line 1025, ../scss/app.scss */
   .header.animateIt .logo-fix {
-    width: auto;
+    width: 150px;
   }
 
   /* line 1030, ../scss/app.scss */
