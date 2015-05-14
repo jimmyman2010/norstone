@@ -55,12 +55,12 @@ AppAsset::register($this);
                                         [
                                             'label' => Yii::t('app', 'New'),
                                             'url' => ['site/new'],
-                                            'template' => '<a href="{url}"><i class="flaticon-star105"></i> {label}</a>'
+                                            'template' => '<a href="{url}"><i class="flaticon-star220"></i> {label}</a>'
                                         ],
                                         [
                                             'label' => Yii::t('app', 'Contact us'),
                                             'url' => ['site/contact'],
-                                            'template' => '<a href="{url}"><i class="flaticon-speech102"></i> {label}</a>'
+                                            'template' => '<a href="{url}"><i class="flaticon-speech64"></i> {label}</a>'
                                         ]
                                     ]
                                 ]);
@@ -71,7 +71,7 @@ AppAsset::register($this);
                                         <form method="get" action="<?= Url::toRoute('site/search') ?>">
                                             <div class="search-box" id="search-box">
                                                 <input type="text" name="term" placeholder="Search" />
-                                                <button type="submit"><span class="ti-search"></span></button>
+                                                <button type="submit"><span class="flaticon-search75"></span></button>
                                             </div>
                                         </form>
                                     </li>
