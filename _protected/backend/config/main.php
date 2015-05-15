@@ -53,7 +53,7 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'site/login',
         ],
     ],
     'params' => $params,

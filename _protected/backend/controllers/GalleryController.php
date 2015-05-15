@@ -6,11 +6,8 @@ use common\helpers\UtilHelper;
 use common\models\File;
 use common\models\FileSearch;
 use common\models\GalleryFile;
-use common\models\GalleryFileSearch;
 use common\models\GalleryRelated;
-use common\models\GalleryRelatedSearch;
 use common\models\GalleryTag;
-use common\models\GalleryTagSearch;
 use common\models\Tag;
 use common\models\TagSearch;
 use Yii;
@@ -18,28 +15,15 @@ use common\models\Gallery;
 use common\models\GallerySearch;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 
 /**
  * GalleryController implements the CRUD actions for Gallery model.
  */
-class GalleryController extends Controller
+class GalleryController extends BackendController
 {
     public static $limitSuggestion = null;
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * @param \yii\base\Action $action

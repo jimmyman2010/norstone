@@ -3,7 +3,6 @@
 namespace backend\controllers;
 
 use common\helpers\UtilHelper;
-use common\models\GalleryFileSearch;
 use Yii;
 use common\models\File;
 use common\models\FileSearch;

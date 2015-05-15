@@ -5,7 +5,6 @@ namespace backend\controllers;
 use Yii;
 use common\models\Color;
 use common\models\ColorSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -13,20 +12,8 @@ use yii\web\Response;
 /**
  * ColorController implements the CRUD actions for Color model.
  */
-class ColorController extends Controller
+class ColorController extends BackendController
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Color models.
      * @return mixed
