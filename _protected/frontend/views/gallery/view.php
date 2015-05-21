@@ -73,11 +73,14 @@ GalleryAsset::register($this);
         <div class="close"><a href="<?= Url::home() ?>" class="right">Close <span class="ti-close"></span></a></div>
         <h2><?= Html::encode($model->name) ?></h2>
         <div class="des"><?= $model->description ?></div>
-
-        <?php if(!empty($model->lean_more_link)) { ?>
-        <p><a href="<?= Url::to($model->lean_more_link) ?>" target="_blank" class="more-btn button radius">Learn more</a></p>
-        <?php } ?>
-
+        <p>
+            <?php if(!empty($model->lean_more_link)) { ?>
+            <a href="<?= Url::to($model->lean_more_link) ?>" target="_blank" class="more-btn button radius">Learn more</a>
+            <?php } ?>
+            <a href="<?= Url::toRoute('site/contact') ?>" class="more-btn contact-us button radius">
+                <i class="ti-email"></i> <?= Yii::t('app', 'Contact us') ?>
+            </a>
+        </p>
         <ul class="info">
             <li><strong>Product name:</strong>
                 <?= Html::a($model->product->name, ['site/index', 'product'=>$model->product_id], ['class'=> 'link']) ?>
