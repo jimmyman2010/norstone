@@ -4,10 +4,11 @@ $(document).foundation();
 
 $(function(){
     //fixed menu
-    $(".header").before($(".header").clone().addClass("animateIt"));
+    //$(".header").before($(".header").clone().addClass("animateIt"));
     $(window).on("scroll", function () {
-        $('.top-bar-section').removeClass('open');
-        $("body").toggleClass("down", ($(window).scrollTop() > 63));
+        //$('.top-bar-section').removeClass('open');
+        $(".header").toggleClass("animateIt", ($(window).scrollTop() > 63));
+        $("body").toggleClass("down", ($(window).scrollTop() > 64));
         if($(window).width() > 640) {
             $(".header").eq(1).find('.expanded').removeClass('expanded');
         }
