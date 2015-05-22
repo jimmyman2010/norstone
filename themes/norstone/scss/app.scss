@@ -54,24 +54,35 @@ $font-icon-themify: 'themify';
     background-color: #FFFF88;
 }
 
+/* Chrome, Safari, Opera */
+@-webkit-keyframes menudown {
+    0%   {top: -100px;}
+    100% {top: 0;}
+}
+
+/* Standard syntax */
+@keyframes menudown {
+    0%   {top: -100px;}
+    100% {top: 0;}
+}
+
 //fixed menu
 body.down{
 	padding-top: rem-calc(63);
 	.header.animateIt {
 		top:0;
-		visibility: visible;
+        @include animation(menudown 0.5s);
 	}
 }
 
 .header.animateIt{
     position:fixed;
     background: #505050;
-    top: rem-calc(-90);
+    top: rem-calc(-100);
     left: 0;
     right: 0;
     z-index:999;
     border-bottom: none;
-    visibility: hidden;
     @include transition(0.5s top cubic-bezier(.3, .73, .3, .74));
     @include box-shadow(0 2px 10px rgba(0,0,0,0.5));
     .logo-fix{
@@ -1047,6 +1058,9 @@ li.no-results{
 }
 
 @media only screen and (min-width: 40.063em) {
+    body.down{
+        padding-top: rem-calc(90);
+    }
     .header{
         .header-nav{
             padding-left: rem-calc(10);
