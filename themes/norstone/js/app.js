@@ -62,7 +62,19 @@ $(function(){
 				if(caption.length > 0) {
 					this.title = '<div class="my-title">' + caption.html() + '</div>';
 				}
-			}
+			},
+            afterShow: function() {
+                $('.fancybox-wrap').swipe({
+                    swipe : function(event, direction) {
+                        if (direction === 'left' || direction === 'up') {
+                            $.fancybox.prev( direction );
+                        } else {
+                            $.fancybox.next( direction );
+                        }
+                    }
+                });
+
+            }
         });
     }
 });

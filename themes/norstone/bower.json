@@ -4,6 +4,7 @@
   "private": "true",
   "dependencies": {
     "foundation": "zurb/bower-foundation",
-    "fancyBox": "fancyapps/fancyBox"
+    "fancyBox": "fancyapps/fancyBox",
+    "touchSwipe": "mattbryson/TouchSwipe-Jquery-Plugin"
   }
 }

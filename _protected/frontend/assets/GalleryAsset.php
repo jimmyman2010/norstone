@@ -27,6 +27,7 @@ class GalleryAsset extends AssetBundle
         'bower_components/fancyBox/source/jquery.fancybox.css'
     ];
     public $js = [
+        'bower_components/touchSwipe/jquery.touchSwipe.min.js',
         'bower_components/fancyBox/source/jquery.fancybox.pack.js',
         'js/app.min.js',
         'http://w.sharethis.com/button/buttons.js'
