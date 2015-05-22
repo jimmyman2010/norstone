@@ -5,13 +5,13 @@ $(document).foundation();
 $(function(){
     //fixed menu
     //$(".header").before($(".header").clone().addClass("animateIt"));
-    $(window).on("scroll", function () {
+    $(window).on("scroll load", function () {
         //$('.top-bar-section').removeClass('open');
         $(".header").toggleClass("animateIt", ($(window).scrollTop() > 63));
         $("body").toggleClass("down", ($(window).scrollTop() > 64));
-        if($(window).width() > 640) {
-            $(".header").eq(1).find('.expanded').removeClass('expanded');
-        }
+        //if($(window).width() > 640) {
+        //    $(".header").eq(1).find('.expanded').removeClass('expanded');
+        //}
     });
 
     //search form responsive (641 to 1023)
