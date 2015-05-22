@@ -427,6 +427,19 @@ body.down{
 	}
 }
 
+.no-touch{
+  	.gallery-thumb{
+		a:hover{
+			> span{
+			  visibility: visible;
+			}
+		}
+		&:hover ~ h4 a{
+		  	text-decoration: underline;
+		}
+	}
+}
+
 .gallery-thumb{
 	.gallery-img{
 		position: relative;
@@ -445,14 +458,6 @@ body.down{
 		}
 		img{
 			width: 100%;
-		}
-		a:hover{
-			> span{
-				visibility: visible;
-			}
-		}
-	  	&:hover ~ h4 a{
-		  	text-decoration: underline;
 		}
 	}
 	h4{
