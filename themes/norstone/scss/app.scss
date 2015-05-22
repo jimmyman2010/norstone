@@ -56,10 +56,11 @@ $font-icon-themify: 'themify';
 
 //fixed menu
 body.down{
-  .header.animateIt {
-    top:0;
-    visibility: visible;
-  }
+	padding-top: 63px;
+	.header.animateIt {
+		top:0;
+		visibility: visible;
+	}
 }
 
 .header.animateIt{
@@ -976,6 +977,9 @@ li.no-results{
 }
 
 @media only screen and (min-width: 40.063em) {
+	body.down{
+		padding-top: 90px;
+	}
     .header{
         .header-nav{
             padding-left: rem-calc(10);
@@ -1027,9 +1031,14 @@ li.no-results{
             }
         }
     }
-    .search-box button{
-        top: rem-calc(28);
-    }
+    .search-box {
+	  	input{
+
+		}
+		button {
+		  	top: rem-calc(28);
+		}
+	}
 
     // welcome section
     .welcome{
