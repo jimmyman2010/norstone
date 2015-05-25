@@ -141,7 +141,7 @@ AppAsset::register($this);
         <?php $this->endBody() ?>
     </div>
     <div class="copyright">
-        2015 © Gallery. Powered by <a href="http://www.mantrantd.com/" rel="external" target="_blank">JM GROUP</a>
+        <?= date('Y') ?> &copy; <?= Yii::t('app', Yii::$app->name) ?>.
     </div>
     <?php
     $this->registerJs("

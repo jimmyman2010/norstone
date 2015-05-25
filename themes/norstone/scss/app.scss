@@ -472,8 +472,8 @@ body.down{
 		}
 	}
 	h4{
-		font-size: rem-calc(16);
-		line-height: rem-calc(18);
+		font-size: rem-calc(20);
+		line-height: rem-calc(20);
 		font-family: $font-family-ralewhite;
 		font-weight: 500;
 		margin: rem-calc(10) 0 rem-calc(5);
@@ -488,8 +488,8 @@ body.down{
 		}
 	}
 	p{
-		font-size: rem-calc(12);
-		line-height: rem-calc(16);
+		font-size: 0.8rem;
+		line-height: rem-calc(20);
 	}
 }
 
@@ -611,6 +611,7 @@ body.down{
 		&:before{
 			font-family: $font-icon-themify;
 			color: $black;
+            margin: rem-calc(0 2);
 		}
 		&:first-child{
 			&:before{
@@ -739,6 +740,17 @@ body.down{
 
 		}
 	}
+}
+
+.touch .orbit-container{
+    .orbit-next, .orbit-prev{
+        visibility: hidden;
+    }
+    &:hover{
+        .orbit-next, .orbit-prev{
+            visibility: visible;
+        }
+    }
 }
 
 .orbit-container{
@@ -943,40 +955,20 @@ li.no-results{
     }
 }
 
+.site-contact{
+    max-width: rem-calc(620);
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .form-group{
     position: relative;
     .row{
         margin: 0;
     }
     .help-block{
-        position: absolute;
-        top: -22px;
-        z-index: 1;
-        background-color: #444;
-        padding: rem-calc(5 10);
-        color: #fff;
-        white-space: nowrap;
-        @include border-radius(rem-calc(5));
-        &:empty{
-            display: none;
-        }
-        &:before{
-            content: ' ';
-            position: absolute;
-            bottom: -8px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #444;
-        }
         &.help-block-error{
             color: red;
-            background: #fff;
-            border: 1px solid;
-            &:before{
-                border-top-color: red;
-            }
         }
     }
     &.field-contactform-verifycode{
@@ -1000,8 +992,9 @@ li.no-results{
         }
     }
     button{
-        padding: rem-calc(6 30);
-        margin-top: 30px;
+        padding: rem-calc(10 30);
+        margin: 30px auto 0;
+        display: block;
     }
 }
 
@@ -1055,6 +1048,13 @@ li.no-results{
 	.copyright{
 		font-size: rem-calc(12);
 	}
+}
+
+.no-touch .fancybox-nav{
+    display: block;
+}
+.touch .fancybox-nav{
+    display: none;
 }
 
 @media only screen and (min-width: 40.063em) {
@@ -1155,13 +1155,10 @@ li.no-results{
 
     .right-content{
         .close{
-            margin-bottom: rem-calc(10);
+            margin-bottom: rem-calc(30);
         }
         .more-btn{
             padding: rem-calc(6 28);
-            &.contact-us{
-                display: none;
-            }
         }
     }
 
@@ -1175,10 +1172,10 @@ li.no-results{
     }
     .gallery-thumb{
         h4{
-            font-size: rem-calc(14);
+            font-size: 1.35rem;
         }
         p{
-            line-height: rem-calc(14);
+            line-height: 1.4rem;
         }
     }
     .related-gallery{
@@ -1188,11 +1185,6 @@ li.no-results{
                 top: rem-calc(18);
                 padding: 0 rem-calc(20);
             }
-        }
-    }
-    .form-group{
-        .help-block{
-            left: 25%;
         }
     }
     .footer{
