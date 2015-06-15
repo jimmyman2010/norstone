@@ -4,20 +4,42 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
+/* @var $pictures Array */
+/* @var $tags Array */
+/* @var $tagSuggestions string */
+/* @var $products Array */
+/* @var $productSuggestion Array */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Product',
 ]) . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="product-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<article class="product-update">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption"><?= Html::encode($this->title) ?></div>
+            <div class="action">
+                <ul class="button-group">
+                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a(Yii::t('app', 'Create Product'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
+                </ul>
+            </div>
+        </div>
+        <div class="portlet-body">
 
-</div>
+            <?= $this->render('_form', [
+                'model' => $model,
+                'pictures' => $pictures,
+                'tags' => $tags,
+                'tagSuggestions' => $tagSuggestions,
+                'products' => $products,
+                'productSuggestion' => $productSuggestion
+            ]) ?>
+
+        </div>
+    </div>
+</article>

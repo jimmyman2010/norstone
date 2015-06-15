@@ -29,6 +29,10 @@ use Yii;
  */
 class Product extends \yii\db\ActiveRecord
 {
+    const STATUS_DRAFT = 'draft';
+    const STATUS_WAITING = 'waiting';
+    const STATUS_PUBLISHED = 'published';
+
     /**
      * @inheritdoc
      */
@@ -80,5 +84,95 @@ class Product extends \yii\db\ActiveRecord
             'created_by' => Yii::t('app', 'Created By'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getCategories()
+    {
+        return Category::find()->where(['deleted' => 0])->all();
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->hasOne(File::className(), ['id' => 'image_id']);
+    }
+
+    /**
+     * Returns the array of possible gallery status values.
+     *
+     * @return array
+     */
+    public function getStatusList()
+    {
+        $statusArray = [
+            self::STATUS_PUBLISHED    => 'Published',
+            self::STATUS_WAITING   => 'Waiting',
+            self::STATUS_DRAFT => 'Draft'
+        ];
+
+        return $statusArray;
+    }
+
+    /**
+     * Returns the gallery status in nice format.
+     *
+     * @param null|integer $status Status integer value if sent to method.
+     * @return string              Nicely formatted status.
+     */
+    public function getStatusName($status = null)
+    {
+        $status = (empty($status)) ? $this->status : $status ;
+
+        if ($status === self::STATUS_PUBLISHED)
+        {
+            return "Published";
+        }
+        elseif ($status === self::STATUS_WAITING)
+        {
+            return "Waiting";
+        }
+        else
+        {
+            return "Draft";
+        }
+    }
+
+    /**
+     * @param string $slug
+     * @param int $id
+     * @return string
+     */
+    public function getSlug($slug, $id = 0)
+    {
+        $result = $slug;
+        $i = 0;
+        while (true) {
+            if($i > 0)
+                $result = $slug . $i;
+            if ($id === 0) {
+                $exist = Product::findOne(['slug' => $result]);
+            }
+            else {
+                $exist = Product::findOne(['AND', ['=', 'slug', $result], ['<>', 'id', $id]]);
+            }
+            if($exist === null) {
+                break;
+            }
+            $i++;
+        }
+        return $result;
     }
 }

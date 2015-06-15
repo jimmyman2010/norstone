@@ -2,7 +2,7 @@ $(function(){
     $('.connected').sortable({
         connectWith: '.connected'
     });
-    $('#gallery-form').on('submit', function(){
+    $('#action-form').on('submit', function(){
         var stringRelated = '';
         $('.related .connected li').each(function(index, element){
             if(index > 0) {
@@ -12,7 +12,7 @@ $(function(){
         });
         $('#relatedGallery').val(stringRelated);
 
-        var images = $('input[name="Gallery[image_id]"]');
+        var images = $('input[name="Product[image_id]"]');
         if(images.length > 0) {
             var flag = true;
             images.each(function () {

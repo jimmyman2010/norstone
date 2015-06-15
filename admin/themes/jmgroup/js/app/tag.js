@@ -36,7 +36,7 @@ $(function(){
             }
         })
     ;
-    var buttons = $('.gallery-buttons');
+    var buttons = $('.action-buttons');
     buttons.on('click', 'button', function(){
         buttons.children('input').val($(this).text());
     });

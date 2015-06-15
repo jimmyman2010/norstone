@@ -41,6 +41,7 @@ class ProductFileSearch extends ProductFile
     public function search($params)
     {
         $query = ProductFile::find();
+        $query->where('deleted = 0');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

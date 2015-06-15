@@ -41,6 +41,7 @@ class ProductRelatedSearch extends ProductRelated
     public function search($params)
     {
         $query = ProductRelated::find();
+        $query->where('deleted = 0');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

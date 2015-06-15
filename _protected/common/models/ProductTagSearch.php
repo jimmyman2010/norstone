@@ -41,6 +41,7 @@ class ProductTagSearch extends ProductTag
     public function search($params)
     {
         $query = ProductTag::find();
+        $query->where('deleted = 0');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

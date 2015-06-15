@@ -5,17 +5,39 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
+/* @var $pictures Array */
+/* @var $tags Array */
+/* @var $tagSuggestions string */
+/* @var $products Array */
+/* @var $productSuggestion Array */
 
 $this->title = Yii::t('app', 'Create Product');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<article class="product-create">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption"><?= Html::encode($this->title) ?></div>
+            <div class="action">
+                <ul class="button-group">
+                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
+                </ul>
+            </div>
+        </div>
+        <div class="portlet-body">
 
-</div>
+            <?= $this->render('_form', [
+                'model' => $model,
+                'pictures' => $pictures,
+                'tags' => $tags,
+                'tagSuggestions' => $tagSuggestions,
+                'products' => $products,
+                'productSuggestion' => $productSuggestion
+            ]) ?>
+
+        </div>
+    </div>
+</article>

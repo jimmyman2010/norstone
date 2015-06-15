@@ -42,11 +42,11 @@ class TagSearch extends Tag
     public function search($params)
     {
         $query = Tag::find();
-        if(isset($params['gallery_id'])) {
-            $query->innerJoin('tbl_gallery_tag', 'tbl_tag.id = tbl_gallery_tag.tag_id');
+        if(isset($params['product_id'])) {
+            $query->innerJoin('tbl_product_tag', 'tbl_tag.id = tbl_product_tag.tag_id');
             $query->where(['tbl_tag.deleted' => 0,
-                            'tbl_gallery_tag.deleted' => 0,
-                            'tbl_gallery_tag.gallery_id' => intval($params['gallery_id'])
+                            'tbl_product_tag.deleted' => 0,
+                            'tbl_product_tag.product_id' => intval($params['product_id'])
                         ]);
         } else {
             $query->where('deleted = 0');

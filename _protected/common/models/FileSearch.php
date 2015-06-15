@@ -42,11 +42,11 @@ class FileSearch extends File
     public function search($params)
     {
         $query = File::find();
-        if(isset($params['gallery_id'])) {
-            $query->innerJoin('tbl_gallery_file', 'tbl_file.id = tbl_gallery_file.file_id');
+        if(isset($params['product_id'])) {
+            $query->innerJoin('tbl_product_file', 'tbl_file.id = tbl_product_file.file_id');
             $query->where(['tbl_file.deleted' => 0,
-                            'tbl_gallery_file.deleted' => 0,
-                            'tbl_gallery_file.gallery_id' => intval($params['gallery_id'])
+                            'tbl_product_file.deleted' => 0,
+                            'tbl_product_file.product_id' => intval($params['product_id'])
                         ]);
         } else {
             $query->where('deleted = 0');

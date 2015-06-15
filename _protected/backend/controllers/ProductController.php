@@ -2,9 +2,19 @@
 
 namespace backend\controllers;
 
+use common\helpers\UtilHelper;
+use common\models\File;
+use common\models\FileSearch;
+use common\models\ProductFile;
+use common\models\ProductRelated;
+use common\models\ProductTag;
+use common\models\Tag;
+use common\models\TagSearch;
 use Yii;
 use common\models\Product;
 use common\models\ProductSearch;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,18 +22,18 @@ use yii\filters\VerbFilter;
 /**
  * ProductController implements the CRUD actions for Product model.
  */
-class ProductController extends Controller
+class ProductController extends BackendController
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+    public static $limitSuggestion = null;
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
     }
 
     /**
@@ -62,12 +72,161 @@ class ProductController extends Controller
     {
         $model = new Product();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+                $model->status = Product::STATUS_PUBLISHED;
+                $model->published_date = time();
+            } else {
+                $model->status = Product::STATUS_DRAFT;
+            }
+            $model->slug = $model->getSlug(UtilHelper::slugify($model->name));
+            $model->created_date = time();
+            $model->created_by = Yii::$app->user->identity->username;
+
+            if($model->save()) {
+                $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+                $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
+                $this->updateRelated($model->id, isset(Yii::$app->request->post()['Related']) ? Yii::$app->request->post()['Related'] : '');
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
         } else {
+            $dataProvider = new TagSearch();
+            $tagObjects = $dataProvider->search([])->getModels();
+            $tagSuggestions = '';
+            foreach ($tagObjects as $obj) {
+                $tagSuggestions .= $obj->name . ',';
+            }
+            $tagSuggestions = rtrim($tagSuggestions, ',');
+
+            $productSuggestion = Product::find()->where("deleted = 0")->limit(self::$limitSuggestion)->all();
             return $this->render('create', [
                 'model' => $model,
+                'pictures' => [],
+                'tags' => '',
+                'tagSuggestions' => Html::encode($tagSuggestions),
+                'products' => [],
+                'productSuggestion' => $productSuggestion
             ]);
+        }
+    }
+
+    /**
+     * @param int $productId
+     * @param array $pictureData
+     * @return void
+     */
+    protected function updatePicture($productId, $pictureData)
+    {
+        $fileList = [];
+        if(is_array($pictureData)) {
+            foreach ($pictureData as $index => $value) {
+                if (($modelFile = File::findOne(intval($value['id']))) !== null) {
+                    if (!empty($value['caption'])) {
+                        $modelFile->caption = $value['caption'];
+                    }
+                    $modelFile->deleted = 0;
+                    $modelFile->save(false);
+                    array_push($fileList, $modelFile->id);
+
+                    if (($modelProductFile = ProductFile::findOne(['product_id' => $productId, 'file_id' => intval($value['id'])])) !== null) {
+                        $modelProductFile->deleted = 0;
+                    } else {
+                        $modelProductFile = new ProductFile();
+                        $modelProductFile->product_id = $productId;
+                        $modelProductFile->file_id = $modelFile->id;
+                    }
+                    $modelProductFile->save(false);
+                }
+            }
+        }
+
+        $galleryFileObjects = ProductFile::findAll(['product_id'=>$productId]);
+        foreach ($galleryFileObjects as $object) {
+            if(!in_array($object->file_id, $fileList)){
+                $object->delete();
+            }
+        }
+    }
+
+    /**
+     * @param int $productId
+     * @param string $tagString
+     * @return void
+     */
+    protected function updateTags($productId, $tagString)
+    {
+        $tagList = [];
+        if(!empty($tagString))
+        {
+            foreach (Json::decode($tagString) as $tagName) {
+                $tagObject = Tag::findOne(['name' => $tagName]);
+                if($tagObject !== null) {
+                    $tagObject->deleted = 0;
+                } else {
+                    $tagObject = new Tag();
+                    $tagObject->name = $tagName;
+                    $tagObject->slug = $tagObject->getSlug(UtilHelper::slugify($tagName));
+                }
+                $tagObject->save(false);
+                array_push($tagList, $tagObject->id);
+
+                $productTagObject = ProductTag::findOne(['product_id'=>$productId, 'tag_id'=>$tagObject->id]);
+                if($productTagObject !== null) {
+                    $productTagObject->deleted = 0;
+                } else {
+                    $productTagObject = new ProductTag();
+                    $productTagObject->product_id = $productId;
+                    $productTagObject->tag_id = $tagObject->id;
+                }
+                $productTagObject->save(false);
+            }
+
+        }
+
+        $productTagObjects = ProductTag::findAll(['product_id'=>$productId]);
+        foreach ($productTagObjects as $object) {
+            if(!in_array($object->tag_id, $tagList)){
+                $object->deleted = 1;
+                $object->save(false);
+            }
+        }
+    }
+
+    /**
+     * @param int $productId
+     * @param string $relatedString
+     * @return void
+     */
+    protected function updateRelated($productId, $relatedString)
+    {
+
+        $relatedList = [];
+        if(!empty($relatedString))
+        {
+            foreach (explode(',', $relatedString) as $index => $relatedId) {
+                array_push($relatedList, $relatedId);
+
+                $productRelatedObject = ProductRelated::findOne(['product_id'=>$productId, 'related_id'=>$relatedId]);
+                if($productRelatedObject !== null) {
+                    $productRelatedObject->deleted = 0;
+                    $productRelatedObject->sorting = $index;
+                } else {
+                    $productRelatedObject = new ProductRelated();
+                    $productRelatedObject->product_id = $productId;
+                    $productRelatedObject->related_id = $relatedId;
+                    $productRelatedObject->sorting = $index;
+                }
+                $productRelatedObject->save(false);
+            }
+
+        }
+
+        $productRelatedObjects = ProductRelated::findAll(['product_id'=>$productId]);
+        foreach ($productRelatedObjects as $object) {
+            if(!in_array($object->related_id, $relatedList)){
+                $object->deleted = 1;
+                $object->save(false);
+            }
         }
     }
 
@@ -81,11 +240,55 @@ class ProductController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->slug = $model->getSlug($model->slug, $id);
+            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+                if($model->status !== Product::STATUS_PUBLISHED) {
+                    $model->status = Product::STATUS_PUBLISHED;
+                    $model->published_date = time();
+                }
+            }
+            if($model->save()) {
+                $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+                $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
+                $this->updateRelated($model->id, isset(Yii::$app->request->post()['Related']) ? Yii::$app->request->post()['Related'] : '');
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
         } else {
+            $dataProvider = new FileSearch();
+            $pictures= $dataProvider->search(['product_id' => $id])->getModels();
+
+            $dataProvider = new TagSearch();
+            $tags= $dataProvider->search(['product_id' => $id])->getModels();
+            $tagList = [];
+            foreach ($tags as $tag) {
+                array_push($tagList, $tag->name);
+            }
+
+            $dataProvider = new TagSearch();
+            $tagObjects = $dataProvider->search([])->getModels();
+            $tagSuggestions = '';
+            foreach ($tagObjects as $obj) {
+                $tagSuggestions .= $obj->name . ',';
+            }
+            $tagSuggestions = rtrim($tagSuggestions, ',');
+
+            $productSearch = new ProductSearch();
+            $products = $productSearch->search(['product_id' => $id])->getModels();
+            $idList = [$id];
+            foreach ($products as $index => $product) {
+                array_push($idList, $product->id);
+            }
+
+            $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->limit(self::$limitSuggestion)->all();
+
             return $this->render('update', [
                 'model' => $model,
+                'pictures' => $pictures,
+                'tags' => Json::encode($tagList),
+                'tagSuggestions' => $tagSuggestions,
+                'products' => $products,
+                'productSuggestion' => $productSuggestion
             ]);
         }
     }
@@ -98,7 +301,10 @@ class ProductController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        //$this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->deleted = 1;
+        $model->save();
 
         return $this->redirect(['index']);
     }
@@ -117,5 +323,25 @@ class ProductController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function actionCheckingduplicated($name, $id = 0)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($id === 0) {
+            $exist = Gallery::findOne(['name' => $name]);
+        }
+        else {
+            $exist = Gallery::findOne(['name' => $name]);
+            if(is_object($exist) && $exist->id === intval($id)) {
+                $exist = null;
+            }
+        }
+        return $exist === null;
     }
 }

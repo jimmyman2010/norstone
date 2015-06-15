@@ -99,22 +99,6 @@ class Gallery extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getColor()
-    {
-        return $this->hasOne(Color::className(), ['id' => 'color_id']);
-    }
-
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public function getColors()
-    {
-        return Color::find()->where(['deleted' => 0])->all();
-    }
-
-    /**
      * @return string
      */
     public function getImage()

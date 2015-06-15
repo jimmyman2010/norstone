@@ -18,7 +18,7 @@ Yii::setAlias('@themes', Yii::$app->view->theme->baseUrl);
  * Class GalleryAsset
  * @package backend\assets
  */
-class GalleryAsset extends AssetBundle
+class ProductAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@themes';

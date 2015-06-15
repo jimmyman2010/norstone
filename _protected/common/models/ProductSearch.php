@@ -37,16 +37,42 @@ class ProductSearch extends Product
      * Creates data provider instance with search query applied
      *
      * @param array $params
+     * @param int $pageSize
+     * @param bool $published
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $pageSize = 10, $published = false)
     {
         $query = Product::find();
+        if(isset($params['product_id'])) {
+            $query->innerJoin('tbl_product_related', 'tbl_product.id = tbl_product_related.related_id');
+            $query->where(['tbl_product.deleted' => 0,
+                'tbl_product_related.deleted' => 0,
+                'tbl_product_related.product_id' => intval($params['product_id'])
+            ]);
+            $query->orderBy('sorting');
+        } else {
+            $query->joinWith(['category']);
+            $query->where('tbl_product.deleted = 0');
+        }
+
+        if($published) {
+            $this->status = Product::STATUS_PUBLISHED;
+        }
+
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ],
         ]);
+
+        $dataProvider->sort->attributes['category'] = [
+            'asc' => ['tbl_category.name' => SORT_ASC],
+            'desc' => ['tbl_category.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -58,8 +84,8 @@ class ProductSearch extends Product
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
             'image_id' => $this->image_id,
+            'category_id' => $this->category_id,
             'price' => $this->price,
             'price_new' => $this->price_new,
             'percent' => $this->percent,
