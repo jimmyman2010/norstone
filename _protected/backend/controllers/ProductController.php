@@ -5,14 +5,27 @@ namespace backend\controllers;
 use Yii;
 use common\models\Product;
 use common\models\ProductSearch;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
+use yii\filters\VerbFilter;
 
 /**
  * ProductController implements the CRUD actions for Product model.
  */
-class ProductController extends BackendController
+class ProductController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
     /**
      * Lists all Product models.
      * @return mixed
@@ -50,7 +63,7 @@ class ProductController extends BackendController
         $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -69,7 +82,7 @@ class ProductController extends BackendController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -85,10 +98,7 @@ class ProductController extends BackendController
      */
     public function actionDelete($id)
     {
-        //$this->findModel($id)->delete();
-        $model = $this->findModel($id);
-        $model->deleted = 1;
-        $model->save();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -107,25 +117,5 @@ class ProductController extends BackendController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    /**
-     * @param string $name
-     * @param int $id
-     * @return bool
-     */
-    public function actionCheckingduplicated($name, $id = 0)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        if ($id === 0) {
-            $exist = Product::findOne(['name' => $name]);
-        }
-        else {
-            $exist = Product::findOne(['name' => $name]);
-            if(is_object($exist) && $exist->id === intval($id)) {
-                $exist = null;
-            }
-        }
-        return $exist === null;
     }
 }

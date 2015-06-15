@@ -100,9 +100,6 @@ class SiteController extends Controller
         ];
 
         $request = Yii::$app->request->queryParams;
-        if(isset($request['color'])) {
-            $where['color_id'] = intval($request['color']);
-        }
         if(isset($request['product'])) {
             $where['product_id'] = intval($request['product']);
         }
@@ -126,13 +123,11 @@ class SiteController extends Controller
         ]);
 
         $products = Product::findAll(['deleted' => 0]);
-        $colors = Color::findAll(['deleted' => 0]);
         $tags = Tag::findAll(['deleted' => 0]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'products' => $products,
-            'colors' => $colors,
             'tags' => $tags,
             'request' => $request
         ]);

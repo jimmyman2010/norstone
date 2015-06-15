@@ -85,33 +85,6 @@ function getUrl($type, $id, $request, $remove = false)
                         <?php } ?>
                     </ul>
                 </div>
-                <div class="small-12 medium-12 large-4 columns text-center">
-
-                    <div class="dropdown" data-dropdown="drop2" aria-expanded="false">
-                        <?php
-                        $flag = true;
-                        foreach ($colors as $color) {
-                            if(isset($request['color']) && $color->id === intval($request['color'])) {
-                                echo $color->name;
-                                $flag = false;
-                                break;
-                            }
-                        }
-                        if($flag){
-                            echo Yii::t('app', 'Select the colour');
-                        }
-                        ?>
-                        <span class="ti-angle-down"></span>
-                    </div>
-                    <ul id="drop2" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
-                        <li><a href="<?= getUrl('color', null, $request) ?>"><?= Yii::t('app', 'Show all') ?></a></li>
-                        <?php foreach ($colors as $color) { ?>
-                            <li <?= (isset($request['color']) && $color->id === intval($request['color'])) ? 'class="active"' : '' ?>>
-                                <a href="<?= getUrl('color', $color->id, $request) ?>" data-id="<?= $color->id ?>"><?= $color->name ?></a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
                 <div class="small-12 medium-12 large-4 columns type-show text-center application-filter">
                     <a <?= (!isset($request['application'])) ? 'class="active"' : '' ?> href="<?= getUrl('application', null, $request) ?>">
                         <?= Yii::t('app', 'Show all') ?>

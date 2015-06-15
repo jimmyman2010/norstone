@@ -9,25 +9,15 @@ $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Product',
 ]) . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<article class="product-update">
+<div class="product-update">
 
-    <div class="portlet">
-        <div class="portlet-title">
-            <div class="caption"><?= Html::encode($this->title) ?></div>
-            <div class="action">
-                <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
-                    <li><?= Html::a(Yii::t('app', 'Create Product'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
-                </ul>
-            </div>
-        </div>
-        <div class="portlet-body has-padding">
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-        </div>
-    </div>
-</article>
+
+</div>

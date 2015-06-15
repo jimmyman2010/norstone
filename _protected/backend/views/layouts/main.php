@@ -95,8 +95,8 @@ AppAsset::register($this);
                                         'template' => '<a href="{url}"><i class="fa fa-archive"></i>{label}</a>'
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Colours'),
-                                        'url' => ['color/index'],
+                                        'label' => Yii::t('app', 'Category'),
+                                        'url' => ['category/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-magic"></i>{label}</a>'
                                     ],
                                     [

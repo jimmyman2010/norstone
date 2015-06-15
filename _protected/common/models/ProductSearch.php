@@ -18,8 +18,9 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'deleted'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'deleted'], 'integer'],
+            [['name', 'slug', 'description', 'general', 'info_tech', 'status', 'created_by'], 'safe'],
+            [['price', 'price_new'], 'number'],
         ];
     }
 
@@ -42,7 +43,6 @@ class ProductSearch extends Product
     public function search($params)
     {
         $query = Product::find();
-        $query->where('deleted = 0');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -51,16 +51,31 @@ class ProductSearch extends Product
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to any records when validation fails
+            // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'category_id' => $this->category_id,
+            'image_id' => $this->image_id,
+            'price' => $this->price,
+            'price_new' => $this->price_new,
+            'percent' => $this->percent,
+            'viewed' => $this->viewed,
+            'published_date' => $this->published_date,
+            'created_date' => $this->created_date,
+            'deleted' => $this->deleted,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'slug', $this->slug])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'general', $this->general])
+            ->andFilterWhere(['like', 'info_tech', $this->info_tech])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'created_by', $this->created_by]);
 
         return $dataProvider;
     }

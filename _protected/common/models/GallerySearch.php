@@ -19,7 +19,7 @@ class GallerySearch extends Gallery
     {
         return [
             [['id', 'application', 'image_id', 'publish_date', 'created_date', 'created_by', 'deleted'], 'integer'],
-            [['name', 'slug', 'product_id', 'color_id', 'intro', 'description', 'lean_more_link', 'seo_keyword', 'seo_description', 'status'], 'safe'],
+            [['name', 'slug', 'product_id', 'intro', 'description', 'lean_more_link', 'seo_keyword', 'seo_description', 'status'], 'safe'],
         ];
     }
 
@@ -52,7 +52,7 @@ class GallerySearch extends Gallery
             ]);
             $query->orderBy('sorting');
         } else {
-            $query->joinWith(['product', 'color']);
+            $query->joinWith(['product']);
             $query->where('tbl_gallery.deleted = 0');
         }
 
@@ -69,10 +69,6 @@ class GallerySearch extends Gallery
         $dataProvider->sort->attributes['product'] = [
             'asc' => ['tbl_product.name' => SORT_ASC],
             'desc' => ['tbl_product.name' => SORT_DESC],
-        ];
-        $dataProvider->sort->attributes['color'] = [
-            'asc' => ['tbl_color.name' => SORT_ASC],
-            'desc' => ['tbl_color.name' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -92,7 +88,6 @@ class GallerySearch extends Gallery
             'created_date' => $this->created_date,
             'created_by' => $this->created_by,
             'product_id' => $this->product_id,
-            'color_id' => $this->color_id,
         ]);
 
         $query->andFilterWhere(['like', 'tbl_gallery.name', $this->name])
