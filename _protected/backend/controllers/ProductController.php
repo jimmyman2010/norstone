@@ -18,6 +18,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -78,6 +79,10 @@ class ProductController extends BackendController
                 $model->published_date = time();
             } else {
                 $model->status = Product::STATUS_DRAFT;
+            }
+            if(!isset($model->image_id) && isset(Yii::$app->request->post()['Picture'])) {
+                $pictureData = Yii::$app->request->post()['Picture'];
+                $model->image_id = array_values($pictureData)[0]['id'];
             }
             $model->slug = $model->getSlug(UtilHelper::slugify($model->name));
             $model->created_date = time();
@@ -334,10 +339,10 @@ class ProductController extends BackendController
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         if ($id === 0) {
-            $exist = Gallery::findOne(['name' => $name]);
+            $exist = Product::findOne(['name' => $name]);
         }
         else {
-            $exist = Gallery::findOne(['name' => $name]);
+            $exist = Product::findOne(['name' => $name]);
             if(is_object($exist) && $exist->id === intval($id)) {
                 $exist = null;
             }
