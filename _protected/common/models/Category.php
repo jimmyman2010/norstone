@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $slug
+ * @property string $description
  * @property integer $parent_id
  * @property integer $sorting
  * @property integer $deleted
@@ -33,7 +34,8 @@ class Category extends \yii\db\ActiveRecord
             [['name', 'slug'], 'required'],
             [['sorting', 'deleted'], 'integer'],
             [['name'], 'string', 'max' => 256],
-            [['slug'], 'string', 'max' => 128]
+            [['slug'], 'string', 'max' => 128],
+            [['description'], 'string', 'max' => 2048]
         ];
     }
 
@@ -46,6 +48,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
+            'description' => Yii::t('app', 'Description'),
             'parent_id' => Yii::t('app', 'Parent'),
             'sorting' => Yii::t('app', 'Sorting'),
             'deleted' => Yii::t('app', 'Deleted'),

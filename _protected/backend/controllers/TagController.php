@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\helpers\SlugHelper;
 use common\helpers\UtilHelper;
 use Yii;
 use common\models\Tag;
@@ -51,7 +52,7 @@ class TagController extends BackendController
         $model = new Tag();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->slug = $model->getSlug(UtilHelper::slugify($model->name));
+            $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name));
             if($model->save()) {
                 return $this->redirect(['index']);
             }
@@ -73,7 +74,7 @@ class TagController extends BackendController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->slug = $model->getSlug(UtilHelper::slugify($model->name), $id);
+            $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name), $id);
             if($model->save()) {
                 return $this->redirect(['index']);
             }

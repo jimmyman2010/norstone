@@ -2,8 +2,7 @@
 
 namespace backend\controllers;
 
-use common\helpers\UtilHelper;
-use common\models\CategorySearch;
+use common\helpers\SlugHelper;
 use common\models\File;
 use common\models\FileSearch;
 use common\models\ProductFile;
@@ -16,9 +15,7 @@ use common\models\Product;
 use common\models\ProductSearch;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 
 /**
@@ -81,7 +78,7 @@ class ProductController extends BackendController
             } else {
                 $model->status = Product::STATUS_DRAFT;
             }
-            $model->slug = $model->getSlug(UtilHelper::slugify($model->name));
+            $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name));
             $model->created_date = time();
             $model->created_by = Yii::$app->user->identity->username;
 
@@ -167,7 +164,7 @@ class ProductController extends BackendController
                 } else {
                     $tagObject = new Tag();
                     $tagObject->name = $tagName;
-                    $tagObject->slug = $tagObject->getSlug(UtilHelper::slugify($tagName));
+                    $tagObject->slug = $tagObject->getSlug(SlugHelper::makeSlugs($tagName));
                 }
                 $tagObject->save(false);
                 array_push($tagList, $tagObject->id);

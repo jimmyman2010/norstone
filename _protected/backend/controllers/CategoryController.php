@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use common\helpers\UtilHelper;
+use common\helpers\SlugHelper;
 use Yii;
 use common\models\Category;
 use common\models\CategorySearch;
@@ -69,7 +69,10 @@ class CategoryController extends BackendController
         $model = new Category();
 
         if($model->load(Yii::$app->request->post())) {
-            $model->slug = $model->getSlug(UtilHelper::slugify($model->name));
+            $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name));
+            if(isset(Yii::$app->request->post()['Category']['parent_id'])) {
+                $model->parent_id = Yii::$app->request->post()['Category']['parent_id'];
+            }
             if ($model->save()) {
                 return $this->redirect(['index']);
             }
@@ -90,8 +93,13 @@ class CategoryController extends BackendController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            if(isset(Yii::$app->request->post()['Category']['parent_id'])) {
+                $model->parent_id = Yii::$app->request->post()['Category']['parent_id'];
+            }
+            if($model->save()) {
+                return $this->redirect(['index']);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
