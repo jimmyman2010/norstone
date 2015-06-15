@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\helpers\UtilHelper;
+use common\models\CategorySearch;
 use common\models\File;
 use common\models\FileSearch;
 use common\models\ProductFile;

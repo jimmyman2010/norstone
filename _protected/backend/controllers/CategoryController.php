@@ -22,10 +22,28 @@ class CategoryController extends BackendController
     {
         $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $result = $dataProvider->getModels();
+
+        $resultShow = [];
+        foreach($result as $item) {
+            if($item->parent_id === 0) {
+                $show['id'] = $item->id;
+                $show['name'] = $item->name;
+                $resultShow[] = $show;
+            }
+        }
+
+        foreach($resultShow as &$itemShow) {
+            $itemShow['children'] = array();
+            foreach($result as $item) {
+                if(intval($item->parent_id) === intval($itemShow['id'])) {
+                    $itemShow['children'][] = $item;
+                }
+            }
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'result' => $resultShow
         ]);
     }
 
