@@ -121,6 +121,59 @@ $this->registerJs("
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">
                 <div class="large-12 columns">
+                    <ul class="tabs" data-tab role="tablist">
+                        <li class="tab-title active" role="presentational" >
+                            <a href="#panel1-1" role="tab" tabindex="0" aria-selected="true" controls="panel1-1">
+                                <?=Yii::t('app', 'General') ?>
+                            </a>
+                        </li>
+                        <li class="tab-title" role="presentational" >
+                            <a href="#panel1-2" role="tab" tabindex="0"aria-selected="false" controls="panel1-2">
+                                <?=Yii::t('app', 'Technical') ?>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tabs-content">
+                        <section role="tabpanel" aria-hidden="false" class="row content active" id="panel1-1">
+                            <div class="large-12 columns">
+                                <?= $form->field($model, 'general')->widget(CKEditor::className(), [
+                                    'editorOptions' => [
+                                        'inline' => false,
+                                        'language' => 'en',
+                                        'toolbar' => [
+                                            ['name' => 'styles', 'items' => [ 'Format' ]],
+                                            ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+                                            ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
+                                            ['name' => 'insert', 'items' => [ 'Image']],
+                                            ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+                                            ['name' => 'tools', 'items' => [ 'Maximize' ]],
+                                            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+                                        ],
+                                        'removePlugins' => 'elementspath',
+                                        'resize_enabled' => false,
+                                    ],
+                                ]) ?>
+                            </div>
+                        </section>
+                        <section role="tabpanel" aria-hidden="true" class="row content" id="panel1-2">
+                            <div class="large-12 columns">
+                                <?= $form->field($model, 'info_tech')->widget(CKEditor::className(), [
+                                    'editorOptions' => [
+                                        'inline' => false,
+                                        'language' => 'en',
+                                        'toolbar' => [
+                                            ['name' => 'insert', 'items' => [ 'Table']],
+                                            ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+                                            ['name' => 'tools', 'items' => [ 'Maximize' ]],
+                                            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+                                        ],
+                                        'removePlugins' => 'elementspath',
+                                        'resize_enabled' => false,
+                                    ],
+                                ]) ?>
+                            </div>
+                        </section>
+                    </div>
 
                 </div>
             </section>

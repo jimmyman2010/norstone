@@ -80,10 +80,6 @@ class ProductController extends BackendController
             } else {
                 $model->status = Product::STATUS_DRAFT;
             }
-            if(!isset($model->image_id) && isset(Yii::$app->request->post()['Picture'])) {
-                $pictureData = Yii::$app->request->post()['Picture'];
-                $model->image_id = array_values($pictureData)[0]['id'];
-            }
             $model->slug = $model->getSlug(UtilHelper::slugify($model->name));
             $model->created_date = time();
             $model->created_by = Yii::$app->user->identity->username;

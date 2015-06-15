@@ -85,11 +85,6 @@ AppAsset::register($this);
                                         'template' => '<a href="{url}"><i class="fa fa-home"></i>{label}</a>'
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Galleries'),
-                                        'url' => ['gallery/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-picture-o"></i>{label}</a>'
-                                    ],
-                                    [
                                         'label' => Yii::t('app', 'Products'),
                                         'url' => ['product/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-archive"></i>{label}</a>'
