@@ -46,7 +46,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
-            'parent_id' => Yii::t('app', 'Parent ID'),
+            'parent_id' => Yii::t('app', 'Parent'),
             'sorting' => Yii::t('app', 'Sorting'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
