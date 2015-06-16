@@ -86,13 +86,15 @@ $this->registerJs("
 
                 </div>
                 <div class="large-4 columns">
-                    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::findAll(['deleted'=>0]), 'id', 'name'), ['prompt'=>'- please select -']) ?>
+                    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::getTree(), 'id', 'name'), ['prompt'=>'- please select -']) ?>
                     <div class="form-group field-gallery-tags">
                         <label>Tags</label>
                         <textarea id="tags" rows="1" name="Tag" data-value='<?= Html::decode($tags) ?>' data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
                     </div>
                 </div>
                 <div class="large-12 columns">
+                    <hr>
+                    <h6><?= Yii::t('app', 'Pictures') ?></h6>
                     <div id="filelist" class="view-thumbnail row">
                         <?php
                         foreach ($pictures as $index => $item) {

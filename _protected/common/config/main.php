@@ -1,6 +1,6 @@
 <?php
 return [
-    'name' => 'Norstone Image Gallery',
+    'name' => 'Duy Tân Computer',
     //'language' => 'en',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [

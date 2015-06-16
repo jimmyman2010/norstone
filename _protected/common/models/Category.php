@@ -102,4 +102,21 @@ class Category extends \yii\db\ActiveRecord
         }
         return $result;
     }
+
+    public static function getTree()
+    {
+        $result = [];
+        $parent = self::getParents();
+        foreach($parent as $papa) {
+            $tmp['id'] = $papa->id;
+            $tmp['name'] = $papa->name;
+            $result[] = $tmp;
+            foreach(Category::find()->where(['deleted' => 0, 'parent_id' => $papa->id])->all() as $child) {
+                $tmp['id'] = $child->id;
+                $tmp['name'] = ' |__ ' . $child->name;
+                $result[] = $tmp;
+            }
+        }
+        return $result;
+    }
 }
