@@ -765,22 +765,26 @@ body .copyright {
 .table .fa.fa-trash-o {
   color: #e7e7e7;
 }
+/* line 194, ../../sass/app/global.scss */
+.table input[type='number'] {
+  width: 60px;
+}
 
-/* line 195, ../../sass/app/global.scss */
+/* line 198, ../../sass/app/global.scss */
 .summary {
   font-size: 0.8125rem;
 }
 
-/* line 198, ../../sass/app/global.scss */
+/* line 201, ../../sass/app/global.scss */
 .form-group {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 201, ../../sass/app/global.scss */
+/* line 204, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 204, ../../sass/app/global.scss */
+/* line 207, ../../sass/app/global.scss */
 .form-group .help-block {
   position: absolute;
   -moz-border-radius: 0.3125rem;
@@ -792,7 +796,7 @@ body .copyright {
   color: #fff;
   left: 25%;
 }
-/* line 212, ../../sass/app/global.scss */
+/* line 215, ../../sass/app/global.scss */
 .form-group .help-block:before {
   content: "\f0d8";
   color: #444;
@@ -802,32 +806,32 @@ body .copyright {
   font-family: FontAwesome;
   font-size: 1.75rem;
 }
-/* line 221, ../../sass/app/global.scss */
+/* line 224, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 226, ../../sass/app/global.scss */
+/* line 229, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 229, ../../sass/app/global.scss */
+/* line 232, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 234, ../../sass/app/global.scss */
+/* line 237, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 236, ../../sass/app/global.scss */
+/* line 239, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 239, ../../sass/app/global.scss */
+/* line 242, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;

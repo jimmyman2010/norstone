@@ -20,6 +20,7 @@ use Yii;
  * @property integer $percent
  * @property integer $viewed
  * @property string $status
+ * @property string $seo_title
  * @property string $seo_keyword
  * @property string $seo_description
  * @property integer $published_date
@@ -52,7 +53,7 @@ class Product extends \yii\db\ActiveRecord
             [['general', 'info_tech', 'status'], 'string'],
             [['price', 'price_new'], 'number'],
             [['name', 'seo_description'], 'string', 'max' => 256],
-            [['slug', 'seo_keyword'], 'string', 'max' => 128],
+            [['slug', 'seo_title', 'seo_keyword'], 'string', 'max' => 128],
             [['description'], 'string', 'max' => 1024],
             [['created_by'], 'string', 'max' => 32]
         ];
@@ -77,6 +78,7 @@ class Product extends \yii\db\ActiveRecord
             'percent' => Yii::t('app', 'Percent'),
             'viewed' => Yii::t('app', 'Viewed'),
             'status' => Yii::t('app', 'Status'),
+            'seo_title' => Yii::t('app', 'Seo Title'),
             'seo_keyword' => Yii::t('app', 'Seo Keyword'),
             'seo_description' => Yii::t('app', 'Seo Description'),
             'published_date' => Yii::t('app', 'Published Date'),

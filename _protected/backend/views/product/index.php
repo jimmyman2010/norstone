@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use common\helpers\UtilHelper;
 use yii\widgets\Pjax;
+use common\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ProductSearch */
@@ -48,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'category_id',
-                        'filter' => ArrayHelper::map($searchModel->getCategories(), 'id', 'name'),
+                        'filter' => ArrayHelper::map(Category::getTree(), 'id', 'name'),
                         'value' => 'category.name'
                     ],
                     [

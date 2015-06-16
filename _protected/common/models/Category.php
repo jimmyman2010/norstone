@@ -11,12 +11,20 @@ use Yii;
  * @property string $name
  * @property string $slug
  * @property string $description
+ * @property string $seo_title
+ * @property string $seo_keyword
+ * @property string $seo_description
  * @property integer $parent_id
+ * @property integer $cat_type
  * @property integer $sorting
+ * @property integer $activated
  * @property integer $deleted
  */
 class Category extends \yii\db\ActiveRecord
 {
+    const CAT_TYPE_PRODUCT = 0;
+    const CAT_TYPE_ARTICLE = 1;
+
     /**
      * @inheritdoc
      */
@@ -32,10 +40,10 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'slug'], 'required'],
-            [['sorting', 'deleted'], 'integer'],
-            [['name'], 'string', 'max' => 256],
-            [['slug'], 'string', 'max' => 128],
-            [['description'], 'string', 'max' => 2048]
+            [['cat_type', 'sorting', 'activated', 'deleted'], 'integer'],
+            [['name', 'seo_description'], 'string', 'max' => 256],
+            [['slug', 'seo_title', 'seo_keyword'], 'string', 'max' => 128],
+            [['description'], 'string', 'max' => 2048],
         ];
     }
 
@@ -49,8 +57,13 @@ class Category extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
             'description' => Yii::t('app', 'Description'),
+            'seo_title' => Yii::t('app', 'SEO Title'),
+            'seo_keyword' => Yii::t('app', 'SEO Keyword'),
+            'seo_description' => Yii::t('app', 'SEO Description'),
+            'cat_type' => Yii::t('app', 'Type'),
             'parent_id' => Yii::t('app', 'Parent'),
             'sorting' => Yii::t('app', 'Sorting'),
+            'activated' => Yii::t('app', 'Activated'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
@@ -65,15 +78,16 @@ class Category extends \yii\db\ActiveRecord
 
     /**
      * @param int $id
+     * @param int $type
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function getParents($id = 0)
+    public function getParents($id = 0, $type = 0)
     {
         if($id && $id > 0) {
-            return Category::find()->where("deleted = 0 AND parent_id = 0 AND id != '$id'")->all();
+            return Category::find()->where("cat_type = '$type' AND deleted = 0 AND parent_id = 0 AND id != '$id'")->all();
         }
         else {
-            return Category::find()->where(['deleted' => 0, 'parent_id' => 0])->all();
+            return Category::find()->where(['cat_type' => $type, 'deleted' => 0, 'parent_id' => 0])->all();
         }
     }
 
@@ -103,17 +117,23 @@ class Category extends \yii\db\ActiveRecord
         return $result;
     }
 
-    public static function getTree()
+    /**
+     * @param int $type
+     * @return array
+     */
+    public static function getTree($type = 0)
     {
         $result = [];
-        $parent = self::getParents();
+        $parent = self::getParents(0, $type);
         foreach($parent as $papa) {
             $tmp['id'] = $papa->id;
             $tmp['name'] = $papa->name;
+            $tmp['activated'] = $papa->activated;
             $result[] = $tmp;
             foreach(Category::find()->where(['deleted' => 0, 'parent_id' => $papa->id])->all() as $child) {
                 $tmp['id'] = $child->id;
                 $tmp['name'] = ' |__ ' . $child->name;
+                $tmp['activated'] = $papa->activated;
                 $result[] = $tmp;
             }
         }

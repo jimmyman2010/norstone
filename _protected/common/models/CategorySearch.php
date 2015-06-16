@@ -17,8 +17,8 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['id', 'parent_id', 'sorting', 'deleted'], 'integer'],
-            [['name', 'slug', 'description'], 'safe'],
+            [['id', 'parent_id', 'cat_type' , 'sorting', 'activated', 'deleted'], 'integer'],
+            [['name', 'slug', 'description', 'seo_title', 'seo_keyword', 'seo_description'], 'safe'],
         ];
     }
 
@@ -42,9 +42,13 @@ class CategorySearch extends Category
     {
         $query = Category::find();
         $query->where('deleted = 0');
+        $query->orderBy('sorting');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 200
+            ],
         ]);
 
         $this->load($params);
@@ -58,13 +62,18 @@ class CategorySearch extends Category
         $query->andFilterWhere([
             'id' => $this->id,
             'parent_id' => $this->parent_id,
+            'cat_type' => $this->cat_type,
             'sorting' => $this->sorting,
+            'activated' => $this->activated,
             'deleted' => $this->deleted,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'seo_title', $this->seo_title])
+            ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
+            ->andFilterWhere(['like', 'seo_description', $this->seo_description]);
 
         return $dataProvider;
     }

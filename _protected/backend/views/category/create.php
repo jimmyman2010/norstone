@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </div>
         </div>
-        <div class="portlet-body has-padding">
+        <div class="portlet-body">
 
             <?= $this->render('_form', [
                 'model' => $model,

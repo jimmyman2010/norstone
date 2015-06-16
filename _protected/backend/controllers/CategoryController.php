@@ -20,6 +20,17 @@ class CategoryController extends BackendController
      */
     public function actionIndex()
     {
+        if(isset(Yii::$app->request->post()['CategoryOrder']))
+        {
+            $categoryOrderList = Yii::$app->request->post()['CategoryOrder'];
+            foreach ($categoryOrderList as $value) {
+                $model = $this->findModel($value['id']);
+                $model->sorting = $value['order'];
+                $model->save(false);
+            }
+
+            return $this->redirect(['index']);
+        }
         $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $result = $dataProvider->getModels();
@@ -29,6 +40,8 @@ class CategoryController extends BackendController
             if($item->parent_id === 0) {
                 $show['id'] = $item->id;
                 $show['name'] = $item->name;
+                $show['activated'] = $item->activated;
+                $show['sorting'] = $item->sorting;
                 $resultShow[] = $show;
             }
         }
@@ -70,9 +83,9 @@ class CategoryController extends BackendController
 
         if($model->load(Yii::$app->request->post())) {
             $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name));
-            if(isset(Yii::$app->request->post()['Category']['parent_id'])) {
-                $model->parent_id = Yii::$app->request->post()['Category']['parent_id'];
-            }
+            $model->parent_id = intval(Yii::$app->request->post()['Category']['parent_id']);
+            $model->sorting = Category::find()->select('sorting')->max('sorting') + 1;
+
             if ($model->save()) {
                 return $this->redirect(['index']);
             }
@@ -118,7 +131,7 @@ class CategoryController extends BackendController
         //$this->findModel($id)->delete();
         $model = $this->findModel($id);
         $model->deleted = 1;
-        $model->save();
+        $model->save(false);
 
         return $this->redirect(['index']);
     }
@@ -158,4 +171,40 @@ class CategoryController extends BackendController
         }
         return $exist === null;
     }
+
+    /**
+     * @param $id
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionActive($id)
+    {
+        $model = $this->findModel($id);
+        $model->activated = !$model->activated;
+
+        $model->save(false);
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $id
+     * @param $oid
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionSwitch($id, $oid)
+    {
+        $model = $this->findModel($id);
+        $modelOther = $this->findModel($oid);
+        $tmp = $model->sorting;
+        $model->sorting = $modelOther->sorting;
+        $modelOther->sorting = $tmp;
+
+        $model->save(false);
+        $modelOther->save(false);
+
+        return $this->redirect(['index']);
+    }
+
 }
