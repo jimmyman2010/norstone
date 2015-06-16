@@ -1,4 +1,4 @@
-.field-color-name, .field-product-name, .field-gallery-name, .field-tag-name{
+.field-category-name, .field-product-name, .field-gallery-name, .field-tag-name{
     position: relative;
     &:after{
         position: absolute;
@@ -11,5 +11,6 @@
     &.duplicated:after{
         content: "\f071";
         color: greenyellow;
+
     }
 }

@@ -26,6 +26,7 @@ use Yii;
  * @property integer $published_date
  * @property integer $created_date
  * @property string $created_by
+ * @property integer $activated
  * @property integer $deleted
  */
 class Product extends \yii\db\ActiveRecord
@@ -49,7 +50,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'slug', 'category_id', 'created_date', 'created_by'], 'required'],
-            [['category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'deleted'], 'integer'],
+            [['category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['general', 'info_tech', 'status'], 'string'],
             [['price', 'price_new'], 'number'],
             [['name', 'seo_description'], 'string', 'max' => 256],
@@ -68,8 +69,8 @@ class Product extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
-            'category_id' => Yii::t('app', 'Category ID'),
-            'image_id' => Yii::t('app', 'Image ID'),
+            'category_id' => Yii::t('app', 'Category'),
+            'image_id' => Yii::t('app', 'Image'),
             'description' => Yii::t('app', 'Description'),
             'general' => Yii::t('app', 'General'),
             'info_tech' => Yii::t('app', 'Info Tech'),
@@ -84,6 +85,7 @@ class Product extends \yii\db\ActiveRecord
             'published_date' => Yii::t('app', 'Published Date'),
             'created_date' => Yii::t('app', 'Created Date'),
             'created_by' => Yii::t('app', 'Created By'),
+            'activated' => Yii::t('app', 'Activated'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }

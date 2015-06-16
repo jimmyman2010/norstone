@@ -84,10 +84,10 @@ class Category extends \yii\db\ActiveRecord
     public function getParents($id = 0, $type = 0)
     {
         if($id && $id > 0) {
-            return Category::find()->where("cat_type = '$type' AND deleted = 0 AND parent_id = 0 AND id != '$id'")->all();
+            return Category::find()->where("cat_type = '$type' AND activated = 1 AND deleted = 0 AND parent_id = 0 AND id != '$id'")->orderBy('sorting')->all();
         }
         else {
-            return Category::find()->where(['cat_type' => $type, 'deleted' => 0, 'parent_id' => 0])->all();
+            return Category::find()->where(['cat_type' => $type, 'activated' => 1, 'deleted' => 0, 'parent_id' => 0])->orderBy('sorting')->all();
         }
     }
 
@@ -130,7 +130,7 @@ class Category extends \yii\db\ActiveRecord
             $tmp['name'] = $papa->name;
             $tmp['activated'] = $papa->activated;
             $result[] = $tmp;
-            foreach(Category::find()->where(['deleted' => 0, 'parent_id' => $papa->id])->all() as $child) {
+            foreach(Category::find()->where(['activated' => 1, 'deleted' => 0, 'parent_id' => $papa->id])->orderBy('sorting')->all() as $child) {
                 $tmp['id'] = $child->id;
                 $tmp['name'] = ' |__ ' . $child->name;
                 $tmp['activated'] = $papa->activated;

@@ -18,7 +18,7 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'deleted'], 'integer'],
+            [['id', 'category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['name', 'slug', 'description', 'seo_title', 'seo_keyword', 'seo_description', 'general', 'info_tech', 'status', 'created_by'], 'safe'],
             [['price', 'price_new'], 'number'],
         ];
@@ -42,7 +42,7 @@ class ProductSearch extends Product
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $pageSize = 10, $published = false)
+    public function search($params, $pageSize = 15, $published = false)
     {
         $query = Product::find();
         if(isset($params['product_id'])) {
@@ -92,6 +92,7 @@ class ProductSearch extends Product
             'viewed' => $this->viewed,
             'published_date' => $this->published_date,
             'created_date' => $this->created_date,
+            'activated' => $this->activated,
             'deleted' => $this->deleted,
         ]);
 
