@@ -81,6 +81,7 @@ $this->registerJs("
                             ],
                             'removePlugins' => 'elementspath',
                             'resize_enabled' => false,
+                            'height' => 300
                         ],
                     ]) ?>
 
@@ -146,13 +147,14 @@ $this->registerJs("
                                             ['name' => 'styles', 'items' => [ 'Format' ]],
                                             ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
                                             ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
-                                            ['name' => 'insert', 'items' => [ 'Image']],
+                                            ['name' => 'insert', 'items' => [ 'Table', 'Image']],
                                             ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
                                             ['name' => 'tools', 'items' => [ 'Maximize' ]],
                                             ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
                                         ],
-                                        'removePlugins' => 'elementspath',
-                                        'resize_enabled' => false,
+                                        /*'removePlugins' => 'elementspath',
+                                        'resize_enabled' => false,*/
+                                        'height' => 600
                                     ],
                                 ]) ?>
                             </div>
@@ -171,6 +173,7 @@ $this->registerJs("
                                         ],
                                         'removePlugins' => 'elementspath',
                                         'resize_enabled' => false,
+                                        'height' => 600
                                     ],
                                 ]) ?>
                             </div>
