@@ -33,7 +33,7 @@ class Product extends \yii\db\ActiveRecord
 {
     const STATUS_DRAFT = 'draft';
     const STATUS_WAITING = 'waiting';
-    const STATUS_PUBLISHED = 'published';
+    const STATUS_INSTOCK = 'instock';
 
     /**
      * @inheritdoc
@@ -49,7 +49,7 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'category_id', 'created_date', 'created_by'], 'required'],
+            [['name', 'category_id', 'created_date', 'created_by'], 'required'],
             [['category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['general', 'info_tech', 'status'], 'string'],
             [['price', 'price_new'], 'number'],
@@ -122,7 +122,7 @@ class Product extends \yii\db\ActiveRecord
     public function getStatusList()
     {
         $statusArray = [
-            self::STATUS_PUBLISHED    => 'Published',
+            self::STATUS_INSTOCK    => 'In Stock',
             self::STATUS_WAITING   => 'Waiting',
             self::STATUS_DRAFT => 'Draft'
         ];
@@ -140,9 +140,9 @@ class Product extends \yii\db\ActiveRecord
     {
         $status = (empty($status)) ? $this->status : $status ;
 
-        if ($status === self::STATUS_PUBLISHED)
+        if ($status === self::STATUS_INSTOCK)
         {
-            return "Published";
+            return "In Stock";
         }
         elseif ($status === self::STATUS_WAITING)
         {

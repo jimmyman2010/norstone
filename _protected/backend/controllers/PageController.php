@@ -2,10 +2,12 @@
 
 namespace backend\controllers;
 
+use common\helpers\SlugHelper;
 use Yii;
 use common\models\Content;
 use common\models\ContentSearch;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * PageController implements the CRUD actions for Content model.
@@ -48,7 +50,7 @@ class PageController extends BackendController
     {
         $model = new Content();
 
-        if ($model->load(Yii::$app->request->post())) {
+        /*if ($model->load(Yii::$app->request->post())) {
             $model->content_type = Content::TYPE_PAGE;
             if($model->save()) {
                 return $this->redirect(['update', 'id' => $model->id]);
@@ -57,6 +59,19 @@ class PageController extends BackendController
             return $this->render('create', [
                 'model' => $model,
             ]);
+        }*/
+        $model->name = 'New page';
+        $model->slug = 'new-page';
+        $model->status = Content::STATUS_DRAFT;
+        $model->content_type = Content::TYPE_PAGE;
+        $model->created_date = time();
+        $model->created_by = Yii::$app->user->identity->username;
+
+        if($model->save()) {
+            return $this->redirect(['update', 'id' => $model->id]);
+        }
+        else {
+            return $this->redirect(['index']);
         }
     }
 
@@ -70,8 +85,24 @@ class PageController extends BackendController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['update', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if(isset(Yii::$app->request->post()['Content']['slug'])) {
+                $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->slug), $id);
+            }
+            else {
+                if(empty($model->slug)) {
+                    $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name), $id);
+                }
+            }
+            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+                if($model->status !== Content::STATUS_PUBLISHED) {
+                    $model->status = Content::STATUS_PUBLISHED;
+                    $model->published_date = time();
+                }
+            }
+            if($model->save()) {
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -110,5 +141,25 @@ class PageController extends BackendController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function actionCheckingduplicated($name, $id = 0)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($id === 0) {
+            $exist = Content::findOne(['name' => $name]);
+        }
+        else {
+            $exist = Content::findOne(['name' => $name]);
+            if(is_object($exist) && $exist->id === intval($id)) {
+                $exist = null;
+            }
+        }
+        return $exist === null;
     }
 }

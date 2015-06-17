@@ -15,6 +15,16 @@ use yii\web\Response;
 class CategoryController extends BackendController
 {
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Lists all Category models.
      * @return mixed
      */
@@ -40,6 +50,7 @@ class CategoryController extends BackendController
             if($item->parent_id === 0) {
                 $show['id'] = $item->id;
                 $show['name'] = $item->name;
+                $show['show_in_menu'] = $item->show_in_menu;
                 $show['activated'] = $item->activated;
                 $show['sorting'] = $item->sorting;
                 $resultShow[] = $show;
@@ -107,10 +118,16 @@ class CategoryController extends BackendController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            if(isset(Yii::$app->request->post()['Category']['parent_id'])) {
-                $model->parent_id = Yii::$app->request->post()['Category']['parent_id'];
+            if(isset(Yii::$app->request->post()['Category']['slug'])) {
+                $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->slug), $id);
             }
-            if($model->save()) {
+            else {
+                if(empty($model->slug)) {
+                    $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name), $id);
+                }
+            }
+            $model->parent_id = intval(Yii::$app->request->post()['Category']['parent_id']);
+            if($model->save(false)) {
                 return $this->redirect(['index']);
             }
         } else {
@@ -170,6 +187,21 @@ class CategoryController extends BackendController
             }
         }
         return $exist === null;
+    }
+
+    /**
+     * @param $id
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionShowInMenu($id)
+    {
+        $model = $this->findModel($id);
+        $model->show_in_menu = !$model->show_in_menu;
+
+        $model->save(false);
+
+        return $this->redirect(['index']);
     }
 
     /**

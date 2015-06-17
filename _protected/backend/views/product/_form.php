@@ -31,6 +31,11 @@ $this->registerJs("
             }
         );
     });
+    $('.field-product-slug').on('click', function(){
+        $(this).children('input')
+            .prop('disabled', false)
+            .focus();
+    });
 ");
 
 ?>
@@ -185,7 +190,7 @@ $this->registerJs("
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-3">
                 <div class="columns">
                     <?php if($model->slug !== null) { ?>
-                        <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'readonly' => 'readonly']) ?>
+                        <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'disabled' => 'disabled']) ?>
                     <?php } ?>
                     <?= $form->field($model, 'seo_title')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
                     <?= $form->field($model, 'seo_keyword')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
@@ -193,7 +198,7 @@ $this->registerJs("
                 </div>
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-4">
-                <input id="relatedGallery" type="hidden" name="Related" value="" />
+                <input id="relatedProduct" type="hidden" name="Related" value="" />
                 <div class="medium-6 columns related">
                     <div class="portlet small">
                         <div class="portlet-title">

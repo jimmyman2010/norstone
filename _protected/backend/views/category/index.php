@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <th>#</th>
                     <th><?= Yii::t('app', 'Name') ?></th>
+                    <th><?= Yii::t('app', 'Show In Menu') ?></th>
                     <th><?= Yii::t('app', 'Activated') ?></th>
                     <th><?= Yii::t('app', 'Sorting') ?></th>
                     <th><?= Yii::t('app', 'Menu') ?></th>
@@ -40,6 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= $index + 1 ?></td>
                         <td>
                             <?= Html::a($item['name'], ['update', 'id' => $item['id']]) ?>
+                        </td>
+                        <td>
+                            <?= Html::a('', ['show-in-menu', 'id' => $item['id']],
+                                ['class' => intval($item['show_in_menu']) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Show in menu', 'data-confirm'=>"Are you sure you want to change state this category?", 'data-method'=>"post"]) ?>
                         </td>
                         <td>
                             <?= Html::a('', ['active', 'id' => $item['id']],
@@ -69,6 +74,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td></td>
                             <td style="padding-left: 50px">
                                 <?= Html::a($child->name, ['update', 'id' => $child->id]) ?>
+                            </td>
+                            <td style="padding-left: 50px">
+                                <?= Html::a('', ['show-in-menu', 'id' => $child->id],
+                                    ['class' => intval($child->show_in_menu) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Show in menu', 'data-confirm'=>"Are you sure you want to change state this category?", 'data-method'=>"post"]) ?>
                             </td>
                             <td style="padding-left: 50px">
                                 <?= Html::a('', ['active', 'id' => $child->id],

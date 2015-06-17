@@ -33,7 +33,7 @@ class BackendController extends Controller
                     ],
                     [
                         'controllers' => ['page', 'category', 'gallery', 'product', 'tag'],
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'checkingduplicated', 'active', 'switch'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'checkingduplicated', 'show-in-menu', 'active', 'switch'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
@@ -49,6 +49,7 @@ class BackendController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                    'show-in-menu' => ['post'],
                     'active' => ['post'],
                     'switch' => ['post'],
                 ],

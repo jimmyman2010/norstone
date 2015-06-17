@@ -17,6 +17,7 @@ use Yii;
  * @property integer $parent_id
  * @property integer $cat_type
  * @property integer $sorting
+ * @property integer $show_in_menu
  * @property integer $activated
  * @property integer $deleted
  */
@@ -39,8 +40,8 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug'], 'required'],
-            [['cat_type', 'sorting', 'activated', 'deleted'], 'integer'],
+            [['name'], 'required'],
+            [['cat_type', 'sorting', 'show_in_menu', 'activated', 'deleted'], 'integer'],
             [['name', 'seo_description'], 'string', 'max' => 256],
             [['slug', 'seo_title', 'seo_keyword'], 'string', 'max' => 128],
             [['description'], 'string', 'max' => 2048],
@@ -63,6 +64,7 @@ class Category extends \yii\db\ActiveRecord
             'cat_type' => Yii::t('app', 'Type'),
             'parent_id' => Yii::t('app', 'Parent'),
             'sorting' => Yii::t('app', 'Sorting'),
+            'show_in_menu' => Yii::t('app', 'Show in menu'),
             'activated' => Yii::t('app', 'Activated'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
@@ -81,13 +83,23 @@ class Category extends \yii\db\ActiveRecord
      * @param int $type
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function getParents($id = 0, $type = 0)
+    public function getParents($id = 0, $type = 0, $active = 1)
     {
         if($id && $id > 0) {
-            return Category::find()->where("cat_type = '$type' AND activated = 1 AND deleted = 0 AND parent_id = 0 AND id != '$id'")->orderBy('sorting')->all();
+            if($active === 1) {
+                return Category::find()->where("cat_type = '$type' AND activated = 1 AND deleted = 0 AND parent_id = 0 AND id != '$id'")->orderBy('sorting')->all();
+            }
+            else {
+                return Category::find()->where("cat_type = '$type' AND deleted = 0 AND parent_id = 0 AND id != '$id'")->orderBy('sorting')->all();
+            }
         }
         else {
-            return Category::find()->where(['cat_type' => $type, 'activated' => 1, 'deleted' => 0, 'parent_id' => 0])->orderBy('sorting')->all();
+            if($active === 1) {
+                return Category::find()->where(['cat_type' => $type, 'activated' => 1, 'deleted' => 0, 'parent_id' => 0])->orderBy('sorting')->all();
+            }
+            else {
+                return Category::find()->where(['cat_type' => $type, 'deleted' => 0, 'parent_id' => 0])->orderBy('sorting')->all();
+            }
         }
     }
 
@@ -128,11 +140,13 @@ class Category extends \yii\db\ActiveRecord
         foreach($parent as $papa) {
             $tmp['id'] = $papa->id;
             $tmp['name'] = $papa->name;
+            $tmp['show_in_menu'] = $papa->show_in_menu;
             $tmp['activated'] = $papa->activated;
             $result[] = $tmp;
             foreach(Category::find()->where(['activated' => 1, 'deleted' => 0, 'parent_id' => $papa->id])->orderBy('sorting')->all() as $child) {
                 $tmp['id'] = $child->id;
                 $tmp['name'] = ' |__ ' . $child->name;
+                $tmp['show_in_menu'] = $papa->show_in_menu;
                 $tmp['activated'] = $papa->activated;
                 $result[] = $tmp;
             }

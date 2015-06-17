@@ -10,7 +10,7 @@ $(function(){
             }
             stringRelated += $(this).data('id');
         });
-        $('#relatedGallery').val(stringRelated);
+        $('#relatedProduct').val(stringRelated);
 
         var images = $('input[name="Product[image_id]"]');
         if(images.length > 0) {

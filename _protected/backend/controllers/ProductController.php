@@ -240,7 +240,14 @@ class ProductController extends BackendController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->slug = $model->getSlug($model->slug, $id);
+            if(isset(Yii::$app->request->post()['Product']['slug'])) {
+                $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->slug), $id);
+            }
+            else {
+                if(empty($model->slug)) {
+                    $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name), $id);
+                }
+            }
             if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
                 if($model->status !== Product::STATUS_PUBLISHED) {
                     $model->status = Product::STATUS_PUBLISHED;

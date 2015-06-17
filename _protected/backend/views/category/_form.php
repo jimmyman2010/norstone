@@ -26,6 +26,11 @@ $this->registerJs("
             }
         );
     });
+    $('.field-category-slug').on('click', function(){
+        $(this).children('input')
+            .prop('disabled', false)
+            .focus();
+    });
 ");
 
 ?>
@@ -51,7 +56,7 @@ $this->registerJs("
                 <div class="large-12 columns">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::map($model->getParents($model->id), 'id', 'name'), ['prompt'=>'- please select -']) ?>
+                    <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::map($model->getParents($model->id, 0, 0), 'id', 'name'), ['prompt'=>'- please select -']) ?>
 
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
                         'editorOptions' => [
@@ -75,7 +80,7 @@ $this->registerJs("
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-3">
                 <div class="large-12 columns">
                     <?php if($model->slug !== null) { ?>
-                        <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'readonly' => 'readonly']) ?>
+                        <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'disabled' => 'disabled']) ?>
                     <?php } ?>
                     <?= $form->field($model, 'seo_title')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
                     <?= $form->field($model, 'seo_keyword')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
