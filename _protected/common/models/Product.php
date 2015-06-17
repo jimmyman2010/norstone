@@ -115,7 +115,7 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
-     * Returns the array of possible gallery status values.
+     * Returns the array of possible product status values.
      *
      * @return array
      */

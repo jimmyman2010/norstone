@@ -514,11 +514,11 @@ li.sortable-placeholder {
 }
 
 /* line 1, ../../sass/app/partials/_duplicated.scss */
-.field-category-name, .field-product-name, .field-gallery-name, .field-tag-name {
+.field-content-name, .field-category-name, .field-product-name, .field-gallery-name, .field-tag-name {
   position: relative;
 }
 /* line 3, ../../sass/app/partials/_duplicated.scss */
-.field-category-name:after, .field-product-name:after, .field-gallery-name:after, .field-tag-name:after {
+.field-content-name:after, .field-category-name:after, .field-product-name:after, .field-gallery-name:after, .field-tag-name:after {
   position: absolute;
   bottom: 7px;
   right: 9px;
@@ -526,7 +526,7 @@ li.sortable-placeholder {
   color: #0171B8;
 }
 /* line 11, ../../sass/app/partials/_duplicated.scss */
-.field-category-name.duplicated:after, .field-product-name.duplicated:after, .field-gallery-name.duplicated:after, .field-tag-name.duplicated:after {
+.field-content-name.duplicated:after, .field-category-name.duplicated:after, .field-product-name.duplicated:after, .field-gallery-name.duplicated:after, .field-tag-name.duplicated:after {
   content: "\f071";
   color: greenyellow;
 }

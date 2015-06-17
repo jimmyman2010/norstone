@@ -32,7 +32,7 @@ class BackendController extends Controller
                         'roles' => ['admin'],
                     ],
                     [
-                        'controllers' => ['category', 'gallery', 'product', 'tag'],
+                        'controllers' => ['page', 'category', 'gallery', 'product', 'tag'],
                         'actions' => ['index', 'view', 'create', 'update', 'delete', 'checkingduplicated', 'active', 'switch'],
                         'allow' => true,
                         'roles' => ['admin'],

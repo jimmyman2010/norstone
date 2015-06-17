@@ -116,7 +116,12 @@ AppAsset::register($this);
                                                 'template' => '<a href="{url}"><i class="fa fa-user-plus"></i>{label}</a>',
                                             ]
                                         ]*/
-                                    ]
+                                    ],
+                                    [
+                                        'label' => Yii::t('app', 'Pages'),
+                                        'url' => ['page/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-files-o"></i>{label}</a>'
+                                    ],
                                 ],
                             ]);
                             ?>
