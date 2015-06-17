@@ -67,6 +67,7 @@ $this->registerJs("
                             ],
                             'removePlugins' => 'elementspath',
                             'resize_enabled' => false,
+                            'height' => 300
                         ],
                     ]) ?>
                 </div>
