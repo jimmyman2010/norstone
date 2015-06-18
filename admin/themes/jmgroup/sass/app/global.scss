@@ -1,11 +1,15 @@
 @import "../vendor/foundation/functions";
 @import "../vendor/foundation/components/global";
+@import "../vendor/foundation/components/reveal";
 @import "partials/general";
 @import "partials/form";
 @import "partials/upload";
 @import "partials/tags";
 @import "partials/sortable";
 @import "partials/duplicated";
+@import "partials/colpick";
+
+@import "modules/page-builder";
 @import "compass/css3";
 
 body{

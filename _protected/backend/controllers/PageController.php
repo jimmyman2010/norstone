@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\helpers\SlugHelper;
+use common\models\ContentElement;
 use Yii;
 use common\models\Content;
 use common\models\ContentSearch;
@@ -106,6 +107,7 @@ class PageController extends BackendController
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'contentElement' => new ContentElement()
             ]);
         }
     }
@@ -161,5 +163,20 @@ class PageController extends BackendController
             }
         }
         return $exist === null;
+    }
+
+    /**
+     * @param $id
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionShowInMenu($id)
+    {
+        $model = $this->findModel($id);
+        $model->show_in_menu = !$model->show_in_menu;
+
+        $model->save(false);
+
+        return $this->redirect(['index']);
     }
 }

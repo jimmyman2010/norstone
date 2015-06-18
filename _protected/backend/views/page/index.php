@@ -36,8 +36,27 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a($data->name, ['update', 'id' => $data->id]);
                         }
                     ],
-                    'status',
-
+                    [
+                        'attribute' => 'status',
+                        'filter' => $searchModel->getStatusList(),
+                        'value' => function($data) {
+                            return $data->statusName;
+                        }
+                    ],
+                    // buttons
+                    ['class' => 'yii\grid\ActionColumn',
+                        'header' => "Show In Menu",
+                        'template' => '{show-in-menu}',
+                        'buttons' => [
+                            'show-in-menu' => function ($url, $model, $key) {
+                                return Html::a('', $url,
+                                    ['title'=>'Show In Menu',
+                                        'class'=>intval($model->show_in_menu) === 1 ? 'fa fa-check' : 'fa fa-remove',
+                                        'data' => ['method' => 'post']
+                                    ]);
+                            },
+                        ]
+                    ], // ActionColumn
                     // buttons
                     ['class' => 'yii\grid\ActionColumn',
                         'header' => "Menu",

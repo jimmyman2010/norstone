@@ -4,10 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Content;
 use yii\helpers\Url;
+use backend\assets\PageBuilderAsset;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
+/* @var $contentElement common\models\ContentElement */
 /* @var $form yii\widgets\ActiveForm */
+
+PageBuilderAsset::register($this);
 
 $this->registerJs("
     $('#content-name').on('blur', function(){
@@ -45,6 +50,14 @@ $this->registerJs("
     <?php if($model->slug !== null) { ?>
         <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'disabled' => 'disabled']) ?>
     <?php } ?>
+
+    <br/>
+    <div class="page-builder" data-href="<?= Url::toRoute(['content-element/index', 'contentId' => $model->id]) ?>">
+        <div class="controls">
+            <?= Html::a('', ['content-element/create', 'contentId' => $model->id, 'type' => 'row'], ['class' => 'add-e-pb fa fa-plus', 'title' => 'Add new row']) ?>
+        </div>
+    </div>
+    <br/>
 
     <div class="action-buttons">
         <input type="hidden" name="type-submit" value="" />

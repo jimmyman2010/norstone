@@ -14,6 +14,10 @@ use Yii;
  * @property string $content_type
  * @property string $status
  * @property integer $published_date
+ * @property string $seo_title
+ * @property string $seo_keyword
+ * @property string $seo_description
+ * @property integer $show_in_menu
  * @property integer $created_date
  * @property string $created_by
  * @property integer $deleted
@@ -42,9 +46,9 @@ class Content extends \yii\db\ActiveRecord
         return [
             [['name', 'slug', 'created_date', 'created_by', 'content_type'], 'required'],
             [['content_type', 'status'], 'string'],
-            [['image_id', 'published_date', 'created_date', 'deleted'], 'integer'],
-            [['name'], 'string', 'max' => 256],
-            [['slug'], 'string', 'max' => 128],
+            [['image_id', 'published_date', 'show_in_menu', 'created_date', 'deleted'], 'integer'],
+            [['name', 'seo_description'], 'string', 'max' => 256],
+            [['slug', 'seo_title', 'seo_keyword'], 'string', 'max' => 128],
             [['created_by'], 'string', 'max' => 32]
         ];
     }
@@ -62,6 +66,10 @@ class Content extends \yii\db\ActiveRecord
             'content_type' => Yii::t('app', 'Content Type'),
             'status' => Yii::t('app', 'Status'),
             'published_date' => Yii::t('app', 'Published Date'),
+            'seo_title' => Yii::t('app', 'SEO Title'),
+            'seo_keyword' => Yii::t('app', 'SEO Keyword'),
+            'seo_description' => Yii::t('app', 'SEO Description'),
+            'show_in_menu' => Yii::t('app', 'Show In Menu'),
             'created_date' => Yii::t('app', 'Created Date'),
             'created_by' => Yii::t('app', 'Created By'),
             'deleted' => Yii::t('app', 'Deleted'),

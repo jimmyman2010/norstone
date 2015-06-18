@@ -5,7 +5,6 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\ContentElement;
 
 /**
  * ContentElementSearch represents the model behind the search form about `common\models\ContentElement`.
@@ -18,8 +17,8 @@ class ContentElementSearch extends ContentElement
     public function rules()
     {
         return [
-            [['id', 'content_id', 'hide', 'deleted'], 'integer'],
-            [['title', 'content_type', 'content'], 'safe'],
+            [['id', 'content_id', 'parent_id', 'sorting', 'hide', 'deleted'], 'integer'],
+            [['title', 'element_type', 'content'], 'safe'],
         ];
     }
 
@@ -42,6 +41,7 @@ class ContentElementSearch extends ContentElement
     public function search($params)
     {
         $query = ContentElement::find();
+        $query->where('deleted = 0');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,12 +58,14 @@ class ContentElementSearch extends ContentElement
         $query->andFilterWhere([
             'id' => $this->id,
             'content_id' => $this->content_id,
+            'parent_id' => $this->parent_id,
+            'sorting' => $this->sorting,
             'hide' => $this->hide,
             'deleted' => $this->deleted,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content_type', $this->content_type])
+            ->andFilterWhere(['like', 'element_type', $this->element_type])
             ->andFilterWhere(['like', 'content', $this->content]);
 
         return $dataProvider;

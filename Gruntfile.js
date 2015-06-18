@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 					jQuery: true
 				}
 			},
-			files: ['admin/themes/jmgroup/js/app/*.js']
+			files: ['admin/themes/jmgroup/js/app/*.js', 'admin/themes/jmgroup/js/page-builder/*.js']
 		},
 		uglify: {
 			/*options: {
@@ -21,7 +21,8 @@ module.exports = function(grunt) {
 			},*/
 			script: {
 				files: {
-					'admin/themes/jmgroup/js/global.min.js': ['admin/themes/jmgroup/js/app/*.js']
+					'admin/themes/jmgroup/js/global.min.js': ['admin/themes/jmgroup/js/app/*.js'],
+                    'admin/themes/jmgroup/js/page-builder.min.js': ['admin/themes/jmgroup/js/page-builder/*.js']
 				}
 			}/*,
 			vendor: {
