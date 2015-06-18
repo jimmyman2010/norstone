@@ -18,7 +18,7 @@ class ContentSearch extends Content
     public function rules()
     {
         return [
-            [['id', 'image_id', 'published_date', 'show_in_menu', 'created_date', 'deleted'], 'integer'],
+            [['id', 'image_id', 'published_date', 'using_page_builder', 'parent_id', 'show_in_menu', 'created_date', 'deleted'], 'integer'],
             [['name', 'slug', 'content_type', 'seo_title', 'seo_keyword', 'seo_description', 'status', 'created_by'], 'safe'],
         ];
     }
@@ -60,6 +60,8 @@ class ContentSearch extends Content
             'id' => $this->id,
             'image_id' => $this->image_id,
             'published_date' => $this->published_date,
+            'using_page_builder' => $this->using_page_builder,
+            'parent_id' => $this->parent_id,
             'show_in_menu' => $this->show_in_menu,
             'created_date' => $this->created_date,
             'deleted' => $this->deleted,
@@ -68,6 +70,7 @@ class ContentSearch extends Content
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'content_type', $this->content_type])
+            ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'seo_title', $this->seo_title])
             ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
             ->andFilterWhere(['like', 'seo_description', $this->seo_description])

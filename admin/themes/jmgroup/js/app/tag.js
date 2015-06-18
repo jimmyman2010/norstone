@@ -38,6 +38,6 @@ $(function(){
     ;
     var buttons = $('.action-buttons');
     buttons.on('click', 'button', function(){
-        buttons.children('input').val($(this).text());
+        buttons.children('input').val($(this).data('submit'));
     });
 });

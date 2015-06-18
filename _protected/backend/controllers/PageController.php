@@ -62,7 +62,7 @@ class PageController extends BackendController
             ]);
         }*/
         $model->name = 'New page';
-        $model->slug = 'new-page';
+        $model->slug = $model->getSlug('new-page');
         $model->status = Content::STATUS_DRAFT;
         $model->content_type = Content::TYPE_PAGE;
         $model->created_date = time();
@@ -95,7 +95,7 @@ class PageController extends BackendController
                     $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name), $id);
                 }
             }
-            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+            if(intval(Yii::$app->request->post()['type-submit']) === 1) {
                 if($model->status !== Content::STATUS_PUBLISHED) {
                     $model->status = Content::STATUS_PUBLISHED;
                     $model->published_date = time();

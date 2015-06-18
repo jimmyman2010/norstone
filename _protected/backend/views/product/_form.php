@@ -239,9 +239,17 @@ $this->registerJs("
 
             <div class="action-buttons">
                 <input type="hidden" name="type-submit" value="" />
-                <?= Html::submitButton($model->id ? Yii::t('app', 'Update') : Yii::t('app', 'Publish'), ['class' => 'small button radius']) ?>
+                <?= Html::submitButton($model->id ? Yii::t('app', 'Update') : Yii::t('app', 'Publish'),
+                    [
+                        'class' => 'small button radius',
+                        'data' => ['submit' => 1]
+                    ]) ?>
                 <?php if($model->status === null || $model->status === Product::STATUS_DRAFT) { ?>
-                    <?= Html::submitButton($model->id ? Yii::t('app', 'Update Draft') : Yii::t('app', 'Save Draft'), ['class' => 'small button radius info']) ?>
+                    <?= Html::submitButton($model->id ? Yii::t('app', 'Update Draft') : Yii::t('app', 'Save Draft'),
+                        [
+                            'class' => 'small button radius info',
+                            'data' => ['submit' => 0]
+                        ]) ?>
                 <?php } ?>
                 <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
             </div>

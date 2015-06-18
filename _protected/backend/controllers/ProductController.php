@@ -72,8 +72,8 @@ class ProductController extends BackendController
         $model = new Product();
 
         if ($model->load(Yii::$app->request->post())) {
-            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
-                $model->status = Product::STATUS_PUBLISHED;
+            if(intval(Yii::$app->request->post()['type-submit']) === 1) {
+                $model->status = Product::STATUS_INSTOCK;
                 $model->published_date = time();
             } else {
                 $model->status = Product::STATUS_DRAFT;
@@ -248,9 +248,9 @@ class ProductController extends BackendController
                     $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name), $id);
                 }
             }
-            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
-                if($model->status !== Product::STATUS_PUBLISHED) {
-                    $model->status = Product::STATUS_PUBLISHED;
+            if(intval(Yii::$app->request->post()['type-submit']) === 1) {
+                if($model->status !== Product::STATUS_INSTOCK) {
+                    $model->status = Product::STATUS_INSTOCK;
                     $model->published_date = time();
                 }
             }
