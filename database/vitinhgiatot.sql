@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v11.42 (64 bit)
-MySQL - 5.6.24 : Database - norstone
+SQLyog Community v9.60 Beta2
+MySQL - 5.6.21 : Database - norstone
 *********************************************************************
 */
 
@@ -131,7 +131,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`expire`,`data`) values ('n7p6ftkephfkmrcqlqra105rt1',1434623369,'__flash|a:0:{}__id|i:88;');
+insert  into `session`(`id`,`expire`,`data`) values ('l34i9p9dlssj02afe7490vfad1',1434645868,'__flash|a:0:{}'),('n7p6ftkephfkmrcqlqra105rt1',1434623369,'__flash|a:0:{}__id|i:88;');
 
 /*Table structure for table `tbl_category` */
 
@@ -168,6 +168,9 @@ CREATE TABLE `tbl_content` (
   `slug` varchar(128) NOT NULL,
   `image_id` int(11) DEFAULT NULL,
   `content_type` enum('page') NOT NULL,
+  `using_page_builder` tinyint(1) NOT NULL DEFAULT '0',
+  `content` text,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
   `status` enum('draft','published','waiting') NOT NULL DEFAULT 'draft',
   `published_date` int(10) NOT NULL DEFAULT '0',
   `seo_title` varchar(128) DEFAULT NULL,
@@ -179,11 +182,11 @@ CREATE TABLE `tbl_content` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQUE` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_content` */
 
-insert  into `tbl_content`(`id`,`name`,`slug`,`image_id`,`content_type`,`status`,`published_date`,`seo_title`,`seo_keyword`,`seo_description`,`show_in_menu`,`created_date`,`created_by`,`deleted`) values (1,'About','about',NULL,'page','draft',0,NULL,NULL,NULL,1,1434515786,'admin',0);
+insert  into `tbl_content`(`id`,`name`,`slug`,`image_id`,`content_type`,`using_page_builder`,`content`,`parent_id`,`status`,`published_date`,`seo_title`,`seo_keyword`,`seo_description`,`show_in_menu`,`created_date`,`created_by`,`deleted`) values (1,'About','about',NULL,'page',0,NULL,0,'published',1434633412,NULL,NULL,NULL,1,1434515786,'admin',0);
 
 /*Table structure for table `tbl_content_element` */
 
