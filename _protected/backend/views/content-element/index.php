@@ -27,7 +27,15 @@ use yii\helpers\Url;
                                 'url-post' => Url::toRoute(['content-element/update', 'id' => $model->id])
                             ]
                         ]) ?>
-                        <?= Html::a('', ['content-element/create'], ['class' => 'add-e-column fa fa-plus', 'title' => 'Add new element']) ?>
+                        <?= Html::a('', '#', [
+                            'class' => 'open-modal fa fa-plus',
+                            'title' => 'Add new element',
+                            'data' => [
+                                'reveal-id' => 'modalAddElement',
+                                'id' => $model->id,
+                                'url-get' => Url::toRoute(['content-element/create', 'contentId' => $model->content_id])
+                            ]
+                        ]) ?>
                     </div>
                 </div>
             </div>
@@ -92,4 +100,32 @@ use yii\helpers\Url;
     <p class="lead">Your couch.  It is mine.</p>
     <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+<div id="modalAddElement" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h3 id="modalTitle">Add new element</h3>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+
+    <div class="row">
+        <div class="columns">
+            <label>Column
+                <select>
+                    <option value="text">Text</option>
+                    <option value="image">Image</option>
+                    <option value="textarea">Textarea</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="columns">
+            <label>Extra classes
+                <input type="text" placeholder="Extra classes" />
+            </label>
+        </div>
+    </div>
+    <div class="row button-group">
+        <a class="button small radius"><?= Yii::t('app', 'Save') ?></a>
+        <a class="button small radius secondary"><?= Yii::t('app', 'Save') ?></a>
+    </div>
 </div>

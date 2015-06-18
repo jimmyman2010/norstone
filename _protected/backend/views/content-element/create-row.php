@@ -21,7 +21,15 @@ use yii\helpers\Url;
                         'url-post' => Url::toRoute(['content-element/update', 'id' => $model->id])
                     ]
                 ]) ?>
-                <?= Html::a('', ['content-element/create'], ['class' => 'add-e-column fa fa-plus', 'title' => 'Add new element']) ?>
+                <?= Html::a('', '#', [
+                    'class' => 'open-modal fa fa-plus',
+                    'title' => 'Add new element',
+                    'data' => [
+                        'reveal-id' => 'modalAddElement',
+                        'id' => $model->id,
+                        'url-get' => Url::toRoute(['content-element/create', 'contentId' => $model->content_id])
+                    ]
+                ]) ?>
             </div>
         </div>
     </div>
