@@ -33,7 +33,7 @@ $min-height-row: 100px;
         .pb-column{
             .pb-column-content{
                 position: relative;
-                padding-bottom: $height-controls;
+                padding: 10px 10px $height-controls + 10;
                 margin: 0 5px;
                 min-height: $min-height-row;
                 background: url(../images/bg-e-column.jpg);
@@ -47,4 +47,24 @@ $min-height-row: 100px;
 
 .reveal-modal .row{
     margin-bottom: 12px;
+}
+
+.portlet-mini{
+    background: #fff;
+    padding: 10px;
+    .portlet-mini-header{
+        border-bottom: 1px solid #cccccc;
+        @include clearfix;
+        .portlet-mini-title{
+            float: left;
+        }
+        .portlet-mini-controls{
+            float: right;
+        }
+    }
+    .portlet-mini-body{
+        label{
+            margin: 20px;
+        }
+    }
 }

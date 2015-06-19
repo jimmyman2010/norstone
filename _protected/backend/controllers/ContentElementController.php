@@ -38,7 +38,8 @@ class ContentElementController extends BackendController
         $query = ContentElement::find();
         $query->where([
             'deleted' => 0,
-            'content_id' => $contentId
+            'content_id' => $contentId,
+            'parent_id' => 0
         ]);
 
         $dataProvider = new ActiveDataProvider([
@@ -73,25 +74,41 @@ class ContentElementController extends BackendController
      * Creates a new ContentElement model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @param integer $contentId
+     * @param integer $parent_id
      * @param string $type
      * @return mixed
      */
-    public function actionCreate($contentId, $type)
+    public function actionCreate($contentId, $type, $parent_id = 0)
     {
         $model = new ContentElement();
 
         $model->content_id = $contentId;
         $model->element_type = $type;
-        $model->content = Json::encode([
-            'container' => 'full',
-            'extraClass' => '',
-            'columnsType' => '[1]',
-            'columns' => [
-                [
+        $model->parent_id = $parent_id;
+
+        switch($type) {
+            case 'text': {
+                $model->content = Json::encode([
+                    'type' => 'text',
+                    'value' => '',
                     'extraClass' => ''
-                ]
-            ]
-        ]);
+                ]);
+                break;
+            }
+            case 'row':
+            default: {
+                $model->content = Json::encode([
+                    'container' => 'full',
+                    'extraClass' => '',
+                    'columnsType' => '[1]',
+                    'columns' => [
+                        [
+                            'extraClass' => ''
+                        ]
+                    ]
+                ]);
+            }
+        }
 
         $model->save(false);
 

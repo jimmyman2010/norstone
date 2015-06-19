@@ -7,7 +7,6 @@ use yii\helpers\Json;
 /* @var $model common\models\ContentElement */
 
 ?>
-<div class="pb-row" id="element<?= $model->id ?>">
     <?php foreach (Json::decode(Json::decode($model->content)['columnsType']) as $index => $value) { ?>
         <div class="pb-column pb-col" style="width: <?= ($value/array_sum(Json::decode(Json::decode($model->content)['columnsType']))) * 100 ?>%">
             <div class="pb-column-content">
@@ -51,4 +50,3 @@ use yii\helpers\Json;
         <?= Html::a('', ['content-element/active', 'id' => $model->id], ['class' => $model->hide === 1 ? 'active-e-row fa fa-toggle-off' : 'active-e-row fa fa-toggle-on', 'title' => 'Show/Hide row']) ?>
         <?= Html::a('', ['content-element/delete', 'id' => $model->id], ['class' => 'delete-e-row fa fa-times', 'title' => 'Delete row', 'data' => ['method' => 'post']]) ?>
     </div>
-</div>

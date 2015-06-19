@@ -14,7 +14,7 @@ use yii\helpers\Url;
     <div class="pb-row" id="element<?= $model->id ?>">
         <?php foreach (Json::decode(Json::decode($model->content)['columnsType']) as $index => $value) { ?>
             <div class="pb-column pb-col" style="width: <?= ($value/array_sum(Json::decode(Json::decode($model->content)['columnsType']))) * 100 ?>%">
-                <div class="pb-column-content">
+                <div class="pb-column-content" id="column-content-<?= $model->id . ($index + 1) ?>">
 
                     <div class="controls">
                         <?= Html::a('', '#', [
@@ -28,12 +28,13 @@ use yii\helpers\Url;
                             ]
                         ]) ?>
                         <?= Html::a('', '#', [
-                            'class' => 'open-modal fa fa-plus',
+                            'class' => 'open-modal add-element fa fa-plus',
                             'title' => 'Add new element',
                             'data' => [
                                 'reveal-id' => 'modalAddElement',
                                 'id' => $model->id,
-                                'url-get' => Url::toRoute(['content-element/create', 'contentId' => $model->content_id])
+                                'item-id' => $model->id . ($index + 1),
+                                'url-post' => Url::toRoute(['content-element/create', 'contentId' => $model->content_id])
                             ]
                         ]) ?>
                     </div>
@@ -46,7 +47,7 @@ use yii\helpers\Url;
                 'class' => 'open-modal edit-row fa fa-pencil-square-o',
                 'title' => 'Edit row',
                 'data' => [
-                    'reveal-id' => 'modalEdit',
+                    'reveal-id' => 'modalEditRow',
                     'id' => $model->id,
                     'url-get' => Url::toRoute(['content-element/view', 'id' => $model->id]),
                     'url-post' => Url::toRoute(['content-element/update', 'id' => $model->id])
@@ -59,7 +60,7 @@ use yii\helpers\Url;
 
 <?php } ?>
 
-<div id="modalEdit" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+<div id="modalEditRow" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h3 id="modalTitle">Edit row</h3>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     <form>
@@ -100,8 +101,8 @@ use yii\helpers\Url;
             </div>
         </div>
         <div class="row modal-button-group">
-            <a class="save button small radius" data-modal-id="modalEdit"><?= Yii::t('app', 'Save') ?></a>
-            <a class="cancel button small radius secondary" data-modal-id="modalEdit"><?= Yii::t('app', 'Cancel') ?></a>
+            <a class="save pb-row-btn button small radius" data-modal-id="modalEditRow"><?= Yii::t('app', 'Save') ?></a>
+            <a class="cancel button small radius secondary" data-modal-id="modalEditRow"><?= Yii::t('app', 'Cancel') ?></a>
         </div>
     </form>
 </div>
@@ -128,10 +129,11 @@ use yii\helpers\Url;
     <h3 id="modalTitle">Add new element</h3>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     <form>
+        <input type="hidden" name="parent_id" value="" />
         <div class="row">
             <div class="columns">
                 <label>Column
-                    <select name="element">
+                    <select name="type">
                         <option value="text">Text</option>
                         <option value="image">Image</option>
                         <option value="textarea">Textarea</option>
@@ -147,7 +149,7 @@ use yii\helpers\Url;
             </div>
         </div>
         <div class="row modal-button-group">
-            <a class="save button small radius" data-modal-id="modalAddElement"><?= Yii::t('app', 'Save') ?></a>
+            <a class="save pb-element-btn button small radius" data-modal-id="modalAddElement"><?= Yii::t('app', 'Save') ?></a>
             <a class="cancel button small radius secondary" data-modal-id="modalAddElement"><?= Yii::t('app', 'Cancel') ?></a>
         </div>
     </form>

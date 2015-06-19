@@ -11,7 +11,7 @@ $(function(){
         $('.modal-button-group .cancel').on('click', function(){
             $('#' + $(this).data('modalId')).foundation('reveal', 'close');
         });
-        $('.modal-button-group .save').on('click', function(){
+        $('.modal-button-group .save.pb-row-btn').on('click', function(){
             var that = $(this),
                 values = that.parent().parent().serialize(),
                 href = $('#' + that.data('modalId')).data('href'),
@@ -20,6 +20,17 @@ $(function(){
             $.post(href, values, function(html){
                 $('#' + that.data('modalId')).foundation('reveal', 'close');
                 $('#element' + id).html(html);
+            });
+        });
+        $('.modal-button-group .save.pb-element-btn').on('click', function(){
+            var that = $(this),
+                values = that.parent().parent().serialize(),
+                href = $('#' + that.data('modalId')).data('href'),
+                itemId = $('#' + that.data('modalId')).data('itemId');
+
+            $.post(href + '&' + values, function(html){
+                $('#' + that.data('modalId')).foundation('reveal', 'close');
+                $('#column-content-' + itemId).append(html);
             });
         });
     });
@@ -50,6 +61,18 @@ $(function(){
                 modal.find('[name="columnsType"]').val(json.columnsType);
                 modal.find('[name="extraClass"]').val(json.extraClass);
             });
+
+            modal.foundation('reveal', 'open');
+        })
+        .on('click', '.open-modal.add-element', function(e){
+            e.preventDefault();
+            var that = $(this);
+
+            var modal = $('#' + that.data('revealId'));
+            modal.data('href', that.data('urlPost'));
+            modal.data('itemId', that.data('itemId'));
+
+            modal.find('[name="parent_id"]').val(that.data('id'));
 
             modal.foundation('reveal', 'open');
         })

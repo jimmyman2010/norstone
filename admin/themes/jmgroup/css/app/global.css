@@ -2799,7 +2799,7 @@ colpick Color Picker / colpick.com
 /* line 34, ../../sass/app/modules/_page-builder.scss */
 .page-builder .pb-row .pb-column .pb-column-content {
   position: relative;
-  padding-bottom: 30px;
+  padding: 10px 10px 40px;
   margin: 0 5px;
   min-height: 100px;
   background: url(../images/bg-e-column.jpg);
@@ -2812,6 +2812,37 @@ colpick Color Picker / colpick.com
 /* line 48, ../../sass/app/modules/_page-builder.scss */
 .reveal-modal .row {
   margin-bottom: 12px;
+}
+
+/* line 52, ../../sass/app/modules/_page-builder.scss */
+.portlet-mini {
+  background: #fff;
+  padding: 10px;
+}
+/* line 55, ../../sass/app/modules/_page-builder.scss */
+.portlet-mini .portlet-mini-header {
+  border-bottom: 1px solid #cccccc;
+}
+/* line 172, ../../sass/vendor/foundation/components/_global.scss */
+.portlet-mini .portlet-mini-header:before, .portlet-mini .portlet-mini-header:after {
+  content: " ";
+  display: table;
+}
+/* line 173, ../../sass/vendor/foundation/components/_global.scss */
+.portlet-mini .portlet-mini-header:after {
+  clear: both;
+}
+/* line 58, ../../sass/app/modules/_page-builder.scss */
+.portlet-mini .portlet-mini-header .portlet-mini-title {
+  float: left;
+}
+/* line 61, ../../sass/app/modules/_page-builder.scss */
+.portlet-mini .portlet-mini-header .portlet-mini-controls {
+  float: right;
+}
+/* line 66, ../../sass/app/modules/_page-builder.scss */
+.portlet-mini .portlet-mini-body label {
+  margin: 20px;
 }
 
 /* line 15, ../../sass/app/global.scss */
