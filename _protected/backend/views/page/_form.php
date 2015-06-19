@@ -51,6 +51,8 @@ $this->registerJs("
         <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'disabled' => 'disabled']) ?>
     <?php } ?>
 
+
+
     <br/>
     <div class="page-builder" data-href="<?= Url::toRoute(['content-element/index', 'contentId' => $model->id]) ?>">
         <div class="controls">

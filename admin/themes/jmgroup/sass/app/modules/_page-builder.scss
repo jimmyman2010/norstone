@@ -39,26 +39,8 @@ $min-height-row: 100px;
                 background: url(../images/bg-e-column.jpg);
             }
         }
-        .pb-col-12, .pb-col-9, .pb-col-8, .pb-col-6, .pb-col-4, .pb-col-3{
+        .pb-col{
             float: left;
-        }
-        .pb-col-12{
-            width: 100%;
-        }
-        .pb-col-9{
-            width: 75%;
-        }
-        .pb-col-8{
-            width: 66%;
-        }
-        .pb-col-6{
-            width: 50%;
-        }
-        .pb-col-4{
-            width: 33%;
-        }
-        .pb-col-3{
-            width: 25%;
         }
     }
 }

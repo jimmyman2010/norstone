@@ -7,6 +7,21 @@ $(function(){
     var url = pageBuilder.data('href');
     $.get(url, function(html){
         pageBuilder.append(html);
+
+        $('.modal-button-group .cancel').on('click', function(){
+            $('#' + $(this).data('modalId')).foundation('reveal', 'close');
+        });
+        $('.modal-button-group .save').on('click', function(){
+            var that = $(this),
+                values = that.parent().parent().serialize(),
+                href = $('#' + that.data('modalId')).data('href'),
+                id = $('#' + that.data('modalId')).data('id');
+
+            $.post(href, values, function(html){
+                $('#' + that.data('modalId')).foundation('reveal', 'close');
+                $('#element' + id).html(html);
+            });
+        });
     });
 
     pageBuilder
@@ -20,16 +35,23 @@ $(function(){
         })
 
         /* modal */
-        .on('click', '.open-modal', function(e){
+        .on('click', '.open-modal.edit-row', function(e){
             e.preventDefault();
-            var urlGet = $(this).data('urlGet'),
-                urlPost = $(this).data('urlPost');
-            $.get(urlGet, function(data){
-                var json = JSON.parse(data);
-                json.content = JSON.parse(json.content);
-                console.log(json);
+            var that = $(this);
+
+            var modal = $('#' + that.data('revealId'));
+            modal.data('href', that.data('urlPost'));
+            modal.data('id', that.data('id'));
+
+            $.get(that.data('urlGet'), function(data){
+                var json = JSON.parse(JSON.parse(data));
+
+                modal.find('[name="container"]').val(json.container);
+                modal.find('[name="columnsType"]').val(json.columnsType);
+                modal.find('[name="extraClass"]').val(json.extraClass);
             });
-            $('#' + $(this).data('revealId')).foundation('reveal', 'open');
+
+            modal.foundation('reveal', 'open');
         })
 
         /* row */

@@ -11,9 +11,9 @@ use yii\helpers\Url;
 ?>
 <?php foreach ($rows as $irow => $model) { ?>
 
-    <div class="pb-row">
-        <?php foreach (Json::decode($model->content)['columns'] as $column) { ?>
-            <div class="pb-column pb-col-<?= $column['col'] ?>">
+    <div class="pb-row" id="element<?= $model->id ?>">
+        <?php foreach (Json::decode(Json::decode($model->content)['columnsType']) as $index => $value) { ?>
+            <div class="pb-column pb-col" style="width: <?= ($value/array_sum(Json::decode(Json::decode($model->content)['columnsType']))) * 100 ?>%">
                 <div class="pb-column-content">
 
                     <div class="controls">
@@ -43,7 +43,7 @@ use yii\helpers\Url;
 
         <div class="controls">
             <?= Html::a('', '#', [
-                'class' => 'open-modal fa fa-pencil-square-o',
+                'class' => 'open-modal edit-row fa fa-pencil-square-o',
                 'title' => 'Edit row',
                 'data' => [
                     'reveal-id' => 'modalEdit',
@@ -62,70 +62,93 @@ use yii\helpers\Url;
 <div id="modalEdit" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h3 id="modalTitle">Edit row</h3>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-
-    <div class="row">
-        <div class="columns">
-            <label>Column
-                <select>
-                    <option value="[1]">1/1</option>
-                    <option value="[1,1]">1/2 - 1/2</option>
-                    <option value="[1,2]">1/3 - 2/3</option>
-                    <option value="[1,1,1]">1/3 - 1/3 - 1/3</option>
-                    <option value="[2,1]">2/3 - 1/3</option>
-                    <option value="[1,3]">1/4 - 3/4</option>
-                    <option value="[1,2,1]">1/4 - 2/4 - 1/4</option>
-                    <option value="[1,1,2]">1/4 - 1/4 - 2/4</option>
-                    <option value="[2,1,1]">2/4 - 1/4 - 1/4</option>
-                    <option value="[3,1]">3/4 - 1/4</option>
-                    <option value="[1,1,1,1]">1/4 - 1/4 - 1/4 - 1/4</option>
-                </select>
-            </label>
+    <form>
+        <div class="row">
+            <div class="columns">
+                <label>Container
+                    <select name="container">
+                        <option value="full">Full width</option>
+                        <option value="fix">Fix width</option>
+                    </select>
+                </label>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="columns">
-            <label>Extra classes
-                <input type="text" placeholder="Extra classes" />
-            </label>
+        <div class="row">
+            <div class="columns">
+                <label>Column
+                    <select name="columnsType">
+                        <option value="[1]">1/1</option>
+                        <option value="[1,1]">1/2 - 1/2</option>
+                        <option value="[1,2]">1/3 - 2/3</option>
+                        <option value="[1,1,1]">1/3 - 1/3 - 1/3</option>
+                        <option value="[2,1]">2/3 - 1/3</option>
+                        <option value="[1,3]">1/4 - 3/4</option>
+                        <option value="[1,2,1]">1/4 - 2/4 - 1/4</option>
+                        <option value="[1,1,2]">1/4 - 1/4 - 2/4</option>
+                        <option value="[2,1,1]">2/4 - 1/4 - 1/4</option>
+                        <option value="[3,1]">3/4 - 1/4</option>
+                        <option value="[1,1,1,1]">1/4 - 1/4 - 1/4 - 1/4</option>
+                    </select>
+                </label>
+            </div>
         </div>
-    </div>
-    <div class="row button-group">
-        <a class="button small radius"><?= Yii::t('app', 'Save') ?></a>
-        <a class="button small radius secondary"><?= Yii::t('app', 'Save') ?></a>
-    </div>
+        <div class="row">
+            <div class="columns">
+                <label>Extra classes
+                    <input type="text" name="extraClass" placeholder="Extra classes" />
+                </label>
+            </div>
+        </div>
+        <div class="row modal-button-group">
+            <a class="save button small radius" data-modal-id="modalEdit"><?= Yii::t('app', 'Save') ?></a>
+            <a class="cancel button small radius secondary" data-modal-id="modalEdit"><?= Yii::t('app', 'Cancel') ?></a>
+        </div>
+    </form>
 </div>
 
 <div id="modalColumn" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="modalTitle">Awesome. I have it.</h2>
-    <p class="lead">Your couch.  It is mine.</p>
-    <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+    <h3 id="modalTitle">Edit row</h3>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    <form>
+        <div class="row">
+            <div class="columns">
+                <label>Extra classes
+                    <input type="text" name="extraClass" placeholder="Extra classes" />
+                </label>
+            </div>
+        </div>
+        <div class="row modal-button-group">
+            <a class="save button small radius" data-modal-id="modalColumn"><?= Yii::t('app', 'Save') ?></a>
+            <a class="cancel button small radius secondary" data-modal-id="modalColumn"><?= Yii::t('app', 'Cancel') ?></a>
+        </div>
+    </form>
 </div>
 
 <div id="modalAddElement" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h3 id="modalTitle">Add new element</h3>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-
-    <div class="row">
-        <div class="columns">
-            <label>Column
-                <select>
-                    <option value="text">Text</option>
-                    <option value="image">Image</option>
-                    <option value="textarea">Textarea</option>
-                </select>
-            </label>
+    <form>
+        <div class="row">
+            <div class="columns">
+                <label>Column
+                    <select name="element">
+                        <option value="text">Text</option>
+                        <option value="image">Image</option>
+                        <option value="textarea">Textarea</option>
+                    </select>
+                </label>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="columns">
-            <label>Extra classes
-                <input type="text" placeholder="Extra classes" />
-            </label>
+        <div class="row">
+            <div class="columns">
+                <label>Extra classes
+                    <input type="text" name="extraClass" placeholder="Extra classes" />
+                </label>
+            </div>
         </div>
-    </div>
-    <div class="row button-group">
-        <a class="button small radius"><?= Yii::t('app', 'Save') ?></a>
-        <a class="button small radius secondary"><?= Yii::t('app', 'Save') ?></a>
-    </div>
+        <div class="row modal-button-group">
+            <a class="save button small radius" data-modal-id="modalAddElement"><?= Yii::t('app', 'Save') ?></a>
+            <a class="cancel button small radius secondary" data-modal-id="modalAddElement"><?= Yii::t('app', 'Cancel') ?></a>
+        </div>
+    </form>
 </div>

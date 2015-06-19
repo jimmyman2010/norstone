@@ -2805,35 +2805,11 @@ colpick Color Picker / colpick.com
   background: url(../images/bg-e-column.jpg);
 }
 /* line 42, ../../sass/app/modules/_page-builder.scss */
-.page-builder .pb-row .pb-col-12, .page-builder .pb-row .pb-col-9, .page-builder .pb-row .pb-col-8, .page-builder .pb-row .pb-col-6, .page-builder .pb-row .pb-col-4, .page-builder .pb-row .pb-col-3 {
+.page-builder .pb-row .pb-col {
   float: left;
 }
-/* line 45, ../../sass/app/modules/_page-builder.scss */
-.page-builder .pb-row .pb-col-12 {
-  width: 100%;
-}
-/* line 48, ../../sass/app/modules/_page-builder.scss */
-.page-builder .pb-row .pb-col-9 {
-  width: 75%;
-}
-/* line 51, ../../sass/app/modules/_page-builder.scss */
-.page-builder .pb-row .pb-col-8 {
-  width: 66%;
-}
-/* line 54, ../../sass/app/modules/_page-builder.scss */
-.page-builder .pb-row .pb-col-6 {
-  width: 50%;
-}
-/* line 57, ../../sass/app/modules/_page-builder.scss */
-.page-builder .pb-row .pb-col-4 {
-  width: 33%;
-}
-/* line 60, ../../sass/app/modules/_page-builder.scss */
-.page-builder .pb-row .pb-col-3 {
-  width: 25%;
-}
 
-/* line 66, ../../sass/app/modules/_page-builder.scss */
+/* line 48, ../../sass/app/modules/_page-builder.scss */
 .reveal-modal .row {
   margin-bottom: 12px;
 }

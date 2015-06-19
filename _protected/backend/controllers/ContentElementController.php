@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\helpers\SlugHelper;
 use Yii;
 use common\models\ContentElement;
 use common\models\ContentElementSearch;
@@ -65,7 +66,7 @@ class ContentElementController extends BackendController
     public function actionView($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return Json::encode($this->findModel($id));
+        return Json::encode($this->findModel($id)->content);
     }
 
     /**
@@ -83,15 +84,11 @@ class ContentElementController extends BackendController
         $model->element_type = $type;
         $model->content = Json::encode([
             'container' => 'full',
-            'color' => '',
-            'background' => '',
-            'class' => '',
+            'extraClass' => '',
+            'columnsType' => '[1]',
             'columns' => [
                 [
-                    'col' => 12,
-                    'color' => '',
-                    'background' => '',
-                    'class' => ''
+                    'extraClass' => ''
                 ]
             ]
         ]);
@@ -113,13 +110,20 @@ class ContentElementController extends BackendController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $content = Json::decode($model->content);
+
+        $post = Yii::$app->request->post();
+        if(!empty($post['extraClass'])) {
+            $post['extraClass'] = SlugHelper::makeSlugs($post['extraClass']);
         }
+
+        $model->content = Json::encode(array_merge($content, $post));
+
+        $model->save(false);
+
+        return $this->render('update-' . $model->element_type, [
+            'model' => $model,
+        ]);
     }
 
     /**
