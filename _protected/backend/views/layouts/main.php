@@ -120,7 +120,7 @@ AppAsset::register($this);
                                     [
                                         'label' => Yii::t('app', 'Pages'),
                                         'url' => ['page/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-files-o"></i>{label}</a>'
+                                        'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>'
                                     ],
                                 ],
                             ]);
