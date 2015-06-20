@@ -1,6 +1,6 @@
 /*
-SQLyog Community v9.60 Beta2
-MySQL - 5.6.21 : Database - norstone
+SQLyog Ultimate v11.42 (64 bit)
+MySQL - 5.6.24 : Database - norstone
 *********************************************************************
 */
 
@@ -131,7 +131,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`expire`,`data`) values ('l34i9p9dlssj02afe7490vfad1',1434645868,'__flash|a:0:{}'),('n7p6ftkephfkmrcqlqra105rt1',1434623369,'__flash|a:0:{}__id|i:88;');
+insert  into `session`(`id`,`expire`,`data`) values ('muad0b2jko7grprhpqpbaqt2g2',1434712841,'__flash|a:0:{}__id|i:88;');
 
 /*Table structure for table `tbl_category` */
 
@@ -182,7 +182,7 @@ CREATE TABLE `tbl_content` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQUE` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_content` */
 
@@ -203,11 +203,11 @@ CREATE TABLE `tbl_content_element` (
   `hide` tinyint(1) NOT NULL DEFAULT '0',
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_content_element` */
 
-insert  into `tbl_content_element`(`id`,`title`,`content_id`,`parent_id`,`element_type`,`content`,`sorting`,`hide`,`deleted`) values (18,'',1,0,'row','{\"container\":\"full\",\"class\":\"\",\"columns\":[{\"col\":12,\"class\":\"\"}]}',0,0,0),(28,'',1,0,'row','{\"container\":\"full\",\"color\":\"\",\"background\":\"\",\"class\":\"\",\"columns\":[{\"col\":12,\"color\":\"\",\"background\":\"\",\"class\":\"\"}]}',0,0,0),(29,'',1,0,'row','{\"container\":\"full\",\"color\":\"\",\"background\":\"\",\"class\":\"\",\"columns\":[{\"col\":12,\"color\":\"\",\"background\":\"\",\"class\":\"\"}]}',0,0,0);
+insert  into `tbl_content_element`(`id`,`title`,`content_id`,`parent_id`,`element_type`,`content`,`sorting`,`hide`,`deleted`) values (41,'',1,0,'row','{\"container\":\"full\",\"extraClass\":\"dfg-sdfg-sd\",\"columnsType\":\"[1,3]\",\"columns\":[{\"extraClass\":\"\"}]}',0,0,0),(42,'',1,0,'row','{\"container\":\"full\",\"extraClass\":\"\",\"columnsType\":\"[1]\",\"columns\":[{\"extraClass\":\"\"}]}',0,0,0),(50,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(51,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(52,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(53,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(54,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(55,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(56,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(57,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(58,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(59,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(60,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(61,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,0),(62,'',1,41,'text','{\"type\":\"text\",\"value\":\"\",\"extraClass\":\"\"}',0,0,1);
 
 /*Table structure for table `tbl_file` */
 
@@ -229,7 +229,7 @@ CREATE TABLE `tbl_file` (
   `file_ext` varchar(8) NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_file` */
 
