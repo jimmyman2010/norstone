@@ -5,6 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
 /* @var $pictures Array */
+/* @var $categories string */
 /* @var $tags Array */
 /* @var $tagSuggestions string */
 /* @var $products Array */
@@ -34,6 +35,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             <?= $this->render('_form', [
                 'model' => $model,
                 'pictures' => $pictures,
+                'categories' => $categories,
                 'tags' => $tags,
                 'tagSuggestions' => $tagSuggestions,
                 'products' => $products,

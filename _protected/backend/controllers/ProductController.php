@@ -3,8 +3,11 @@
 namespace backend\controllers;
 
 use common\helpers\SlugHelper;
+use common\models\Category;
+use common\models\CategorySearch;
 use common\models\File;
 use common\models\FileSearch;
+use common\models\ProductCategory;
 use common\models\ProductFile;
 use common\models\ProductRelated;
 use common\models\ProductTag;
@@ -83,6 +86,7 @@ class ProductController extends BackendController
             $model->created_by = Yii::$app->user->identity->username;
 
             if($model->save()) {
+                $this->updateCategory($model->id, isset(Yii::$app->request->post()['Category']) ? Yii::$app->request->post()['Category'] : '');
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
                 $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
                 $this->updateRelated($model->id, isset(Yii::$app->request->post()['Related']) ? Yii::$app->request->post()['Related'] : '');
@@ -101,11 +105,47 @@ class ProductController extends BackendController
             return $this->render('create', [
                 'model' => $model,
                 'pictures' => [],
+                'categories' => [],
                 'tags' => '',
                 'tagSuggestions' => Html::encode($tagSuggestions),
                 'products' => [],
                 'productSuggestion' => $productSuggestion
             ]);
+        }
+    }
+
+    /**
+     * @param $productId
+     * @param $categoryString
+     * @return void
+     */
+    protected function updateCategory($productId, $categoryString)
+    {
+        $categoryList = [];
+        if(!empty($categoryString))
+        {
+            foreach (Json::decode('[' . $categoryString . ']') as $categoryId) {
+                array_push($categoryList, $categoryId);
+
+                $productCategoryObject = ProductCategory::findOne(['product_id'=>$productId, 'category_id'=>$categoryId]);
+                if($productCategoryObject !== null) {
+                    $productCategoryObject->deleted = 0;
+                } else {
+                    $productCategoryObject = new ProductCategory();
+                    $productCategoryObject->product_id = $productId;
+                    $productCategoryObject->category_id = $categoryId;
+                }
+                $productCategoryObject->save(false);
+            }
+
+        }
+
+        $productCategoryObjects = ProductCategory::findAll(['product_id'=>$productId]);
+        foreach ($productCategoryObjects as $object) {
+            if(!in_array($object->category_id, $categoryList)){
+                $object->deleted = 1;
+                $object->save(false);
+            }
         }
     }
 
@@ -139,8 +179,8 @@ class ProductController extends BackendController
             }
         }
 
-        $galleryFileObjects = ProductFile::findAll(['product_id'=>$productId]);
-        foreach ($galleryFileObjects as $object) {
+        $productFileObjects = ProductFile::findAll(['product_id'=>$productId]);
+        foreach ($productFileObjects as $object) {
             if(!in_array($object->file_id, $fileList)){
                 $object->delete();
             }
@@ -255,6 +295,7 @@ class ProductController extends BackendController
                 }
             }
             if($model->save()) {
+                $this->updateCategory($model->id, isset(Yii::$app->request->post()['Category']) ? Yii::$app->request->post()['Category'] : '');
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
                 $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
                 $this->updateRelated($model->id, isset(Yii::$app->request->post()['Related']) ? Yii::$app->request->post()['Related'] : '');
@@ -262,7 +303,14 @@ class ProductController extends BackendController
             }
         } else {
             $dataProvider = new FileSearch();
-            $pictures= $dataProvider->search(['product_id' => $id])->getModels();
+            $pictures = $dataProvider->search(['product_id' => $id])->getModels();
+
+            $dataProvider = new CategorySearch();
+            $categories = $dataProvider->search(['product_id' => $id])->getModels();
+            $categoryList = [];
+            foreach ($categories as $category) {
+                array_push($categoryList, $category->id);
+            }
 
             $dataProvider = new TagSearch();
             $tags= $dataProvider->search(['product_id' => $id])->getModels();
@@ -291,6 +339,7 @@ class ProductController extends BackendController
             return $this->render('update', [
                 'model' => $model,
                 'pictures' => $pictures,
+                'categories' => Json::encode($categoryList),
                 'tags' => Json::encode($tagList),
                 'tagSuggestions' => $tagSuggestions,
                 'products' => $products,

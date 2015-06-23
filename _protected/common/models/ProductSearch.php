@@ -5,7 +5,6 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Product;
 
 /**
  * ProductSearch represents the model behind the search form about `common\models\Product`.
@@ -18,9 +17,9 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
+            [['id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['name', 'slug', 'description', 'seo_title', 'seo_keyword', 'seo_description', 'general', 'info_tech', 'status', 'created_by'], 'safe'],
-            [['price', 'price_new'], 'number'],
+            [['price_init', 'price', 'price_sell'], 'number'],
         ];
     }
 
@@ -85,9 +84,9 @@ class ProductSearch extends Product
         $query->andFilterWhere([
             'id' => $this->id,
             'image_id' => $this->image_id,
-            'category_id' => $this->category_id,
+            'price_init' => $this->price_init,
             'price' => $this->price,
-            'price_new' => $this->price_new,
+            'price_sell' => $this->price_sell,
             'percent' => $this->percent,
             'viewed' => $this->viewed,
             'published_date' => $this->published_date,

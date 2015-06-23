@@ -41,8 +41,16 @@ class CategorySearch extends Category
     public function search($params)
     {
         $query = Category::find();
-        $query->where('deleted = 0');
-        $query->orderBy('sorting');
+        if(isset($params['product_id'])) {
+            $query->innerJoin('tbl_product_category', 'tbl_category.id = tbl_product_category.category_id');
+            $query->where(['tbl_category.deleted' => 0,
+                'tbl_product_category.deleted' => 0,
+                'tbl_product_category.product_id' => intval($params['product_id'])
+            ]);
+        } else {
+            $query->where('deleted = 0');
+            $query->orderBy('sorting');
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

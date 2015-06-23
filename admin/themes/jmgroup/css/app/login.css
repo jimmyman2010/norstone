@@ -11,6 +11,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+/* line 14, ../../sass/app/partials/_general.scss */
+.tabs-content .content .tabs {
+  border-top: 1px solid #EFEFEF;
+}
+
 /* line 3, ../../sass/app/partials/_form.scss */
 input[type="text"],
 input[type="password"],

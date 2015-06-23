@@ -10,13 +10,13 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $slug
- * @property integer $category_id
  * @property integer $image_id
  * @property string $description
  * @property string $general
  * @property string $info_tech
+ * @property string $price_init
  * @property string $price
- * @property string $price_new
+ * @property string $price_sell
  * @property integer $percent
  * @property integer $viewed
  * @property string $status
@@ -49,10 +49,10 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'category_id', 'created_date', 'created_by'], 'required'],
-            [['category_id', 'image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
+            [['name', 'created_date', 'created_by'], 'required'],
+            [['image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['general', 'info_tech', 'status'], 'string'],
-            [['price', 'price_new'], 'number'],
+            [['price_init', 'price', 'price_sell'], 'number'],
             [['name', 'seo_description'], 'string', 'max' => 256],
             [['slug', 'seo_title', 'seo_keyword'], 'string', 'max' => 128],
             [['description'], 'string', 'max' => 1024],
@@ -69,13 +69,13 @@ class Product extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
-            'category_id' => Yii::t('app', 'Category'),
             'image_id' => Yii::t('app', 'Image'),
             'description' => Yii::t('app', 'Description'),
             'general' => Yii::t('app', 'General'),
             'info_tech' => Yii::t('app', 'Info Tech'),
+            'price_init' => Yii::t('app', 'Price Init'),
             'price' => Yii::t('app', 'Price'),
-            'price_new' => Yii::t('app', 'Price New'),
+            'price_sell' => Yii::t('app', 'Price Sell'),
             'percent' => Yii::t('app', 'Percent'),
             'viewed' => Yii::t('app', 'Viewed'),
             'status' => Yii::t('app', 'Status'),
@@ -88,22 +88,6 @@ class Product extends \yii\db\ActiveRecord
             'activated' => Yii::t('app', 'Activated'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategory()
-    {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
-    }
-
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public function getCategories()
-    {
-        return Category::find()->where(['deleted' => 0])->all();
     }
 
     /**

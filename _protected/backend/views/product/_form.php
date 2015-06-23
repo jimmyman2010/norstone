@@ -6,7 +6,7 @@ use backend\assets\ProductAsset;
 use yii\helpers\Url;
 use common\models\Product;
 use common\models\Category;
-use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
@@ -79,7 +79,6 @@ $this->registerJs("
                             'toolbar' => [
                                 ['name' => 'styles', 'items' => [ 'Format' ]],
                                 ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                /*['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],*/
                                 ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
                                 ['name' => 'tools', 'items' => [ 'Maximize' ]],
                                 ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
@@ -90,41 +89,88 @@ $this->registerJs("
                         ],
                     ]) ?>
 
+                    <div>
+                        <hr>
+                        <h6><?= Yii::t('app', 'Pictures') ?></h6>
+                        <div id="filelist" class="view-thumbnail row">
+                            <?php
+                            foreach ($pictures as $index => $item) {
+                                ?>
+                                <div id="<?= $item->id ?>" class="photo-zone large-4 medium-6 columns">
+                                    <table cellpadding="0" cellspacing="0">
+                                        <tr><td class="controls">
+                                                <label><input type="radio" name="Product[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> Main picture</label>
+                                                <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                            </td></tr>
+                                        <tr><td class="edit"><span class="name">
+                                                <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
+                                            </span></td></tr>
+                                        <tr><td class="caption">
+                                                <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>
+                                                <input type="hidden" name="Picture[<?= $item->id ?>][id]" value="<?= $item->id ?>"/>
+                                            </td></tr>
+                                    </table></div>
+                            <?php } ?>
+                        </div>
+                        <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
+                            <a id="pickfiles" href="javascript:;" class="tiny button radius">Select files</a>
+                        </div>
+                        <pre id="console"></pre>
+                    </div>
                 </div>
                 <div class="large-4 columns">
-                    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::getTree(), 'id', 'name'), ['prompt'=>'- please select -']) ?>
+                    <script>
+                        var treeData = [
+                            <?php
+                            $tree = Category::getTree();
+                            $total = count($tree);
+                            $categoryList = Json::decode($categories);
+                            $htmlString = '';
+                            foreach ($tree as $index => $papa) {
+                                $htmlString .= '{title: "'.$papa['name'].'", isFolder: true, key: "'.$papa['id'].'"';
+                                if(in_array(intval($papa['id']), $categoryList)) {
+                                    $htmlString .= ', select: true';
+                                }
+
+                                if(isset($papa['children'])) {
+                                    $total2 = count($papa['children']);
+                                    $htmlString .= ', children: [';
+                                    foreach ($papa['children'] as $inx => $child) {
+                                        $htmlString .= '{title: "'.$child['name'].'", isFolder: true, key: "'.$child['id'].'"';
+                                        if(in_array(intval($child['id']), $categoryList)) {
+                                            $htmlString .= ', select: true';
+                                        }
+                                        if($inx < $total2 - 1) {
+                                            $htmlString .= '},';
+                                        }
+                                        else {
+                                            $htmlString .= '}';
+                                        }
+                                    }
+                                    $htmlString .= ']';
+                                }
+
+                                if($index < $total - 1) {
+                                    $htmlString .= '},';
+                                }
+                                else {
+                                    $htmlString .= '}';
+                                }
+                            }
+
+                            echo $htmlString;
+                            ?>
+                        ];
+                    </script>
+                    <div class="form-group field-gallery-categories">
+                        <label><?= Yii::t('app', 'Categories') ?></label>
+                        <div id="tree2"></div>
+                        <input id="echoSelection2" type="hidden" name="Category" value=""/>
+                    </div>
                     <div class="form-group field-gallery-tags">
                         <label>Tags</label>
                         <textarea id="tags" rows="1" name="Tag" data-value='<?= Html::decode($tags) ?>' data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
                     </div>
-                </div>
-                <div class="large-12 columns">
-                    <hr>
-                    <h6><?= Yii::t('app', 'Pictures') ?></h6>
-                    <div id="filelist" class="view-thumbnail row">
-                        <?php
-                        foreach ($pictures as $index => $item) {
-                            ?>
-                            <div id="<?= $item->id ?>" class="photo-zone large-4 medium-6 columns">
-                                <table cellpadding="0" cellspacing="0">
-                                    <tr><td class="controls">
-                                            <label><input type="radio" name="Product[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> Main picture</label>
-                                            <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
-                                        </td></tr>
-                                    <tr><td class="edit"><span class="name">
-                                                <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
-                                            </span></td></tr>
-                                    <tr><td class="caption">
-                                            <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>
-                                            <input type="hidden" name="Picture[<?= $item->id ?>][id]" value="<?= $item->id ?>"/>
-                                        </td></tr>
-                                </table></div>
-                        <?php } ?>
-                    </div>
-                    <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
-                        <a id="pickfiles" href="javascript:;" class="tiny button radius">Select files</a>
-                    </div>
-                    <pre id="console"></pre>
                 </div>
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">
