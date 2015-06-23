@@ -67,6 +67,8 @@ $this->registerJs("
                     ['name' => 'tools', 'items' => [ 'Maximize' ]],
                     ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
                 ],
+                'filebrowserImageBrowseUrl' => '/admin/filemanager/js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=/admin/filemanager/js/ckeditor/filemanager/connectors/php/connector.php',
+                'filebrowserUploadUrl' => '/admin/file/url',
                 'height' => 600
             ],
         ]) ?>
