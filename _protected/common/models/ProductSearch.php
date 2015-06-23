@@ -52,12 +52,11 @@ class ProductSearch extends Product
             ]);
             $query->orderBy('sorting');
         } else {
-            $query->joinWith(['category']);
             $query->where('tbl_product.deleted = 0');
         }
 
         if($published) {
-            $this->status = Product::STATUS_PUBLISHED;
+            $this->status = Product::STATUS_INSTOCK;
         }
 
 
@@ -67,11 +66,6 @@ class ProductSearch extends Product
                 'pageSize' => $pageSize,
             ],
         ]);
-
-        $dataProvider->sort->attributes['category'] = [
-            'asc' => ['tbl_category.name' => SORT_ASC],
-            'desc' => ['tbl_category.name' => SORT_DESC],
-        ];
 
         $this->load($params);
 

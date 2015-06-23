@@ -48,11 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     [
-                        'attribute' => 'category_id',
-                        'filter' => ArrayHelper::map(Category::getTree(), 'id', 'name'),
-                        'value' => 'category.name'
-                    ],
-                    [
                         'attribute' => 'status',
                         'filter' => $searchModel->getStatusList(),
                         'value' => function($data) {

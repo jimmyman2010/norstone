@@ -203,8 +203,6 @@ $this->registerJs("
                                             ['name' => 'tools', 'items' => [ 'Maximize' ]],
                                             ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
                                         ],
-                                        /*'removePlugins' => 'elementspath',
-                                        'resize_enabled' => false,*/
                                         'height' => 600
                                     ],
                                 ]) ?>

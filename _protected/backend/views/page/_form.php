@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use common\models\Content;
 use yii\helpers\Url;
 use backend\assets\PageBuilderAsset;
-use yii\helpers\ArrayHelper;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
@@ -51,16 +51,35 @@ $this->registerJs("
         <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'disabled' => 'disabled']) ?>
     <?php } ?>
 
+    <?= $form->field($model, 'using_page_builder')->radioList([0 => Yii::t('app', 'Normal Editor'), 1 => Yii::t('app', 'Page Builder')]) ?>
 
-
-    <br/>
-    <div class="page-builder" data-href="<?= Url::toRoute(['content-element/index', 'contentId' => $model->id]) ?>">
-        <div class="controls">
-            <?= Html::a('', ['content-element/create', 'contentId' => $model->id, 'type' => 'row'], ['class' => 'add-e-pb fa fa-plus', 'title' => 'Add new row']) ?>
+    <section class="normal-editor radio-group radio-item-0" <?= intval($model->using_page_builder) === 1 ? 'style="display: none"' : '' ?> >
+        <?= $form->field($model, 'content')->widget(CKEditor::className(), [
+            'editorOptions' => [
+                'inline' => false,
+                'language' => 'en',
+                'toolbar' => [
+                    ['name' => 'styles', 'items' => [ 'Format' ]],
+                    ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+                    ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
+                    ['name' => 'insert', 'items' => [ 'Table', 'Image']],
+                    ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+                    ['name' => 'tools', 'items' => [ 'Maximize' ]],
+                    ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+                ],
+                'height' => 600
+            ],
+        ]) ?>
+    </section>
+    <section class="page-builder-editor radio-group radio-item-1" <?= intval($model->using_page_builder) === 0 ? 'style="display: none"' : '' ?> >
+        <br/>
+        <div class="page-builder" data-href="<?= Url::toRoute(['content-element/index', 'contentId' => $model->id]) ?>">
+            <div class="controls">
+                <?= Html::a('', ['content-element/create', 'contentId' => $model->id, 'type' => 'row'], ['class' => 'add-e-pb fa fa-plus', 'title' => 'Add new row']) ?>
+            </div>
         </div>
-    </div>
-    <br/>
-
+        <br/>
+    </section>
     <div class="action-buttons">
         <input type="hidden" name="type-submit" value="" />
         <?= Html::submitButton($model->id ? Yii::t('app', 'Update') : Yii::t('app', 'Publish'),
