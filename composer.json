@@ -17,6 +17,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "nenad/yii2-password-strength": "*",
         "mihaildev/yii2-ckeditor": "*",
+        "mihailDev/yii2-elfinder": "*",
         "dektrium/yii2-user": "*",
         "yiisoft/yii2-imagine": "~2.0.0"
     },

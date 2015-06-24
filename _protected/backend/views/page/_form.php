@@ -6,6 +6,7 @@ use common\models\Content;
 use yii\helpers\Url;
 use backend\assets\PageBuilderAsset;
 use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
@@ -39,49 +40,75 @@ $this->registerJs("
 
 ?>
 
-<div class="page-form">
+<div class="page-form row">
 
     <?php $form = ActiveForm::begin([
         'id' => 'action-form'
     ]); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
+    <div class="large-12 columns">
+        <ul class="tabs" data-tab role="tablist">
+            <li class="tab-title active" role="presentational" >
+                <a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">
+                    <?=Yii::t('app', 'Contents') ?>
+                </a>
+            </li>
+            <li class="tab-title" role="presentational" >
+                <a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">
+                    <?=Yii::t('app', 'SEO') ?>
+                </a>
+            </li>
+        </ul>
+        <div class="tabs-content">
+            <section role="tabpanel" aria-hidden="false" class="row content active" id="panel2-1">
+                <div class="large-12 columns">
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
 
-    <?php if($model->slug !== null) { ?>
-        <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'disabled' => 'disabled']) ?>
-    <?php } ?>
+                    <?= $form->field($model, 'using_page_builder')->radioList([0 => Yii::t('app', 'Normal Editor'), 1 => Yii::t('app', 'Page Builder')]) ?>
 
-    <?= $form->field($model, 'using_page_builder')->radioList([0 => Yii::t('app', 'Normal Editor'), 1 => Yii::t('app', 'Page Builder')]) ?>
+                    <aside class="normal-editor radio-group radio-item-0" <?= intval($model->using_page_builder) === 1 ? 'style="display: none"' : '' ?> >
 
-    <section class="normal-editor radio-group radio-item-0" <?= intval($model->using_page_builder) === 1 ? 'style="display: none"' : '' ?> >
-        <?= $form->field($model, 'content')->widget(CKEditor::className(), [
-            'editorOptions' => [
-                'inline' => false,
-                'language' => 'en',
-                'toolbar' => [
-                    ['name' => 'styles', 'items' => [ 'Format' ]],
-                    ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                    ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
-                    ['name' => 'insert', 'items' => [ 'Table', 'Image']],
-                    ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
-                    ['name' => 'tools', 'items' => [ 'Maximize' ]],
-                    ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
-                ],
-                'filebrowserImageBrowseUrl' => '/admin/filemanager/js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=/admin/filemanager/js/ckeditor/filemanager/connectors/php/connector.php',
-                'filebrowserUploadUrl' => '/admin/file/url',
-                'height' => 600
-            ],
-        ]) ?>
-    </section>
-    <section class="page-builder-editor radio-group radio-item-1" <?= intval($model->using_page_builder) === 0 ? 'style="display: none"' : '' ?> >
-        <br/>
-        <div class="page-builder" data-href="<?= Url::toRoute(['content-element/index', 'contentId' => $model->id]) ?>">
-            <div class="controls">
-                <?= Html::a('', ['content-element/create', 'contentId' => $model->id, 'type' => 'row'], ['class' => 'add-e-pb fa fa-plus', 'title' => 'Add new row']) ?>
-            </div>
-        </div>
-        <br/>
-    </section>
+                        <?= $form->field($model, 'content')->widget(CKEditor::className(), [
+                            'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],[
+                                'inline' => false,
+                                'language' => 'en',
+                                'toolbar' => [
+                                    ['name' => 'styles', 'items' => [ 'Format' ]],
+                                    ['name' => 'document', 'items' => [ 'Templates' ]],
+                                    ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+                                    ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Blockquote']],
+                                    ['name' => 'insert', 'items' => [ 'Table', 'Image', 'Smiley', 'Iframe']],
+                                    ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+                                    ['name' => 'clipboard', 'items' => ['PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']],
+                                    ['name' => 'tools', 'items' => [ 'Maximize' ]],
+                                ],
+                                'height' => 600
+                            ]),
+                        ]) ?>
+                    </aside>
+                    <aside class="page-builder-editor radio-group radio-item-1" <?= intval($model->using_page_builder) === 0 ? 'style="display: none"' : '' ?> >
+                        <br/>
+                        <div class="page-builder" data-href="<?= Url::toRoute(['content-element/index', 'contentId' => $model->id]) ?>">
+                            <div class="controls">
+                                <?= Html::a('', ['content-element/create', 'contentId' => $model->id, 'type' => 'row'], ['class' => 'add-e-pb fa fa-plus', 'title' => 'Add new row']) ?>
+                            </div>
+                        </div>
+                        <br/>
+                    </aside>
+                </div>
+            </section>
+            <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">
+                <div class="large-12 columns">
+                    <?php if($model->slug !== null) { ?>
+                        <?= $form->field($model, 'slug')->textInput(['maxlength' => 128, 'disabled' => 'disabled']) ?>
+                    <?php } ?>
+                    <?= $form->field($model, 'seo_title')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
+                    <?= $form->field($model, 'seo_keyword')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
+                    <?= $form->field($model, 'seo_description')->textarea(['maxlength' => 256, 'rows' => 5]) ?>
+                </div>
+            </section>
+    </div>
+
     <div class="action-buttons">
         <input type="hidden" name="type-submit" value="" />
         <?= Html::submitButton($model->id ? Yii::t('app', 'Update') : Yii::t('app', 'Publish'),

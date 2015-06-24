@@ -16,3 +16,8 @@ h1, h2, h3, h4, h5, h6{
         }
     }
 }
+.cke_reset_all {
+    textarea, input[type="text"], input[type="password"]{
+        height: auto;
+    }
+}

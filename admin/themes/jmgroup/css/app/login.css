@@ -16,6 +16,11 @@ h1, h2, h3, h4, h5, h6 {
   border-top: 1px solid #EFEFEF;
 }
 
+/* line 20, ../../sass/app/partials/_general.scss */
+.cke_reset_all textarea, .cke_reset_all input[type="text"], .cke_reset_all input[type="password"] {
+  height: auto;
+}
+
 /* line 3, ../../sass/app/partials/_form.scss */
 input[type="text"],
 input[type="password"],

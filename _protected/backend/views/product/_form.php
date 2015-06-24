@@ -8,6 +8,7 @@ use common\models\Product;
 use common\models\Category;
 use yii\helpers\Json;
 use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -80,8 +81,8 @@ $this->registerJs("
                                 ['name' => 'styles', 'items' => [ 'Format' ]],
                                 ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
                                 ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
-                                ['name' => 'tools', 'items' => [ 'Maximize' ]],
                                 ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+                                ['name' => 'tools', 'items' => [ 'Maximize' ]],
                             ],
                             'removePlugins' => 'elementspath',
                             'resize_enabled' => false,
@@ -165,7 +166,7 @@ $this->registerJs("
                     <div class="form-group field-gallery-categories">
                         <label><?= Yii::t('app', 'Categories') ?></label>
                         <div id="tree2"></div>
-                        <input id="echoSelection2" type="hidden" name="Category" value=""/>
+                        <input id="echoSelection2" type="hidden" name="Category" value="<?= implode(',', $categoryList) ?>"/>
                     </div>
                     <div class="form-group field-gallery-tags">
                         <label>Tags</label>
@@ -191,20 +192,21 @@ $this->registerJs("
                         <section role="tabpanel" aria-hidden="false" class="row content active" id="panel1-1">
                             <div class="large-12 columns">
                                 <?= $form->field($model, 'general')->widget(CKEditor::className(), [
-                                    'editorOptions' => [
+                                    'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],[
                                         'inline' => false,
                                         'language' => 'en',
                                         'toolbar' => [
                                             ['name' => 'styles', 'items' => [ 'Format' ]],
+                                            ['name' => 'document', 'items' => [ 'Templates' ]],
                                             ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                            ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
-                                            ['name' => 'insert', 'items' => [ 'Table', 'Image']],
+                                            ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Blockquote']],
+                                            ['name' => 'insert', 'items' => [ 'Table', 'Image', 'Smiley', 'Iframe']],
                                             ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+                                            ['name' => 'clipboard', 'items' => ['PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']],
                                             ['name' => 'tools', 'items' => [ 'Maximize' ]],
-                                            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
                                         ],
                                         'height' => 600
-                                    ],
+                                    ]),
                                 ]) ?>
                             </div>
                         </section>
@@ -217,8 +219,8 @@ $this->registerJs("
                                         'toolbar' => [
                                             ['name' => 'insert', 'items' => [ 'Table']],
                                             ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                            ['name' => 'tools', 'items' => [ 'Maximize' ]],
                                             ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+                                            ['name' => 'tools', 'items' => [ 'Maximize' ]],
                                         ],
                                         'removePlugins' => 'elementspath',
                                         'resize_enabled' => false,

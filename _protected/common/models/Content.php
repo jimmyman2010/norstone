@@ -28,6 +28,7 @@ use Yii;
 class Content extends \yii\db\ActiveRecord
 {
     const TYPE_PAGE = 'page';
+    const TYPE_MENU = 'menu';
 
     const STATUS_DRAFT = 'draft';
     const STATUS_WAITING = 'waiting';
@@ -91,6 +92,7 @@ class Content extends \yii\db\ActiveRecord
     {
         $typeArray = [
             self::TYPE_PAGE    => 'Page',
+            self::TYPE_MENU    => 'Menu',
         ];
 
         return $typeArray;

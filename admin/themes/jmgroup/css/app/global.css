@@ -1852,6 +1852,11 @@ h1, h2, h3, h4, h5, h6 {
   border-top: 1px solid #EFEFEF;
 }
 
+/* line 20, ../../sass/app/partials/_general.scss */
+.cke_reset_all textarea, .cke_reset_all input[type="text"], .cke_reset_all input[type="password"] {
+  height: auto;
+}
+
 /* line 3, ../../sass/app/partials/_form.scss */
 input[type="text"],
 input[type="password"],
@@ -2850,7 +2855,6 @@ body .copyright {
 
 /* line 89, ../../sass/app/global.scss */
 .side-nav {
-  min-height: 33.125rem;
   padding: 0 0 0.9375rem;
   background: #fff;
   margin: 0.9375rem 0 0.9375rem 0.9375rem;
@@ -2858,31 +2862,31 @@ body .copyright {
   -webkit-border-radius: 0.3125rem;
   border-radius: 0.3125rem;
 }
-/* line 95, ../../sass/app/global.scss */
+/* line 94, ../../sass/app/global.scss */
 .side-nav .group-item {
   color: #0171B8;
   text-transform: uppercase;
   font-weight: 600;
   padding: 1.25rem 0 0 0.9375rem;
 }
-/* line 102, ../../sass/app/global.scss */
+/* line 101, ../../sass/app/global.scss */
 .side-nav li a:not(.button) {
   line-height: 1.875rem;
   color: #333;
 }
-/* line 106, ../../sass/app/global.scss */
+/* line 105, ../../sass/app/global.scss */
 .side-nav li.active a:not(.button) {
   border-left: 0.1875rem solid #0171B8;
   margin-left: -0.1875rem;
   background: #f2f6f9;
 }
-/* line 111, ../../sass/app/global.scss */
+/* line 110, ../../sass/app/global.scss */
 .side-nav li i {
   margin-right: 0.5rem;
   font-size: 1rem;
 }
 
-/* line 117, ../../sass/app/global.scss */
+/* line 116, ../../sass/app/global.scss */
 .portlet {
   padding: 0.75rem 1.25rem 0.9375rem;
   background: #fff;
@@ -2891,7 +2895,7 @@ body .copyright {
   border-radius: 0.3125rem;
   margin-top: 0.9375rem;
 }
-/* line 122, ../../sass/app/global.scss */
+/* line 121, ../../sass/app/global.scss */
 .portlet .portlet-title {
   border-bottom: 1px solid #eee;
   min-height: 2.75rem;
@@ -2905,7 +2909,7 @@ body .copyright {
 .portlet .portlet-title:after {
   clear: both;
 }
-/* line 126, ../../sass/app/global.scss */
+/* line 125, ../../sass/app/global.scss */
 .portlet .portlet-title .caption {
   float: right;
   font-size: 1.125rem;
@@ -2914,103 +2918,103 @@ body .copyright {
   text-transform: uppercase;
   color: #0171B8;
 }
-/* line 134, ../../sass/app/global.scss */
+/* line 133, ../../sass/app/global.scss */
 .portlet .portlet-title .action {
   float: left;
 }
-/* line 136, ../../sass/app/global.scss */
+/* line 135, ../../sass/app/global.scss */
 .portlet .portlet-title .action a {
   margin: 0 0.625rem 0.625rem 0;
 }
-/* line 141, ../../sass/app/global.scss */
+/* line 140, ../../sass/app/global.scss */
 .portlet .portlet-body.has-padding {
   padding-top: 0.9375rem;
 }
-/* line 144, ../../sass/app/global.scss */
+/* line 143, ../../sass/app/global.scss */
 .portlet.small {
   border: 1px solid #0171B8;
   padding: 0;
 }
-/* line 147, ../../sass/app/global.scss */
+/* line 146, ../../sass/app/global.scss */
 .portlet.small .portlet-title {
   background: #3598dc;
   min-height: initial;
 }
-/* line 150, ../../sass/app/global.scss */
+/* line 149, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption {
   color: #fff;
   font-size: 0.875rem;
   padding: 0.125rem 0.625rem;
 }
-/* line 154, ../../sass/app/global.scss */
+/* line 153, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption i {
   margin-right: 0.3125rem;
 }
 
-/* line 162, ../../sass/app/global.scss */
+/* line 161, ../../sass/app/global.scss */
 .table {
   width: 100%;
 }
-/* line 165, ../../sass/app/global.scss */
+/* line 164, ../../sass/app/global.scss */
 .table tr th {
   font-weight: 500;
   color: #008CBA;
 }
-/* line 168, ../../sass/app/global.scss */
+/* line 167, ../../sass/app/global.scss */
 .table tr th .asc:after, .table tr th .desc:after {
   color: #0171B8;
   font-family: FontAwesome;
   margin-left: 0.3125rem;
 }
-/* line 173, ../../sass/app/global.scss */
+/* line 172, ../../sass/app/global.scss */
 .table tr th .asc:after {
   content: "\f106";
 }
-/* line 176, ../../sass/app/global.scss */
+/* line 175, ../../sass/app/global.scss */
 .table tr th .desc:after {
   content: "\f107";
 }
-/* line 180, ../../sass/app/global.scss */
+/* line 179, ../../sass/app/global.scss */
 .table tr td {
   vertical-align: top;
 }
-/* line 185, ../../sass/app/global.scss */
+/* line 184, ../../sass/app/global.scss */
 .table .fa {
   font-size: 1rem;
   margin: 0 0.3125rem;
 }
-/* line 188, ../../sass/app/global.scss */
+/* line 187, ../../sass/app/global.scss */
 .table .fa.fa-eye {
   color: #a0d3e8;
 }
-/* line 191, ../../sass/app/global.scss */
+/* line 190, ../../sass/app/global.scss */
 .table .fa.fa-pencil-square-o {
   color: #008CBA;
 }
-/* line 194, ../../sass/app/global.scss */
+/* line 193, ../../sass/app/global.scss */
 .table .fa.fa-trash-o {
   color: #e7e7e7;
 }
-/* line 198, ../../sass/app/global.scss */
+/* line 197, ../../sass/app/global.scss */
 .table input[type='number'] {
   width: 60px;
 }
 
-/* line 202, ../../sass/app/global.scss */
+/* line 201, ../../sass/app/global.scss */
 .summary {
   font-size: 0.8125rem;
 }
 
-/* line 205, ../../sass/app/global.scss */
+/* line 204, ../../sass/app/global.scss */
 .form-group {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 208, ../../sass/app/global.scss */
+/* line 207, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 211, ../../sass/app/global.scss */
+/* line 210, ../../sass/app/global.scss */
 .form-group .help-block {
   position: absolute;
   -moz-border-radius: 0.3125rem;
@@ -3022,7 +3026,7 @@ body .copyright {
   color: #fff;
   left: 25%;
 }
-/* line 219, ../../sass/app/global.scss */
+/* line 218, ../../sass/app/global.scss */
 .form-group .help-block:before {
   content: "\f0d8";
   color: #444;
@@ -3032,32 +3036,32 @@ body .copyright {
   font-family: FontAwesome;
   font-size: 1.75rem;
 }
-/* line 228, ../../sass/app/global.scss */
+/* line 227, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 233, ../../sass/app/global.scss */
+/* line 232, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 236, ../../sass/app/global.scss */
+/* line 235, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 241, ../../sass/app/global.scss */
+/* line 240, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 243, ../../sass/app/global.scss */
+/* line 242, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 246, ../../sass/app/global.scss */
+/* line 245, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;
