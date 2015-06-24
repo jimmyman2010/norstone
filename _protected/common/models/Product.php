@@ -24,6 +24,7 @@ use Yii;
  * @property string $seo_keyword
  * @property string $seo_description
  * @property integer $published_date
+ * @property integer $updated_date
  * @property integer $created_date
  * @property string $created_by
  * @property integer $activated
@@ -50,7 +51,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'created_date', 'created_by'], 'required'],
-            [['image_id', 'percent', 'viewed', 'published_date', 'created_date', 'activated', 'deleted'], 'integer'],
+            [['image_id', 'percent', 'viewed', 'published_date', 'updated_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['general', 'info_tech', 'status'], 'string'],
             [['price_init', 'price', 'price_sell'], 'number'],
             [['name', 'seo_description'], 'string', 'max' => 256],
@@ -83,6 +84,7 @@ class Product extends \yii\db\ActiveRecord
             'seo_keyword' => Yii::t('app', 'Seo Keyword'),
             'seo_description' => Yii::t('app', 'Seo Description'),
             'published_date' => Yii::t('app', 'Published Date'),
+            'updated_date' => Yii::t('app', 'Updated Date'),
             'created_date' => Yii::t('app', 'Created Date'),
             'created_by' => Yii::t('app', 'Created By'),
             'activated' => Yii::t('app', 'Activated'),

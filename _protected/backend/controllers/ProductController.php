@@ -74,6 +74,19 @@ class ProductController extends BackendController
     {
         $model = new Product();
 
+        $model->name = 'New product';
+        $model->slug = $model->getSlug('new-product');
+        $model->status = Product::STATUS_DRAFT;
+        $model->created_date = time();
+        $model->created_by = Yii::$app->user->identity->username;
+
+        if($model->save()) {
+            return $this->redirect(['update', 'id' => $model->id]);
+        }
+        else {
+            return $this->redirect(['index']);
+        }
+
         if ($model->load(Yii::$app->request->post())) {
             if(intval(Yii::$app->request->post()['type-submit']) === 1) {
                 $model->status = Product::STATUS_INSTOCK;
@@ -105,7 +118,7 @@ class ProductController extends BackendController
             return $this->render('create', [
                 'model' => $model,
                 'pictures' => [],
-                'categories' => [],
+                'categories' => Json::encode([]),
                 'tags' => '',
                 'tagSuggestions' => Html::encode($tagSuggestions),
                 'products' => [],
@@ -336,6 +349,10 @@ class ProductController extends BackendController
 
             $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->limit(self::$limitSuggestion)->all();
 
+            if($model->updated_date === 0) {
+                $model->name = '';
+                $model->slug = '';
+            }
             return $this->render('update', [
                 'model' => $model,
                 'pictures' => $pictures,

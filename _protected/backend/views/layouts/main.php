@@ -100,6 +100,11 @@ AppAsset::register($this);
                                         'template' => '<a href="{url}"><i class="fa fa-tags"></i>{label}</a>'
                                     ],
                                     [
+                                        'label' => Yii::t('app', 'News'),
+                                        'url' => ['news/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-newspaper-o"></i>{label}</a>'
+                                    ],
+                                    [
                                         'label' => Yii::t('app', 'System'),
                                         'url' => ['javascript:;'],
                                         'template' => '{label}',

@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create Page'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a(Yii::t('app', 'Create News'), ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>
@@ -43,20 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $data->statusName;
                         }
                     ],
-                    // buttons
-                    ['class' => 'yii\grid\ActionColumn',
-                        'header' => "Show In Menu",
-                        'template' => '{show-in-menu}',
-                        'buttons' => [
-                            'show-in-menu' => function ($url, $model, $key) {
-                                return Html::a('', $url,
-                                    ['title'=>'Show In Menu',
-                                        'class'=>intval($model->show_in_menu) === 1 ? 'fa fa-check' : 'fa fa-remove',
-                                        'data' => ['method' => 'post']
-                                    ]);
-                            },
-                        ]
-                    ], // ActionColumn
                     // buttons
                     ['class' => 'yii\grid\ActionColumn',
                         'header' => "Menu",

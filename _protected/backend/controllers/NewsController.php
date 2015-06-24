@@ -13,7 +13,7 @@ use yii\web\Response;
 /**
  * PageController implements the CRUD actions for Content model.
  */
-class PageController extends BackendController
+class NewsController extends BackendController
 {
     /**
      * Lists all Content models.
@@ -23,7 +23,7 @@ class PageController extends BackendController
     {
         $searchModel = new ContentSearch();
         $params = Yii::$app->request->queryParams;
-        $params['ContentSearch']['content_type'] = Content::TYPE_PAGE;
+        $params['ContentSearch']['content_type'] = Content::TYPE_NEWS;
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
@@ -53,10 +53,10 @@ class PageController extends BackendController
     {
         $model = new Content();
 
-        $model->name = 'New page';
-        $model->slug = $model->getSlug('new-page');
+        $model->name = 'New a news';
+        $model->slug = $model->getSlug('new-a-news');
         $model->status = Content::STATUS_DRAFT;
-        $model->content_type = Content::TYPE_PAGE;
+        $model->content_type = Content::TYPE_NEWS;
         $model->created_date = time();
         $model->created_by = Yii::$app->user->identity->username;
 

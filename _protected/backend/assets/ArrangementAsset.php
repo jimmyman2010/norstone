@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Jimmy
- * Date: 3/24/2015
- * Time: 6:02 PM
+ * User: ManTran
+ * Date: 6/24/2015
+ * Time: 3:16 PM
  */
 
 namespace backend\assets;
@@ -15,10 +15,10 @@ use Yii;
 Yii::setAlias('@themes', Yii::$app->view->theme->baseUrl);
 
 /**
- * Class ProductAsset
+ * Class ArrangementAsset
  * @package backend\assets
  */
-class ProductAsset extends AssetBundle
+class ArrangementAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@themes';
@@ -27,15 +27,8 @@ class ProductAsset extends AssetBundle
 
     ];
     public $js = [
-        'plupload/plupload.full.min.js',
-        'textext/js/textext.core.js',
-        'textext/js/textext.plugin.autocomplete.js',
-        'textext/js/textext.plugin.tags.js',
         'js/vendor/jquery.sortable.min.js',
-        'js/vendor/jquery.cookie.js',
-        'js/vendor/jquery-ui.custom.min.js',
-        'js/vendor/jquery.dynatree.min.js',
-        'js/global.min.js'
+        'js/arrangement.min.js'
     ];
 
     public $depends = [
