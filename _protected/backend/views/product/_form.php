@@ -258,7 +258,7 @@ $this->registerJs("
                                 <?php foreach ($products as $index => $item) {
                                     $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
                                     ?>
-                                    <li data-id="<?= $item->id ?>">
+                                    <li data-id="<?= $item->id ?>" title="<?= $item->name ?>">
                                         <img src="<?= $img ?>" alt="" />
                                         <a href="javascript:;"><?= $item->name ?></a>
                                     </li>
@@ -283,7 +283,7 @@ $this->registerJs("
                                 <?php foreach ($productSuggestion as $index => $item) {
                                     $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
                                     ?>
-                                    <li data-id="<?= $item->id ?>">
+                                    <li data-id="<?= $item->id ?>" title="<?= $item->name ?>">
                                         <img src="<?= $img ?>" alt="" />
                                         <a href="javascript:;"><?= $item->name ?></a>
                                     </li>

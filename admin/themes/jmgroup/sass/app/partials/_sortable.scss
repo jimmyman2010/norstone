@@ -4,6 +4,14 @@
         max-height: rem-calc(391);
         overflow-x: hidden;
         overflow-y: scroll;
+        li{
+            cursor: move;
+            &.sortable-placeholder {
+                border: 1px dashed #CCC;
+                background: none;
+                height: 147px;
+            }
+        }
         img{
             max-width: 100%;
         }
@@ -11,6 +19,8 @@
             display: block;
             margin: 5px 0 0;
             font-size: 12px;
+            height: 40px;
+            overflow: hidden;
         }
     }
 }
@@ -25,6 +35,14 @@
         max-height: rem-calc(300);
         overflow-x: hidden;
         overflow-y: scroll;
+        li{
+            cursor: move;
+            &.sortable-placeholder {
+                border: 1px dashed #CCC;
+                background: none;
+                height: 37px;
+            }
+        }
         img{
             display: none;
         }
@@ -62,11 +80,5 @@ li {
     }
     &.disabled {
         opacity: 0.5;
-    }
-    &.sortable-placeholder, &.ui-sortable-placeholder {
-        border: 1px dashed #CCC;
-        background: none;
-        height: 30px;
-        visibility: visible !important;
     }
 }
