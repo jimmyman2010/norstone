@@ -9,6 +9,7 @@ use common\models\Category;
 use yii\helpers\Json;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
+use common\helpers\UtilHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -254,8 +255,13 @@ $this->registerJs("
                         </div>
                         <div class="portlet-body">
                             <ul class="connected list sortable grid">
-                                <?php foreach ($products as $index => $item) { ?>
-                                    <li data-id="<?= $item->id ?>"><a href="javascript:;"><?= $item->name ?></a></li>
+                                <?php foreach ($products as $index => $item) {
+                                    $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
+                                    ?>
+                                    <li data-id="<?= $item->id ?>">
+                                        <img src="<?= $img ?>" alt="" />
+                                        <a href="javascript:;"><?= $item->name ?></a>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -274,8 +280,13 @@ $this->registerJs("
                                 <input type="text" placeholder="Enter keyword" />
                             </div>
                             <ul class="connected list no2">
-                                <?php foreach ($productSuggestion as $index => $item) { ?>
-                                    <li data-id="<?= $item->id ?>"><a href="javascript:;"><?= $item->name ?></a></li>
+                                <?php foreach ($productSuggestion as $index => $item) {
+                                    $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
+                                    ?>
+                                    <li data-id="<?= $item->id ?>">
+                                        <img src="<?= $img ?>" alt="" />
+                                        <a href="javascript:;"><?= $item->name ?></a>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>

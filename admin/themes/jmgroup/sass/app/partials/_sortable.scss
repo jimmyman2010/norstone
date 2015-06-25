@@ -4,6 +4,14 @@
         max-height: rem-calc(391);
         overflow-x: hidden;
         overflow-y: scroll;
+        img{
+            max-width: 100%;
+        }
+        a{
+            display: block;
+            margin: 5px 0 0;
+            font-size: 12px;
+        }
     }
 }
 .search {
@@ -17,6 +25,9 @@
         max-height: rem-calc(300);
         overflow-x: hidden;
         overflow-y: scroll;
+        img{
+            display: none;
+        }
     }
 }
 
@@ -39,7 +50,6 @@
   cursor: move;
 }
 .sortable.grid {
-    overflow: hidden;
     li {
         float: left;
         width: 30%;

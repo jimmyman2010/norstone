@@ -2113,22 +2113,36 @@ textarea:focus {
   overflow-x: hidden;
   overflow-y: scroll;
 }
-
+/* line 7, ../../sass/app/partials/_sortable.scss */
+.related .connected img {
+  max-width: 100%;
+}
 /* line 10, ../../sass/app/partials/_sortable.scss */
+.related .connected a {
+  display: block;
+  margin: 5px 0 0;
+  font-size: 12px;
+}
+
+/* line 18, ../../sass/app/partials/_sortable.scss */
 .search .search-box {
   padding: 0.9375rem 0.3125rem 1.25rem;
   border-bottom: 1px solid #3598dc;
   margin-bottom: 1.25rem;
 }
-/* line 15, ../../sass/app/partials/_sortable.scss */
+/* line 23, ../../sass/app/partials/_sortable.scss */
 .search .connected {
   height: 18.75rem;
   max-height: 18.75rem;
   overflow-x: hidden;
   overflow-y: scroll;
 }
+/* line 28, ../../sass/app/partials/_sortable.scss */
+.search .connected img {
+  display: none;
+}
 
-/* line 23, ../../sass/app/partials/_sortable.scss */
+/* line 34, ../../sass/app/partials/_sortable.scss */
 .connected, .sortable, .exclude, .handles {
   margin: auto;
   padding: 0;
@@ -2139,7 +2153,7 @@ textarea:focus {
   -webkit-user-select: none;
   user-select: none;
 }
-/* line 29, ../../sass/app/partials/_sortable.scss */
+/* line 40, ../../sass/app/partials/_sortable.scss */
 .connected li, .sortable li, .exclude li, .handles li {
   list-style: none;
   border: 1px solid #CCC;
@@ -2149,31 +2163,27 @@ textarea:focus {
   padding: 5px;
 }
 
-/* line 38, ../../sass/app/partials/_sortable.scss */
+/* line 49, ../../sass/app/partials/_sortable.scss */
 .handles span {
   cursor: move;
 }
 
-/* line 41, ../../sass/app/partials/_sortable.scss */
-.sortable.grid {
-  overflow: hidden;
-}
-/* line 43, ../../sass/app/partials/_sortable.scss */
+/* line 53, ../../sass/app/partials/_sortable.scss */
 .sortable.grid li {
   float: left;
   width: 30%;
   text-align: center;
 }
 
-/* line 50, ../../sass/app/partials/_sortable.scss */
+/* line 60, ../../sass/app/partials/_sortable.scss */
 li.highlight {
   background: #FEE25F;
 }
-/* line 53, ../../sass/app/partials/_sortable.scss */
+/* line 63, ../../sass/app/partials/_sortable.scss */
 li.disabled {
   opacity: 0.5;
 }
-/* line 56, ../../sass/app/partials/_sortable.scss */
+/* line 66, ../../sass/app/partials/_sortable.scss */
 li.sortable-placeholder, li.ui-sortable-placeholder {
   border: 1px dashed #CCC;
   background: none;
