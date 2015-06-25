@@ -2160,26 +2160,25 @@ textarea:focus {
 }
 /* line 43, ../../sass/app/partials/_sortable.scss */
 .sortable.grid li {
-  line-height: 80px;
   float: left;
-  width: 80px;
-  height: 80px;
+  width: 30%;
   text-align: center;
 }
 
-/* line 52, ../../sass/app/partials/_sortable.scss */
+/* line 50, ../../sass/app/partials/_sortable.scss */
 li.highlight {
   background: #FEE25F;
 }
-/* line 55, ../../sass/app/partials/_sortable.scss */
+/* line 53, ../../sass/app/partials/_sortable.scss */
 li.disabled {
   opacity: 0.5;
 }
-/* line 58, ../../sass/app/partials/_sortable.scss */
-li.sortable-placeholder {
+/* line 56, ../../sass/app/partials/_sortable.scss */
+li.sortable-placeholder, li.ui-sortable-placeholder {
   border: 1px dashed #CCC;
   background: none;
   height: 30px;
+  visibility: visible !important;
 }
 
 /* line 1, ../../sass/app/partials/_duplicated.scss */

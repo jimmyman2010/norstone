@@ -86,45 +86,6 @@ class ProductController extends BackendController
         else {
             return $this->redirect(['index']);
         }
-
-        if ($model->load(Yii::$app->request->post())) {
-            if(intval(Yii::$app->request->post()['type-submit']) === 1) {
-                $model->status = Product::STATUS_INSTOCK;
-                $model->published_date = time();
-            } else {
-                $model->status = Product::STATUS_DRAFT;
-            }
-            $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name));
-            $model->created_date = time();
-            $model->created_by = Yii::$app->user->identity->username;
-
-            if($model->save()) {
-                $this->updateCategory($model->id, isset(Yii::$app->request->post()['Category']) ? Yii::$app->request->post()['Category'] : '');
-                $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
-                $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
-                $this->updateRelated($model->id, isset(Yii::$app->request->post()['Related']) ? Yii::$app->request->post()['Related'] : '');
-                return $this->redirect(['update', 'id' => $model->id]);
-            }
-        } else {
-            $dataProvider = new TagSearch();
-            $tagObjects = $dataProvider->search([])->getModels();
-            $tagSuggestions = '';
-            foreach ($tagObjects as $obj) {
-                $tagSuggestions .= $obj->name . ',';
-            }
-            $tagSuggestions = rtrim($tagSuggestions, ',');
-
-            $productSuggestion = Product::find()->where("deleted = 0")->limit(self::$limitSuggestion)->all();
-            return $this->render('create', [
-                'model' => $model,
-                'pictures' => [],
-                'categories' => Json::encode([]),
-                'tags' => '',
-                'tagSuggestions' => Html::encode($tagSuggestions),
-                'products' => [],
-                'productSuggestion' => $productSuggestion
-            ]);
-        }
     }
 
     /**
@@ -347,7 +308,7 @@ class ProductController extends BackendController
                 array_push($idList, $product->id);
             }
 
-            $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->limit(self::$limitSuggestion)->all();
+            $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->limit(self::$limitSuggestion)->all();
 
             if($model->updated_date === 0) {
                 $model->name = '';

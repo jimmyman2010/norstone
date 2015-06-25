@@ -41,10 +41,8 @@
 .sortable.grid {
     overflow: hidden;
     li {
-        line-height: 80px;
         float: left;
-        width: 80px;
-        height: 80px;
+        width: 30%;
         text-align: center;
     }
 }
@@ -55,9 +53,10 @@ li {
     &.disabled {
         opacity: 0.5;
     }
-    &.sortable-placeholder {
+    &.sortable-placeholder, &.ui-sortable-placeholder {
         border: 1px dashed #CCC;
         background: none;
         height: 30px;
+        visibility: visible !important;
     }
 }

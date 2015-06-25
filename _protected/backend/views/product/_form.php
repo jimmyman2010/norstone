@@ -253,7 +253,7 @@ $this->registerJs("
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <ul class="connected list">
+                            <ul class="connected list sortable grid">
                                 <?php foreach ($products as $index => $item) { ?>
                                     <li data-id="<?= $item->id ?>"><a href="javascript:;"><?= $item->name ?></a></li>
                                 <?php } ?>

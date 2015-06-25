@@ -31,7 +31,7 @@ class ProductAsset extends AssetBundle
         'textext/js/textext.core.js',
         'textext/js/textext.plugin.autocomplete.js',
         'textext/js/textext.plugin.tags.js',
-        'js/vendor/jquery.sortable.min.js',
+        //'js/vendor/jquery.sortable.min.js',
         'js/vendor/jquery.cookie.js',
         'js/vendor/jquery-ui.custom.min.js',
         'js/vendor/jquery.dynatree.min.js',

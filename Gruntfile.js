@@ -55,7 +55,23 @@ module.exports = function(grunt) {
 					'important': false,
 					'font-sizes': false,
 					'duplicate-background-images': false,
-					'text-indent': false
+					'text-indent': false,
+                    'adjoining-classes': false,
+                    'zero-units': false,
+                    'ids': false,
+                    'empty-rules': false,
+                    'unique-headings': false,
+                    'outline-none': false,
+                    'qualified-headings': false,
+                    'known-properties': false,
+                    'overqualified-elements': false,
+                    'box-model': false,
+                    'unqualified-attributes': false,
+                    'regex-selectors': false,
+                    'fallback-colors': false,
+                    'universal-selector': false,
+                    'shorthand': false,
+                    'duplicate-properties': false
 				},
 				src: ['admin/themes/jmgroup/css/app/*.css']
 			}
