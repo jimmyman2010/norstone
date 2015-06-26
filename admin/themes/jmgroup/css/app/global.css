@@ -2998,95 +2998,99 @@ body .copyright {
 .portlet .portlet-title .action a {
   margin: 0 0.625rem 0.625rem 0;
 }
-/* line 156, ../../sass/app/global.scss */
-.portlet .portlet-body.has-padding {
+/* line 157, ../../sass/app/global.scss */
+.portlet .portlet-body .has-padding {
   padding-top: 0.9375rem;
 }
-/* line 159, ../../sass/app/global.scss */
+/* line 160, ../../sass/app/global.scss */
+.portlet .portlet-body .has-padding-full {
+  padding: 0.9375rem;
+}
+/* line 164, ../../sass/app/global.scss */
 .portlet.small {
   border: 1px solid #0171B8;
   padding: 0;
 }
-/* line 162, ../../sass/app/global.scss */
+/* line 167, ../../sass/app/global.scss */
 .portlet.small .portlet-title {
   background: #3598dc;
   min-height: initial;
 }
-/* line 165, ../../sass/app/global.scss */
+/* line 170, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption {
   color: #fff;
   font-size: 0.875rem;
   padding: 0.125rem 0.625rem;
 }
-/* line 169, ../../sass/app/global.scss */
+/* line 174, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption i {
   margin-right: 0.3125rem;
 }
 
-/* line 177, ../../sass/app/global.scss */
+/* line 182, ../../sass/app/global.scss */
 .table {
   width: 100%;
 }
-/* line 180, ../../sass/app/global.scss */
+/* line 185, ../../sass/app/global.scss */
 .table tr th {
   font-weight: 500;
   color: #008CBA;
 }
-/* line 183, ../../sass/app/global.scss */
+/* line 188, ../../sass/app/global.scss */
 .table tr th .asc:after, .table tr th .desc:after {
   color: #0171B8;
   font-family: FontAwesome;
   margin-left: 0.3125rem;
 }
-/* line 188, ../../sass/app/global.scss */
+/* line 193, ../../sass/app/global.scss */
 .table tr th .asc:after {
   content: "\f106";
 }
-/* line 191, ../../sass/app/global.scss */
+/* line 196, ../../sass/app/global.scss */
 .table tr th .desc:after {
   content: "\f107";
 }
-/* line 195, ../../sass/app/global.scss */
+/* line 200, ../../sass/app/global.scss */
 .table tr td {
   vertical-align: top;
 }
-/* line 200, ../../sass/app/global.scss */
+/* line 205, ../../sass/app/global.scss */
 .table .fa {
   font-size: 1rem;
   margin: 0 0.3125rem;
 }
-/* line 203, ../../sass/app/global.scss */
+/* line 208, ../../sass/app/global.scss */
 .table .fa.fa-eye {
   color: #a0d3e8;
 }
-/* line 206, ../../sass/app/global.scss */
+/* line 211, ../../sass/app/global.scss */
 .table .fa.fa-pencil-square-o {
   color: #008CBA;
 }
-/* line 209, ../../sass/app/global.scss */
+/* line 214, ../../sass/app/global.scss */
 .table .fa.fa-trash-o {
   color: #e7e7e7;
 }
-/* line 213, ../../sass/app/global.scss */
+/* line 218, ../../sass/app/global.scss */
 .table input[type='number'] {
   width: 60px;
 }
 
-/* line 217, ../../sass/app/global.scss */
+/* line 222, ../../sass/app/global.scss */
 .summary {
   font-size: 0.8125rem;
 }
 
-/* line 220, ../../sass/app/global.scss */
+/* line 225, ../../sass/app/global.scss */
 .form-group {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 223, ../../sass/app/global.scss */
+/* line 228, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 226, ../../sass/app/global.scss */
+/* line 231, ../../sass/app/global.scss */
 .form-group .help-block {
   position: absolute;
   -moz-border-radius: 0.3125rem;
@@ -3098,7 +3102,7 @@ body .copyright {
   color: #fff;
   left: 25%;
 }
-/* line 234, ../../sass/app/global.scss */
+/* line 239, ../../sass/app/global.scss */
 .form-group .help-block:before {
   content: "\f0d8";
   color: #444;
@@ -3108,32 +3112,32 @@ body .copyright {
   font-family: FontAwesome;
   font-size: 1.75rem;
 }
-/* line 243, ../../sass/app/global.scss */
+/* line 248, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 248, ../../sass/app/global.scss */
+/* line 253, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 251, ../../sass/app/global.scss */
+/* line 256, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 256, ../../sass/app/global.scss */
+/* line 261, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 258, ../../sass/app/global.scss */
+/* line 263, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 261, ../../sass/app/global.scss */
+/* line 266, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;

@@ -54,8 +54,8 @@ class Product extends \yii\db\ActiveRecord
             [['image_id', 'percent', 'viewed', 'published_date', 'updated_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['general', 'info_tech', 'status'], 'string'],
             [['price_init', 'price', 'price_sell'], 'number'],
-            [['name', 'seo_description'], 'string', 'max' => 256],
-            [['slug', 'seo_title', 'seo_keyword'], 'string', 'max' => 128],
+            [['name', 'seo_description', 'seo_keyword'], 'string', 'max' => 256],
+            [['slug', 'seo_title'], 'string', 'max' => 128],
             [['description'], 'string', 'max' => 1024],
             [['created_by'], 'string', 'max' => 32]
         ];

@@ -42,8 +42,8 @@ class Category extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['cat_type', 'sorting', 'show_in_menu', 'activated', 'deleted'], 'integer'],
-            [['name', 'seo_description'], 'string', 'max' => 256],
-            [['slug', 'seo_title', 'seo_keyword'], 'string', 'max' => 128],
+            [['name', 'seo_description', 'seo_keyword'], 'string', 'max' => 256],
+            [['slug', 'seo_title'], 'string', 'max' => 128],
             [['description'], 'string', 'max' => 2048],
         ];
     }

@@ -75,7 +75,7 @@ ArrangementAsset::register($this);
                                 <?php $form = ActiveForm::begin([
                                     'id' => 'arrangement-form'
                                 ]); ?>
-                                <input id="arrangementProduct" type="hidden" name="arrangementProduct" value="" />
+                                <input id="arrangementProduct" type="hidden" name="ArrangementProduct" value="" />
                                 <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
                                 <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
                                 <?php ActiveForm::end(); ?>
@@ -91,16 +91,24 @@ ArrangementAsset::register($this);
                             <i class="fa fa-cogs"></i><?= Yii::t('app', 'Configuration') ?>
                         </div>
                     </div>
-                    <div class="portlet-body">
+                    <div class="portlet-body has-padding-full">
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'config-form'
+                        ]); ?>
+
+                        <?php foreach ($config as $index => $item) { ?>
+                            <div class="form-group">
+                                <label class="control-label" for="config-item-<?= $index+1 ?>"><?= Yii::t('app', $item->key) ?></label>
+                                <?= Html::input('text', 'Config['.$item->key.']', $item->value, ['class' => 'form-control', 'id' => 'config-item-'.($index+1)]) ?>
+                            </div>
+                        <?php } ?>
+
                         <div class="action-buttons">
-                            <?php $form = ActiveForm::begin([
-                                'id' => 'arrangement-form'
-                            ]); ?>
-                            <input id="arrangementProduct" type="hidden" name="arrangementProduct" value="" />
                             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
                             <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
-                            <?php ActiveForm::end(); ?>
                         </div>
+
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             </div>
@@ -108,11 +116,27 @@ ArrangementAsset::register($this);
                 <div class="portlet small">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-cogs"></i><?= Yii::t('app', 'Configuration') ?>
+                            <i class="fa fa-cogs"></i><?= Yii::t('app', 'SEO Global') ?>
                         </div>
                     </div>
-                    <div class="portlet-body">
+                    <div class="portlet-body has-padding-full">
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'seo-form'
+                        ]); ?>
 
+                        <?php foreach ($seo as $index => $item) { ?>
+                            <div class="form-group">
+                                <label class="control-label" for="config-item-<?= $index+1 ?>"><?= Yii::t('app', $item->key) ?></label>
+                                <?= Html::textarea('Seo['.$item->key.']', $item->value, ['class' => 'form-control', 'rows' => $index+3, 'id' => 'config-item-'.($index+1)]) ?>
+                            </div>
+                        <?php } ?>
+
+                        <div class="action-buttons">
+                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
+                            <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             </div>

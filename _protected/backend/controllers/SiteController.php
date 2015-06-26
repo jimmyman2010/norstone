@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use common\models\Arrangement;
+use common\models\Config;
 use common\models\Product;
 use common\models\Setting;
 use common\models\LoginForm;
@@ -69,7 +70,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if(isset(Yii::$app->request->post()['arrangementProduct'])) {
+        if(isset(Yii::$app->request->post()['Config'])) {
+            foreach (Yii::$app->request->post()['Config'] as $key => $value) {
+                $object = Config::findOne(['key' => $key]);
+                $object->value = $value;
+                $object->save(false);
+            }
+            $this->redirect('index');
+        }
+        else if(isset(Yii::$app->request->post()['Seo'])) {
+            foreach (Yii::$app->request->post()['Seo'] as $key => $value) {
+                $object = Config::findOne(['key' => $key]);
+                $object->value = $value;
+                $object->save(false);
+            }
+            $this->redirect('index');
+        }
+        else if(isset(Yii::$app->request->post()['ArrangementProduct'])) {
             $idList = explode(',', Yii::$app->request->post()['arrangementProduct']);
             foreach ($idList as $index => $id) {
                 $arrangementObject = Arrangement::findOne(['content_id' => $id, 'content_type' => Arrangement::TYPE_PRODUCT]);
@@ -103,10 +120,15 @@ class SiteController extends Controller
                 array_push($idList, $product->id);
             }
 
+            $config = Config::find()->where(['group' => Config::GROUP_CONFIG])->orderBy('sorting')->all();
+            $seo = Config::find()->where(['group' => Config::GROUP_SEO])->orderBy('sorting')->all();
+
             $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->all();
             return $this->render('index', [
                 'products' => $productArrangements,
                 'productSuggestion' => $productSuggestion,
+                'config' => $config,
+                'seo' => $seo
             ]);
         }
     }

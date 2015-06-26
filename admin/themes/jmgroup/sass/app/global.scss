@@ -153,8 +153,13 @@ body{
             }
         }
     }
-    .portlet-body.has-padding{
-        padding-top: rem-calc(15);
+    .portlet-body {
+        .has-padding {
+            padding-top: rem-calc(15);
+        }
+        .has-padding-full {
+            padding: rem-calc(15);
+        }
     }
     &.small{
         border: 1px solid #0171B8;
