@@ -250,7 +250,7 @@ $this->registerJs("
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i>Related Products
+                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'Related Products') ?>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -272,7 +272,7 @@ $this->registerJs("
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i>All Products
+                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'All Products') ?>
                             </div>
                         </div>
                         <div class="portlet-body">

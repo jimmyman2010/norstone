@@ -2107,27 +2107,55 @@ textarea:focus {
 }
 
 /* line 2, ../../sass/app/partials/_sortable.scss */
+.site-index .feature-products {
+  padding-bottom: 0.9375rem;
+}
+/* line 172, ../../sass/vendor/foundation/components/_global.scss */
+.site-index .feature-products:before, .site-index .feature-products:after {
+  content: " ";
+  display: table;
+}
+/* line 173, ../../sass/vendor/foundation/components/_global.scss */
+.site-index .feature-products:after {
+  clear: both;
+}
+/* line 5, ../../sass/app/partials/_sortable.scss */
+.site-index .feature-products .action-buttons {
+  margin: 30px 0 0;
+}
+/* line 10, ../../sass/app/partials/_sortable.scss */
+.site-index .related .connected {
+  height: 39.25rem;
+  max-height: 39.25rem;
+}
+/* line 16, ../../sass/app/partials/_sortable.scss */
+.site-index .search .connected {
+  height: 28.4375rem;
+  max-height: 28.4375rem;
+}
+
+/* line 23, ../../sass/app/partials/_sortable.scss */
 .related .connected {
   height: 24.4375rem;
   max-height: 24.4375rem;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-/* line 7, ../../sass/app/partials/_sortable.scss */
+/* line 28, ../../sass/app/partials/_sortable.scss */
 .related .connected li {
   cursor: move;
 }
-/* line 9, ../../sass/app/partials/_sortable.scss */
+/* line 30, ../../sass/app/partials/_sortable.scss */
 .related .connected li.sortable-placeholder {
   border: 1px dashed #CCC;
   background: none;
   height: 147px;
 }
-/* line 15, ../../sass/app/partials/_sortable.scss */
+/* line 36, ../../sass/app/partials/_sortable.scss */
 .related .connected img {
   max-width: 100%;
 }
-/* line 18, ../../sass/app/partials/_sortable.scss */
+/* line 39, ../../sass/app/partials/_sortable.scss */
 .related .connected a {
   display: block;
   margin: 5px 0 0;
@@ -2136,35 +2164,35 @@ textarea:focus {
   overflow: hidden;
 }
 
-/* line 28, ../../sass/app/partials/_sortable.scss */
+/* line 49, ../../sass/app/partials/_sortable.scss */
 .search .search-box {
   padding: 0.9375rem 0.3125rem 1.25rem;
   border-bottom: 1px solid #3598dc;
   margin-bottom: 1.25rem;
 }
-/* line 33, ../../sass/app/partials/_sortable.scss */
+/* line 54, ../../sass/app/partials/_sortable.scss */
 .search .connected {
   height: 18.75rem;
   max-height: 18.75rem;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-/* line 38, ../../sass/app/partials/_sortable.scss */
+/* line 59, ../../sass/app/partials/_sortable.scss */
 .search .connected li {
   cursor: move;
 }
-/* line 40, ../../sass/app/partials/_sortable.scss */
+/* line 61, ../../sass/app/partials/_sortable.scss */
 .search .connected li.sortable-placeholder {
   border: 1px dashed #CCC;
   background: none;
   height: 37px;
 }
-/* line 46, ../../sass/app/partials/_sortable.scss */
+/* line 67, ../../sass/app/partials/_sortable.scss */
 .search .connected img {
   display: none;
 }
 
-/* line 52, ../../sass/app/partials/_sortable.scss */
+/* line 73, ../../sass/app/partials/_sortable.scss */
 .connected, .sortable, .exclude, .handles {
   margin: auto;
   padding: 0;
@@ -2175,7 +2203,7 @@ textarea:focus {
   -webkit-user-select: none;
   user-select: none;
 }
-/* line 58, ../../sass/app/partials/_sortable.scss */
+/* line 79, ../../sass/app/partials/_sortable.scss */
 .connected li, .sortable li, .exclude li, .handles li {
   list-style: none;
   border: 1px solid #CCC;
@@ -2185,23 +2213,23 @@ textarea:focus {
   padding: 5px;
 }
 
-/* line 67, ../../sass/app/partials/_sortable.scss */
+/* line 88, ../../sass/app/partials/_sortable.scss */
 .handles span {
   cursor: move;
 }
 
-/* line 71, ../../sass/app/partials/_sortable.scss */
+/* line 92, ../../sass/app/partials/_sortable.scss */
 .sortable.grid li {
   float: left;
   width: 30%;
   text-align: center;
 }
 
-/* line 78, ../../sass/app/partials/_sortable.scss */
+/* line 99, ../../sass/app/partials/_sortable.scss */
 li.highlight {
   background: #FEE25F;
 }
-/* line 81, ../../sass/app/partials/_sortable.scss */
+/* line 102, ../../sass/app/partials/_sortable.scss */
 li.disabled {
   opacity: 0.5;
 }
@@ -2909,8 +2937,28 @@ body .copyright {
   margin-right: 0.5rem;
   font-size: 1rem;
 }
+/* line 114, ../../sass/app/global.scss */
+.side-nav li ul {
+  margin: 0;
+  list-style: none;
+}
+/* line 117, ../../sass/app/global.scss */
+.side-nav li ul li {
+  margin: 0;
+}
+/* line 119, ../../sass/app/global.scss */
+.side-nav li ul li a {
+  border-left: none !important;
+  margin: 2px 0 0 !important;
+  padding: 3px 0 3px 38px !important;
+}
+/* line 123, ../../sass/app/global.scss */
+.side-nav li ul li a:hover {
+  text-decoration: underline;
+  color: #333 !important;
+}
 
-/* line 116, ../../sass/app/global.scss */
+/* line 132, ../../sass/app/global.scss */
 .portlet {
   padding: 0.75rem 1.25rem 0.9375rem;
   background: #fff;
@@ -2919,7 +2967,7 @@ body .copyright {
   border-radius: 0.3125rem;
   margin-top: 0.9375rem;
 }
-/* line 121, ../../sass/app/global.scss */
+/* line 137, ../../sass/app/global.scss */
 .portlet .portlet-title {
   border-bottom: 1px solid #eee;
   min-height: 2.75rem;
@@ -2933,7 +2981,7 @@ body .copyright {
 .portlet .portlet-title:after {
   clear: both;
 }
-/* line 125, ../../sass/app/global.scss */
+/* line 141, ../../sass/app/global.scss */
 .portlet .portlet-title .caption {
   float: right;
   font-size: 1.125rem;
@@ -2942,103 +2990,103 @@ body .copyright {
   text-transform: uppercase;
   color: #0171B8;
 }
-/* line 133, ../../sass/app/global.scss */
+/* line 149, ../../sass/app/global.scss */
 .portlet .portlet-title .action {
   float: left;
 }
-/* line 135, ../../sass/app/global.scss */
+/* line 151, ../../sass/app/global.scss */
 .portlet .portlet-title .action a {
   margin: 0 0.625rem 0.625rem 0;
 }
-/* line 140, ../../sass/app/global.scss */
+/* line 156, ../../sass/app/global.scss */
 .portlet .portlet-body.has-padding {
   padding-top: 0.9375rem;
 }
-/* line 143, ../../sass/app/global.scss */
+/* line 159, ../../sass/app/global.scss */
 .portlet.small {
   border: 1px solid #0171B8;
   padding: 0;
 }
-/* line 146, ../../sass/app/global.scss */
+/* line 162, ../../sass/app/global.scss */
 .portlet.small .portlet-title {
   background: #3598dc;
   min-height: initial;
 }
-/* line 149, ../../sass/app/global.scss */
+/* line 165, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption {
   color: #fff;
   font-size: 0.875rem;
   padding: 0.125rem 0.625rem;
 }
-/* line 153, ../../sass/app/global.scss */
+/* line 169, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption i {
   margin-right: 0.3125rem;
 }
 
-/* line 161, ../../sass/app/global.scss */
+/* line 177, ../../sass/app/global.scss */
 .table {
   width: 100%;
 }
-/* line 164, ../../sass/app/global.scss */
+/* line 180, ../../sass/app/global.scss */
 .table tr th {
   font-weight: 500;
   color: #008CBA;
 }
-/* line 167, ../../sass/app/global.scss */
+/* line 183, ../../sass/app/global.scss */
 .table tr th .asc:after, .table tr th .desc:after {
   color: #0171B8;
   font-family: FontAwesome;
   margin-left: 0.3125rem;
 }
-/* line 172, ../../sass/app/global.scss */
+/* line 188, ../../sass/app/global.scss */
 .table tr th .asc:after {
   content: "\f106";
 }
-/* line 175, ../../sass/app/global.scss */
+/* line 191, ../../sass/app/global.scss */
 .table tr th .desc:after {
   content: "\f107";
 }
-/* line 179, ../../sass/app/global.scss */
+/* line 195, ../../sass/app/global.scss */
 .table tr td {
   vertical-align: top;
 }
-/* line 184, ../../sass/app/global.scss */
+/* line 200, ../../sass/app/global.scss */
 .table .fa {
   font-size: 1rem;
   margin: 0 0.3125rem;
 }
-/* line 187, ../../sass/app/global.scss */
+/* line 203, ../../sass/app/global.scss */
 .table .fa.fa-eye {
   color: #a0d3e8;
 }
-/* line 190, ../../sass/app/global.scss */
+/* line 206, ../../sass/app/global.scss */
 .table .fa.fa-pencil-square-o {
   color: #008CBA;
 }
-/* line 193, ../../sass/app/global.scss */
+/* line 209, ../../sass/app/global.scss */
 .table .fa.fa-trash-o {
   color: #e7e7e7;
 }
-/* line 197, ../../sass/app/global.scss */
+/* line 213, ../../sass/app/global.scss */
 .table input[type='number'] {
   width: 60px;
 }
 
-/* line 201, ../../sass/app/global.scss */
+/* line 217, ../../sass/app/global.scss */
 .summary {
   font-size: 0.8125rem;
 }
 
-/* line 204, ../../sass/app/global.scss */
+/* line 220, ../../sass/app/global.scss */
 .form-group {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 207, ../../sass/app/global.scss */
+/* line 223, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 210, ../../sass/app/global.scss */
+/* line 226, ../../sass/app/global.scss */
 .form-group .help-block {
   position: absolute;
   -moz-border-radius: 0.3125rem;
@@ -3050,7 +3098,7 @@ body .copyright {
   color: #fff;
   left: 25%;
 }
-/* line 218, ../../sass/app/global.scss */
+/* line 234, ../../sass/app/global.scss */
 .form-group .help-block:before {
   content: "\f0d8";
   color: #444;
@@ -3060,32 +3108,32 @@ body .copyright {
   font-family: FontAwesome;
   font-size: 1.75rem;
 }
-/* line 227, ../../sass/app/global.scss */
+/* line 243, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 232, ../../sass/app/global.scss */
+/* line 248, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 235, ../../sass/app/global.scss */
+/* line 251, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 240, ../../sass/app/global.scss */
+/* line 256, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 242, ../../sass/app/global.scss */
+/* line 258, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 245, ../../sass/app/global.scss */
+/* line 261, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;

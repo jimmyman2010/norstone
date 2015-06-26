@@ -87,22 +87,33 @@ AppAsset::register($this);
                                     [
                                         'label' => Yii::t('app', 'Products'),
                                         'url' => ['product/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-archive"></i>{label}</a>'
+                                        'template' => '<a href="{url}"><i class="fa fa-archive"></i>{label}</a>',
+                                        'items' => [
+                                            [
+                                                'label' => Yii::t('app', 'Category'),
+                                                'url' => ['category/index']
+                                            ],
+                                            [
+                                                'label' => Yii::t('app', 'Add Product'),
+                                                'url' => ['product/create']
+                                            ]
+                                        ]
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Category'),
-                                        'url' => ['category/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-magic"></i>{label}</a>'
+                                        'label' => Yii::t('app', 'News'),
+                                        'url' => ['news/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-newspaper-o"></i>{label}</a>',
+                                        'items' => [
+                                            [
+                                                'label' => Yii::t('app', 'Add News'),
+                                                'url' => ['news/create']
+                                            ]
+                                        ]
                                     ],
                                     [
                                         'label' => Yii::t('app', 'Tags'),
                                         'url' => ['tag/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-tags"></i>{label}</a>'
-                                    ],
-                                    [
-                                        'label' => Yii::t('app', 'News'),
-                                        'url' => ['news/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-newspaper-o"></i>{label}</a>'
                                     ],
                                     [
                                         'label' => Yii::t('app', 'System'),
@@ -117,15 +128,20 @@ AppAsset::register($this);
                                         /*'items' => [
                                             [
                                                 'label' => 'Add user',
-                                                'url' => ['user/create'],
-                                                'template' => '<a href="{url}"><i class="fa fa-user-plus"></i>{label}</a>',
+                                                'url' => ['user/create']
                                             ]
                                         ]*/
                                     ],
                                     [
                                         'label' => Yii::t('app', 'Pages'),
                                         'url' => ['page/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>'
+                                        'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>',
+                                        'items' => [
+                                            [
+                                                'label' => Yii::t('app', 'Add Page'),
+                                                'url' => ['page/create']
+                                            ]
+                                        ]
                                     ],
                                 ],
                             ]);

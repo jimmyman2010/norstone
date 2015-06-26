@@ -1,6 +1,8 @@
 <?php
 namespace backend\controllers;
 
+use common\models\Arrangement;
+use common\models\Product;
 use common\models\Setting;
 use common\models\LoginForm;
 use yii\web\Controller;
@@ -67,7 +69,46 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(isset(Yii::$app->request->post()['arrangementProduct'])) {
+            $idList = explode(',', Yii::$app->request->post()['arrangementProduct']);
+            foreach ($idList as $index => $id) {
+                $arrangementObject = Arrangement::findOne(['content_id' => $id, 'content_type' => Arrangement::TYPE_PRODUCT]);
+                if($arrangementObject) {
+                    $arrangementObject->deleted = 0;
+                    $arrangementObject->sorting = $index + 1;
+                }
+                else {
+                    $arrangementObject = new Arrangement();
+                    $arrangementObject->content_type = Arrangement::TYPE_PRODUCT;
+                    $arrangementObject->content_id = $id;
+                    $arrangementObject->sorting = $index + 1;
+                }
+                $arrangementObject->save(false);
+            }
+            $arrangementObjects = Arrangement::findAll(['content_type'=>Arrangement::TYPE_PRODUCT]);
+            foreach ($arrangementObjects as $object) {
+                if(!in_array($object->content_id, $idList)){
+                    $object->deleted = 1;
+                    $object->save(false);
+                }
+            }
+            $this->redirect('index');
+        }
+        else {
+            $productArrangements = Product::find()->innerJoin('tbl_arrangement', 'tbl_product.id = tbl_arrangement.content_id')
+                ->where(["tbl_product.deleted" => 0, "tbl_arrangement.deleted" => 0, "content_type" => Arrangement::TYPE_PRODUCT])
+                ->orderBy('sorting')->all();
+            $idList = [];
+            foreach ($productArrangements as $index => $product) {
+                array_push($idList, $product->id);
+            }
+
+            $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->all();
+            return $this->render('index', [
+                'products' => $productArrangements,
+                'productSuggestion' => $productSuggestion,
+            ]);
+        }
     }
 
     /**

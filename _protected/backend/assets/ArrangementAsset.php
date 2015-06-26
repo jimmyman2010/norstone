@@ -27,8 +27,7 @@ class ArrangementAsset extends AssetBundle
 
     ];
     public $js = [
-        //'js/vendor/jquery.sortable.min.js',
-        'js/vendor/jquery-ui.custom.min.js',
+        'js/vendor/jquery.sortable.min.js',
         'js/arrangement.min.js'
     ];
 

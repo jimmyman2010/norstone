@@ -11,7 +11,12 @@ module.exports = function(grunt) {
 					jQuery: true
 				}
 			},
-			files: ['admin/themes/jmgroup/js/app/*.js', 'admin/themes/jmgroup/js/page-builder/*.js']
+			files: [
+                'admin/themes/jmgroup/js/app/*.js',
+                'admin/themes/jmgroup/js/page-builder/*.js',
+                'admin/themes/jmgroup/js/arrangement/*.js',
+                'admin/themes/jmgroup/js/general/*.js'
+            ]
 		},
 		uglify: {
 			/*options: {
@@ -21,9 +26,17 @@ module.exports = function(grunt) {
 			},*/
 			script: {
 				files: {
-					'admin/themes/jmgroup/js/global.min.js': ['admin/themes/jmgroup/js/app/*.js'],
-                    'admin/themes/jmgroup/js/page-builder.min.js': ['admin/themes/jmgroup/js/page-builder/*.js'],
-                    'admin/themes/jmgroup/js/arrangement.min.js': ['admin/themes/jmgroup/js/arrangement/*.js']
+					'admin/themes/jmgroup/js/global.min.js': [
+                        'admin/themes/jmgroup/js/app/*.js',
+                        'admin/themes/jmgroup/js/general/*.js'
+                    ],
+                    'admin/themes/jmgroup/js/page-builder.min.js': [
+                        'admin/themes/jmgroup/js/page-builder/*.js'
+                    ],
+                    'admin/themes/jmgroup/js/arrangement.min.js': [
+                        'admin/themes/jmgroup/js/arrangement/*.js',
+                        'admin/themes/jmgroup/js/general/*.js'
+                    ]
 				}
 			}/*,
 			vendor: {

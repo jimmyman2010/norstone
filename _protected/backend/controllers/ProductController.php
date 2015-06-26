@@ -26,8 +26,6 @@ use yii\web\Response;
  */
 class ProductController extends BackendController
 {
-    public static $limitSuggestion = null;
-
     /**
      * @param \yii\base\Action $action
      * @return bool
@@ -308,7 +306,7 @@ class ProductController extends BackendController
                 array_push($idList, $product->id);
             }
 
-            $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->limit(self::$limitSuggestion)->all();
+            $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->all();
 
             if($model->updated_date === 0) {
                 $model->name = '';
