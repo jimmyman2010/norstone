@@ -91,45 +91,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $pageSize = 9;
-
-        $query = Gallery::find();
-        $where = [
-            'tbl_gallery.deleted' => 0,
-            'status' => Gallery::STATUS_PUBLISHED
-        ];
-
-        $request = Yii::$app->request->queryParams;
-        if(isset($request['product'])) {
-            $where['product_id'] = intval($request['product']);
-        }
-        if(isset($request['application'])) {
-            $where['application'] = intval($request['application']);
-        }
-
-        if(isset($request['tag'])) {
-            foreach (explode(',', $request['tag']) as $index => $tag) {
-                $query->innerJoin("tbl_gallery_tag gt$index", "tbl_gallery.id = gt$index.gallery_id AND gt$index.tag_id = $tag AND gt$index.deleted = 0");
-            }
-        }
-
-        $query->where($where);
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ],
-        ]);
-
-        $products = Product::findAll(['deleted' => 0]);
-        $tags = Tag::findAll(['deleted' => 0]);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'products' => $products,
-            'tags' => $tags,
-            'request' => $request
         ]);
     }
 

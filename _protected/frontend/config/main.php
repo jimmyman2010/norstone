@@ -39,8 +39,8 @@ return [
         ],
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@webroot/themes/norstone/views'],
-                'baseUrl' => '@web/themes/norstone',
+                'pathMap' => ['@app/views' => '@webroot/themes/vitinhgiatot/views'],
+                'baseUrl' => '@web/themes/vitinhgiatot',
             ],
         ],
         'user' => [

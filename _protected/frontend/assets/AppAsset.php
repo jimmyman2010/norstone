@@ -28,13 +28,33 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@themes';
     
     public $css = [
-        'stylesheets/themify-icons.min.css',
-        'MyIcons/flaticon.css',
-        'stylesheets/app.min.css'
+        'assets/css/bootstrap.css',
+        'assets/css/assets.css',
+        'assets/css/style.css',
+        'assets/css/responsive.css',
+        'assets/css/font-awesome.css'
     ];
     public $js = [
-        'bower_components/foundation/js/foundation.min.js',
-        'js/app.min.js'
+        'assets/js/option_selection-061817d967a41963a33781f729f22ebf.js',
+        'assets/js/bootstrap.min.js',
+        'assets/js/jquery.mobile.customized.min.js',
+        'assets/js/shop.js',
+        'assets/js/jquery.easing.1.3.js',
+        'assets/js/api.jquery.js',
+        'assets/js/ajaxify-shop.js',
+        'assets/js/hoverIntent.js',
+        'assets/js/superfish.js',
+        'assets/js/supersubs.js',
+        'assets/js/jquery.mobilemenu.js',
+        'assets/js/sftouchscreen.js?',
+        'assets/js/jquery.fancybox-1.3.4.js',
+        'assets/js/jquery.bxslider.min.js',
+        'assets/js/jquery.caroufredsel.min.js',
+        'assets/js/jquery.nivoslider.js',
+        'assets/js/jquery.customSelect.min.js',
+
+        'assets/js/currencies.js',
+        'assets/js/jquery.currencies.min.js'
     ];
     
     public $depends = [
