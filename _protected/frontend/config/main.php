@@ -24,11 +24,10 @@ return [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '.html',
             'rules' => [
-                '<controller:\w+>/<slug>' => '<controller>/view',
-                '<action:\w+>' => 'site/<action>',
-                '/' => 'site/index',
-                'gallery' => 'site/index',
+                'san-pham-xem/<id:\d+>/<slug>' => 'product/view',
+                'defaultRoute' => 'site/index',
             ]
         ],
         'search' => [

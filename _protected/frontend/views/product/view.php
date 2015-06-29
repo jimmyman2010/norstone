@@ -33,8 +33,8 @@ ProductAsset::register($this);
 
     <div itemscope="" itemtype="http://schema.org/Product" class="product-scope">
 
-        <meta itemprop="url" content="http://mantrantd.com">
-        <meta itemprop="image" content="uploads/apple_g5_powermac_2ghz_desktop_computer_1_grande.jpeg?v=1388409089">
+        <meta itemprop="url" content="<?= Url::toRoute(['product/view', 'id' => $model->id, 'slug' => $model->slug]) ?>">
+        <meta itemprop="image" content="<?= UtilHelper::getPicture($model->image_id, '', true) ?>">
 
         <div class="product_wrap">
             <div class="row">
@@ -69,7 +69,6 @@ ProductAsset::register($this);
 
                     <div class="product_details">
                         <div class="product_type">Loại sản phẩm: <a href="/collections/types?q=USB%20Mice" title="USB Mice">Thùng máy</a></div>
-                        <div class="product_vendor">Hãng sản xuất: <a href="/collections/vendors?q=Computers" title="Computers">Asus</a></div>
                     </div>
 
                     <div id="product_description" class="rte" itemprop="description">
@@ -128,7 +127,6 @@ ProductAsset::register($this);
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="widget widget__related-products">

@@ -19,9 +19,10 @@ class ProductController extends FrontendController {
      * Displays a single Product model.
      *
      * @param  integer $id
+     * @param  string $slug
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id, $slug)
     {
         $dataProvider = new FileSearch();
         $pictures = $dataProvider->search(['product_id' => $id])->getModels();
