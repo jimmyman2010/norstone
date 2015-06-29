@@ -18,7 +18,7 @@ class ContentSearch extends Content
     public function rules()
     {
         return [
-            [['id', 'image_id', 'published_date', 'using_page_builder', 'parent_id', 'show_in_menu', 'updated_date', 'created_date', 'deleted'], 'integer'],
+            [['id', 'image_id', 'published_date', 'using_page_builder', 'parent_id', 'show_in_menu', 'updated_date', 'sorting', 'created_date', 'deleted'], 'integer'],
             [['name', 'slug', 'content_type', 'seo_title', 'seo_keyword', 'seo_description', 'status', 'created_by'], 'safe'],
         ];
     }
@@ -65,6 +65,7 @@ class ContentSearch extends Content
             'parent_id' => $this->parent_id,
             'show_in_menu' => $this->show_in_menu,
             'updated_date' => $this->updated_date,
+            'sorting' => $this->sorting,
             'created_date' => $this->created_date,
             'deleted' => $this->deleted,
         ]);

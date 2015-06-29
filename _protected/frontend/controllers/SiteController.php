@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Arrangement;
 use common\models\Color;
 use common\models\Gallery;
 use common\models\Product;
@@ -91,8 +92,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $featured = Product::find()->innerJoin('tbl_arrangement', 'tbl_product.id = tbl_arrangement.content_id')
+            ->where(["tbl_product.deleted" => 0, "tbl_arrangement.deleted" => 0, "content_type" => Arrangement::TYPE_PRODUCT])
+            ->orderBy('sorting')->all();
 
         return $this->render('index', [
+            'featured' => $featured
         ]);
     }
 

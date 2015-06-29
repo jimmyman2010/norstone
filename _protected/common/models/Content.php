@@ -22,6 +22,7 @@ use Yii;
  * @property string $seo_description
  * @property integer $show_in_menu
  * @property integer $updated_date
+ * @property integer $sorting
  * @property integer $created_date
  * @property string $created_by
  * @property integer $deleted
@@ -51,7 +52,7 @@ class Content extends \yii\db\ActiveRecord
         return [
             [['name', 'created_date', 'created_by', 'content_type'], 'required'],
             [['content_type', 'status', 'content'], 'string'],
-            [['image_id', 'published_date', 'show_in_menu', 'parent_id', 'using_page_builder', 'updated_date', 'created_date', 'deleted'], 'integer'],
+            [['image_id', 'published_date', 'show_in_menu', 'parent_id', 'using_page_builder', 'updated_date', 'sorting', 'created_date', 'deleted'], 'integer'],
             [['name', 'seo_description', 'seo_keyword'], 'string', 'max' => 256],
             [['slug', 'seo_title'], 'string', 'max' => 128],
             [['created_by'], 'string', 'max' => 32]
@@ -79,6 +80,7 @@ class Content extends \yii\db\ActiveRecord
             'seo_description' => Yii::t('app', 'SEO Description'),
             'show_in_menu' => Yii::t('app', 'Show In Menu'),
             'updated_date' => Yii::t('app', 'Updated Date'),
+            'sorting' => Yii::t('app', 'Sorting'),
             'created_date' => Yii::t('app', 'Created Date'),
             'created_by' => Yii::t('app', 'Created By'),
             'deleted' => Yii::t('app', 'Deleted'),
