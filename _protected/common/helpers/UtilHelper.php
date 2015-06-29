@@ -212,7 +212,7 @@ class UtilHelper{
     public static function getPicture($data, $identifier = '', $linkOnly = false)
     {
         if($data == null) {
-            $href = Yii::$app->view->theme->baseUrl . '/assets/images/no-images/no-image-' . $identifier . '.jpg';
+            $href = Yii::$app->view->theme->baseUrl . '/images/no-images/no-image-' . $identifier . '.jpg';
             $alt = '';
         }
         else {
@@ -243,5 +243,10 @@ class UtilHelper{
             return $href;
         }
         return Html::img($href, ['alt' => $alt]);
+    }
+
+    public static function formatNumber($price)
+    {
+        return number_format($price, 0, ',', '.');
     }
 }

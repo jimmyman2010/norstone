@@ -2,7 +2,6 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\widgets\Pjax;
 use common\helpers\UtilHelper;
 
 /* @var $this yii\web\View */
@@ -111,7 +110,7 @@ $this->registerJs("
                     </div>
                     <div class="product_links">
                         <button class="btn btn-cart" type="button"><?= $product->price ?> VNĐ</button>
-                        <?= Html::a(Yii::t('app', 'Details'), ['product/view', 'id' => $product->id], ['class'=>'btn']) ?>
+                        <?= Html::a('Chi tiết', ['product/view', 'id' => $product->id], ['class'=>'btn']) ?>
                     </div>
                 </div>
             <?php } ?>
