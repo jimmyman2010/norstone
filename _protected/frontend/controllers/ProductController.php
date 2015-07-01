@@ -34,6 +34,27 @@ class ProductController extends FrontendController {
     }
 
     /**
+     * Displays Products by category.
+     *
+     * @param  integer $id
+     * @param  string $slug
+     * @return mixed
+     */
+    public function actionCategory($id, $slug)
+    {
+        $products = Product::find()
+            ->innerJoin('tbl_product_category', ['tbl_product_category.product_id' => 'tbl_product.id'])
+            ->where([
+                'tbl_product_category.deleted' => 0,
+                'tbl_product.deleted' => 0,
+                'tbl_product_category.category' => $id,
+            ])->all();
+        return $this->render('category', [
+            'products' => $products
+        ]);
+    }
+
+    /**
      * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      *

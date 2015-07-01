@@ -3,6 +3,8 @@ use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\helpers\Url;
+use common\models\Config;
+use common\models\Category;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -20,9 +22,8 @@ AppAsset::register($this);
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <?= Html::csrfMetaTags() ?>
-    <title>DUY TÂN COMPUTER</title>
+    <title><?= $this->title ?></title>
 
-    <link rel="canonical" href="" />
     <link rel="icon" type="image/x-icon" href="<?= Yii::$app->view->theme->baseUrl ?>/assets/images/favicon/favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="<?= Yii::$app->view->theme->baseUrl ?>/assets/images/favicon/favicon.png" />
 
@@ -61,7 +62,7 @@ AppAsset::register($this);
                 <!-- HEADER CART -->
                 <a class="header_cart" href="javascript:;">
                     <div class="header_menu_figure gradient3"></div>
-                    <i class="fa fa-map-marker"></i><span>10/26 Hoàng Hoa Thám, P7, Q.Bình Thạnh, TP.Hồ Chí Minh</span>
+                    <i class="fa fa-map-marker"></i><span><?= Config::findOne(['key' => 'ADDRESS'])->value ?></span>
                 </a>
             </div>
         </div>
@@ -81,7 +82,7 @@ AppAsset::register($this);
             <!-- HEADER CART -->
             <a class="header_cart" href="javascript:;">
                 <div class="header_menu_figure gradient3"></div>
-                <i class="fa fa-map-marker"></i><span>10/26 Hoàng Hoa Thám, P7, Q.Bình Thạnh<span class="city">, TP.Hồ Chí Minh</span></span>
+                <i class="fa fa-map-marker"></i><span><?= Config::findOne(['key' => 'ADDRESS'])->value ?></span>
             </a>
 
         </div>
@@ -89,7 +90,7 @@ AppAsset::register($this);
         <!-- CUSTOM HEADER BLOCK -->
         <div class="custom_header1">
             <i class="fa fa-phone"></i>
-            <h4>0983 176 671</h4>
+            <h4><?= Config::findOne(['key' => 'PHONE'])->value ?></h4>
         </div>
 
         <div class="clearfix"></div>
@@ -133,77 +134,40 @@ AppAsset::register($this);
     <!-- MAIN CONTENT -->
     <div id="main" role="main">
         <div class="container">
-
             <div class="row sidebar_none  sidebar_left">
-
                 <div class="column_center">
                     <?= $content ?>
-
                 </div>
-
                 <div class="column_left column col-sm-3">
-
-                    <!--    --><!--    -->
                     <div class="widget widget__collections">
                         <h3 class="widget_header gradient3">DANH MỤC</h3>
                         <div class="widget_content">
                             <ul>
-
-                                <li class="has-sub-menu accessories">
-                                    <a href="product_list.php" title="Máy bộ HP">Máy bộ HP<i class="fa fa-chevron-circle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="product_list.php" title="Máy bộ HP DC 7900"><i class="fa fa-angle-double-right"></i>Máy bộ HP DC 7900</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ HP DC 7800"><i class="fa fa-angle-double-right"></i>Máy bộ HP DC 7800</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ HP DC 7700"><i class="fa fa-angle-double-right"></i>Máy bộ HP DC 7700</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ HP 6000 Pro"><i class="fa fa-angle-double-right"></i>Máy bộ HP 6000 Pro</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="has-sub-menu cases">
-                                    <a href="product_list.php" title="Máy bộ Dell">Máy bộ Dell<i class="fa fa-chevron-circle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="product_list.php" title="Máy bộ Dell Optiplex 740"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Optiplex 740</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell Optiplex 755"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Optiplex 755</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell Optiplex 760"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Optiplex 760</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell Optiplex 780"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Optiplex 780</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell Optiplex 790"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Optiplex 790</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell Optiplex 796"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Optiplex 796</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell Vostro/Inpiron"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Vostro/Inpiron</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell XPS/Studio"><i class="fa fa-angle-double-right"></i>Máy bộ Dell XPS/Studio</a></li>
-
-                                        <li><a href="product_list.php" title="Máy bộ Dell Optiplex 380"><i class="fa fa-angle-double-right"></i>Máy bộ Dell Optiplex 380</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="cd-dvd-drives">
-                                    <a href="product_list.php" title="Máy bộ Fujitsu, Acer, Nec...">Máy bộ Fujitsu, Acer, Nec...</a>
-                                </li>
-
-                                <li class="clearance">
-                                    <a href="product_list.php" title="Máy tính cũ giá rẻ">Máy tính cũ giá rẻ</a>
-                                </li>
-
-                                <li class="controller-cards">
-                                    <a href="product_list.php" title="Máy bộ game và đồ họa">Máy bộ game và đồ họa</a>
-                                </li>
-
-                                <li class="cpus-processors">
-                                    <a href="product_list.php" title="Màn hình LCD cũ">Màn hình LCD cũ</a>
-                                </li>
-
-                                <li class="drive-enclosures">
-                                    <a href="product_list.php" title="Laptop cũ">Laptop cũ</a>
-                                </li>
+                                <?php foreach(Category::getTree() as $index => $category) { ?>
+                                    <?php if($category['show_in_menu']) { ?>
+                                        <?php if(count($category['children']) > 0) { ?>
+                                            <li class="has-sub-menu">
+                                                <?= Html::a($category['name'] . '<i class="fa fa-chevron-circle-down"></i>',
+                                                    ['product/category', 'id' => $category['id'], 'slug' => $category['slug']]) ?>
+                                                <ul class="sub-menu">
+                                                    <?php foreach ($category['children'] as $child) { ?>
+                                                        <?php if($child['show_in_menu']) { ?>
+                                                            <li>
+                                                                <?= Html::a('<i class="fa fa-angle-double-right"></i>' . $child['name'],
+                                                                    ['product/category', 'id' => $child['id'], 'slug' => $child['slug']]) ?>
+                                                            </li>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </ul>
+                                            </li>
+                                        <?php } else { ?>
+                                            <li class="has-sub-menu">
+                                                <?= Html::a($category['name'],
+                                                    ['product/category', 'id' => $category['id'], 'slug' => $category['slug']]) ?>
+                                            </li>
+                                        <?php } ?>
+                                    <?php } ?>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>    <div class="widget widget__types">
@@ -287,7 +251,7 @@ AppAsset::register($this);
                                 <a class="trs_hover" href="#">
                                     <i class="fa fa-phone"></i>
                                     <h3>Liên lạc đường dây nóng:</h3>
-                                    <h4>0983 176 671</h4>
+                                    <h4><?= Config::findOne(['key' => 'PHONE'])->value ?></h4>
                                 </a>
                             </div>
                         </div>
@@ -315,9 +279,13 @@ AppAsset::register($this);
                 <div class="custom_footer4 col-md-6 col-xs-12">
                     <h3>Địa chỉ</h3>
                     <ul class="clearfix">
-                        <li><i class="fa fa-map-marker"></i>10/26 Hoàng Hoa Thám, P7, Q.Bình Thạnh, TP.Hồ Chí Minh</li>
-                        <li><i class="fa fa-envelope"></i><a href="mailto:duytancomputer350@gmail.com">duytancomputer350@gmail.com</a></li>
-                        <li><i class="fa fa-phone"></i><a href="tel:08 62788887">08 62788887</a> / <a href="tel:0938 176 671">0938 176 671</a></li>
+                        <li><i class="fa fa-map-marker"></i><?= Config::findOne(['key' => 'ADDRESS'])->value ?></li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto:<?= Config::findOne(['key' => 'EMAIL'])->value ?>"><?= Config::findOne(['key' => 'EMAIL'])->value ?></a></li>
+                        <li><i class="fa fa-phone"></i>
+                            <a href="tel:<?= Config::findOne(['key' => 'PHONE_2'])->value ?>"><?= Config::findOne(['key' => 'PHONE_2'])->value ?></a>
+                            /
+                            <a href="tel:<?= Config::findOne(['key' => 'PHONE'])->value ?>"><?= Config::findOne(['key' => 'PHONE'])->value ?></a>
+                        </li>
                     </ul>
                 </div>
             </div>

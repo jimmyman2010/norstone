@@ -11,6 +11,7 @@ use yii\helpers\Url;
 use common\helpers\UtilHelper;
 use frontend\assets\ProductAsset;
 use yii\widgets\Breadcrumbs;
+use common\models\Config;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -18,7 +19,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $tags array */
 /* @var $relatedList array */
 
-$this->title = ucfirst($model->name) . ' | ' . Yii::t('app', Yii::$app->name);
+$this->title = ucfirst($model->name) . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->params['breadcrumbs'][] = $model->name;
 
 ProductAsset::register($this);
@@ -27,8 +28,8 @@ ProductAsset::register($this);
 
 <div id="main_content" class="col-sm-9">
     <ul class="breadcrumb">
-        <li class="firstItem"><a href="index.php" class="homepage-link" title="Back to the frontpage">Home</a></li>
-        <li class="lastItem"><span class="page-title">Contacts</span></li>
+        <li class="firstItem"><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="<?= Yii::t('app', 'Back to the homepage') ?>"><?= Yii::t('app', 'Home') ?></a></li>
+        <li class="lastItem"><span class="page-title"><?= $model->name ?></span></li>
     </ul>
 
     <div itemscope="" itemtype="http://schema.org/Product" class="product-scope">
@@ -77,17 +78,16 @@ ProductAsset::register($this);
                             <?= $model->description ?>
                         </div>
                     </div>
-
-                    <div class="social-details">
-                        <span class='st_facebook_hcount' displayText='Facebook'></span>
-                        <span class='st_twitter_hcount' displayText='Tweet'></span>
-                        <span class='st_pinterest_hcount' displayText='Pinterest'></span>
-                        <span class='st_email_hcount' displayText='Email'></span>
-                        <span class='st_sharethis_hcount' displayText='ShareThis'></span>
-                        <script type="text/javascript">var switchTo5x=true;</script>
-                        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-                        <script type="text/javascript">stLight.options({publisher: "f5aa822b-dd9d-40c5-ab1d-949e4ccb9e9c", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style ">
+                        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                        <a class="addthis_button_tweet"></a>
+                        <a class="addthis_button_pinterest_pinit"></a>
+                        <a class="addthis_counter addthis_pill_style"></a>
                     </div>
+                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50568dd4418a8df1"></script>
+                    <!-- AddThis Button END -->
                 </div>
 
                 <div class="row-fluid">

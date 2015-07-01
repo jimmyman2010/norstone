@@ -3,11 +3,16 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use common\helpers\UtilHelper;
+use common\models\Config;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider; */
 
-$this->title = Yii::t('app', Yii::$app->name);
+
+$this->title = Config::findOne(['key' => 'SEO_TITLE'])->value;
+$this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
+$this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
 
 ?>
 
@@ -15,13 +20,13 @@ $this->title = Yii::t('app', Yii::$app->name);
     <!-- SLIDER -->
     <div class="slider_wrap">
         <div class="nivoSlider">
-            <a href="/collections/all">
+            <a href="javascript:;">
                 <img src="<?= Yii::$app->view->theme->baseUrl ?>/assets/images/slider/slide1_image.jpg" title="#htmlcaption-1" />
             </a>
-            <a href="/collections/fans-cooling">
+            <a href="javascript:;">
                 <img src="<?= Yii::$app->view->theme->baseUrl ?>/assets/images/slider/slide2_image.jpg" title="#htmlcaption-2" />
             </a>
-            <a href="/collections/cd-dvd-drives">
+            <a href="javascript:;">
                 <img src="<?= Yii::$app->view->theme->baseUrl ?>/assets/images/slider/slide3_image.jpg" title="#htmlcaption-3" />
             </a>
         </div>

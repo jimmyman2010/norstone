@@ -25,7 +25,7 @@ class FrontendController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    [
+                    /*[
                         'controllers' => ['article'],
                         'actions' => ['index', 'view', 'create', 'update', 'delete', 'admin'],
                         'allow' => true,
@@ -41,7 +41,7 @@ class FrontendController extends Controller
                         'controllers' => ['article'],
                         'actions' => ['index', 'view'],
                         'allow' => true
-                    ],
+                    ],*/
                     [
                         'allow' => true
                     ],

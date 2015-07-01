@@ -140,12 +140,14 @@ class Category extends \yii\db\ActiveRecord
         foreach($parent as $papa) {
             $tmp['id'] = $papa->id;
             $tmp['name'] = $papa->name;
+            $tmp['slug'] = $papa->slug;
             $tmp['show_in_menu'] = $papa->show_in_menu;
             $tmp['activated'] = $papa->activated;
             $tmp['children'] = [];
             foreach(Category::find()->where(['activated' => 1, 'deleted' => 0, 'parent_id' => $papa->id])->orderBy('sorting')->all() as $child) {
                 $tmpChild['id'] = $child->id;
                 $tmpChild['name'] = $child->name;
+                $tmpChild['slug'] = $child->slug;
                 $tmpChild['show_in_menu'] = $papa->show_in_menu;
                 $tmpChild['activated'] = $papa->activated;
                 $tmp['children'][] = $tmpChild;
