@@ -18,6 +18,13 @@ $this->title = ucfirst($model->name) . ' | ' . Yii::t('app', Yii::$app->name);
 $this->params['breadcrumbs'][] = $model->name;
 
 GalleryAsset::register($this);
+if($model->seo_keyword)
+    $this->registerMetaTag(['name' => 'keywords', 'value' => $model->seo_keyword]);
+if($model->seo_description)
+    $this->registerMetaTag(['name' => 'description', 'value' => $model->seo_description]);
+else
+    $this->registerMetaTag(['name' => 'description', 'value' => 'Norstone. New dimensions in natural stone. Innovative natural stone products hand-crafted and designed to inspire you']);
+
 ?>
 
 <div class="row">

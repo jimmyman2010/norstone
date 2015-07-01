@@ -7,12 +7,13 @@ use yii\captcha\Captcha;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\ContactForm */
 
-$this->title = Yii::t('app', 'Contact us');
+$this->title = Yii::t('app', 'Contact us') . ' - Let\'s get in touch | ' . Yii::t('app', Yii::$app->name);
+$this->registerMetaTag(['name' => 'description', 'value' => 'Norstone. New dimensions in natural stone. Innovative natural stone products hand-crafted and designed to inspire you']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="welcome new text-center">
     <h2><span>Contact us</span> Let's get in touch</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.</p>
+    <p>Let us help kick start your project. Getting in touch is the easy part. Have a question or need more information? We’re here to assist.</p>
 </section><!--end welcome-->
 <div class="site-contact">
 

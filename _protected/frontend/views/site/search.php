@@ -17,10 +17,13 @@ use yii\helpers\Url;
 
 SearchAsset::register($this);
 
+$this->title = Yii::t('app', 'Searching...') . ' | ' . Yii::t('app', Yii::$app->name);
+$this->registerMetaTag(['name' => 'description', 'value' => 'Norstone. New dimensions in natural stone. Innovative natural stone products hand-crafted and designed to inspire you']);
+
 ?>
 <section class="new welcome text-center">
     <h2><span>Search results for</span> "<?= Html::decode($_REQUEST['term']) ?>"</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
+    <p>When images speak louder than words. </p>
 </section><!--end welcome-->
 <section class="gallery-list">
 
