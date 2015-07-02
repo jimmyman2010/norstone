@@ -101,20 +101,20 @@ AppAsset::register($this);
                 <div class="navigation_content gradient1">
                     <nav role="navigation">
                         <ul class="sf-menu visible-lg">
-                            <li class=" first color-1">
-                                <a href="page.php" title="">GIỚI THIỆU</a>
+                            <li class="first">
+                                <?= Html::a('GIỚI THIỆU', ['page/view', 'slug' => 'gioi-thieu']) ?>
                             </li>
-                            <li class=" color-2">
-                                <a href="page.php" title="">BẢNG GIÁ</a>
+                            <li>
+                                <?= Html::a('BẢNG GIÁ', ['page/view', 'slug' => 'bang-gia']) ?>
                             </li>
-                            <li class=" color-2">
-                                <a href="blog.php" title="">BLOG</a>
+                            <li>
+                                <?= Html::a('TIN TỨC', ['news/index']) ?>
                             </li>
-                            <li class=" color-3">
-                                <a href="page.php" title="">HƯỚNG DẪN MUA HÀNG</a>
+                            <li>
+                                <?= Html::a('HƯỚNG DẪN MUA HÀNG', ['page/view', 'slug' => 'huong-dan-mua-hang']) ?>
                             </li>
-                            <li class=" last color-4">
-                                <a href="contact.php" title="">LIÊN HỆ</a>
+                            <li class="last">
+                                <?= Html::a('LIÊN HỆ', ['site/contact']) ?>
                             </li>
                         </ul>
                     </nav>

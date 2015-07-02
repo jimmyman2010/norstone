@@ -12,6 +12,7 @@ use common\helpers\UtilHelper;
 use frontend\assets\ProductAsset;
 use yii\widgets\Breadcrumbs;
 use common\models\Config;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Category */
@@ -36,7 +37,7 @@ ProductAsset::register($this);
 
     <div class="index-scope">
 
-        <h2 class="page_heading">SẢN PHẨM HP</h2>
+        <h2 class="page_heading"><?= $model->name ?></h2>
 
         <?php if($model->description) { ?>
             <div class="rte"><?= $model->description ?></div>
@@ -62,14 +63,13 @@ ProductAsset::register($this);
                 <?php } ?>
             </div>
 
-
-<!--            <ul id="pagination" class="pagination">-->
-<!--                <li><span class="previous"><a href="?page=2" title="">&laquo; Quay lại</a></span></li>-->
-<!--                <li><span class="page current">1</span></li>-->
-<!--                <li><span class="page"><a href="?page=2" title="">2</a></span></li>-->
-<!--                <li><span class="page"><a href="?page=3" title="">3</a></span></li>-->
-<!--                <li><span class="next"><a href="?page=2" title="">Trang kế tiếp &raquo;</a></span></li>-->
-<!--            </ul>-->
+            <nav class="pagination">
+                <?= LinkPager::widget([
+                    'pagination'=>$dataProvider->pagination,
+                    'nextPageLabel' => 'Trang kế tiếp &raquo;',
+                    'prevPageLabel' => '&laquo; Quay lại',
+                ]) ?>
+            </nav>
 
         </div>
     </div>

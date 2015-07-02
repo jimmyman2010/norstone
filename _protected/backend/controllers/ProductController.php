@@ -256,7 +256,7 @@ class ProductController extends BackendController
                 $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->slug), $id);
             }
             else {
-                if(empty($model->slug)) {
+                if(empty($model->slug) || $model->updated_date === 0) {
                     $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name), $id);
                 }
             }

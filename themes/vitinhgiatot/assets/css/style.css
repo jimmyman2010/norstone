@@ -157,7 +157,9 @@ body {font-family: Arial, Helvetica, sans-serif;font-size: 13px;color: #999999;}
 .column_center h5,
 .column_center h6 {font-size: 0.9em;}
 
-.column_center .page_heading {margin: 0 0 15px 0;padding: 14px 15px 17px 15px;border: 1px solid #d3d3d3;font: 600 17px 'Open Sans', sans-serif;color: #3f3e3e;text-transform: none;
+.column_center .page_heading {
+    text-transform: uppercase;
+    margin: 0 0 15px 0;padding: 14px 15px 17px 15px;border: 1px solid #d3d3d3;font: 600 17px 'Open Sans', sans-serif;color: #3f3e3e;
 background: #ffffff; /* Old browsers */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-8 */
 background: -webkit-linear-gradient(top, #ffffff 0%,#ededed 100%); /* Chrome10+,Safari5.1+ */
@@ -509,7 +511,7 @@ position: absolute;left: -15px;top: -1px;z-index: 1;
 
 .sf-menu > li {float: left;}
 .sf-menu > li + li {}
-.sf-menu > li > a {height: 57px;display: block;padding: 0 20px;border: 1px solid #d3d3d3;font: 600 15px/54px 'Open Sans', sans-serif;color: #3f3e3e;}
+.sf-menu > li > a {height: 57px;display: block;padding: 0 18px;border: 1px solid #d3d3d3;font: 600 15px/54px 'Open Sans', sans-serif;color: #3f3e3e;}
 .sf-menu > li + li > a {border-left: none;}
 
 .sf-menu > li.active > a,
@@ -1472,4 +1474,13 @@ only screen and (min-device-pixel-ratio: 1.5){
         background-image: url(../images/fancybox/fancybox_loading@2x.gif);
         background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
     }
+}
+
+.pagination .disabled span{
+    padding: 6px 12px;
+}
+#map-canvas {
+    height: 400px;
+    margin: 0;
+    padding: 0
 }
