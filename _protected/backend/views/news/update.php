@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             <div class="action">
                 <ul class="button-group">
                     <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
-                    <li><?= Html::a(Yii::t('app', 'Create Page'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a(Yii::t('app', 'Create News'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
                 </ul>
             </div>
         </div>

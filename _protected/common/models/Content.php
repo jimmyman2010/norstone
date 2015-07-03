@@ -14,6 +14,7 @@ use Yii;
  * @property string $content_type
  * @property string $status
  * @property integer $using_page_builder
+ * @property string $summary
  * @property string $content
  * @property integer $parent_id
  * @property integer $published_date
@@ -50,9 +51,10 @@ class Content extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'created_date', 'created_by', 'content_type'], 'required'],
+            [['name', 'created_date', 'created_by', 'content_type', 'summary'], 'required'],
             [['content_type', 'status', 'content'], 'string'],
             [['image_id', 'published_date', 'show_in_menu', 'parent_id', 'using_page_builder', 'updated_date', 'sorting', 'created_date', 'deleted'], 'integer'],
+            [['summary'], 'string', 'max' => 2048],
             [['name', 'seo_description', 'seo_keyword'], 'string', 'max' => 256],
             [['slug', 'seo_title'], 'string', 'max' => 128],
             [['created_by'], 'string', 'max' => 32]
@@ -73,6 +75,7 @@ class Content extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'published_date' => Yii::t('app', 'Published Date'),
             'using_page_builder' => Yii::t('app', 'Using page builder'),
+            'summary' => Yii::t('app', 'Summary'),
             'content' => Yii::t('app', 'Content'),
             'parent_id' => Yii::t('app', 'Parent'),
             'seo_title' => Yii::t('app', 'SEO Title'),

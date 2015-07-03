@@ -19,7 +19,7 @@ class ContentSearch extends Content
     {
         return [
             [['id', 'image_id', 'published_date', 'using_page_builder', 'parent_id', 'show_in_menu', 'updated_date', 'sorting', 'created_date', 'deleted'], 'integer'],
-            [['name', 'slug', 'content_type', 'seo_title', 'seo_keyword', 'seo_description', 'status', 'created_by'], 'safe'],
+            [['name', 'slug', 'content_type', 'summary', 'seo_title', 'seo_keyword', 'seo_description', 'status', 'created_by'], 'safe'],
         ];
     }
 
@@ -73,6 +73,7 @@ class ContentSearch extends Content
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'content_type', $this->content_type])
+            ->andFilterWhere(['like', 'summary', $this->summary])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'seo_title', $this->seo_title])
             ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])

@@ -15,3 +15,9 @@ INSERT INTO norstone.tbl_product_category (product_id, category_id, deleted)
 SELECT id, parent, 0
 FROM vitinhgiatot.`tbl_product`
 WHERE lang = 'vn'
+
+/* news */
+INSERT INTO norstone.tbl_content (id, `name`, slug, summary, content, created_date, published_date)
+SELECT id, `name`, `name`, detail_short, detail, date_added, date_added
+FROM vitinhgiatot.`tbl_news`
+WHERE lang = 'vn'

@@ -16,6 +16,16 @@ use yii\web\Response;
 class PageController extends BackendController
 {
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Lists all Content models.
      * @return mixed
      */
@@ -55,6 +65,7 @@ class PageController extends BackendController
 
         $model->name = 'New page';
         $model->slug = $model->getSlug('new-page');
+        $model->slug = 'summary page';
         $model->status = Content::STATUS_DRAFT;
         $model->content_type = Content::TYPE_PAGE;
         $model->created_date = time();

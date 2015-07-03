@@ -16,6 +16,16 @@ use yii\web\Response;
 class NewsController extends BackendController
 {
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Lists all Content models.
      * @return mixed
      */
@@ -55,6 +65,7 @@ class NewsController extends BackendController
 
         $model->name = 'New a news';
         $model->slug = $model->getSlug('new-a-news');
+        $model->summary = 'summary news';
         $model->status = Content::STATUS_DRAFT;
         $model->content_type = Content::TYPE_NEWS;
         $model->created_date = time();
@@ -102,6 +113,7 @@ class NewsController extends BackendController
             if($model->updated_date === 0) {
                 $model->name = '';
                 $model->slug = '';
+                $model->summary = '';
             }
             return $this->render('update', [
                 'model' => $model,
