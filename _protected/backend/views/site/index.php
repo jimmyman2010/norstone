@@ -140,6 +140,37 @@ ArrangementAsset::register($this);
                     </div>
                 </div>
             </div>
+            <div class="medium-6 columns">
+                <div class="portlet small">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs"></i><?= Yii::t('app', 'Social Configuration') ?>
+                        </div>
+                    </div>
+                    <div class="portlet-body has-padding-full">
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'social-form'
+                        ]); ?>
+
+                        <?php foreach ($social as $index => $item) { ?>
+                            <div class="form-group">
+                                <label class="control-label" for="config-item-<?= $index+1 ?>"><?= Yii::t('app', $item->key) ?></label>
+                                <?= Html::input('text', 'Social['.$item->key.']', $item->value, ['class' => 'form-control', 'id' => 'social-item-'.($index+1)]) ?>
+                            </div>
+                        <?php } ?>
+
+                        <div class="action-buttons">
+                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
+                            <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="medium-6 columns">
+
+            </div>
         </div>
     </div>
 </article>

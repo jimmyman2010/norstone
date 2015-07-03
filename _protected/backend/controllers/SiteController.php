@@ -78,7 +78,7 @@ class SiteController extends Controller
             }
             $this->redirect('index');
         }
-        else if(isset(Yii::$app->request->post()['Seo'])) {
+        elseif(isset(Yii::$app->request->post()['Seo'])) {
             foreach (Yii::$app->request->post()['Seo'] as $key => $value) {
                 $object = Config::findOne(['key' => $key]);
                 $object->value = $value;
@@ -86,7 +86,15 @@ class SiteController extends Controller
             }
             $this->redirect('index');
         }
-        else if(isset(Yii::$app->request->post()['ArrangementProduct'])) {
+        elseif(isset(Yii::$app->request->post()['Social'])) {
+            foreach (Yii::$app->request->post()['Social'] as $key => $value) {
+                $object = Config::findOne(['key' => $key]);
+                $object->value = $value;
+                $object->save(false);
+            }
+            $this->redirect('index');
+        }
+        elseif(isset(Yii::$app->request->post()['ArrangementProduct'])) {
             $idList = explode(',', Yii::$app->request->post()['arrangementProduct']);
             foreach ($idList as $index => $id) {
                 $arrangementObject = Arrangement::findOne(['content_id' => $id, 'content_type' => Arrangement::TYPE_PRODUCT]);
@@ -122,13 +130,15 @@ class SiteController extends Controller
 
             $config = Config::find()->where(['group' => Config::GROUP_CONFIG])->orderBy('sorting')->all();
             $seo = Config::find()->where(['group' => Config::GROUP_SEO])->orderBy('sorting')->all();
+            $social = Config::find()->where(['group' => Config::GROUP_SOCIAL])->orderBy('sorting')->all();
 
             $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->all();
             return $this->render('index', [
                 'products' => $productArrangements,
                 'productSuggestion' => $productSuggestion,
                 'config' => $config,
-                'seo' => $seo
+                'seo' => $seo,
+                'social' => $social
             ]);
         }
     }
