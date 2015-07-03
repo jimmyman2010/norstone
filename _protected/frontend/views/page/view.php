@@ -21,6 +21,11 @@ $this->params['breadcrumbs'][] = $model->name;
 
 ProductAsset::register($this);
 
+$this->title = !empty($model->seo_title) ? $model->seo_title : $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
+$this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => !empty($model->seo_keyword) ? $model->seo_keyword : Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
+$this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo_description) ? $model->seo_description : Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
+
 ?>
 
 <div id="main_content" class="col-sm-9">

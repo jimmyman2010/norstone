@@ -20,8 +20,9 @@ use common\models\Tag;
 /* @var $news common\models\Content */
 
 $this->title = 'Tin tức | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
-$this->registerMetaTag(['name' => 'keywords', 'value' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
-$this->registerMetaTag(['name' => 'description', 'value' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
+$this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
+$this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
 
 ProductAsset::register($this);
 

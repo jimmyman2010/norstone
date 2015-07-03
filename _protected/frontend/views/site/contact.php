@@ -8,8 +8,11 @@ use common\models\Config;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\ContactForm */
 
-$this->title = 'Liên hệ | ' . Yii::$app->name;
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Config::findOne(['key' => 'SEO_TITLE'])->value;
+$this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
+$this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
+
 ?>
 
 <div id="main_content" class="col-sm-9">

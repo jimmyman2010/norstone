@@ -13,6 +13,7 @@ use frontend\assets\ProductAsset;
 use yii\widgets\Breadcrumbs;
 use common\models\Config;
 use yii\widgets\LinkPager;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Category */
@@ -23,6 +24,11 @@ $this->title = ucfirst($model->name) . ' | ' . Config::findOne(['key' => 'SEO_TI
 $this->params['breadcrumbs'][] = $model->name;
 
 ProductAsset::register($this);
+
+$this->title = !empty($model->seo_title) ? $model->seo_title : $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
+$this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => !empty($model->seo_keyword) ? $model->seo_keyword : Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
+$this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo_description) ? $model->seo_description : Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
 
 ?>
 
@@ -42,7 +48,7 @@ ProductAsset::register($this);
         <?php if($model->description) { ?>
             <div class="rte"><?= $model->description ?></div>
         <?php } ?>
-
+        <?php Pjax::begin(['id' => 'products']) ?>
         <div class="product-listing product-listing__index">
             <div class="row">
                 <?php foreach ($dataProvider->getModels() as $index => $product) { ?>
@@ -70,7 +76,7 @@ ProductAsset::register($this);
                     'prevPageLabel' => '&laquo; Quay lại',
                 ]) ?>
             </nav>
-
         </div>
+        <?php Pjax::end() ?>
     </div>
 </div>

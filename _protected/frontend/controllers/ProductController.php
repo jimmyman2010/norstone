@@ -29,6 +29,36 @@ class ProductController extends FrontendController {
         $dataProvider = new FileSearch();
         $pictures = $dataProvider->search(['product_id' => $id])->getModels();
 
+        $categories = Category::find()
+            ->innerJoin('tbl_product_category', 'tbl_product_category.category_id = tbl_category.id')
+            ->where(['tbl_category.deleted' => 0, 'tbl_product_category.deleted' => 0, 'tbl_product_category.product_id' => $id])
+            ->all();
+        $category = null;
+        if(count($categories) > 0) {
+            $flag = true;
+            foreach ($categories as $object) {
+                if($object->parent_id > 0) {
+                    $flag = false;
+                    $category = $object;
+                    break;
+                }
+            }
+            if($flag) {
+                $category = $categories[0];
+            }
+        }
+
+        $relatedList = Product::find()
+            ->innerJoin('tbl_product_related', 'tbl_product_related.related_id = tbl_product.id')
+            ->where(['tbl_product.deleted' => 0, 'tbl_product_related.deleted' => 0, 'tbl_product_related.product_id' => $id])
+            ->all();
+        if(count($relatedList) === 0) {
+            $relatedList = Product::find()
+                ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
+                ->where(['tbl_product.deleted' => 0, 'tbl_product_category.deleted' => 0, 'tbl_product_category.category_id' => $category->id])
+                ->andWhere(['!=', 'tbl_product.id', $id])
+                ->all();
+        }
         $tags = Tag::find()
             ->innerJoin('tbl_product_tag', 'tbl_product_tag.tag_id = tbl_tag.id')
             ->where(['tbl_tag.deleted' => 0, 'tbl_product_tag.deleted' => 0, 'tbl_product_tag.product_id' => $id])
@@ -37,7 +67,9 @@ class ProductController extends FrontendController {
         return $this->render('view', [
             'model' => $this->findModel($id),
             'pictures' => $pictures,
-            'tags' => $tags
+            'tags' => $tags,
+            'category' => $category,
+            'relatedList' => $relatedList
         ]);
     }
 
@@ -50,6 +82,7 @@ class ProductController extends FrontendController {
      */
     public function actionCategory($id, $slug)
     {
+        $model = $this->findCategoryModel($id);
         $query = Product::find()
             ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
             ->where([
@@ -66,7 +99,7 @@ class ProductController extends FrontendController {
         ]);
 
         return $this->render('category', [
-            'model' => $this->findCategoryModel($id),
+            'model' => $model,
             'dataProvider' => $dataProvider
         ]);
     }
@@ -92,6 +125,11 @@ class ProductController extends FrontendController {
         }
     }
 
+    /**
+     * @param $id
+     * @return Category
+     * @throws NotFoundHttpException
+     */
     protected function findCategoryModel($id)
     {
         if (($model = Category::findOne($id)) !== null)

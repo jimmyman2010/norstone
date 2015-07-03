@@ -109,14 +109,14 @@ class SiteController extends Controller
     {
         $pageSize = 9;
 
-        $query = Gallery::find();
+        $query = Product::find();
         $query->where([
-            'tbl_gallery.deleted' => 0,
-            'status' => Gallery::STATUS_PUBLISHED
+            'tbl_product.deleted' => 0,
+            'status' => Product::STATUS_INSTOCK
         ]);
 
         if(!empty($term)) {
-            $query->andWhere(["OR", "name LIKE '%$term%'", "intro LIKE '%$term%'", "description LIKE '%$term%'"]);
+            $query->andWhere(["OR", "name LIKE '%$term%'", "description LIKE '%$term%'", "general LIKE '%$term%'", "info_tech LIKE '%$term%'"]);
         }
 
         $dataProvider = new ActiveDataProvider([

@@ -18,17 +18,26 @@ use common\models\Config;
 /* @var $pictures array */
 /* @var $tags array */
 /* @var $relatedList array */
+/* @var $related common\models\Product */
 
 $this->title = ucfirst($model->name) . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->params['breadcrumbs'][] = $model->name;
 
 ProductAsset::register($this);
 
+$this->title = !empty($model->seo_title) ? $model->seo_title : $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
+$this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => !empty($model->seo_keyword) ? $model->seo_keyword : Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
+$this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo_description) ? $model->seo_description : Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
+
 ?>
 
 <div id="main_content" class="col-sm-9">
     <ul class="breadcrumb">
         <li class="firstItem"><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="<?= Yii::t('app', 'Back to the homepage') ?>"><?= Yii::t('app', 'Home') ?></a></li>
+        <?php if(!empty($category)) { ?>
+            <li><a href="<?= Url::toRoute(['product/category', 'id' => $category->id, 'slug' => $category->slug]) ?>" title="<?= $category->name ?>"><?= $category->name ?></a></li>
+        <?php } ?>
         <li class="lastItem"><span class="page-title"><?= $model->name ?></span></li>
     </ul>
 
@@ -173,39 +182,19 @@ ProductAsset::register($this);
         <div class="widget_content">
             <div class="row">
                 <ul class="product-listing product-listing__related">
-                    <li class="product col-sm-4 columns-3 item_alpha firstItem">
-                        <div class="product_img">
-                            <a href="product-detail.php" title="ViewSonic VX1962wm 19-Inch LCD Monitor">
-                                <img src="uploads/viewsonic_vx1962wm_19-inch_lcd_monitor_1_medium.jpeg?v=1388409093" alt="">
-                            </a>
-                        </div>
-                        <div class="product_name">
-                            <a href="product-detail.php" title="ViewSonic VX1962wm 19-Inch LCD Monitor">ViewSonic VX1962wm 19-Inch LCD Monitor</a>
-                        </div>
-                        <div class="product_price"><span class="money">$160.00</span></div>
-                    </li>
-                    <li class="product col-sm-4 columns-3 ">
-                        <div class="product_img">
-                            <a href="product-detail.php" title="Apple iPad 2 (16GB Wi-Fi">
-                                <img src="uploads/apple_ipad_2_16gb_wi-fi_black_1_medium.jpeg?v=1388409097" alt="">
-                            </a>
-                        </div>
-                        <div class="product_name">
-                            <a href="product-detail.php" title="Apple iPad 2 (16GB Wi-Fi">Apple iPad 2 (16GB Wi-Fi</a>
-                        </div>
-                        <div class="product_price"><span class="money">$780.00</span></div>
-                    </li>
-                    <li class="product col-sm-4 columns-3 item_omega lastItem">
-                        <div class="product_img">
-                            <a href="product-detail.php" title="NAS Qnap TS-219P">
-                                <img src="uploads/nas_qnap_ts-219p_1_medium.jpeg?v=1388409103" alt="">
-                            </a>
-                        </div>
-                        <div class="product_name">
-                            <a href="product-detail.php" title="NAS Qnap TS-219P">NAS Qnap TS-219P</a>
-                        </div>
-                        <div class="product_price"><span class="money">$1,100.00</span></div>
-                    </li>
+                    <?php foreach ($relatedList as $index => $related) { ?>
+                        <li class="product col-sm-4 columns-3 <?php if($index%3 === 0) echo 'item_alpha'; elseif($index%3 === 2) echo 'item_omega'; ?>">
+                            <div class="product_img">
+                                <a href="<?= Url::toRoute(['product/view', 'id' => $related->id, 'slug' => $related->slug]) ?>" title="<?= $model->name ?>">
+                                    <?= UtilHelper::getPicture($related->image_id, 'thumbnail') ?>
+                                </a>
+                            </div>
+                            <div class="product_name">
+                                <?= Html::a($related->name, ['product/view', 'id' => $related->id, 'slug' => $related->slug]) ?>
+                            </div>
+                            <div class="product_price"><span class="money"><?= $related->price ?> VNĐ</span></div>
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

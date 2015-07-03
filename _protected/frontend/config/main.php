@@ -33,6 +33,7 @@ return [
                 'tin-tuc' => 'news/index',
                 'tin-tuc/<slug>' => 'news/view',
                 'tin-tuc/tag/<slug>' => 'news/tag',
+                'tim-kiem' => 'site/search',
                 '<slug>' => 'page/view',
                 'defaultRoute' => 'site/index',
             ]
