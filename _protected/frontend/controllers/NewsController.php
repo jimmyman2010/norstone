@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 use common\models\Content;
+use common\models\Tag;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -42,8 +43,15 @@ class NewsController extends FrontendController {
      */
     public function actionView($slug)
     {
+        $model = $this->findModelBySlug($slug);
+        $tags = Tag::find()
+            ->innerJoin('tbl_content_tag', 'tbl_content_tag.tag_id = tbl_tag.id')
+            ->where(['tbl_tag.deleted' => 0, 'tbl_content_tag.deleted' => 0, 'tbl_content_tag.content_id' => $model->id])
+            ->all();
+
         return $this->render('view', [
-            'model' => $this->findModelBySlug($slug)
+            'model' => $model,
+            'tags' => $tags
         ]);
     }
 

@@ -1476,6 +1476,8 @@ only screen and (min-device-pixel-ratio: 1.5){
     }
 }
 
+.news-image-list{text-align: left}
+.news-image-list img{margin-right: 15px}
 .pagination .disabled span{
     padding: 6px 12px;
 }

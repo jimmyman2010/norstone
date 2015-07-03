@@ -72,7 +72,7 @@ $this->registerJs("
         </ul>
         <div class="tabs-content">
             <section role="tabpanel" aria-hidden="false" class="row content active" id="panel2-1">
-                <div class="large-8 columns">
+                <div class="large-9 columns">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
                         'editorOptions' => [
@@ -120,7 +120,7 @@ $this->registerJs("
                         <pre id="console"></pre>
                     </div>
                 </div>
-                <div class="large-4 columns">
+                <div class="large-3 columns">
                     <script>
                         var treeData = [
                             <?php
@@ -164,12 +164,12 @@ $this->registerJs("
                             ?>
                         ];
                     </script>
-                    <div class="form-group field-gallery-categories">
+                    <div class="form-group">
                         <label><?= Yii::t('app', 'Categories') ?></label>
                         <div id="tree2"></div>
                         <input id="echoSelection2" type="hidden" name="Category" value="<?= implode(',', $categoryList) ?>"/>
                     </div>
-                    <div class="form-group field-gallery-tags">
+                    <div class="form-group">
                         <label>Tags</label>
                         <textarea id="tags" rows="1" name="Tag" data-value='<?= Html::decode($tags) ?>' data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
                     </div>

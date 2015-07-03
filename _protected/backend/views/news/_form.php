@@ -61,7 +61,7 @@ $this->registerJs("
         </ul>
         <div class="tabs-content">
             <section role="tabpanel" aria-hidden="false" class="row content active" id="panel2-1">
-                <div class="large-12 columns">
+                <div class="large-9 columns">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
                     <?= $form->field($model, 'summary')->textarea(['row' => 3]) ?>
                     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
@@ -81,6 +81,40 @@ $this->registerJs("
                             'height' => 600
                         ]),
                     ]) ?>
+                </div>
+                <div class="large-3 columns">
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <textarea id="tags" rows="1" name="Tag" data-value='<?= Html::decode($tags) ?>' data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
+                    </div>
+                    <div>
+                        <hr>
+                        <h6><?= Yii::t('app', 'Pictures') ?></h6>
+                        <div id="filelist" class="view-thumbnail row">
+                            <?php
+                            foreach ($pictures as $index => $item) {
+                                ?>
+                                <div id="<?= $item->id ?>" class="photo-zone columns">
+                                    <table cellpadding="0" cellspacing="0">
+                                        <tr><td class="controls">
+                                                <label><input type="radio" name="Content[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> <?= Yii::t('app', 'Main picture') ?></label>
+                                                <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                            </td></tr>
+                                        <tr><td class="edit"><span class="name">
+                                                <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
+                                            </span></td></tr>
+                                        <tr><td class="caption">
+                                                <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>
+                                                <input type="hidden" name="Picture[<?= $item->id ?>][id]" value="<?= $item->id ?>"/>
+                                            </td></tr>
+                                    </table></div>
+                            <?php } ?>
+                        </div>
+                        <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
+                            <a id="pickfiles" href="javascript:;" class="tiny button radius">Select files</a>
+                        </div>
+                        <pre id="console"></pre>
+                    </div>
                 </div>
             </section>
             <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">

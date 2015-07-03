@@ -48,7 +48,15 @@ class TagSearch extends Tag
                             'tbl_product_tag.deleted' => 0,
                             'tbl_product_tag.product_id' => intval($params['product_id'])
                         ]);
-        } else {
+        }
+        elseif(isset($params['content_id'])) {
+            $query->innerJoin('tbl_content_tag', 'tbl_tag.id = tbl_content_tag.tag_id');
+            $query->where(['tbl_tag.deleted' => 0,
+                'tbl_content_tag.deleted' => 0,
+                'tbl_content_tag.content_id' => intval($params['content_id'])
+            ]);
+        }
+        else {
             $query->where('deleted = 0');
         }
 

@@ -12,6 +12,8 @@ use common\helpers\UtilHelper;
 use frontend\assets\ProductAsset;
 use yii\widgets\LinkPager;
 use common\models\Config;
+use common\models\File;
+use common\models\Tag;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -45,30 +47,49 @@ ProductAsset::register($this);
                             <a href="blog-detail.php#comments">0 comments</a>
                         </div>
                         <div class="product_name">
-                            <?= Html::a($news->name, ['news/view', 'id' => $news->id, 'slug' => $news->slug]) ?>
+                            <?= Html::a($news->name, ['news/view', 'slug' => $news->slug]) ?>
                         </div>
                         <div class="blog-article_date">
                             <span>Đăng ngày: </span>
-                            <time pubdate datetime="2013-12-30">
-                                <span class="day">Dec</span>
-                                <span class="month">30</span>
+                            <time pubdate datetime="<?= date('Y-m-d', $news->published_date) ?>">
+                                <span class="day"><?= date('d/m/Y', $news->published_date) ?></span>
                             </time>
                         </div>
-                        <div class="blog-article_meta-tags">
-                            <span>Tags: </span>
-                            <a href="/blogs/news/tagged/apple">Apple</a>,
-                            <a href="/blogs/news/tagged/computers">Computers</a>
-                        </div>
+                        <?php
+                        $tags = Tag::find()
+                            ->innerJoin('tbl_content_tag', 'tbl_content_tag.tag_id = tbl_tag.id')
+                            ->where(['tbl_tag.deleted' => 0, 'tbl_content_tag.deleted' => 0, 'tbl_content_tag.content_id' => $news->id])
+                            ->all();
+                        if(count($tags) > 0) {
+                        ?>
+                            <div class="blog-article_meta-tags">
+                                <span>Tags: </span>
+                        <?php
+                        }
+                        foreach ($tags as $index => $tag) {
+                            if($index > 0)
+                                echo ', ';
+                            echo Html::a($tag->name, ['news/tag', 'slug' => $tag->slug]);
+                        }
+                        if(count($tags) > 0) { ?>
+                            </div>
+                        <?php } ?>
                     </div>
                     <div class="rte">
-                        <p style="text-align: left;">
-                            <img style="margin-right: 15px;" src="uploads/acer_as5738z-4333_15-6-inch_laptop_1_compact.jpeg?v=1388409135" />
-                            <img style="margin-right: 15px;" src="uploads/apple_macbook_pro_13_2-7ghz_i7_1_compact.jpeg?v=1388409139" />
-                            <img style="margin-right: 15px;" src="uploads/dell_inspiron_1520_3_compact.jpeg?v=1388409117" />
+                        <p class="news-image-list">
+                            <?php
+                            $images = File::find()
+                                ->innerJoin('tbl_content_file', 'tbl_content_file.file_id = tbl_file.id')
+                                ->where(['tbl_file.deleted' => 0, 'tbl_content_file.deleted' => 0, 'tbl_content_file.content_id' => $news->id])
+                                ->all();
+                            foreach ($images as $img) {
+                                echo UtilHelper::getPicture($img, 'thumbnail-slide');
+                            }
+                            ?>
                         </p>
                         <?= $news->summary ?>
                     </div>
-                    <?= Html::a('Xem thêm', ['news/view', 'id' => $news->id, 'slug' => $news->slug], ['class' => 'blog-article_read-more btn btn-info']) ?>
+                    <?= Html::a('Xem thêm', ['news/view', 'slug' => $news->slug], ['class' => 'blog-article_read-more btn btn-info']) ?>
                 </div>
             <?php } ?>
 

@@ -100,7 +100,20 @@ ProductAsset::register($this);
                     </div>
                 </div>
             </div>
-
+            <?php if(count($tags) > 0) { ?>
+            <div class="blog-article_meta-tags">
+                <span>Tags: </span>
+                <?php
+                }
+                foreach ($tags as $index => $tag) {
+                    if($index > 0)
+                        echo ', ';
+                    echo Html::a($tag->name, ['news/tag', 'slug' => $tag->slug]);
+                }
+                ?>
+                <?php if(count($tags) > 0) { ?>
+            </div>
+            <?php } ?>
         </div>
 
     </div>

@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use common\helpers\UtilHelper;
 use common\models\Config;
+use common\helpers\SlugHelper;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider; */

@@ -11,6 +11,7 @@ namespace frontend\controllers;
 use common\models\Category;
 use common\models\FileSearch;
 use common\models\Product;
+use common\models\Tag;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -28,9 +29,15 @@ class ProductController extends FrontendController {
         $dataProvider = new FileSearch();
         $pictures = $dataProvider->search(['product_id' => $id])->getModels();
 
+        $tags = Tag::find()
+            ->innerJoin('tbl_product_tag', 'tbl_product_tag.tag_id = tbl_tag.id')
+            ->where(['tbl_tag.deleted' => 0, 'tbl_product_tag.deleted' => 0, 'tbl_product_tag.product_id' => $id])
+            ->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'pictures' => $pictures
+            'pictures' => $pictures,
+            'tags' => $tags
         ]);
     }
 

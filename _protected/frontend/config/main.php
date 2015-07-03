@@ -28,8 +28,11 @@ return [
             'rules' => [
                 'san-pham-xem/<id:\d+>/<slug>' => 'product/view',
                 'san-pham/<id:\d+>/<slug>' => 'product/category',
+                'san-pham/tag/<slug>' => 'product/tag',
                 'lien-he' => 'site/contact',
                 'tin-tuc' => 'news/index',
+                'tin-tuc/<slug>' => 'news/view',
+                'tin-tuc/tag/<slug>' => 'news/tag',
                 '<slug>' => 'page/view',
                 'defaultRoute' => 'site/index',
             ]

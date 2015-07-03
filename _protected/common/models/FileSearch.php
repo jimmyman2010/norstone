@@ -48,7 +48,15 @@ class FileSearch extends File
                             'tbl_product_file.deleted' => 0,
                             'tbl_product_file.product_id' => intval($params['product_id'])
                         ]);
-        } else {
+        }
+        elseif(isset($params['content_id'])) {
+            $query->innerJoin('tbl_content_file', 'tbl_file.id = tbl_content_file.file_id');
+            $query->where(['tbl_file.deleted' => 0,
+                'tbl_content_file.deleted' => 0,
+                'tbl_content_file.content_id' => intval($params['content_id'])
+            ]);
+        }
+        else {
             $query->where('deleted = 0');
         }
 

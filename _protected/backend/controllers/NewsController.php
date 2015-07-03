@@ -4,9 +4,16 @@ namespace backend\controllers;
 
 use common\helpers\SlugHelper;
 use common\models\ContentElement;
+use common\models\ContentFile;
+use common\models\ContentTag;
+use common\models\File;
+use common\models\FileSearch;
+use common\models\Tag;
+use common\models\TagSearch;
 use Yii;
 use common\models\Content;
 use common\models\ContentSearch;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -80,6 +87,88 @@ class NewsController extends BackendController
     }
 
     /**
+     * @param int $newsId
+     * @param array $pictureData
+     * @return void
+     */
+    protected function updatePicture($newsId, $pictureData)
+    {
+        $fileList = [];
+        if(is_array($pictureData)) {
+            foreach ($pictureData as $index => $value) {
+                if (($modelFile = File::findOne(intval($value['id']))) !== null) {
+                    if (!empty($value['caption'])) {
+                        $modelFile->caption = $value['caption'];
+                    }
+                    $modelFile->deleted = 0;
+                    $modelFile->save(false);
+                    array_push($fileList, $modelFile->id);
+
+                    if (($modelContentFile = ContentFile::findOne(['content_id' => $newsId, 'file_id' => intval($value['id'])])) !== null) {
+                        $modelContentFile->deleted = 0;
+                    } else {
+                        $modelContentFile = new ContentFile();
+                        $modelContentFile->content_id = $newsId;
+                        $modelContentFile->file_id = $modelFile->id;
+                    }
+                    $modelContentFile->save(false);
+                }
+            }
+        }
+
+        $contentFileObjects = ContentFile::findAll(['content_id'=>$newsId]);
+        foreach ($contentFileObjects as $object) {
+            if(!in_array($object->file_id, $fileList)){
+                $object->delete();
+            }
+        }
+    }
+
+    /**
+     * @param int $newsId
+     * @param string $tagString
+     * @return void
+     */
+    protected function updateTags($newsId, $tagString)
+    {
+        $tagList = [];
+        if(!empty($tagString))
+        {
+            foreach (Json::decode($tagString) as $tagName) {
+                $tagObject = Tag::findOne(['name' => $tagName]);
+                if($tagObject !== null) {
+                    $tagObject->deleted = 0;
+                } else {
+                    $tagObject = new Tag();
+                    $tagObject->name = $tagName;
+                    $tagObject->slug = $tagObject->getSlug(SlugHelper::makeSlugs($tagName));
+                }
+                $tagObject->save(false);
+                array_push($tagList, $tagObject->id);
+
+                $contentTagObject = ContentTag::findOne(['content_id'=>$newsId, 'tag_id'=>$tagObject->id]);
+                if($contentTagObject !== null) {
+                    $contentTagObject->deleted = 0;
+                } else {
+                    $contentTagObject = new ContentTag();
+                    $contentTagObject->content_id = $newsId;
+                    $contentTagObject->tag_id = $tagObject->id;
+                }
+                $contentTagObject->save(false);
+            }
+
+        }
+
+        $contentTagObjects = ContentTag::findAll(['content_id'=>$newsId]);
+        foreach ($contentTagObjects as $object) {
+            if(!in_array($object->tag_id, $tagList)){
+                $object->deleted = 1;
+                $object->save(false);
+            }
+        }
+    }
+
+    /**
      * Updates an existing Content model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -107,9 +196,29 @@ class NewsController extends BackendController
 
             $model->updated_date = time();
             if($model->save()) {
+                $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
+                $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
+            $dataProvider = new FileSearch();
+            $pictures = $dataProvider->search(['content_id' => $id])->getModels();
+
+            $dataProvider = new TagSearch();
+            $tags= $dataProvider->search(['content_id' => $id])->getModels();
+            $tagList = [];
+            foreach ($tags as $tag) {
+                array_push($tagList, $tag->name);
+            }
+
+            $dataProvider = new TagSearch();
+            $tagObjects = $dataProvider->search([])->getModels();
+            $tagSuggestions = '';
+            foreach ($tagObjects as $obj) {
+                $tagSuggestions .= $obj->name . ',';
+            }
+            $tagSuggestions = rtrim($tagSuggestions, ',');
+
             if($model->updated_date === 0) {
                 $model->name = '';
                 $model->slug = '';
@@ -117,7 +226,9 @@ class NewsController extends BackendController
             }
             return $this->render('update', [
                 'model' => $model,
-                'contentElement' => new ContentElement()
+                'pictures' => $pictures,
+                'tags' => Json::encode($tagList),
+                'tagSuggestions' => $tagSuggestions,
             ]);
         }
     }
