@@ -21,6 +21,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use Yii;
+use yii\web\Response;
 
 /**
  * Site controller.
@@ -435,5 +436,46 @@ class SiteController extends Controller
         }
 
         return $this->redirect('login');
+    }
+
+    /**
+     * @param $nickname
+     * @return string
+     */
+    public function actionYahooStatus($nickname)
+    {
+        $nickname = trim($nickname);
+        $status = file_get_contents('http://mail.opi.yahoo.com/online?u=' . $nickname . '&m=a&t=1');
+        if(intval($status) === 1) {
+            $filename = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'online';
+        }
+        else {
+            $filename = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'offline';
+        }
+        return $this->setHttpHeaders('png', $filename, 'image/png');
+    }
+
+    /**
+     * Sets the HTTP headers needed by file download action.
+     * @param $type
+     * @param $name
+     * @param $mime
+     * @param $encoding
+     */
+    protected function setHttpHeaders($type, $name, $mime, $encoding = 'utf-8')
+    {
+        Yii::$app->response->format = Response::FORMAT_RAW;
+        if (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE") == false) {
+            header("Cache-Control: no-cache");
+            header("Pragma: no-cache");
+        } else {
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Pragma: public");
+        }
+        header("Expires: Sat, 26 Jul 1979 05:00:00 GMT");
+        header("Content-Encoding: {$encoding}");
+        header("Content-Type: {$mime}; charset={$encoding}");
+        header("Content-Disposition: attachment; filename={$name}.{$type}");
+        header("Cache-Control: max-age=0");
     }
 }

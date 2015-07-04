@@ -16,6 +16,7 @@ class Config extends \yii\db\ActiveRecord
     const GROUP_CONFIG = 'CONFIG';
     const GROUP_SEO = 'SEO';
     const GROUP_SOCIAL = 'SOCIAL';
+    const GROUP_SUPPORT = 'SUPPORT';
 
     /**
      * @inheritdoc

@@ -94,6 +94,14 @@ class SiteController extends Controller
             }
             $this->redirect('index');
         }
+        elseif(isset(Yii::$app->request->post()['Support'])) {
+            foreach (Yii::$app->request->post()['Support'] as $key => $value) {
+                $object = Config::findOne(['key' => $key]);
+                $object->value = $value;
+                $object->save(false);
+            }
+            $this->redirect('index');
+        }
         elseif(isset(Yii::$app->request->post()['ArrangementProduct'])) {
             $idList = explode(',', Yii::$app->request->post()['arrangementProduct']);
             foreach ($idList as $index => $id) {
@@ -131,6 +139,7 @@ class SiteController extends Controller
             $config = Config::find()->where(['group' => Config::GROUP_CONFIG])->orderBy('sorting')->all();
             $seo = Config::find()->where(['group' => Config::GROUP_SEO])->orderBy('sorting')->all();
             $social = Config::find()->where(['group' => Config::GROUP_SOCIAL])->orderBy('sorting')->all();
+            $support = Config::find()->where(['group' => Config::GROUP_SUPPORT])->orderBy('sorting')->all();
 
             $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->all();
             return $this->render('index', [
@@ -138,7 +147,8 @@ class SiteController extends Controller
                 'productSuggestion' => $productSuggestion,
                 'config' => $config,
                 'seo' => $seo,
-                'social' => $social
+                'social' => $social,
+                'support' => $support
             ]);
         }
     }

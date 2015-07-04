@@ -19,28 +19,35 @@ AppAsset::register($this);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta property="fb:admins" content="<?= Config::findOne(['key' => 'FACEBOOK_ADMINS'])->value ?>" />
+    <meta property="fb:app_id" content="<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>" />
     <?= Html::csrfMetaTags() ?>
+    <base href="<?= Url::base(true) ?>">
     <title><?= $this->title ?></title>
-
     <link rel="icon" type="image/x-icon" href="<?= Yii::$app->view->theme->baseUrl ?>/assets/images/favicon/favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="<?= Yii::$app->view->theme->baseUrl ?>/assets/images/favicon/favicon.png" />
-
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800italic' rel='stylesheet' type='text/css'>
-
+    <link rel="publisher" href="https://plus.google.com/<?= Config::findOne(['key' => 'GOOGLE_PUBLISHER'])->value ?>" />
+    <link rel="canonical" href="<?= Url::canonical() ?>" />
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <link href="<?= Yii::$app->view->theme->baseUrl ?>/assets/css/ie8.css" rel="stylesheet" type="text/css"  media="all"  />
     <![endif]-->
-
     <!--[if gte IE 9]>
     <style type="text/css">.gradient {filter: none;}.header_cart {padding: 0 10px;}.header_cart .header_menu_figure {display: none;}</style>
     <![endif]-->
-
     <?php $this->head() ?>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3&appId=<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 <?php $this->beginBody() ?>
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -174,14 +181,12 @@ AppAsset::register($this);
                         <h3 class="widget_header gradient2">HỖ TRỢ</h3>
                         <div class="widget_content">
                             <ul class="list">
-                                <li>
-                                    <img src="http://vitinhgiatot.com/lib/is_online.php?id=duytan_computer350"/>
-                                    <a href="ymsgr:sendim?duytan_computer350">Kinh doanh 1</a>
-                                </li>
-                                <li>
-                                    <img src="http://vitinhgiatot.com/lib/is_online.php?id=vitinh_giatot"/>
-                                    <a href="ymsgr:sendim?vitinh_giatot">Kinh doanh 2</a>
-                                </li>
+                                <?php foreach(explode(',', Config::findOne(['key' => 'SUPPORT_YAHOO'])->value) as $index => $nickname) { ?>
+                                    <li>
+                                        <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => $nickname]) ?>"/>
+                                        <a href="ymsgr:sendim?<?= $nickname ?>">Kinh doanh <?= $index+1 ?></a>
+                                    </li>
+                                <?php } ?>
                                 <li>
                                     <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
                                     <div id="SkypeButton_Call_tranduyminhman_1">
@@ -224,18 +229,10 @@ AppAsset::register($this);
                     <div class="widget widget_custom">
                         <div class="widget_content">
                             <div class="custom_sidebar custom_sidebar3">
-                                <div id="fb-root"></div>
-                                <script>(function(d, s, id) {
-                                        var js, fjs = d.getElementsByTagName(s)[0];
-                                        if (d.getElementById(id)) return;
-                                        js = d.createElement(s); js.id = id;
-                                        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
-                                        fjs.parentNode.insertBefore(js, fjs);
-                                    }(document, 'script', 'facebook-jssdk'));</script>
-                                <div class="fb-page" data-href="https://www.facebook.com/maytinhdebandongbo" data-width="100%" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
+                                <div class="fb-page" data-href="<?= Config::findOne(['key' => 'FACEBOOK_FANPAGE'])->value ?>" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
                                     <div class="fb-xfbml-parse-ignore">
-                                        <blockquote cite="https://www.facebook.com/maytinhdebandongbo">
-                                            <a href="https://www.facebook.com/maytinhdebandongbo">Máy tính để bàn đồng bộ</a>
+                                        <blockquote cite="<?= Config::findOne(['key' => 'FACEBOOK_FANPAGE'])->value ?>">
+                                            <a href="<?= Config::findOne(['key' => 'FACEBOOK_FANPAGE'])->value ?>">Máy tính để bàn đồng bộ</a>
                                         </blockquote>
                                     </div>
                                 </div>
@@ -308,7 +305,7 @@ AppAsset::register($this);
 <script type="text/javascript">
 
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-49182948-1']);
+    _gaq.push(['_setAccount', '<?= Config::findOne(['key' => 'GOOGLE_ANALYTIC'])->value ?>']);
     _gaq.push(['_trackPageview']);
 
     (function() {

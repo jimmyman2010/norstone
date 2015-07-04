@@ -41,18 +41,18 @@ class AppAsset extends AssetBundle
         'assets/js/shop.js',
         'assets/js/jquery.easing.1.3.js',
         'assets/js/api.jquery.js',
-        'assets/js/ajaxify-shop.js',
+        //'assets/js/ajaxify-shop.js',
         'assets/js/hoverIntent.js',
         'assets/js/superfish.js',
         'assets/js/supersubs.js',
         'assets/js/jquery.mobilemenu.js',
         'assets/js/sftouchscreen.js',
-        'assets/js/jquery.caroufredsel.min.js',
+        //'assets/js/jquery.caroufredsel.min.js',
         'assets/js/jquery.nivoslider.js',
         'assets/js/jquery.customSelect.min.js',
 
-        'assets/js/currencies.js',
-        'assets/js/jquery.currencies.min.js'
+        //'assets/js/currencies.js',
+        //'assets/js/jquery.currencies.min.js'
     ];
     
     public $depends = [

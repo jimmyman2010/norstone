@@ -30,16 +30,9 @@ ProductAsset::register($this);
 
 <div id="main_content" class="col-sm-9">
     <div id="blog" class="blog-scope">
-
         <div class="page_header">
-            <div class="pull-right feed-link">
-                <a href="/blogs/news.atom" target="_blank"></a>
-            </div>
-
             <h1 class="page_heading">Tin tức</h1>
-
         </div>
-
         <div class="page_content">
             <?php foreach ($dataProvider->getModels() as $index => $news) { ?>
                 <div class="blog-article">
@@ -78,6 +71,7 @@ ProductAsset::register($this);
                     </div>
                     <div class="rte">
                         <p class="news-image-list">
+                            <a href="<?= Url::toRoute(['news/view', 'slug' => $news->slug]) ?>">
                             <?php
                             $images = File::find()
                                 ->innerJoin('tbl_content_file', 'tbl_content_file.file_id = tbl_file.id')
@@ -87,6 +81,7 @@ ProductAsset::register($this);
                                 echo UtilHelper::getPicture($img, 'thumbnail-slide');
                             }
                             ?>
+                            </a>
                         </p>
                         <?= $news->summary ?>
                     </div>

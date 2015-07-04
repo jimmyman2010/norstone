@@ -20,9 +20,6 @@ use yii\widgets\Pjax;
 /* @var $product common\models\Product */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = ucfirst($model->name) . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
-$this->params['breadcrumbs'][] = $model->name;
-
 ProductAsset::register($this);
 
 $this->title = !empty($model->seo_title) ? $model->seo_title : $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
