@@ -5,6 +5,7 @@ namespace common\helpers;
 use backend\models\FileForm;
 use common\models\File;
 use Imagine\Image\Box;
+use Imagine\Image\ManipulatorInterface;
 use Yii;
 use yii\helpers\Html;
 use yii\imagine\Image;
@@ -165,20 +166,23 @@ class UtilHelper{
             }
         }
         ini_set('memory_limit', '999999999M');
-        $imagine = Image::thumbnail($fileSource, $width, $height);
+        $imagine = Image::thumbnail($fileSource, $width, $height, ManipulatorInterface::THUMBNAIL_INSET);
 
-        $exif = exif_read_data($fileSource);
-        if(!empty($exif['Orientation'])) {
-            switch($exif['Orientation']) {
-                case 8:
-                    $imagine->rotate(-90);
-                    break;
-                case 3:
-                    $imagine->rotate(180);
-                    break;
-                case 6:
-                    $imagine->rotate(90);
-                    break;
+        $ext = pathinfo($fileSource, PATHINFO_EXTENSION);
+        if($ext === 'jpg') {
+            $exif = exif_read_data($fileSource);
+            if (!empty($exif['Orientation'])) {
+                switch ($exif['Orientation']) {
+                    case 8:
+                        $imagine->rotate(-90);
+                        break;
+                    case 3:
+                        $imagine->rotate(180);
+                        break;
+                    case 6:
+                        $imagine->rotate(90);
+                        break;
+                }
             }
         }
 
