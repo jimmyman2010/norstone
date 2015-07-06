@@ -92,10 +92,6 @@ AppAsset::register($this);
                                             [
                                                 'label' => Yii::t('app', 'Category'),
                                                 'url' => ['category/index']
-                                            ],
-                                            [
-                                                'label' => Yii::t('app', 'Add Product'),
-                                                'url' => ['product/create']
                                             ]
                                         ]
                                     ],
@@ -104,10 +100,6 @@ AppAsset::register($this);
                                         'url' => ['news/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-newspaper-o"></i>{label}</a>',
                                         'items' => [
-                                            [
-                                                'label' => Yii::t('app', 'Add News'),
-                                                'url' => ['news/create']
-                                            ]
                                         ]
                                     ],
                                     [
@@ -137,10 +129,6 @@ AppAsset::register($this);
                                         'url' => ['page/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>',
                                         'items' => [
-                                            [
-                                                'label' => Yii::t('app', 'Add Page'),
-                                                'url' => ['page/create']
-                                            ]
                                         ]
                                     ],
                                 ],

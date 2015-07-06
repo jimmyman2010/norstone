@@ -103,7 +103,7 @@ class SiteController extends Controller
             $this->redirect('index');
         }
         elseif(isset(Yii::$app->request->post()['ArrangementProduct'])) {
-            $idList = explode(',', Yii::$app->request->post()['arrangementProduct']);
+            $idList = explode(',', Yii::$app->request->post()['ArrangementProduct']);
             foreach ($idList as $index => $id) {
                 $arrangementObject = Arrangement::findOne(['content_id' => $id, 'content_type' => Arrangement::TYPE_PRODUCT]);
                 if($arrangementObject) {
