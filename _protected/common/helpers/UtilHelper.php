@@ -168,8 +168,8 @@ class UtilHelper{
         ini_set('memory_limit', '999999999M');
         $imagine = Image::thumbnail($fileSource, $width, $height, ManipulatorInterface::THUMBNAIL_INSET);
 
-        $ext = pathinfo($fileSource, PATHINFO_EXTENSION);
-        if($ext === 'jpg') {
+        $info = getimagesize($fileSource);
+        if($info['mime'] === 'image/jpeg') {
             $exif = exif_read_data($fileSource);
             if (!empty($exif['Orientation'])) {
                 switch ($exif['Orientation']) {
