@@ -1486,3 +1486,102 @@ only screen and (min-device-pixel-ratio: 1.5){
     margin: 0;
     padding: 0
 }
+
+.rte table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.rte table > thead > tr > th,
+.rte table > tbody > tr > th,
+.rte table > tfoot > tr > th,
+.rte table > thead > tr > td,
+.rte table > tbody > tr > td,
+.rte table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+}
+
+.rte table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dddddd;
+}
+
+.rte table > caption + thead > tr:first-child > th,
+.rte table > colgroup + thead > tr:first-child > th,
+.rte table > thead:first-child > tr:first-child > th,
+.rte table > caption + thead > tr:first-child > td,
+.rte table > colgroup + thead > tr:first-child > td,
+.rte table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+.rte table > tbody + tbody {
+    border-top: 2px solid #dddddd;
+}
+
+.rte table .table {
+    background-color: #ffffff;
+}
+
+.rte table > thead > tr > td.active,
+.rte table > tbody > tr > td.active,
+.rte table > tfoot > tr > td.active,
+.rte table > thead > tr > th.active,
+.rte table > tbody > tr > th.active,
+.rte table > tfoot > tr > th.active,
+.rte table > thead > tr.active > td,
+.rte table > tbody > tr.active > td,
+.rte table > tfoot > tr.active > td,
+.rte table > thead > tr.active > th,
+.rte table > tbody > tr.active > th,
+.rte table > tfoot > tr.active > th {
+    background-color: #f5f5f5;
+}
+
+.rte table > thead > tr > td.success,
+.rte table > tbody > tr > td.success,
+.rte table > tfoot > tr > td.success,
+.rte table > thead > tr > th.success,
+.rte table > tbody > tr > th.success,
+.rte table > tfoot > tr > th.success,
+.rte table > thead > tr.success > td,
+.rte table > tbody > tr.success > td,
+.rte table > tfoot > tr.success > td,
+.rte table > thead > tr.success > th,
+.rte table > tbody > tr.success > th,
+.rte table > tfoot > tr.success > th {
+    background-color: #dff0d8;
+}
+
+.rte table > thead > tr > td.danger,
+.rte table > tbody > tr > td.danger,
+.rte table > tfoot > tr > td.danger,
+.rte table > thead > tr > th.danger,
+.rte table > tbody > tr > th.danger,
+.rte table > tfoot > tr > th.danger,
+.rte table > thead > tr.danger > td,
+.rte table > tbody > tr.danger > td,
+.rte table > tfoot > tr.danger > td,
+.rte table > thead > tr.danger > th,
+.rte table > tbody > tr.danger > th,
+.rte table > tfoot > tr.danger > th {
+    background-color: #f2dede;
+}
+
+.rte table > thead > tr > td.warning,
+.rte table > tbody > tr > td.warning,
+.rte table > tfoot > tr > td.warning,
+.rte table > thead > tr > th.warning,
+.rte table > tbody > tr > th.warning,
+.rte table > tfoot > tr > th.warning,
+.rte table > thead > tr.warning > td,
+.rte table > tbody > tr.warning > td,
+.rte table > tfoot > tr.warning > td,
+.rte table > thead > tr.warning > th,
+.rte table > tbody > tr.warning > th,
+.rte table > tfoot > tr.warning > th {
+    background-color: #fcf8e3;
+}
