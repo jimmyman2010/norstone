@@ -110,7 +110,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`expire`,`data`) values ('ue0vmag1f3au7ih60j43rurqn6',1435985730,'__flash|a:0:{}__id|i:88;'),('ufp697ti4lsfuci77ganggoa52',1435983026,'__flash|a:0:{}__captcha/site/captcha|s:7:\"kdnowkp\";__captcha/site/captchacount|i:1;');
+insert  into `session`(`id`,`expire`,`data`) values ('i2rfr053i6go6kfo78l8oibci7',1436154966,'__flash|a:0:{}__returnUrl|s:72:\"/admin/site/login?previous=http%3A%2F%2Fvitinhgiatot.dev%2Fadmin%2Findex\";__id|i:88;'),('idqshmqb987g2fd92fbb0ujmf6',1436151144,'__flash|a:0:{}__id|i:88;'),('ufp697ti4lsfuci77ganggoa52',1436154096,'__flash|a:0:{}__captcha/site/captcha|s:7:\"mosames\";__captcha/site/captchacount|i:1;');
 
 /*Table structure for table `tbl_arrangement` */
 
@@ -374,7 +374,7 @@ CREATE TABLE `tbl_product_tag` (
 
 /*Data for the table `tbl_product_tag` */
 
-insert  into `tbl_product_tag`(`product_id`,`tag_id`,`deleted`) values (728,4,0),(728,5,0),(728,6,0);
+insert  into `tbl_product_tag`(`product_id`,`tag_id`,`deleted`) values (728,4,0),(728,5,0),(728,6,0),(835,9,0);
 
 /*Table structure for table `tbl_tag` */
 
