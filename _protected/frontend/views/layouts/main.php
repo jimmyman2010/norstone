@@ -181,25 +181,21 @@ AppAsset::register($this);
                         <h3 class="widget_header gradient2">HỖ TRỢ</h3>
                         <div class="widget_content">
                             <ul class="list">
-                                <?php foreach(explode(',', Config::findOne(['key' => 'SUPPORT_YAHOO'])->value) as $index => $nickname) { ?>
+                                <?php $index = 1; ?>
+                                <?php foreach(explode(',', Config::findOne(['key' => 'SUPPORT_YAHOO'])->value) as $nickname) { ?>
                                     <li>
                                         <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => $nickname]) ?>"/>
-                                        <a href="ymsgr:sendim?<?= $nickname ?>">Kinh doanh <?= $index+1 ?></a>
+                                        <a href="ymsgr:sendim?<?= $nickname ?>">Kinh doanh <?= $index ?></a>
                                     </li>
+                                    <?php $index++; ?>
                                 <?php } ?>
-                                <li>
-                                    <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
-                                    <div id="SkypeButton_Call_tranduyminhman_1">
-                                        <script type="text/javascript">
-                                            Skype.ui({
-                                                "name": "chat",
-                                                "element": "SkypeButton_Call_tranduyminhman_1",
-                                                "participants": ["tranduyminhman"],
-                                                "imageSize": 32
-                                            });
-                                        </script>
-                                    </div>
-                                </li>
+                                <?php foreach(explode(',', Config::findOne(['key' => 'SUPPORT_SKYPE'])->value) as $nickname) { ?>
+                                    <li>
+                                        <img src="<?= Url::toRoute(['site/skype-status', 'nickname' => $nickname]) ?>"/>
+                                        <a href="skype:<?= $nickname ?>?chat">Kinh doanh <?= $index ?></a>
+                                    </li>
+                                    <?php $index++; ?>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>

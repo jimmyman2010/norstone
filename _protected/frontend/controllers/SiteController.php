@@ -447,35 +447,28 @@ class SiteController extends Controller
         $nickname = trim($nickname);
         $status = file_get_contents('http://mail.opi.yahoo.com/online?u=' . $nickname . '&m=a&t=1');
         if(intval($status) === 1) {
-            $filename = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'online';
+            $name = 'online.png';
         }
         else {
-            $filename = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'offline';
+            $name = 'offline.png';
         }
-        return $this->setHttpHeaders('png', $filename, 'image/png');
+        $filename = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $name;
+        if(file_exists($filename)) {
+            return Yii::$app->response->sendFile($filename, $name);
+        }
     }
 
     /**
-     * Sets the HTTP headers needed by file download action.
-     * @param $type
-     * @param $name
-     * @param $mime
-     * @param $encoding
+     * @param $nickname
+     * @return string
      */
-    protected function setHttpHeaders($type, $name, $mime, $encoding = 'utf-8')
+    public function actionSkypeStatus($nickname)
     {
-        Yii::$app->response->format = Response::FORMAT_RAW;
-        if (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE") == false) {
-            header("Cache-Control: no-cache");
-            header("Pragma: no-cache");
-        } else {
-            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-            header("Pragma: public");
+        $name = 'skype.png';
+        $filename = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $name;
+        if(file_exists($filename)) {
+            return Yii::$app->response->sendFile($filename, $name);
         }
-        header("Expires: Sat, 26 Jul 1979 05:00:00 GMT");
-        header("Content-Encoding: {$encoding}");
-        header("Content-Type: {$mime}; charset={$encoding}");
-        header("Content-Disposition: attachment; filename={$name}.{$type}");
-        header("Cache-Control: max-age=0");
     }
+
 }

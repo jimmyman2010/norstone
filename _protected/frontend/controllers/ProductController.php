@@ -105,6 +105,36 @@ class ProductController extends FrontendController {
     }
 
     /**
+     * Displays Products by tag.
+     *
+     * @param  string $slug
+     * @return mixed
+     */
+    public function actionTag($slug)
+    {
+        $model = $this->findTagModel($slug);
+        $query = Product::find()
+            ->innerJoin('tbl_product_tag', 'tbl_product_tag.product_id = tbl_product.id')
+            ->where([
+                'tbl_product_tag.deleted' => 0,
+                'tbl_product.deleted' => 0,
+                'tbl_product_tag.tag_id' => $model->id,
+            ]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 9,
+            ],
+        ]);
+
+        return $this->render('tag', [
+            'model' => $model,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    /**
      * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      *
@@ -133,6 +163,23 @@ class ProductController extends FrontendController {
     protected function findCategoryModel($id)
     {
         if (($model = Category::findOne($id)) !== null)
+        {
+            return $model;
+        }
+        else
+        {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
+     * @param $slug
+     * @return Tag
+     * @throws NotFoundHttpException
+     */
+    protected function findTagModel($slug)
+    {
+        if (($model = Tag::findOne(['slug' => $slug])) !== null)
         {
             return $model;
         }

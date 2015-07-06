@@ -74,12 +74,23 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         </div>
                     </div><!-- /.options -->
 
-                    <div class="product_details">
-                        <div class="product_type">Loại sản phẩm: <a href="/collections/types?q=USB%20Mice" title="USB Mice">Thùng máy</a></div>
-                    </div>
+                    <?php if(count($tags) > 0) { ?>
+                        <div class="product_details">
+                            <span>Tags: </span>
+                            <?php
+                            }
+                            foreach ($tags as $index => $tag) {
+                                if($index > 0)
+                                    echo ', ';
+                                echo Html::a($tag->name, ['product/tag', 'slug' => $tag->slug]);
+                            }
+                            ?>
+                            <?php if(count($tags) > 0) { ?>
+                        </div>
+                    <?php } ?>
 
                     <div id="product_description" class="rte" itemprop="description">
-                        <h4>Mô tả:</h4>
+                        <span>Mô tả:</span>
                         <div class="product_desc">
                             <?= $model->description ?>
                         </div>
@@ -100,26 +111,12 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <div class="span12">
                         <div class="pagination pagination__product">
                             <ul>
-                                <li class="right-arrow lastItem firstItem"><span class="right"><a href="product-detail.php#content" title="">Sản phẩm khác →</a></span></li>
+<!--                                <li class="right-arrow lastItem firstItem"><span class="right"><a href="product-detail.php#content" title="">Sản phẩm khác →</a></span></li>-->
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php if(count($tags) > 0) { ?>
-            <div class="blog-article_meta-tags">
-                <span>Tags: </span>
-                <?php
-                }
-                foreach ($tags as $index => $tag) {
-                    if($index > 0)
-                        echo ', ';
-                    echo Html::a($tag->name, ['news/tag', 'slug' => $tag->slug]);
-                }
-                ?>
-                <?php if(count($tags) > 0) { ?>
-            </div>
-            <?php } ?>
         </div>
 
     </div>
