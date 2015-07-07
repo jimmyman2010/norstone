@@ -68,7 +68,7 @@
 .nivo-caption-3 p {margin: 0;padding: 0;top: -20px;}
 
 
-.product_wrap #bx-pager a {width: 84px;}
+.product_wrap #bx-pager a {width: 54px;}
 
 .widget__related-products .product_img a {width: 220px !important;}
 
@@ -119,7 +119,10 @@
 
 
 .product_wrap #bx-pager a {width: 64px;margin: 10px 10px 0 0;}
-
+    .product_wrap .bxslider li a {
+        width: 220px;
+        height: 220px;
+    }
 .widget__related-products .product_img a {width: 165px !important;}
 
 .column .product .product_img {width: 100%;float: none;margin: 0;}
@@ -331,5 +334,12 @@
         max-width: inherit;
     }
     span.city{display: none}
-
+    .product_wrap #bx-pager a {
+        width: 52px;
+        margin: 10px 5px 0 0;
+    }
+    .product_wrap .bxslider li a {
+        width: 320px;
+        height: 320px;
+    }
 }

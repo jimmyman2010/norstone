@@ -70,7 +70,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <div itemprop="name" class="product_name"><?= $model->name ?></div>
                     <div class="options clearfix">
                         <div id="purchase">
-                            <input class="btn btn-cart" type="submit" name="add" id="add-to-cart" value="<?= UtilHelper::formatNumber($model->price) ?> VNĐ">
+                            <input class="btn btn-cart" type="submit" name="add" id="add-to-cart" value="<?= intval($model->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($model->price) . ' VNĐ' ?>">
                         </div>
                     </div><!-- /.options -->
 
@@ -175,7 +175,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                             <div class="product_name">
                                 <?= Html::a($related->name, ['product/view', 'id' => $related->id, 'slug' => $related->slug]) ?>
                             </div>
-                            <div class="product_price"><span class="money"><?= $related->price ?> VNĐ</span></div>
+                            <div class="product_price"><span class="money"><?= intval($related->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($related->price) . ' VNĐ' ?></span></div>
                         </li>
                     <?php } ?>
                 </ul>

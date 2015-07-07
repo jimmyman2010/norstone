@@ -59,7 +59,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                             <?= Html::a($product->name, ['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>
                         </div>
                         <div class="product_links">
-                            <button class="btn btn-cart" type="button"><?= UtilHelper::formatNumber($product->price) ?> VNĐ</button>
+                            <button class="btn btn-cart" type="button"><?= intval($product->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($product->price) . ' VNĐ' ?></button>
                             <?= Html::a('Chi tiết', ['product/view', 'id' => $product->id, 'slug' => $product->slug], ['class'=>'btn']) ?>
                         </div>
                     </div>
