@@ -38,7 +38,9 @@ ProductAsset::register($this);
                 <div class="blog-article">
                     <div class="article_header">
                         <div class="blog-article_meta-comments">
-                            <?= Html::a('0 comments', ['news/view', 'slug' => $news->slug, '#' => 'disqus_thread']) ?>
+                            <a href="<?= Url::toRoute(['news/view', 'slug' => $news->slug, '#' => 'comments']) ?>">
+                                <span class="fb-comments-count" data-href="<?= Url::toRoute(['news/view', 'slug' => $news->slug]) ?>"></span> bình luận
+                            </a>
                         </div>
                         <div class="product_name">
                             <?= Html::a($news->name, ['news/view', 'slug' => $news->slug]) ?>
@@ -99,20 +101,3 @@ ProductAsset::register($this);
         </div>
     </div>
 </div>
-
-<?php
-
-$this->registerJs("
-
-/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-var disqus_shortname = '" . Config::findOne(['key' => 'DISQUS'])->value . "'; // required: replace example with your forum shortname
-
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function () {
-var s = document.createElement('script'); s.async = true;
-s.type = 'text/javascript';
-s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-
-");

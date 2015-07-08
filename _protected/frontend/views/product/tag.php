@@ -40,6 +40,20 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
         <h2 class="page_heading"><?= $model->name ?></h2>
         <?php Pjax::begin(['id' => 'products']) ?>
         <div class="product-listing product-listing__index">
+            <div class="category-sorting clearfix">
+                <div class="total-count">Tổng cộng có <?= $dataProvider->totalCount ?> sản phẩm</div>
+                <div class="dropdownbox">
+                    <span>Sắp xếp</span>
+                    <?php $orderBy = Yii::$app->getRequest()->getQueryParam('orderby'); ?>
+                    <select>
+                        <option value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug]) ?>">Mặc định</option>
+                        <option <?= $orderBy === 'gt' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'gt']) ?>">Giá tăng</option>
+                        <option <?= $orderBy === 'gg' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'gg']) ?>">Giá giảm</option>
+                        <option <?= $orderBy === 'az' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'az']) ?>">Tên A - Z</option>
+                        <option <?= $orderBy === 'za' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'za']) ?>">Tên Z - A</option>
+                    </select>
+                </div>
+            </div>
             <div class="row">
                 <?php foreach ($dataProvider->getModels() as $index => $product) { ?>
                     <div class="product product__product-grid-item columns-3 col-sm-4 <?php if($index%3 === 0) echo 'item_alpha'; elseif($index%3 === 2) echo 'item_omega'; ?>">

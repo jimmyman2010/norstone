@@ -50,6 +50,7 @@ class AppAsset extends AssetBundle
         //'assets/js/jquery.caroufredsel.min.js',
         'assets/js/jquery.nivoslider.js',
         'assets/js/jquery.customSelect.min.js',
+        'assets/js/global.js',
 
         //'assets/js/currencies.js',
         //'assets/js/jquery.currencies.min.js'

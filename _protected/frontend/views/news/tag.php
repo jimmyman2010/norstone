@@ -44,7 +44,9 @@ ProductAsset::register($this);
                 <div class="blog-article">
                     <div class="article_header">
                         <div class="blog-article_meta-comments">
-                            <?= Html::a('0 comments', ['news/view', 'slug' => $news->slug, '#' => 'disqus_thread']) ?>
+                            <a href="<?= Url::toRoute(['news/view', 'slug' => $news->slug, '#' => 'comments']) ?>">
+                                <span class="fb-comments-count" data-href="<?= Url::toRoute(['news/view', 'slug' => $news->slug]) ?>"></span> bình luận
+                            </a>
                         </div>
                         <div class="product_name">
                             <?= Html::a($news->name, ['news/view', 'slug' => $news->slug]) ?>

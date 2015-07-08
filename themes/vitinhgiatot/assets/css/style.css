@@ -1592,3 +1592,24 @@ only screen and (min-device-pixel-ratio: 1.5){
 .rte table > tfoot > tr.warning > th {
     background-color: #fcf8e3;
 }
+
+.category-sorting{
+    background-color: #f3f3f3;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
+.category-sorting .total-count{
+    float: left;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+.category-sorting .dropdownbox{
+    float: right;
+    padding: 6px;
+}
+.category-sorting .dropdownbox span{
+    display: inline-block;
+    margin-right: 10px;
+}
+.fb-comments, .fb-comments > span, .fb-comments > span > iframe{width:100% !important;}
+

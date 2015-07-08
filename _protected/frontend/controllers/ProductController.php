@@ -8,6 +8,7 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use common\models\Category;
 use common\models\FileSearch;
 use common\models\Product;
@@ -83,13 +84,53 @@ class ProductController extends FrontendController {
     public function actionCategory($id, $slug)
     {
         $model = $this->findCategoryModel($id);
-        $query = Product::find()
-            ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
-            ->where([
-                'tbl_product_category.deleted' => 0,
-                'tbl_product.deleted' => 0,
-                'tbl_product_category.category_id' => $id,
-            ]);
+        if($model->parent_id === 0) {
+            $categoryObjects = Category::findAll(['deleted' => 0, 'parent_id' => $id]);
+            $categoryArray = [$id];
+            foreach ($categoryObjects as $index => $category) {
+                array_push($categoryArray, $category->id);
+            }
+            $query = Product::find()
+                ->distinct()
+                ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
+                ->where([
+                    'tbl_product_category.deleted' => 0,
+                    'tbl_product.deleted' => 0,
+                ])
+                ->andWhere(['IN', 'tbl_product_category.category_id', $categoryArray]);
+        }
+        else {
+            $query = Product::find()
+                ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
+                ->where([
+                    'tbl_product_category.deleted' => 0,
+                    'tbl_product.deleted' => 0,
+                    'tbl_product_category.category_id' => $id,
+                ]);
+        }
+        $orderBy = Yii::$app->getRequest()->getQueryParam('orderby');
+        switch($orderBy) {
+            case 'gt':{
+                $query->orderBy('tbl_product.price ASC');
+                break;
+            }
+            case 'gg':{
+                $query->orderBy('tbl_product.price DESC');
+                break;
+            }
+            case 'az':{
+                $query->orderBy('tbl_product.name ASC');
+                break;
+            }
+            case 'za':{
+                $query->orderBy('tbl_product.name DESC');
+                break;
+            }
+            default: {
+                $query->orderBy('tbl_product.id DESC');
+                break;
+            }
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -120,6 +161,30 @@ class ProductController extends FrontendController {
                 'tbl_product.deleted' => 0,
                 'tbl_product_tag.tag_id' => $model->id,
             ]);
+
+        $orderBy = Yii::$app->getRequest()->getQueryParam('orderby');
+        switch($orderBy) {
+            case 'gt':{
+                $query->orderBy('tbl_product.price ASC');
+                break;
+            }
+            case 'gg':{
+                $query->orderBy('tbl_product.price DESC');
+                break;
+            }
+            case 'az':{
+                $query->orderBy('tbl_product.name ASC');
+                break;
+            }
+            case 'za':{
+                $query->orderBy('tbl_product.name DESC');
+                break;
+            }
+            default: {
+                $query->orderBy('tbl_product.id DESC');
+                break;
+            }
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
