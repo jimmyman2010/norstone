@@ -63,6 +63,16 @@ class SiteController extends Controller
     }
 
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Displays the index (home) page.
      * Use it in case your home page contains static content.
      *

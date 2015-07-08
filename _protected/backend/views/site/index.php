@@ -172,7 +172,7 @@ ArrangementAsset::register($this);
                 <div class="portlet small">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-cogs"></i><?= Yii::t('app', 'Social Configuration') ?>
+                            <i class="fa fa-cogs"></i><?= Yii::t('app', 'SUPPORT') ?>
                         </div>
                     </div>
                     <div class="portlet-body has-padding-full">
