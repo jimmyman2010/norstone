@@ -343,3 +343,24 @@
         height: 320px;
     }
 }
+
+@media (min-width: 768px) {
+    .widget__collections ul li:hover .sub-menu{
+        display: block;
+    }
+    .widget__collections .sub-menu{
+        position: absolute;
+        left: 100%;
+        top: 0;
+        margin: 0 0 0 1px;
+        width: 240px;
+        background: #fff;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+    }
+    .widget__collections .widget_content > ul > li > a > i:before{
+        content: "\f138";
+    }
+}

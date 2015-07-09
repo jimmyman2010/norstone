@@ -67,7 +67,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                 </div><!-- #product-photos -->
 
                 <div class="col-sm-7">
-                    <div itemprop="name" class="product_name"><?= $model->name ?></div>
+                    <h1 itemprop="name" class="product_name"><?= $model->name ?></h1>
                     <div class="options clearfix">
                         <div id="purchase">
                             <input class="btn btn-cart" type="submit" name="add" id="add-to-cart" value="<?= intval($model->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($model->price) . ' VNĐ' ?>">
@@ -161,9 +161,9 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                                                 <?= UtilHelper::getPicture($related->image_id, 'thumbnail') ?>
                                             </a>
                                         </div>
-                                        <div class="product_name">
+                                        <h2 class="product_name">
                                             <?= Html::a($related->name, ['product/view', 'id' => $related->id, 'slug' => $related->slug]) ?>
-                                        </div>
+                                        </h2>
                                         <div class="product_price"><span class="money"><?= intval($related->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($related->price) . ' VNĐ' ?></span></div>
                                     </li>
                                 <?php } ?>

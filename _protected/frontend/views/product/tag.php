@@ -62,9 +62,9 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                                 <?= UtilHelper::getPicture($product->image_id, 'thumbnail') ?>
                             </a>
                         </div>
-                        <div class="product_name">
+                        <h2 class="product_name">
                             <?= Html::a($product->name, ['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>
-                        </div>
+                        </h2>
                         <div class="product_links">
                             <button class="btn btn-cart" type="button"><?= intval($product->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($product->price) . ' VNĐ' ?></button>
                             <?= Html::a('Chi tiết', ['product/view', 'id' => $product->id, 'slug' => $product->slug], ['class'=>'btn']) ?>
