@@ -296,7 +296,7 @@ $this->registerJs("
 
             <div class="action-buttons">
                 <input type="hidden" name="type-submit" value="" />
-                <?= Html::submitButton($model->id ? Yii::t('app', 'Update') : Yii::t('app', 'Publish'),
+                <?= Html::submitButton($model->status === Product::STATUS_DRAFT ? Yii::t('app', 'Publish') : Yii::t('app', 'Update'),
                     [
                         'class' => 'small button radius',
                         'data' => ['submit' => 1]

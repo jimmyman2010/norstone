@@ -1625,3 +1625,7 @@ only screen and (min-device-pixel-ratio: 1.5){
 }
 .fb-comments, .fb-comments > span, .fb-comments > span > iframe{width:100% !important;}
 
+
+.list.support li{ overflow: auto }
+.list.support li img{ float: left; width: 42px}
+.list.support li a{ color: #3f3e3e;}

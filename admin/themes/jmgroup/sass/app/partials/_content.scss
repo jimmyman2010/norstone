@@ -1,0 +1,12 @@
+.support-config{
+    margin: 0;
+    list-style: none;
+    li{
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+        height: 153px;
+    }
+    .sortable-placeholder{
+        border: 1px dashed #ccc;
+    }
+}

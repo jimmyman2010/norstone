@@ -447,10 +447,10 @@ class SiteController extends Controller
         $nickname = trim($nickname);
         $status = file_get_contents('http://mail.opi.yahoo.com/online?u=' . $nickname . '&m=a&t=1');
         if(intval($status) === 1) {
-            $name = 'online.png';
+            $name = 'yahoo-online.png';
         }
         else {
-            $name = 'offline.png';
+            $name = 'yahoo-offline.png';
         }
         $filename = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $name;
         if(file_exists($filename)) {

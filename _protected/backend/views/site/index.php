@@ -4,6 +4,8 @@ use backend\assets\ArrangementAsset;
 use common\helpers\UtilHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Json;
+use common\helpers\SlugHelper;
 
 /* @var $this yii\web\View */
 $this->title = Yii::t('app', Yii::$app->name);
@@ -177,18 +179,40 @@ ArrangementAsset::register($this);
                     </div>
                     <div class="portlet-body has-padding-full">
                         <?php $form = ActiveForm::begin([
-                            'id' => 'social-form'
+                            'id' => 'support-form'
                         ]); ?>
 
-                        <?php foreach ($support as $index => $item) { ?>
-                            <div class="form-group">
-                                <label class="control-label" for="config-item-<?= $index+1 ?>"><?= Yii::t('app', $item->key) ?> (separate by comma)</label>
-                                <?= Html::input('text', 'Support['.$item->key.']', $item->value, ['class' => 'form-control', 'id' => 'support-item-'.($index+1)]) ?>
-                            </div>
+                        <ul class="support-config">
+                        <?php foreach ($support as $index => $contact) { ?>
+                            <li class="contact contact-item-<?= ($index) ?>" data-index="<?= ($index) ?>">
+                                <div class="row">
+                                    <div class="form-group columns small-6">
+                                        <label class="control-label"><?= Yii::t('app', 'Type') ?></label>
+                                        <?= Html::dropDownList('Support['.($index).'][type]', $contact['type'], ['yahoo' => 'Yahoo', 'skype' => 'Skype'], ['class' => 'form-control']) ?>
+                                    </div>
+                                    <div class="form-group columns small-6">
+                                        <label class="control-label"><?= Yii::t('app', 'Name') ?></label>
+                                        <?= Html::textInput('Support['.($index).'][name]', $contact['name'], ['class' => 'form-control']) ?>
+                                    </div>
+                                    <div class="form-group columns small-6">
+                                        <label class="control-label"><?= Yii::t('app', 'Nickname') ?></label>
+                                        <?= Html::textInput('Support['.($index).'][nickname]', $contact['nickname'], ['class' => 'form-control']) ?>
+                                    </div>
+                                    <div class="form-group columns small-5">
+                                        <label class="control-label"><?= Yii::t('app', 'Phone') ?></label>
+                                        <?= Html::textInput('Support['.($index).'][phone]', $contact['phone'], ['class' => 'form-control']) ?>
+                                    </div>
+                                    <div class="form-group columns small-1">
+                                        <a class="remove-suport">x</a>
+                                    </div>
+                                </div>
+                            </li>
                         <?php } ?>
+                        </ul>
 
                         <div class="action-buttons">
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
+                            <?= Html::a(Yii::t('app', 'Add contact'), 'javascript:;', ['class' => 'add-support small button success radius']) ?>
+                            <?= Html::submitButton(Yii::t('app', 'Save'), ['name' => 'Support[submit]', 'class' => 'small button radius']) ?>
                             <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
                         </div>
 

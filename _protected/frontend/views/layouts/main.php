@@ -5,6 +5,7 @@ use yii\widgets\Menu;
 use yii\helpers\Url;
 use common\models\Config;
 use common\models\Category;
+use yii\helpers\Json;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -191,21 +192,21 @@ AppAsset::register($this);
                     </div>    <div class="widget widget__types">
                         <h3 class="widget_header gradient2">HỖ TRỢ</h3>
                         <div class="widget_content">
-                            <ul class="list">
-                                <?php $index = 1; ?>
-                                <?php foreach(explode(',', Config::findOne(['key' => 'SUPPORT_YAHOO'])->value) as $nickname) { ?>
+                            <ul class="list support">
+                                <?php foreach(Json::decode(Config::findOne(['key' => 'SUPPORT'])->value) as $contact) { ?>
+                                    <?php if($contact['type'] === 'yahoo') { ?>
                                     <li>
-                                        <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => $nickname]) ?>"/>
-                                        <a href="ymsgr:sendim?<?= $nickname ?>">Kinh doanh <?= $index ?></a>
+                                        <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
+                                        <a href="ymsgr:sendim?<?= trim($contact['nickname']) ?>"><?= trim($contact['name']) ?></a>
+                                        <br/><a href="tel:<?= trim($contact['phone']) ?>"><?= trim($contact['phone']) ?></a>
                                     </li>
-                                    <?php $index++; ?>
-                                <?php } ?>
-                                <?php foreach(explode(',', Config::findOne(['key' => 'SUPPORT_SKYPE'])->value) as $nickname) { ?>
+                                    <?php } else { ?>
                                     <li>
-                                        <img src="<?= Url::toRoute(['site/skype-status', 'nickname' => $nickname]) ?>"/>
-                                        <a href="skype:<?= $nickname ?>?chat">Kinh doanh <?= $index ?></a>
+                                        <img src="<?= Url::toRoute(['site/skype-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
+                                        <a href="skype:<?= trim($contact['nickname']) ?>?chat"><?= trim($contact['name']) ?></a>
+                                        <br/><a href="tel:<?= trim($contact['phone']) ?>"><?= trim($contact['phone']) ?></a>
                                     </li>
-                                    <?php $index++; ?>
+                                    <?php } ?>
                                 <?php } ?>
                             </ul>
                         </div>

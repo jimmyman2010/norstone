@@ -6,6 +6,7 @@ use common\models\Config;
 use common\models\Product;
 use common\models\Setting;
 use common\models\LoginForm;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -105,11 +106,11 @@ class SiteController extends Controller
             $this->redirect('index');
         }
         elseif(isset(Yii::$app->request->post()['Support'])) {
-            foreach (Yii::$app->request->post()['Support'] as $key => $value) {
-                $object = Config::findOne(['key' => $key]);
-                $object->value = $value;
-                $object->save(false);
-            }
+            $support = Yii::$app->request->post()['Support'];
+            unset($support['submit']);
+            $object = Config::findOne(['key' => 'SUPPORT']);
+            $object->value = Json::encode($support);
+            $object->save(false);
             $this->redirect('index');
         }
         elseif(isset(Yii::$app->request->post()['ArrangementProduct'])) {
@@ -149,7 +150,7 @@ class SiteController extends Controller
             $config = Config::find()->where(['group' => Config::GROUP_CONFIG])->orderBy('sorting')->all();
             $seo = Config::find()->where(['group' => Config::GROUP_SEO])->orderBy('sorting')->all();
             $social = Config::find()->where(['group' => Config::GROUP_SOCIAL])->orderBy('sorting')->all();
-            $support = Config::find()->where(['group' => Config::GROUP_SUPPORT])->orderBy('sorting')->all();
+            $support = Config::findOne(['key' => 'SUPPORT'])->value;
 
             $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->all();
             return $this->render('index', [
@@ -158,7 +159,7 @@ class SiteController extends Controller
                 'config' => $config,
                 'seo' => $seo,
                 'social' => $social,
-                'support' => $support
+                'support' => Json::decode($support)
             ]);
         }
     }

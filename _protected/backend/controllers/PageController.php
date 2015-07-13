@@ -71,7 +71,7 @@ class PageController extends BackendController
         $model->created_date = time();
         $model->created_by = Yii::$app->user->identity->username;
 
-        if($model->save()) {
+        if($model->save(false)) {
             return $this->redirect(['update', 'id' => $model->id]);
         }
         else {

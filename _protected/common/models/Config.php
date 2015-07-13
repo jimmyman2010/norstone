@@ -34,7 +34,7 @@ class Config extends \yii\db\ActiveRecord
         return [
             [['key', 'value', 'group'], 'required'],
             [['key', 'group'], 'string', 'max' => 32],
-            [['value'], 'string', 'max' => 512]
+            [['value'], 'string']
         ];
     }
 
