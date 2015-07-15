@@ -35,6 +35,7 @@ class ProductAsset extends AssetBundle
         'js/vendor/jquery.cookie.js',
         'js/vendor/jquery-ui.core.min.js',
         'js/vendor/jquery.dynatree.min.js',
+        'js/vendor/jquery.maskMoney.min.js',
         'js/global.min.js'
     ];
 

@@ -15,7 +15,7 @@ $(function(){
         support.sortable();
         $('.add-support').on('click', function () {
             var children = support.find('li');
-            var index = makeid() + children.length;
+            var index = children.length;
             support.append(
                 '<li class="contact contact-item-' + index + '" data-index="' + index + '" draggable="true">' +
                 '<div class="row">' +
@@ -50,16 +50,5 @@ $(function(){
         support.on('click', '.remove-suport', function () {
             $(this).parents('.contact').remove();
         });
-    }
-
-    function makeid()
-    {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for( var i=0; i < 5; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        return text;
     }
 });

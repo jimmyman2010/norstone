@@ -2722,6 +2722,13 @@ span.dynatree-drop-target.dynatree-drop-reject {
   border: 1px dashed #ccc;
 }
 
+/* line 14, ../../sass/app/partials/_content.scss */
+.price-zone strong {
+  display: block;
+  text-align: right;
+  margin-top: 26px;
+}
+
 /* line 4, ../../sass/app/modules/_page-builder.scss */
 .page-builder {
   background: #fcfcfc;

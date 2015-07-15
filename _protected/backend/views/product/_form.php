@@ -10,6 +10,7 @@ use yii\helpers\Json;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 use common\helpers\UtilHelper;
+use common\helpers\CurrencyHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -74,6 +75,26 @@ $this->registerJs("
             <section role="tabpanel" aria-hidden="false" class="row content active" id="panel2-1">
                 <div class="large-9 columns">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
+                    <hr/>
+                    <div class="price-zone">
+                        <?php foreach (Json::decode($model->price_string) as $index => $prices) { ?>
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <strong><?= Yii::t('app', 'Price for '.$index.' warranty') ?></strong>
+                                </div>
+                                <?php foreach ($prices as $key => $value) { ?>
+                                    <div class="small-4 columns">
+                                        <div class="form-group">
+                                            <label><span><?= Yii::t('app', $key) ?></span>
+                                                <?= Html::textInput('Price['.$index.']['.$key.']', $value, ['class'=>'money-input']) ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <hr/>
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
                         'editorOptions' => [
                             'inline' => false,

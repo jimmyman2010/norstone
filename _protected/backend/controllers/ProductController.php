@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\helpers\CurrencyHelper;
 use common\helpers\SlugHelper;
 use common\models\Category;
 use common\models\CategorySearch;
@@ -266,6 +267,11 @@ class ProductController extends BackendController
                     $model->published_date = time();
                 }
             }
+            if(isset(Yii::$app->request->post()['Price'])) {
+                $priceData = Yii::$app->request->post()['Price'];
+                $model->price_string = Json::encode($priceData);
+                $model->price = CurrencyHelper::toNumber($priceData['month3']['current']);
+            }
             if($model->save()) {
                 $this->updateCategory($model->id, isset(Yii::$app->request->post()['Category']) ? Yii::$app->request->post()['Category'] : '');
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
@@ -311,6 +317,18 @@ class ProductController extends BackendController
             if($model->updated_date === 0) {
                 $model->name = '';
                 $model->slug = '';
+            }
+            if(empty($model->price_string)){
+                $model->price_string = Json::encode([
+                    'month3' => [
+                        'current' => CurrencyHelper::formatNumber(0),
+                        'old' => CurrencyHelper::formatNumber(0)
+                    ],
+                    'month12' => [
+                        'current' => CurrencyHelper::formatNumber(0),
+                        'old' => CurrencyHelper::formatNumber(0)
+                    ]
+                ]);
             }
             return $this->render('update', [
                 'model' => $model,

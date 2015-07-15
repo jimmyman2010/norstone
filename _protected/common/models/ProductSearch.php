@@ -17,9 +17,9 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'image_id', 'percent', 'viewed', 'published_date', 'updated_date', 'created_date', 'activated', 'deleted'], 'integer'],
-            [['name', 'slug', 'description', 'seo_title', 'seo_keyword', 'seo_description', 'general', 'info_tech', 'status', 'created_by'], 'safe'],
-            [['price_init', 'price', 'price_sell'], 'number'],
+            [['id', 'image_id', 'is_hot', 'is_discount', 'viewed', 'published_date', 'updated_date', 'created_date', 'activated', 'deleted'], 'integer'],
+            [['name', 'slug', 'description', 'price_string', 'seo_title', 'seo_keyword', 'seo_description', 'general', 'info_tech', 'status', 'created_by'], 'safe'],
+            [['price_init', 'price'], 'number'],
         ];
     }
 
@@ -81,8 +81,8 @@ class ProductSearch extends Product
             'image_id' => $this->image_id,
             'price_init' => $this->price_init,
             'price' => $this->price,
-            'price_sell' => $this->price_sell,
-            'percent' => $this->percent,
+            'is_hot' => $this->is_hot,
+            'is_discount' => $this->is_discount,
             'viewed' => $this->viewed,
             'published_date' => $this->published_date,
             'updated_date' => $this->updated_date,
@@ -94,6 +94,7 @@ class ProductSearch extends Product
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'price_string', $this->price_string])
             ->andFilterWhere(['like', 'seo_title', $this->seo_title])
             ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
             ->andFilterWhere(['like', 'seo_description', $this->seo_description])

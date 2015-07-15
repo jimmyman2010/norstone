@@ -16,8 +16,9 @@ use Yii;
  * @property string $info_tech
  * @property string $price_init
  * @property string $price
- * @property string $price_sell
- * @property integer $percent
+ * @property string $price_string
+ * @property integer $is_hot
+ * @property integer $is_discount
  * @property integer $viewed
  * @property string $status
  * @property string $seo_title
@@ -51,12 +52,13 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'created_date', 'created_by'], 'required'],
-            [['image_id', 'percent', 'viewed', 'published_date', 'updated_date', 'created_date', 'activated', 'deleted'], 'integer'],
+            [['image_id', 'is_hot', 'is_discount', 'viewed', 'published_date', 'updated_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['general', 'info_tech', 'status'], 'string'],
-            [['price_init', 'price', 'price_sell'], 'number'],
+            [['price_init', 'price'], 'number'],
             [['name', 'seo_description', 'seo_keyword'], 'string', 'max' => 256],
             [['slug', 'seo_title'], 'string', 'max' => 128],
             [['description'], 'string', 'max' => 1024],
+            [['price_string'], 'string', 'max' => 2048],
             [['created_by'], 'string', 'max' => 32]
         ];
     }
@@ -76,8 +78,9 @@ class Product extends \yii\db\ActiveRecord
             'info_tech' => Yii::t('app', 'Info Tech'),
             'price_init' => Yii::t('app', 'Price Init'),
             'price' => Yii::t('app', 'Price'),
-            'price_sell' => Yii::t('app', 'Price Sell'),
-            'percent' => Yii::t('app', 'Percent'),
+            'price_string' => Yii::t('app', 'Price String'),
+            'is_hot' => Yii::t('app', 'Hot'),
+            'is_discount' => Yii::t('app', 'Discount'),
             'viewed' => Yii::t('app', 'Viewed'),
             'status' => Yii::t('app', 'Status'),
             'seo_title' => Yii::t('app', 'Seo Title'),
