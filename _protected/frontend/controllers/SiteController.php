@@ -3,6 +3,8 @@ namespace frontend\controllers;
 
 use common\models\Arrangement;
 use common\models\Color;
+use common\models\Content;
+use common\models\ContentSearch;
 use common\models\Gallery;
 use common\models\Product;
 use common\models\Tag;
@@ -97,8 +99,14 @@ class SiteController extends Controller
             ->where(["tbl_product.deleted" => 0, "tbl_arrangement.deleted" => 0, "content_type" => Arrangement::TYPE_PRODUCT])
             ->orderBy('sorting')->all();
 
+        $searchModel = new ContentSearch();
+        $params = Yii::$app->request->queryParams;
+        $params['ContentSearch']['content_type'] = Content::TYPE_SLIDER;
+        $dataProvider = $searchModel->search($params);
+
         return $this->render('index', [
-            'featured' => $featured
+            'featured' => $featured,
+            'dataProvider' => $dataProvider
         ]);
     }
 

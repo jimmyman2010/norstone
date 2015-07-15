@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Content */
 
 $this->title = Yii::t('app', 'Create News');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'News'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Slider'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $this->render('_form', [
                 'model' => $model,
-                'tabs' => $tags,
                 'pictures' => $pictures,
             ]) ?>
 

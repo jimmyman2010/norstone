@@ -3,12 +3,13 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use common\helpers\UtilHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'News');
+$this->title = Yii::t('app', 'Slider');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="page-index">
@@ -17,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create News'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a(Yii::t('app', 'Create Slide'), ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>
@@ -29,6 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'attribute' => '#',
+                        'format' => 'html',
+                        'value' => function($data) {
+                            $img = UtilHelper::getPicture($data->image, 'thumb-list', true);
+                            return Html::a(Html::img($img, ['width'=>'100']), ['update', 'id' => $data->id]);
+                        }
+                    ],
                     [
                         'attribute'=>'name',
                         'format'=>'html',
@@ -49,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'template' => '{update} {delete}',
                         'buttons' => [
                             'update' => function ($url, $model, $key) {
-                                return Html::a('', $url, ['title'=>'Manage page',
+                                return Html::a('', $url, ['title'=>'Manage slide',
                                     'class'=>'fa fa-pencil-square-o']);
                             },
                             'delete' => function ($url, $model, $key) {

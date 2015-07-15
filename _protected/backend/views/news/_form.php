@@ -20,7 +20,7 @@ $this->registerJs("
         var that = $(this),
             name = $(this).val();
         $.get(
-            '" . Url::toRoute('page/checkingduplicated') . "',
+            '" . Url::toRoute('news/checkingduplicated') . "',
             {'name': name" . ($model->id ? ", 'id': $model->id" : '') . "},
             function(data){
                 if(data === true){

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: ManTran
+ * Date: 7/14/2015
+ * Time: 9:06 AM
+ */
 
 namespace backend\controllers;
 
@@ -17,10 +23,11 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 /**
- * NewsController implements the CRUD actions for Content model.
+ * Class SliderController implements the CRUD actions for Content model.
+ * @package backend\controllers
  */
-class NewsController extends BackendController
-{
+class SliderController extends BackendController {
+
     /**
      * @param \yii\base\Action $action
      * @return bool
@@ -39,7 +46,7 @@ class NewsController extends BackendController
     {
         $searchModel = new ContentSearch();
         $params = Yii::$app->request->queryParams;
-        $params['ContentSearch']['content_type'] = Content::TYPE_NEWS;
+        $params['ContentSearch']['content_type'] = Content::TYPE_SLIDER;
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
@@ -69,11 +76,11 @@ class NewsController extends BackendController
     {
         $model = new Content();
 
-        $model->name = 'New a news';
-        $model->slug = $model->getSlug('new-a-news');
-        $model->summary = 'summary news';
+        $model->name = 'New a slider';
+        $model->slug = $model->getSlug('new-a-slider');
+        $model->summary = 'summary slider';
         $model->status = Content::STATUS_DRAFT;
-        $model->content_type = Content::TYPE_NEWS;
+        $model->content_type = Content::TYPE_SLIDER;
         $model->created_date = time();
         $model->created_by = Yii::$app->user->identity->username;
 
@@ -86,11 +93,11 @@ class NewsController extends BackendController
     }
 
     /**
-     * @param int $newsId
+     * @param int $slideId
      * @param array $pictureData
      * @return void
      */
-    protected function updatePicture($newsId, $pictureData)
+    protected function updatePicture($slideId, $pictureData)
     {
         $fileList = [];
         if(is_array($pictureData)) {
@@ -103,11 +110,11 @@ class NewsController extends BackendController
                     $modelFile->save(false);
                     array_push($fileList, $modelFile->id);
 
-                    if (($modelContentFile = ContentFile::findOne(['content_id' => $newsId, 'file_id' => intval($value['id'])])) !== null) {
+                    if (($modelContentFile = ContentFile::findOne(['content_id' => $slideId, 'file_id' => intval($value['id'])])) !== null) {
                         $modelContentFile->deleted = 0;
                     } else {
                         $modelContentFile = new ContentFile();
-                        $modelContentFile->content_id = $newsId;
+                        $modelContentFile->content_id = $slideId;
                         $modelContentFile->file_id = $modelFile->id;
                     }
                     $modelContentFile->save(false);
@@ -115,54 +122,10 @@ class NewsController extends BackendController
             }
         }
 
-        $contentFileObjects = ContentFile::findAll(['content_id'=>$newsId]);
+        $contentFileObjects = ContentFile::findAll(['content_id'=>$slideId]);
         foreach ($contentFileObjects as $object) {
             if(!in_array($object->file_id, $fileList)){
                 $object->delete();
-            }
-        }
-    }
-
-    /**
-     * @param int $newsId
-     * @param string $tagString
-     * @return void
-     */
-    protected function updateTags($newsId, $tagString)
-    {
-        $tagList = [];
-        if(!empty($tagString))
-        {
-            foreach (Json::decode($tagString) as $tagName) {
-                $tagObject = Tag::findOne(['name' => $tagName]);
-                if($tagObject !== null) {
-                    $tagObject->deleted = 0;
-                } else {
-                    $tagObject = new Tag();
-                    $tagObject->name = $tagName;
-                    $tagObject->slug = $tagObject->getSlug(SlugHelper::makeSlugs($tagName));
-                }
-                $tagObject->save(false);
-                array_push($tagList, $tagObject->id);
-
-                $contentTagObject = ContentTag::findOne(['content_id'=>$newsId, 'tag_id'=>$tagObject->id]);
-                if($contentTagObject !== null) {
-                    $contentTagObject->deleted = 0;
-                } else {
-                    $contentTagObject = new ContentTag();
-                    $contentTagObject->content_id = $newsId;
-                    $contentTagObject->tag_id = $tagObject->id;
-                }
-                $contentTagObject->save(false);
-            }
-
-        }
-
-        $contentTagObjects = ContentTag::findAll(['content_id'=>$newsId]);
-        foreach ($contentTagObjects as $object) {
-            if(!in_array($object->tag_id, $tagList)){
-                $object->deleted = 1;
-                $object->save(false);
             }
         }
     }
@@ -196,27 +159,11 @@ class NewsController extends BackendController
             $model->updated_date = time();
             if($model->save()) {
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
-                $this->updateTags($model->id, isset(Yii::$app->request->post()['Tag']) ? Yii::$app->request->post()['Tag'] : '');
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
             $dataProvider = new FileSearch();
             $pictures = $dataProvider->search(['content_id' => $id])->getModels();
-
-            $dataProvider = new TagSearch();
-            $tags= $dataProvider->search(['content_id' => $id])->getModels();
-            $tagList = [];
-            foreach ($tags as $tag) {
-                array_push($tagList, $tag->name);
-            }
-
-            $dataProvider = new TagSearch();
-            $tagObjects = $dataProvider->search([])->getModels();
-            $tagSuggestions = '';
-            foreach ($tagObjects as $obj) {
-                $tagSuggestions .= $obj->name . ',';
-            }
-            $tagSuggestions = rtrim($tagSuggestions, ',');
 
             if($model->updated_date === 0) {
                 $model->name = '';
@@ -226,8 +173,6 @@ class NewsController extends BackendController
             return $this->render('update', [
                 'model' => $model,
                 'pictures' => $pictures,
-                'tags' => Json::encode($tagList),
-                'tagSuggestions' => $tagSuggestions,
             ]);
         }
     }
@@ -285,18 +230,4 @@ class NewsController extends BackendController
         return $exist === null;
     }
 
-    /**
-     * @param $id
-     * @return Response
-     * @throws NotFoundHttpException
-     */
-    public function actionShowInMenu($id)
-    {
-        $model = $this->findModel($id);
-        $model->show_in_menu = !$model->show_in_menu;
-
-        $model->save(false);
-
-        return $this->redirect(['index']);
-    }
 }

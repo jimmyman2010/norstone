@@ -32,6 +32,8 @@ class Content extends \yii\db\ActiveRecord
 {
     const TYPE_PAGE = 'page';
     const TYPE_NEWS = 'news';
+    const TYPE_SLIDER = 'slider';
+    const TYPE_WIDGET = 'widget';
 
     const STATUS_DRAFT = 'draft';
     const STATUS_WAITING = 'waiting';
@@ -88,6 +90,14 @@ class Content extends \yii\db\ActiveRecord
             'created_by' => Yii::t('app', 'Created By'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->hasOne(File::className(), ['id' => 'image_id']);
     }
 
     /**

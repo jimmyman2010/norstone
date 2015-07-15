@@ -2,22 +2,25 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
 
-$this->title = Yii::t('app', 'Create News');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'News'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Update {modelClass}: ', [
+    'modelClass' => 'Content',
+]) . ' ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Slider'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 
-<article class="page-create">
+<article class="page-update">
+
     <div class="portlet">
         <div class="portlet-title">
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
                     <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a(Yii::t('app', 'Create Slide'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
                 </ul>
             </div>
         </div>
@@ -25,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $this->render('_form', [
                 'model' => $model,
-                'tabs' => $tags,
                 'pictures' => $pictures,
             ]) ?>
 
