@@ -10,8 +10,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\UtilHelper;
 use frontend\assets\ProductAsset;
-use yii\widgets\Breadcrumbs;
+use yii\helpers\Json;
 use common\models\Config;
+use common\helpers\CurrencyHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -46,6 +47,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
         <div class="product_wrap">
             <div class="row">
                 <div id="product_image-container" class="col-sm-5">
+                    <span class="discount"></span>
                     <div class="product_image">
                         <ul class="bxslider">
                             <?php foreach ($pictures as $index => $photo) { ?>
@@ -69,11 +71,37 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                 <div class="col-sm-7">
                     <h1 itemprop="name" class="product_name"><?= $model->name ?></h1>
                     <div class="options clearfix">
-                        <div id="purchase">
-                            <input class="btn btn-cart" type="submit" name="add" id="add-to-cart" value="<?= intval($model->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($model->price) . ' VNĐ' ?>">
-                        </div>
+                        <ul>
+                            <?php
+                            if(empty($model->price_string)) { ?>
+                                <li>
+                                    <strong>Bảo hành 3 tháng: </strong>
+                                    <input class="btn btn-cart price-current" type="button" name="add" id="add-to-cart"
+                                           value="<?= intval($model->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($model->price) ?>">
+                                </li>
+                            <?php
+                            } else {
+                                $priceArray = Json::decode($model->price_string);
+                            ?>
+                                <li>
+                                    <strong>Bảo hành 3 tháng</strong>
+                                    <input class="btn btn-cart price-current" type="button" name="add" id="add-to-cart" value="<?= intval($priceArray['month3']['current']) === 0 ? 'Liên hệ' : $priceArray['month3']['current'] ?>">
+                                    <?php if(intval($priceArray['month3']['old']) !== 0) { ?>
+                                        <input class="btn price-old" type="button" name="add" id="add-to-cart" value="<?= $priceArray['month3']['old'] ?>">
+                                    <?php } ?>
+                                </li>
+                                <?php if(!(intval($priceArray['month3']['current']) === 0 && intval($priceArray['month12']['current']) === 0)) { ?>
+                                <li>
+                                    <strong>Bảo hành 12 tháng</strong>
+                                    <input class="btn btn-cart price-current" type="button" name="add" id="add-to-cart" value="<?= intval($priceArray['month12']['current']) === 0 ? 'Liên hệ' : $priceArray['month12']['current'] ?>">
+                                    <?php if(intval($priceArray['month12']['old']) !== 0) { ?>
+                                        <input class="btn price-old" type="button" name="add" id="add-to-cart" value="<?= $priceArray['month12']['old'] ?>">
+                                    <?php } ?>
+                                </li>
+                                <?php } ?>
+                            <?php } ?>
+                        </ul>
                     </div><!-- /.options -->
-
                     <?php if(count($tags) > 0) { ?>
                         <div class="product_details">
                             <span>Tags: </span>
@@ -90,7 +118,6 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <?php } ?>
 
                     <div id="product_description" class="rte" itemprop="description">
-                        <span>Mô tả:</span>
                         <div class="product_desc">
                             <?= $model->description ?>
                         </div>
@@ -155,17 +182,10 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         <div class="row">
                             <ul class="product-listing product-listing__related">
                                 <?php foreach ($relatedList as $index => $related) { ?>
-                                    <li class="product col-sm-4 columns-3 <?php if($index%3 === 0) echo 'item_alpha'; elseif($index%3 === 2) echo 'item_omega'; ?>">
-                                        <div class="product_img">
-                                            <a href="<?= Url::toRoute(['product/view', 'id' => $related->id, 'slug' => $related->slug]) ?>" title="<?= $model->name ?>">
-                                                <?= UtilHelper::getPicture($related->image_id, 'thumbnail') ?>
-                                            </a>
-                                        </div>
-                                        <h2 class="product_name">
-                                            <?= Html::a($related->name, ['product/view', 'id' => $related->id, 'slug' => $related->slug]) ?>
-                                        </h2>
-                                        <div class="product_price"><span class="money"><?= intval($related->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($related->price) . ' VNĐ' ?></span></div>
-                                    </li>
+                                    <?= $this->render('_item', [
+                                        'index' => $index,
+                                        'product' => $related,
+                                    ]) ?>
                                 <?php } ?>
                             </ul>
                         </div>

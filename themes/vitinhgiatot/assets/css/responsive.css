@@ -350,6 +350,7 @@
     }
     .widget__collections .sub-menu{
         position: absolute;
+        z-index: 10;
         left: 100%;
         top: 0;
         margin: 0 0 0 1px;

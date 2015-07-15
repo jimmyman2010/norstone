@@ -142,6 +142,9 @@ $this->registerJs("
                     </div>
                 </div>
                 <div class="large-3 columns">
+                    <?= $form->field($model, 'is_hot')->checkbox() ?>
+                    <?= $form->field($model, 'is_discount')->checkbox() ?>
+                    <hr/>
                     <script>
                         var treeData = [
                             <?php

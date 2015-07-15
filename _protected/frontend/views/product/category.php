@@ -63,20 +63,10 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
             </div>
             <div class="row">
                 <?php foreach ($dataProvider->getModels() as $index => $product) { ?>
-                    <div class="product product__product-grid-item columns-3 col-sm-4 <?php if($index%3 === 0) echo 'item_alpha'; elseif($index%3 === 2) echo 'item_omega'; ?>">
-                        <div class="product_img">
-                            <a href="<?= Url::toRoute(['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>">
-                                <?= UtilHelper::getPicture($product->image_id, 'thumbnail') ?>
-                            </a>
-                        </div>
-                        <h2 class="product_name">
-                            <?= Html::a($product->name, ['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>
-                        </h2>
-                        <div class="product_links">
-                            <button class="btn btn-cart" type="button"><?= intval($product->price) === 0 ? 'Liên hệ' : UtilHelper::formatNumber($product->price) . ' VNĐ' ?></button>
-                            <?= Html::a('Chi tiết', ['product/view', 'id' => $product->id, 'slug' => $product->slug], ['class'=>'btn']) ?>
-                        </div>
-                    </div>
+                    <?= $this->render('_item', [
+                        'index' => $index,
+                        'product' => $product,
+                    ]) ?>
                 <?php } ?>
             </div>
 
