@@ -1655,3 +1655,7 @@ only screen and (min-device-pixel-ratio: 1.5){
     width: 65px;
     margin: 2px 5px;
 }
+#bannerscrollleft, #bannerscrollright{position:absolute; z-index: 90; overflow:hidden; top: 0; right: -155px; width: 140px;}
+#bannerscrollleft{text-align: right}
+#bannerscrollleft a img, #bannerscrollright a img{margin-top: 10px}
+#bannerscrollleft a:first-child img, #bannerscrollright a:first-child img{margin-top: 0}

@@ -38,6 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     [
+                        'header' => 'Position',
+                        'value' => function($data) {
+                            return ($data->parent_id === 0) ? Yii::t('app', 'Left') : Yii::t('app', 'Right');
+                        }
+                    ],
+                    [
                         'attribute' => 'status',
                         'filter' => $searchModel->getStatusList(),
                         'value' => function($data) {

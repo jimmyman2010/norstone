@@ -149,7 +149,8 @@ AppAsset::register($this);
                 </div>
             </div>
         </div>
-        <div id="bannerscrollleft" style="position:absolute; z-index: 90; overflow:hidden; top: 0; left: -155px; width: 140px; border: 1px solid #000;">
+        <?php $widthBanner = Config::findOne(['key' => 'BANNER_WIDTH'])->value; ?>
+        <div id="bannerscrollleft" style="left: -<?= $widthBanner+15 ?>px; width: <?= $widthBanner ?>px;" data-width="<?= $widthBanner ?>">
             <div id="floating_banner_left_content">
                 <?php
                 $widget = Content::find()->where([
@@ -159,11 +160,13 @@ AppAsset::register($this);
                 ])->orderBy('sorting')->all();
                 ?>
                 <?php foreach ($widget as $index => $item) { ?>
-                    <img src="<?= $item->summary ?>" alt="" />
+                    <a href="">
+                        <img src="<?= $item->summary ?>" alt="" />
+                    </a>
                 <?php } ?>
             </div>
         </div>
-        <div id="bannerscrollright" style="position:absolute; z-index: 90; overflow:hidden; top: 0; right: -155px; width: 140px; border: 1px solid #000;">
+        <div id="bannerscrollright" style="right: -<?= $widthBanner+15 ?>px; width: <?= $widthBanner ?>px;" data-width="<?= $widthBanner ?>">
             <div id="floating_banner_right_content"  >
                 <?php
                 $widget = Content::find()->where([
@@ -173,10 +176,43 @@ AppAsset::register($this);
                 ])->orderBy('sorting')->all();
                 ?>
                 <?php foreach ($widget as $index => $item) { ?>
-                    <img src="<?= $item->summary ?>" alt="" />
+                    <a href="">
+                        <img src="<?= $item->summary ?>" alt="" />
+                    </a>
                 <?php } ?>
             </div>
         </div>
+
+        <?php
+        $this->registerJs(
+            "var slideTime = 700;
+            function pepsi_floating_init(){
+                xMoveTo('bannerscrollright', screen.width - 735, 0);
+                winOnResize();
+                xAddEventListener(window, 'resize', winOnResize, false);
+                xAddEventListener(window, 'scroll', winOnScroll, false);
+            }
+            function winOnResize() {
+                checkScreenWidth();
+                winOnScroll();
+            }
+            function winOnScroll() {
+                var y = xScrollTop() + 60;
+                xSlideTo('bannerscrollleft', -15 - ".$widthBanner.", y, slideTime);
+                xSlideTo('bannerscrollright', screen.width - 735, y, slideTime);
+            }
+            function checkScreenWidth(){
+                if( document.body.clientWidth < 1400 ){
+                    document.getElementById('bannerscrollleft').style.display = 'none';
+                    document.getElementById('bannerscrollright').style.display = 'none';
+                }else{
+                    document.getElementById('bannerscrollleft').style.display = '';
+                    document.getElementById('bannerscrollright').style.display = '';
+                }
+            }
+            checkScreenWidth();
+            pepsi_floating_init();"
+        ); ?>
 
     </header>
     <!-- MAIN CONTENT -->
@@ -313,36 +349,7 @@ AppAsset::register($this);
     </div>
 </footer>
 <?php $this->registerJs(" $('.customselect_wrap select').customSelect(); "); ?>
-<script type='text/javascript' src="<?= Yii::$app->view->theme->baseUrl ?>/assets/js/floater_xlib.js"></script>
-<script type='text/javascript'>
-    var slideTime = 700;
-    function pepsi_floating_init(){
-        xMoveTo('bannerscrollright', screen.width - 735, 0);
-        //winOnResize();
-        xAddEventListener(window, 'resize', winOnResize, false);
-        xAddEventListener(window, 'scroll', winOnScroll, false);
-    }
-    function winOnResize() {
-        checkScreenWidth();
-        winOnScroll();
-    }
-    function winOnScroll() {
-        var y = xScrollTop() + 60;
-        xSlideTo('bannerscrollleft', -155, y, slideTime);
-        xSlideTo('bannerscrollright', screen.width - 735, y, slideTime);
-    }
-    function checkScreenWidth(){
-        if( document.body.clientWidth < 1400 ){
-            document.getElementById('bannerscrollleft').style.display = 'none';
-            document.getElementById('bannerscrollright').style.display = 'none';
-        }else{
-            document.getElementById('bannerscrollleft').style.display = '';
-            document.getElementById('bannerscrollright').style.display = '';
-        }
-    }
-    checkScreenWidth();
-    pepsi_floating_init();
-</script>
+
 <?php $this->endBody() ?>
 <script type="text/javascript">
 
