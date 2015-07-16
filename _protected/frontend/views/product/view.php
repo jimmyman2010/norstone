@@ -159,7 +159,9 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active firstItem"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Tổng quan</a></li>
+            <?php if($model->info_tech) { ?>
             <li role="presentation" class=""><a href="#infoTech" aria-controls="infoTech" role="tab" data-toggle="tab">Cấu hình chi tiết</a></li>
+            <?php } ?>
             <li role="presentation" class=""><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Ý kiến khách hàng</a></li>
             <li role="presentation" class="lastItem"><a href="#related" aria-controls="related" role="tab" data-toggle="tab">Sản phẩm liên quan</a></li>
         </ul>
@@ -171,11 +173,13 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <?= $model->general ?>
                 </div>
             </div>
+            <?php if($model->info_tech) { ?>
             <div role="tabpanel" class="tab-pane" id="infoTech">
                 <div class="rte">
                     <?= $model->info_tech ?>
                 </div>
             </div>
+            <?php } ?>
             <div role="tabpanel" class="tab-pane" id="comments">
                 <div class="widget_content">
                     <div class="fb-comments" data-version="v2.3"></div>

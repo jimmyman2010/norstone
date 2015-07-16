@@ -160,7 +160,7 @@ class WidgetController extends BackendController {
             $model->updated_date = time();
             if($model->save()) {
                 $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
-                return $this->redirect(['update', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         } else {
             $dataProvider = new FileSearch();

@@ -132,6 +132,13 @@ AppAsset::register($this);
                                         ]
                                     ],
                                     [
+                                        'label' => Yii::t('app', 'Banner'),
+                                        'url' => ['banner/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-columns"></i>{label}</a>',
+                                        'items' => [
+                                        ]
+                                    ],
+                                    [
                                         'label' => Yii::t('app', 'Widget'),
                                         'url' => ['widget/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-tasks"></i>{label}</a>',

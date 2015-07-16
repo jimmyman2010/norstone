@@ -23,10 +23,10 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 /**
- * Class SliderController implements the CRUD actions for Content model.
+ * Class WidgetController implements the CRUD actions for Content model.
  * @package backend\controllers
  */
-class SliderController extends BackendController {
+class BannerController extends BackendController {
 
     /**
      * @param \yii\base\Action $action
@@ -46,7 +46,7 @@ class SliderController extends BackendController {
     {
         $searchModel = new ContentSearch();
         $params = Yii::$app->request->queryParams;
-        $params['ContentSearch']['content_type'] = Content::TYPE_SLIDER;
+        $params['ContentSearch']['content_type'] = Content::TYPE_BANNER;
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
@@ -76,11 +76,11 @@ class SliderController extends BackendController {
     {
         $model = new Content();
 
-        $model->name = 'New a slider';
-        $model->slug = $model->getSlug('new-a-slider');
-        $model->summary = 'summary slider';
+        $model->name = 'New a widget';
+        $model->slug = $model->getSlug('new-a-widget');
+        $model->summary = 'summary widget';
         $model->status = Content::STATUS_DRAFT;
-        $model->content_type = Content::TYPE_SLIDER;
+        $model->content_type = Content::TYPE_BANNER;
         $model->created_date = time();
         $model->created_by = Yii::$app->user->identity->username;
 
@@ -155,6 +155,7 @@ class SliderController extends BackendController {
                     $model->published_date = time();
                 }
             }
+            $model->sorting = intval($model->sorting);
 
             $model->updated_date = time();
             if($model->save()) {

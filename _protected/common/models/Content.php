@@ -34,6 +34,7 @@ class Content extends \yii\db\ActiveRecord
     const TYPE_NEWS = 'news';
     const TYPE_SLIDER = 'slider';
     const TYPE_WIDGET = 'widget';
+    const TYPE_BANNER = 'banner';
 
     const STATUS_DRAFT = 'draft';
     const STATUS_WAITING = 'waiting';
