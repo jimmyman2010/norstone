@@ -949,7 +949,7 @@ display: none;
 .product_wrap .options .btn:focus,
 .product_wrap .options .btn:active{background: none !important;}
 .product_wrap .options .price-current{font-size: 40px}
-.product_wrap .options .price-old{text-decoration: line-through; font-size: 24px}
+.product_wrap .options .price-old{text-decoration: line-through; font-size: 24px; color: #666 !important; margin-top: 10px}
 .product_wrap .product_details {font-size:15px; margin: 15px 0 0 0;padding: 0 0 15px;border-bottom: 1px solid #d3d3d3;}
 .product_wrap .product_details > div {padding: 5px 0 0 0;}
 
