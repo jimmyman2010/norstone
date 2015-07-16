@@ -63,6 +63,10 @@ $this->registerJs("
                 'buttonOptions'     => ['class' => 'small button radius info']
             ]); ?>
         </div>
+        <div class="form-group">
+            <label class="control-label"><?= Yii::t('app', 'Link') ?></label>
+            <input type="text" name="Content[content]" value="<?= $model->content ?>" />
+        </div>
     </div>
     <div class="large-4 columns">
         <?= $form->field($model, 'sorting')->textInput() ?>

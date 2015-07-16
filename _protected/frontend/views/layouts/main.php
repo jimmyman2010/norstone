@@ -156,6 +156,7 @@ AppAsset::register($this);
                 $widget = Content::find()->where([
                     'content_type' => Content::TYPE_BANNER,
                     'status' => Content::STATUS_PUBLISHED,
+                    'deleted' => 0,
                     'sorting' => 0
                 ])->orderBy('sorting')->all();
                 ?>
@@ -172,11 +173,12 @@ AppAsset::register($this);
                 $widget = Content::find()->where([
                     'content_type' => Content::TYPE_BANNER,
                     'status' => Content::STATUS_PUBLISHED,
+                    'deleted' => 0,
                     'sorting' => 1
                 ])->orderBy('sorting')->all();
                 ?>
                 <?php foreach ($widget as $index => $item) { ?>
-                    <a href="">
+                    <a href="<?= $item->content ?>">
                         <img src="<?= $item->summary ?>" alt="" />
                     </a>
                 <?php } ?>
@@ -290,12 +292,13 @@ AppAsset::register($this);
                             <?php
                             $widget = Content::find()->where([
                                 'content_type' => Content::TYPE_WIDGET,
+                                'deleted' => 0,
                                 'status' => Content::STATUS_PUBLISHED
                             ])->orderBy('sorting')->all();
                             ?>
                             <?php foreach ($widget as $index => $item) { ?>
                                 <div class="custom_sidebar widget-sidebar custom_sidebar<?= $index ?>">
-                                    <a class="trs_hover" href="#">
+                                    <a class="trs_hover" href="javascript:;">
                                         <img src="<?= $item->summary ?>" alt="" />
                                         <?= $item->content ?>
                                     </a>
