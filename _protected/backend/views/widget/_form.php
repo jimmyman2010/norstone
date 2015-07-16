@@ -7,6 +7,8 @@ use yii\helpers\Url;
 use backend\assets\PageBuilderAsset;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
+use mihaildev\elfinder\InputFile;
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
@@ -48,8 +50,26 @@ $this->registerJs("
 
     <div class="large-12 columns">
         <div class="row">
-            <div class="large-9 columns">
+            <div class="large-8 columns">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
+            </div>
+            <div class="large-4 columns">
+                <?= $form->field($model, 'sorting')->textInput() ?>
+            </div>
+            <div class="large-12 columns">
+                <div class="form-group field-content-summary required">
+                    <label class="control-label" for="content-summary"><?= Yii::t('app', 'Icon') ?></label>
+                    <?= InputFile::widget([
+                        'controller' => 'elfinder',
+                        'path'       => 'image',
+                        'filter'     => 'image',
+                        'template'   => '<span class="clearfix"><span class="columns large-6">{input}</span><span class="columns large-6">{button}</span></span>',
+                        'name'       => 'Content[summary]',
+                        'id'         => 'content-summary',
+                        'value'      => $model->summary,
+                        'buttonOptions'     => ['class' => 'small button radius info']
+                    ]); ?>
+                </div>
                 <?= $form->field($model, 'content')->widget(CKEditor::className(), [
                     'editorOptions' => [
                         'inline' => false,
@@ -66,35 +86,6 @@ $this->registerJs("
                         'height' => 300
                     ],
                 ]) ?>
-            </div>
-            <div class="large-3 columns">
-                <div>
-                    <h6><?= Yii::t('app', 'Pictures') ?></h6>
-                    <div id="filelist" class="view-thumbnail row">
-                        <?php
-                        foreach ($pictures as $index => $item) {
-                            ?>
-                            <div id="<?= $item->id ?>" class="photo-zone columns">
-                                <table cellpadding="0" cellspacing="0">
-                                    <tr><td class="controls">
-                                            <label><input type="radio" name="Content[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> <?= Yii::t('app', 'Main picture') ?></label>
-                                            <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
-                                        </td></tr>
-                                    <tr><td class="edit"><span class="name">
-                                            <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
-                                        </span></td></tr>
-                                    <tr><td class="caption">
-                                            <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>
-                                            <input type="hidden" name="Picture[<?= $item->id ?>][id]" value="<?= $item->id ?>"/>
-                                        </td></tr>
-                                </table></div>
-                        <?php } ?>
-                    </div>
-                    <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
-                        <a id="pickfiles" href="javascript:;" class="tiny button radius">Select files</a>
-                    </div>
-                    <pre id="console"></pre>
-                </div>
             </div>
         </div>
         <div class="row">

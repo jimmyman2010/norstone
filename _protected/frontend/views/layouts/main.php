@@ -6,6 +6,8 @@ use yii\helpers\Url;
 use common\models\Config;
 use common\models\Category;
 use yii\helpers\Json;
+use common\models\Content;
+use common\models\ContentSearch;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -222,20 +224,20 @@ AppAsset::register($this);
                                     </div>
                                 </div>
                             </div>
-                            <div class="custom_sidebar custom_sidebar1">
-                                <a class="trs_hover" href="#">
-                                    <i class="fa fa-dropbox"></i>
-                                    <h3>MIỄN PHÍ VẬN CHUYỂN</h3>
-                                    <h4>cho hóa đơn trên 5.000.000 VNĐ</h4>
-                                </a>
-                            </div>
-                            <div class="custom_sidebar custom_sidebar2">
-                                <a class="trs_hover" href="#">
-                                    <i class="fa fa-phone"></i>
-                                    <h3>Liên lạc đường dây nóng:</h3>
-                                    <h4><?= Config::findOne(['key' => 'PHONE'])->value ?></h4>
-                                </a>
-                            </div>
+                            <?php
+                            $widget = Content::find()->where([
+                                'content_type' => Content::TYPE_WIDGET,
+                                'status' => Content::STATUS_PUBLISHED
+                            ])->orderBy('sorting')->all();
+                            ?>
+                            <?php foreach ($widget as $index => $item) { ?>
+                                <div class="custom_sidebar widget-sidebar custom_sidebar<?= $index ?>">
+                                    <a class="trs_hover" href="#">
+                                        <img src="<?= $item->summary ?>" alt="" />
+                                        <?= $item->content ?>
+                                    </a>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

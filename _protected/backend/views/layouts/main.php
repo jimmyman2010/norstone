@@ -132,6 +132,13 @@ AppAsset::register($this);
                                         ]
                                     ],
                                     [
+                                        'label' => Yii::t('app', 'Widget'),
+                                        'url' => ['widget/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-tasks"></i>{label}</a>',
+                                        'items' => [
+                                        ]
+                                    ],
+                                    [
                                         'label' => Yii::t('app', 'Pages'),
                                         'url' => ['page/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>',

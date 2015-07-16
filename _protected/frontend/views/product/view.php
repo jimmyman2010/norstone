@@ -47,7 +47,12 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
         <div class="product_wrap">
             <div class="row">
                 <div id="product_image-container" class="col-sm-5">
-                    <span class="discount"></span>
+                    <?php if($model->is_discount) { ?>
+                        <span class="discount"></span>
+                    <?php } ?>
+                    <?php if($model->is_hot) { ?>
+                        <span class="hot"></span>
+                    <?php } ?>
                     <div class="product_image">
                         <ul class="bxslider">
                             <?php foreach ($pictures as $index => $photo) { ?>

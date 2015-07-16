@@ -1644,6 +1644,14 @@ only screen and (min-device-pixel-ratio: 1.5){
     display: block; width: 65px; height: 66px; z-index: 10;
 }
 #product_image-container .discount{right: 6px}
+#product_image-container .hot,
 #main_content .product .product_img .hot{position: absolute; top: -10px; left: -10px; background: url(../images/hot2.gif) no-repeat;
     width: 50px; height: 47px; display: block; z-index: 10;
+}
+#product_image-container .hot{top: 0; left: 5px}
+
+.widget-sidebar img{
+    float: left;
+    width: 65px;
+    margin: 2px 5px;
 }
