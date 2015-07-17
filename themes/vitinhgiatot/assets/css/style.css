@@ -829,7 +829,14 @@ display: none;
 .column .widget ul.list li {padding: 14px 15px 16px 15px;}
 .column .widget ul.list li.lastItem {padding: 14px 15px 0 15px;}
 .column .widget ul.list li + li {border-top: 1px solid #d3d3d3;}
-.column .widget ul.list li a {font: normal 15px 'Open Sans', sans-serif; margin-left: 8px}
+.column .widget ul.list li a {font: normal 15px/15px 'Open Sans', sans-serif;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.column .widget ul.list li a:hover {text-decoration: underline}
+.column .widget ul.list li a.icon{float: left}
+.column .widget ul.list li a.name{font-weight: bold; color: #6f9f12;}
+.column .widget ul.list li p{margin: 0 0 0 50px;}
 .column .widget ul.list li i {vertical-align: baseline;margin: 0 10px 0 0;font-size: 19px;color: #3f3e3e;}
 
 
@@ -1655,6 +1662,8 @@ only screen and (min-device-pixel-ratio: 1.5){
     width: 65px;
     margin: 2px 5px;
 }
+.widget-ads a img{margin-top: 10px}
+.widget-ads a:first-child img{margin-top: 0}
 #bannerscrollleft, #bannerscrollright{position:absolute; z-index: 90; overflow:hidden; top: 0; right: -155px; width: 140px;}
 #bannerscrollleft{text-align: right}
 #bannerscrollleft a img, #bannerscrollright a img{margin-top: 10px}

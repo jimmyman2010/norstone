@@ -157,7 +157,7 @@ AppAsset::register($this);
                     'content_type' => Content::TYPE_BANNER,
                     'status' => Content::STATUS_PUBLISHED,
                     'deleted' => 0,
-                    'sorting' => 0
+                    'parent_id' => 0
                 ])->orderBy('sorting')->all();
                 ?>
                 <?php foreach ($widget as $index => $item) { ?>
@@ -174,7 +174,7 @@ AppAsset::register($this);
                     'content_type' => Content::TYPE_BANNER,
                     'status' => Content::STATUS_PUBLISHED,
                     'deleted' => 0,
-                    'sorting' => 1
+                    'parent_id' => 1
                 ])->orderBy('sorting')->all();
                 ?>
                 <?php foreach ($widget as $index => $item) { ?>
@@ -263,15 +263,23 @@ AppAsset::register($this);
                                 <?php foreach(Json::decode(Config::findOne(['key' => 'SUPPORT'])->value) as $contact) { ?>
                                     <?php if($contact['type'] === 'yahoo') { ?>
                                     <li>
-                                        <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
-                                        <a href="ymsgr:sendim?<?= trim($contact['nickname']) ?>"><?= trim($contact['name']) ?></a>
-                                        <br/><a href="tel:<?= trim($contact['phone']) ?>"><?= trim($contact['phone']) ?></a>
+                                        <a class="icon" href="ymsgr:sendim?<?= trim($contact['nickname']) ?>">
+                                            <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
+                                        </a>
+                                        <p>
+                                            <a class="name" href="ymsgr:sendim?<?= trim($contact['nickname']) ?>"><?= trim($contact['name']) ?></a>
+                                            <br/><a href="tel:<?= trim($contact['phone']) ?>"><?= trim($contact['phone']) ?></a>
+                                        </p>
                                     </li>
                                     <?php } else { ?>
                                     <li>
-                                        <img src="<?= Url::toRoute(['site/skype-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
-                                        <a href="skype:<?= trim($contact['nickname']) ?>?chat"><?= trim($contact['name']) ?></a>
-                                        <br/><a href="tel:<?= trim($contact['phone']) ?>"><?= trim($contact['phone']) ?></a>
+                                        <a class="icon" href="skype:<?= trim($contact['nickname']) ?>?chat">
+                                            <img src="<?= Url::toRoute(['site/skype-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
+                                        </a>
+                                        <p>
+                                            <a class="name" href="skype:<?= trim($contact['nickname']) ?>?chat"><?= trim($contact['name']) ?></a>
+                                            <br/><a href="tel:<?= trim($contact['phone']) ?>"><?= trim($contact['phone']) ?></a>
+                                        </p>
                                     </li>
                                     <?php } ?>
                                 <?php } ?>
@@ -306,6 +314,21 @@ AppAsset::register($this);
                             <?php } ?>
                         </div>
                     </div>
+                    <div class="widget widget_custom widget-ads">
+                        <?php
+                        $widget = Content::find()->where([
+                            'content_type' => Content::TYPE_BANNER,
+                            'status' => Content::STATUS_PUBLISHED,
+                            'deleted' => 0,
+                            'parent_id' => 2
+                        ])->orderBy('sorting')->all();
+                        ?>
+                        <?php foreach ($widget as $index => $item) { ?>
+                            <a href="<?= $item->content ?>">
+                                <img src="<?= $item->summary ?>" alt="" />
+                            </a>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
 
@@ -319,10 +342,9 @@ AppAsset::register($this);
                 <div class="custom_footer3 col-md-6 col-xs-12">
                     <h3>Follow us</h3>
                     <ul class="clearfix">
-                        <li><a href="https://twitter.com/"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
-                        <li><a href="https://www.facebook.com/"><i class="fa fa-facebook-square"></i><span>Facebook</span></a></li>
-                        <li><a href="https://google.com/"><i class="fa fa-google-plus-square"></i><span>Google+</span></a></li>
-
+<!--                        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>-->
+                        <li><a href="<?= Config::findOne(['key' => 'LINK_FACEBOOK'])->value ?>" target="_blank"><i class="fa fa-facebook-square"></i><span>Facebook</span></a></li>
+<!--                        <li><a href="https://google.com/" target="_blank"><i class="fa fa-google-plus-square"></i><span>Google+</span></a></li>-->
                     </ul>
                 </div>
 

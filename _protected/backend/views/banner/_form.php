@@ -75,6 +75,7 @@ $this->registerJs("
             <select name="Content[parent_id]">
                 <option value="0" <?php if($model->parent_id === 0) { echo 'selected="selected"'; } ?>><?= Yii::t('app', 'Left') ?></option>
                 <option value="1" <?php if($model->parent_id === 1) { echo 'selected="selected"'; } ?>><?= Yii::t('app', 'Right') ?></option>
+                <option value="2" <?php if($model->parent_id === 2) { echo 'selected="selected"'; } ?>><?= Yii::t('app', 'Sidebar') ?></option>
             </select>
         </div>
     </div>

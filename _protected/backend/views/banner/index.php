@@ -40,7 +40,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'header' => 'Position',
                         'value' => function($data) {
-                            return ($data->parent_id === 0) ? Yii::t('app', 'Left') : Yii::t('app', 'Right');
+                            switch($data->parent_id) {
+                                case 2:{
+                                    return Yii::t('app', 'Sidebar');
+                                    break;
+                                }
+                                case 1:{
+                                    return Yii::t('app', 'Right');
+                                    break;
+                                }
+                                case 0:
+                                default: {
+                                    return Yii::t('app', 'Left');
+                                    break;
+                                }
+                            }
                         }
                     ],
                     [
