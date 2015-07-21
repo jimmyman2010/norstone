@@ -7,9 +7,13 @@ use Yii;
 use common\models\File;
 use common\models\FileSearch;
 use yii\helpers\FileHelper;
+use yii\helpers\Json;
+use yii\imagine\Image;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Request;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
 /**
@@ -134,7 +138,63 @@ class FileController extends Controller
         die('{"jsonrpc" : "2.0", "result" : {"showUrl": "'.$model->show_url.'", "fileName": "'.$model->file_name.'", "fileExt":"'.$model->file_ext.'"}, "id" : '.$model->id.'}');
     }
 
+    /**
+     * @param integer $id
+     * @return string
+     */
+    public function actionWatermask($id){
+        $model = $this->findModel($id);
+        $fileSource = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '-origin.' . $model->file_ext;
+        $fileTarget = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '.' . $model->file_ext;
+        if(!file_exists($fileSource)) {
+            $imagine = Image::thumbnail($fileTarget, $model->width, $model->height);
+            $imagine->save($fileSource);
+        }
+        return $this->render('watermask', [
+            'model' => $model
+        ]);
+    }
 
+    /**
+     * @param integer $id
+     * @return string
+     */
+    public function actionWatermaskSave($id){
+        $model = $this->findModel($id);
+
+        $fabric = Yii::$app->request->post()['fabric'];
+        $json = Json::decode($fabric);
+        $fileSource = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '-origin.' . $model->file_ext;
+        $fileTarget = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '.' . $model->file_ext;
+
+        if(isset($json['objects']))
+        {
+            foreach ($json['objects'] as $index => $mask) {
+                if($mask['type'] === 'image') {
+                    $urlArray = explode('/', $mask['src']);
+                    unset($urlArray[0]);
+                    unset($urlArray[1]);
+                    unset($urlArray[2]);
+                    unset($urlArray[3]);
+                    $fileMask = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $urlArray);
+                    $maskOption = [
+                        'left' => intval($mask['left']),
+                        'top' => intval($mask['top']),
+                        'width' => intval($mask['width'] * $mask['scaleX']),
+                        'height' => intval($mask['height'] * $mask['scaleY']),
+                        'rotate' => intval($mask['angle'])
+                    ];
+                    UtilHelper::watermaskImage($fileSource, $fileTarget, $fileMask, $maskOption);
+                }
+
+
+            }
+
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $fabric;
+    }
 
     /**
      * Updates an existing File model.

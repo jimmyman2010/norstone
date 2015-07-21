@@ -15,6 +15,7 @@ module.exports = function(grunt) {
                 'admin/themes/jmgroup/js/app/*.js',
                 'admin/themes/jmgroup/js/page-builder/*.js',
                 'admin/themes/jmgroup/js/arrangement/*.js',
+                'admin/themes/jmgroup/js/watermask/*.js',
                 'admin/themes/jmgroup/js/general/*.js'
             ]
 		},
@@ -32,6 +33,9 @@ module.exports = function(grunt) {
                     ],
                     'admin/themes/jmgroup/js/page-builder.min.js': [
                         'admin/themes/jmgroup/js/page-builder/*.js'
+                    ],
+                    'admin/themes/jmgroup/js/watermask.min.js': [
+                        'admin/themes/jmgroup/js/watermask/*.js'
                     ],
                     'admin/themes/jmgroup/js/arrangement.min.js': [
                         'admin/themes/jmgroup/js/arrangement/*.js',

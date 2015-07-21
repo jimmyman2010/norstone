@@ -5,7 +5,9 @@ namespace common\helpers;
 use backend\models\FileForm;
 use common\models\File;
 use Imagine\Image\Box;
+use Imagine\Image\Color;
 use Imagine\Image\ManipulatorInterface;
+use Imagine\Image\Point;
 use Yii;
 use yii\helpers\Html;
 use yii\imagine\Image;
@@ -190,6 +192,25 @@ class UtilHelper{
             return new Box($width, $height);
         }
         return false;
+    }
+
+    /**
+     * @param $fileSource
+     * @param $fileTarget
+     * @param $fileMask
+     * @param $maskOption $left, $top, $width = 0, $height = 0
+     */
+    public static function watermaskImage($fileSource, $fileTarget, $fileMask, $maskOption) {
+        $fileTemp = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'image.png';
+
+        $imagine = Image::thumbnail($fileMask, $maskOption['width'], $maskOption['height'], ManipulatorInterface::THUMBNAIL_INSET);
+        $imagine->rotate($maskOption['rotate'], new Color(array(255, 255, 255), 100));
+        $imagine->save($fileTemp);
+
+        $imagine = Image::watermark($fileSource, $fileTemp, [$maskOption['left'], $maskOption['top']]);
+        $imagine->save($fileTarget);
+
+        unlink($fileTemp);
     }
 
     /**
