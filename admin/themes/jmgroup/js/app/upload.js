@@ -116,7 +116,13 @@ $(function(){
     $(".various").fancybox({
         padding     : 0,
         openEffect	: 'none',
-        closeEffect	: 'none'
+        closeEffect	: 'none',
+        beforeClose       : function(){
+            $('#filelist').find('img').each(function(){
+                var src = $(this).attr('src');
+                $(this).attr('src', src + '?a=1');
+            });
+        }
     });
 
 });

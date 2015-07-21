@@ -58,6 +58,7 @@ WatermaskAsset::register($this);
             <canvas id="canvas" width="<?= $model->width ?>" height="<?= $model->height ?>" data-background="<?= ($model->show_url . $model->file_name . '-origin.' . $model->file_ext) ?>"></canvas>
             <div class="button-group-bottom">
                 <button type="button" class="small radius" id="watermask-save" data-submit="<?= \yii\helpers\Url::toRoute(['file/watermask-save', 'id' => $model->id]) ?>"><?= Yii::t('app', 'Save') ?></button>
+                <a href="javascript:parent.jQuery.fancybox.close();" class="button small secondary radius"><?= Yii::t('app', 'Cancel') ?></a>
             </div>
         </div>
     </div>
