@@ -2858,66 +2858,381 @@ span.dynatree-drop-target.dynatree-drop-reject {
 /* line 10, ../../sass/app/modules/_watermask.scss */
 .watermask-controls #color-opacity-controls {
   float: left;
+  display: none;
 }
-/* line 12, ../../sass/app/modules/_watermask.scss */
+/* line 13, ../../sass/app/modules/_watermask.scss */
 .watermask-controls #color-opacity-controls div {
   float: left;
   margin: 10px 0 0 40px;
 }
-/* line 15, ../../sass/app/modules/_watermask.scss */
+/* line 16, ../../sass/app/modules/_watermask.scss */
 .watermask-controls #color-opacity-controls div label {
   float: left;
   margin: 7px;
 }
-/* line 19, ../../sass/app/modules/_watermask.scss */
+/* line 20, ../../sass/app/modules/_watermask.scss */
 .watermask-controls #color-opacity-controls div input[type="range"] {
   margin-top: 7px;
   width: 200px;
 }
 
-/* line 26, ../../sass/app/modules/_watermask.scss */
+/* line 27, ../../sass/app/modules/_watermask.scss */
 #canvas {
   border: 1px solid #ccc;
 }
 
-/* line 17, ../../sass/app/global.scss */
+/* line 30, ../../sass/app/modules/_watermask.scss */
+.button-group-bottom {
+  margin: 15px;
+}
+
+/*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
+/* line 2, ../../sass/app/modules/_fancybox.scss */
+.fancybox-wrap,
+.fancybox-skin,
+.fancybox-outer,
+.fancybox-inner,
+.fancybox-image,
+.fancybox-wrap iframe,
+.fancybox-wrap object,
+.fancybox-nav,
+.fancybox-nav span,
+.fancybox-tmp {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+  vertical-align: top;
+}
+
+/* line 20, ../../sass/app/modules/_fancybox.scss */
+.fancybox-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8020;
+}
+
+/* line 27, ../../sass/app/modules/_fancybox.scss */
+.fancybox-skin {
+  position: relative;
+  background: #f9f9f9;
+  color: #444;
+  text-shadow: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 37, ../../sass/app/modules/_fancybox.scss */
+.fancybox-opened {
+  z-index: 8030;
+}
+
+/* line 41, ../../sass/app/modules/_fancybox.scss */
+.fancybox-opened .fancybox-skin {
+  -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* line 47, ../../sass/app/modules/_fancybox.scss */
+.fancybox-outer, .fancybox-inner {
+  position: relative;
+}
+
+/* line 51, ../../sass/app/modules/_fancybox.scss */
+.fancybox-inner {
+  overflow: hidden;
+}
+
+/* line 55, ../../sass/app/modules/_fancybox.scss */
+.fancybox-type-iframe .fancybox-inner {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* line 59, ../../sass/app/modules/_fancybox.scss */
+.fancybox-error {
+  color: #444;
+  font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin: 0;
+  padding: 15px;
+  white-space: nowrap;
+}
+
+/* line 67, ../../sass/app/modules/_fancybox.scss */
+.fancybox-image, .fancybox-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 73, ../../sass/app/modules/_fancybox.scss */
+.fancybox-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* line 78, ../../sass/app/modules/_fancybox.scss */
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+  background-image: url(../images/fancybox_sprite.png);
+}
+
+/* line 82, ../../sass/app/modules/_fancybox.scss */
+#fancybox-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -22px;
+  margin-left: -22px;
+  background-position: 0 -108px;
+  opacity: 0.8;
+  cursor: pointer;
+  z-index: 8060;
+}
+
+/* line 94, ../../sass/app/modules/_fancybox.scss */
+#fancybox-loading div {
+  width: 44px;
+  height: 44px;
+  background: url(../images/fancybox_loading.gif) center center no-repeat;
+}
+
+/* line 100, ../../sass/app/modules/_fancybox.scss */
+.fancybox-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 8040;
+}
+
+/* line 110, ../../sass/app/modules/_fancybox.scss */
+.fancybox-nav {
+  position: absolute;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent url(../images/blank.gif);
+  /* helps IE */
+  -webkit-tap-highlight-color: transparent;
+  z-index: 8040;
+}
+
+/* line 122, ../../sass/app/modules/_fancybox.scss */
+.fancybox-prev {
+  left: 0;
+}
+
+/* line 126, ../../sass/app/modules/_fancybox.scss */
+.fancybox-next {
+  right: 0;
+}
+
+/* line 130, ../../sass/app/modules/_fancybox.scss */
+.fancybox-nav span {
+  position: absolute;
+  top: 50%;
+  width: 36px;
+  height: 34px;
+  margin-top: -18px;
+  cursor: pointer;
+  z-index: 8040;
+  visibility: hidden;
+}
+
+/* line 141, ../../sass/app/modules/_fancybox.scss */
+.fancybox-prev span {
+  left: 10px;
+  background-position: 0 -36px;
+}
+
+/* line 146, ../../sass/app/modules/_fancybox.scss */
+.fancybox-next span {
+  right: 10px;
+  background-position: 0 -72px;
+}
+
+/* line 151, ../../sass/app/modules/_fancybox.scss */
+.fancybox-nav:hover span {
+  visibility: visible;
+}
+
+/* line 155, ../../sass/app/modules/_fancybox.scss */
+.fancybox-tmp {
+  position: absolute;
+  top: -99999px;
+  left: -99999px;
+  max-width: 99999px;
+  max-height: 99999px;
+  overflow: visible !important;
+}
+
+/* Overlay helper */
+/* line 166, ../../sass/app/modules/_fancybox.scss */
+.fancybox-lock {
+  overflow: visible !important;
+  width: auto;
+}
+
+/* line 171, ../../sass/app/modules/_fancybox.scss */
+.fancybox-lock body {
+  overflow: hidden !important;
+}
+
+/* line 175, ../../sass/app/modules/_fancybox.scss */
+.fancybox-lock-test {
+  overflow-y: hidden !important;
+}
+
+/* line 179, ../../sass/app/modules/_fancybox.scss */
+.fancybox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: none;
+  z-index: 8010;
+  background: url(../images/fancybox_overlay.png);
+}
+
+/* line 189, ../../sass/app/modules/_fancybox.scss */
+.fancybox-overlay-fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+/* line 195, ../../sass/app/modules/_fancybox.scss */
+.fancybox-lock .fancybox-overlay {
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+/* Title helper */
+/* line 202, ../../sass/app/modules/_fancybox.scss */
+.fancybox-title {
+  visibility: hidden;
+  font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  position: relative;
+  text-shadow: none;
+  z-index: 8050;
+}
+
+/* line 210, ../../sass/app/modules/_fancybox.scss */
+.fancybox-opened .fancybox-title {
+  visibility: visible;
+}
+
+/* line 214, ../../sass/app/modules/_fancybox.scss */
+.fancybox-title-float-wrap {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  margin-bottom: -35px;
+  z-index: 8050;
+  text-align: center;
+}
+
+/* line 223, ../../sass/app/modules/_fancybox.scss */
+.fancybox-title-float-wrap .child {
+  display: inline-block;
+  margin-right: -100%;
+  padding: 2px 20px;
+  background: transparent;
+  /* Fallback for web browsers that doesn't support RGBa */
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  text-shadow: 0 1px 2px #222;
+  color: #FFF;
+  font-weight: bold;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+/* line 239, ../../sass/app/modules/_fancybox.scss */
+.fancybox-title-outside-wrap {
+  position: relative;
+  margin-top: 10px;
+  color: #fff;
+}
+
+/* line 245, ../../sass/app/modules/_fancybox.scss */
+.fancybox-title-inside-wrap {
+  padding-top: 10px;
+}
+
+/* line 249, ../../sass/app/modules/_fancybox.scss */
+.fancybox-title-over-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  padding: 10px;
+  background: #000;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/*Retina graphics!*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /* line 264, ../../sass/app/modules/_fancybox.scss */
+  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+    background-image: url(../images/fancybox_sprite@2x.png);
+    background-size: 44px 152px;
+    /*The size of the normal image, half the size of the hi-res image*/
+  }
+
+  /* line 269, ../../sass/app/modules/_fancybox.scss */
+  #fancybox-loading div {
+    background-image: url(../images/fancybox_loading@2x.gif);
+    background-size: 24px 24px;
+    /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+/* line 18, ../../sass/app/global.scss */
 body {
   background-color: #e6e9f2;
 }
-/* line 19, ../../sass/app/global.scss */
+/* line 20, ../../sass/app/global.scss */
 body .copyright {
   color: #000;
   background: none;
 }
 
-/* line 25, ../../sass/app/global.scss */
+/* line 26, ../../sass/app/global.scss */
 .site-wrapper .breadcrumbs {
   margin: 0.9375rem 0;
   border-radius: 0.3125rem;
   background: #fff;
 }
-/* line 29, ../../sass/app/global.scss */
+/* line 30, ../../sass/app/global.scss */
 .site-wrapper .breadcrumbs > * a {
   color: #0171B8;
 }
-/* line 32, ../../sass/app/global.scss */
+/* line 33, ../../sass/app/global.scss */
 .site-wrapper .breadcrumbs .active {
   color: #1cc7ff;
 }
 
-/* line 37, ../../sass/app/global.scss */
+/* line 38, ../../sass/app/global.scss */
 .row.wrapper {
   width: 100%;
   max-width: 100%;
 }
 
-/* line 42, ../../sass/app/global.scss */
+/* line 43, ../../sass/app/global.scss */
 .top-navigation .top-part-no-padding {
   background: #0171B8;
   border-bottom: 1px solid #e6e9f2;
   min-height: 4.375rem;
 }
-/* line 47, ../../sass/app/global.scss */
+/* line 48, ../../sass/app/global.scss */
 .top-navigation .top-menu {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
@@ -2925,53 +3240,53 @@ body .copyright {
   border-bottom: 1px solid #e6e9f2;
   min-height: 4.375rem;
 }
-/* line 55, ../../sass/app/global.scss */
+/* line 56, ../../sass/app/global.scss */
 .top-navigation .logo-bg img {
   max-height: 3.125rem;
   margin: 0.5625rem 0;
 }
-/* line 59, ../../sass/app/global.scss */
+/* line 60, ../../sass/app/global.scss */
 .top-navigation .logo-bg a {
   font-size: 2rem;
   margin: 0.625rem 0 0;
   color: #fff;
   float: right;
 }
-/* line 64, ../../sass/app/global.scss */
+/* line 65, ../../sass/app/global.scss */
 .top-navigation .logo-bg a:hover {
   color: #B9C2DB;
 }
-/* line 69, ../../sass/app/global.scss */
+/* line 70, ../../sass/app/global.scss */
 .top-navigation .top-search {
   padding-top: 0.375rem;
 }
-/* line 71, ../../sass/app/global.scss */
+/* line 72, ../../sass/app/global.scss */
 .top-navigation .top-search input {
   -moz-border-radius: 1.25rem;
   -webkit-border-radius: 1.25rem;
   border-radius: 1.25rem;
   padding: 0 0.9375rem;
 }
-/* line 76, ../../sass/app/global.scss */
+/* line 77, ../../sass/app/global.scss */
 .top-navigation .howdy {
   text-align: right;
   line-height: 3rem;
 }
-/* line 80, ../../sass/app/global.scss */
+/* line 81, ../../sass/app/global.scss */
 .top-navigation .logout {
   text-align: center;
 }
-/* line 82, ../../sass/app/global.scss */
+/* line 83, ../../sass/app/global.scss */
 .top-navigation .logout a {
   font-size: 2rem;
   color: #0171B8;
 }
-/* line 85, ../../sass/app/global.scss */
+/* line 86, ../../sass/app/global.scss */
 .top-navigation .logout a:hover {
   color: #f16c65;
 }
 
-/* line 91, ../../sass/app/global.scss */
+/* line 92, ../../sass/app/global.scss */
 .side-nav {
   padding: 0 0 0.9375rem;
   background: #fff;
@@ -2980,51 +3295,51 @@ body .copyright {
   -webkit-border-radius: 0.3125rem;
   border-radius: 0.3125rem;
 }
-/* line 96, ../../sass/app/global.scss */
+/* line 97, ../../sass/app/global.scss */
 .side-nav .group-item {
   color: #0171B8;
   text-transform: uppercase;
   font-weight: 600;
   padding: 1.25rem 0 0 0.9375rem;
 }
-/* line 103, ../../sass/app/global.scss */
+/* line 104, ../../sass/app/global.scss */
 .side-nav li a:not(.button) {
   line-height: 1.875rem;
   color: #333;
 }
-/* line 107, ../../sass/app/global.scss */
+/* line 108, ../../sass/app/global.scss */
 .side-nav li.active a:not(.button) {
   border-left: 0.1875rem solid #0171B8;
   margin-left: -0.1875rem;
   background: #f2f6f9;
 }
-/* line 112, ../../sass/app/global.scss */
+/* line 113, ../../sass/app/global.scss */
 .side-nav li i {
   margin-right: 0.5rem;
   font-size: 1rem;
 }
-/* line 116, ../../sass/app/global.scss */
+/* line 117, ../../sass/app/global.scss */
 .side-nav li ul {
   margin: 0;
   list-style: none;
 }
-/* line 119, ../../sass/app/global.scss */
+/* line 120, ../../sass/app/global.scss */
 .side-nav li ul li {
   margin: 0;
 }
-/* line 121, ../../sass/app/global.scss */
+/* line 122, ../../sass/app/global.scss */
 .side-nav li ul li a {
   border-left: none !important;
   margin: 2px 0 0 !important;
   padding: 3px 0 3px 38px !important;
 }
-/* line 125, ../../sass/app/global.scss */
+/* line 126, ../../sass/app/global.scss */
 .side-nav li ul li a:hover {
   text-decoration: underline;
   color: #333 !important;
 }
 
-/* line 134, ../../sass/app/global.scss */
+/* line 135, ../../sass/app/global.scss */
 .portlet {
   padding: 0.75rem 1.25rem 0.9375rem;
   background: #fff;
@@ -3033,7 +3348,7 @@ body .copyright {
   border-radius: 0.3125rem;
   margin-top: 0.9375rem;
 }
-/* line 139, ../../sass/app/global.scss */
+/* line 140, ../../sass/app/global.scss */
 .portlet .portlet-title {
   border-bottom: 1px solid #eee;
   min-height: 2.75rem;
@@ -3047,7 +3362,7 @@ body .copyright {
 .portlet .portlet-title:after {
   clear: both;
 }
-/* line 143, ../../sass/app/global.scss */
+/* line 144, ../../sass/app/global.scss */
 .portlet .portlet-title .caption {
   float: right;
   font-size: 1.125rem;
@@ -3056,107 +3371,107 @@ body .copyright {
   text-transform: uppercase;
   color: #0171B8;
 }
-/* line 151, ../../sass/app/global.scss */
+/* line 152, ../../sass/app/global.scss */
 .portlet .portlet-title .action {
   float: left;
 }
-/* line 153, ../../sass/app/global.scss */
+/* line 154, ../../sass/app/global.scss */
 .portlet .portlet-title .action a {
   margin: 0 0.625rem 0.625rem 0;
 }
-/* line 159, ../../sass/app/global.scss */
+/* line 160, ../../sass/app/global.scss */
 .portlet .portlet-body .has-padding {
   padding-top: 0.9375rem;
 }
-/* line 162, ../../sass/app/global.scss */
+/* line 163, ../../sass/app/global.scss */
 .portlet .portlet-body .has-padding-full {
   padding: 0.9375rem;
 }
-/* line 166, ../../sass/app/global.scss */
+/* line 167, ../../sass/app/global.scss */
 .portlet.small {
   border: 1px solid #0171B8;
   padding: 0;
 }
-/* line 169, ../../sass/app/global.scss */
+/* line 170, ../../sass/app/global.scss */
 .portlet.small .portlet-title {
   background: #3598dc;
   min-height: initial;
 }
-/* line 172, ../../sass/app/global.scss */
+/* line 173, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption {
   color: #fff;
   font-size: 0.875rem;
   padding: 0.125rem 0.625rem;
 }
-/* line 176, ../../sass/app/global.scss */
+/* line 177, ../../sass/app/global.scss */
 .portlet.small .portlet-title .caption i {
   margin-right: 0.3125rem;
 }
 
-/* line 184, ../../sass/app/global.scss */
+/* line 185, ../../sass/app/global.scss */
 .table {
   width: 100%;
 }
-/* line 187, ../../sass/app/global.scss */
+/* line 188, ../../sass/app/global.scss */
 .table tr th {
   font-weight: 500;
   color: #008CBA;
 }
-/* line 190, ../../sass/app/global.scss */
+/* line 191, ../../sass/app/global.scss */
 .table tr th .asc:after, .table tr th .desc:after {
   color: #0171B8;
   font-family: FontAwesome;
   margin-left: 0.3125rem;
 }
-/* line 195, ../../sass/app/global.scss */
+/* line 196, ../../sass/app/global.scss */
 .table tr th .asc:after {
   content: "\f106";
 }
-/* line 198, ../../sass/app/global.scss */
+/* line 199, ../../sass/app/global.scss */
 .table tr th .desc:after {
   content: "\f107";
 }
-/* line 202, ../../sass/app/global.scss */
+/* line 203, ../../sass/app/global.scss */
 .table tr td {
   vertical-align: top;
 }
-/* line 207, ../../sass/app/global.scss */
+/* line 208, ../../sass/app/global.scss */
 .table .fa {
   font-size: 1rem;
   margin: 0 0.3125rem;
 }
-/* line 210, ../../sass/app/global.scss */
+/* line 211, ../../sass/app/global.scss */
 .table .fa.fa-eye {
   color: #a0d3e8;
 }
-/* line 213, ../../sass/app/global.scss */
+/* line 214, ../../sass/app/global.scss */
 .table .fa.fa-pencil-square-o {
   color: #008CBA;
 }
-/* line 216, ../../sass/app/global.scss */
+/* line 217, ../../sass/app/global.scss */
 .table .fa.fa-trash-o {
   color: #e7e7e7;
 }
-/* line 220, ../../sass/app/global.scss */
+/* line 221, ../../sass/app/global.scss */
 .table input[type='number'] {
   width: 60px;
 }
 
-/* line 224, ../../sass/app/global.scss */
+/* line 225, ../../sass/app/global.scss */
 .summary {
   font-size: 0.8125rem;
 }
 
-/* line 227, ../../sass/app/global.scss */
+/* line 228, ../../sass/app/global.scss */
 .form-group {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 230, ../../sass/app/global.scss */
+/* line 231, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 233, ../../sass/app/global.scss */
+/* line 234, ../../sass/app/global.scss */
 .form-group .help-block {
   position: absolute;
   -moz-border-radius: 0.3125rem;
@@ -3168,7 +3483,7 @@ body .copyright {
   color: #fff;
   left: 25%;
 }
-/* line 241, ../../sass/app/global.scss */
+/* line 242, ../../sass/app/global.scss */
 .form-group .help-block:before {
   content: "\f0d8";
   color: #444;
@@ -3178,32 +3493,32 @@ body .copyright {
   font-family: FontAwesome;
   font-size: 1.75rem;
 }
-/* line 250, ../../sass/app/global.scss */
+/* line 251, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 255, ../../sass/app/global.scss */
+/* line 256, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 258, ../../sass/app/global.scss */
+/* line 259, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 263, ../../sass/app/global.scss */
+/* line 264, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 265, ../../sass/app/global.scss */
+/* line 266, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 268, ../../sass/app/global.scss */
+/* line 269, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;

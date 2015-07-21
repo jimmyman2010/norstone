@@ -143,6 +143,8 @@ class FileController extends Controller
      * @return string
      */
     public function actionWatermask($id){
+        $this->layout = 'popup';
+
         $model = $this->findModel($id);
         $fileSource = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '-origin.' . $model->file_ext;
         $fileTarget = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '.' . $model->file_ext;
@@ -167,33 +169,32 @@ class FileController extends Controller
         $fileSource = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '-origin.' . $model->file_ext;
         $fileTarget = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '.' . $model->file_ext;
 
-        if(isset($json['objects']))
+        if(isset($json['objects']) && count($json['objects']) > 0)
         {
             foreach ($json['objects'] as $index => $mask) {
-                if($mask['type'] === 'image') {
-                    $urlArray = explode('/', $mask['src']);
-                    unset($urlArray[0]);
-                    unset($urlArray[1]);
-                    unset($urlArray[2]);
-                    unset($urlArray[3]);
-                    $fileMask = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $urlArray);
-                    $maskOption = [
-                        'left' => intval($mask['left']),
-                        'top' => intval($mask['top']),
-                        'width' => intval($mask['width'] * $mask['scaleX']),
-                        'height' => intval($mask['height'] * $mask['scaleY']),
-                        'rotate' => intval($mask['angle'])
-                    ];
-                    UtilHelper::watermaskImage($fileSource, $fileTarget, $fileMask, $maskOption);
+                if($index > 0) {
+                    $fileSource = $fileTarget;
                 }
-
-
+                if($mask['type'] === 'image') {
+                    UtilHelper::watermaskImage($fileSource, $fileTarget, $mask);
+                }
+                else {
+                    UtilHelper::watermaskText($fileSource, $fileTarget, $mask);
+                }
             }
-
+        }
+        else {
+            $imagine = Image::thumbnail($fileSource, $model->width, $model->height);
+            $imagine->save($fileTarget);
+        }
+        foreach (Yii::$app->params['image_sizes'] as $key => $value) {
+            $fileTarget2 = Yii::getAlias('@uploads') . $model->directory . DIRECTORY_SEPARATOR . $model->file_name . '-' . $key . '.' . $model->file_ext;
+            UtilHelper::generateImage($fileTarget, $fileTarget2, $value[0], $value[1]);
         }
 
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return $fabric;
+
+        return ['src' => UtilHelper::getPicture($model, '', true) . '?time=' . time()];
     }
 
     /**

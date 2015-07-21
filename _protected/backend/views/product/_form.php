@@ -126,7 +126,9 @@ $this->registerJs("
                                                 <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
                                             </td></tr>
                                         <tr><td class="edit"><span class="name">
+                                                    <a class="various" data-fancybox-type="iframe" href="<?= Url::toRoute(['file/watermask', 'id' => $item->id]) ?>">
                                                 <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
+                                                    </a>
                                             </span></td></tr>
                                         <tr><td class="caption">
                                                 <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>

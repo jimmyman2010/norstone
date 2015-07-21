@@ -9,13 +9,11 @@
 use backend\assets\WatermaskAsset;
 use yii\helpers\Html;
 use mihaildev\elfinder\InputFile;
-use yii\helpers\Json;
-use common\helpers\UtilHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\File */
 
-$this->title = Yii::t('app', 'Categories');
+$this->title = Yii::t('app', 'Edit Image');
 
 WatermaskAsset::register($this);
 
@@ -58,8 +56,9 @@ WatermaskAsset::register($this);
             </div>
 
             <canvas id="canvas" width="<?= $model->width ?>" height="<?= $model->height ?>" data-background="<?= ($model->show_url . $model->file_name . '-origin.' . $model->file_ext) ?>"></canvas>
-
-            <button type="button" id="watermask-save"><?= Yii::t('app', 'Save') ?></button>
+            <div class="button-group-bottom">
+                <button type="button" class="small radius" id="watermask-save" data-submit="<?= \yii\helpers\Url::toRoute(['file/watermask-save', 'id' => $model->id]) ?>"><?= Yii::t('app', 'Save') ?></button>
+            </div>
         </div>
     </div>
 </article>

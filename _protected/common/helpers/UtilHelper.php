@@ -195,22 +195,82 @@ class UtilHelper{
     }
 
     /**
-     * @param $fileSource
-     * @param $fileTarget
-     * @param $fileMask
-     * @param $maskOption $left, $top, $width = 0, $height = 0
+     * @param string $fileSource
+     * @param string $fileTarget
+     * @param array $mask
+     * @return bool
      */
-    public static function watermaskImage($fileSource, $fileTarget, $fileMask, $maskOption) {
+    public static function watermaskImage($fileSource, $fileTarget, $mask) {
+
+        $width = intval($mask['width'] * $mask['scaleX']);
+        $height = intval($mask['height'] * $mask['scaleY']);
+        $left = intval($mask['left']);
+        $top = intval($mask['top']);
+        if($mask['angle'] !== 0) {
+            $corner = abs(360 - $mask['angle']);
+            $ch = sqrt(pow($width / 2, 2) + pow($height / 2, 2));
+            $l = (($corner / 180) * pi()) * $ch;
+            if (360 > $mask['angle']) {
+                $top -= $l;
+            } else if (360 < $mask['angle']) {
+                $left -= $l;
+            }
+        }
+        $urlArray = explode('/', $mask['src']);
+        unset($urlArray[0]);
+        unset($urlArray[1]);
+        unset($urlArray[2]);
+        unset($urlArray[3]);
+        $fileMask = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $urlArray);
+
         $fileTemp = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'image.png';
 
-        $imagine = Image::thumbnail($fileMask, $maskOption['width'], $maskOption['height'], ManipulatorInterface::THUMBNAIL_INSET);
-        $imagine->rotate($maskOption['rotate'], new Color(array(255, 255, 255), 100));
+        $imagine = Image::thumbnail($fileMask, $width, $height, ManipulatorInterface::THUMBNAIL_INSET);
+        $imagine->rotate(intval($mask['angle']), new Color(array(255, 255, 255), 100));
         $imagine->save($fileTemp);
 
-        $imagine = Image::watermark($fileSource, $fileTemp, [$maskOption['left'], $maskOption['top']]);
+        $imagine = Image::watermark($fileSource, $fileTemp, [$left, $top]);
         $imagine->save($fileTarget);
 
         unlink($fileTemp);
+    }
+
+    /**
+     * @param string $fileSource
+     * @param string $fileTarget
+     * @param array $mask
+     * @return bool
+     */
+    public static function watermaskText($fileSource, $fileTarget, $mask) {
+        $fontFile = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'fonts' . DIRECTORY_SEPARATOR . 'arial.ttf';
+
+        $img = Image::getImagine()->open(Yii::getAlias($fileSource));
+        $fontSize = ($mask['fontSize'] - 8) * $mask['scaleX'];
+        $opacity = isset($mask['opacity']) ? 100 - intval($mask['opacity'] * 100) : 0;
+        $font = Image::getImagine()->font(Yii::getAlias($fontFile), $fontSize, new Color(self::hex2rgb($mask['fill']), $opacity));
+
+        $img->draw()->text($mask['text'], $font, new Point($mask['left'], $mask['top']), $mask['angle']);
+
+        $img->save($fileTarget);
+    }
+
+    protected function hex2rgb($hex) {
+        if(!$hex) {
+            return array(0,0,0);
+        }
+        $hex = str_replace("#", "", $hex);
+
+        if(strlen($hex) == 3) {
+            $r = hexdec(substr($hex,0,1).substr($hex,0,1));
+            $g = hexdec(substr($hex,1,1).substr($hex,1,1));
+            $b = hexdec(substr($hex,2,1).substr($hex,2,1));
+        } else {
+            $r = hexdec(substr($hex,0,2));
+            $g = hexdec(substr($hex,2,2));
+            $b = hexdec(substr($hex,4,2));
+        }
+        $rgb = array($r, $g, $b);
+        return $rgb;
     }
 
     /**

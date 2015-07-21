@@ -8,8 +8,10 @@ $(function(){
         btnAddWatermask = $('#add-watermask-button'),
         btnDeleteWatermask = $('#delete-watermask-button'),
         btnAddText = $('#add-text-button'),
-        ctrlOpacity = $('#color-opacity-controls input[type="range"]'),
-        ctrlColor = $('#color-opacity-controls input[type="color"]');
+        btnAddFrame = $('#add-frame-button'),
+        ctrlZone = $('#color-opacity-controls'),
+        ctrlOpacity = ctrlZone.find('input[type="range"]'),
+        ctrlColor = ctrlZone.find('input[type="color"]');
 
     canvas.setBackgroundImage($canvas.data('background'), canvas.renderAll.bind(canvas));
 
@@ -51,6 +53,19 @@ $(function(){
         canvas.add(text);
     });
 
+    btnAddFrame.on('click', function(){
+        var rect = new fabric.Rect({
+            left: 100,
+            top: 50,
+            width: 100,
+            height: 100,
+            fill: 'green',
+            angle: 20,
+            padding: 10
+        });
+        canvas.add(rect);
+    });
+
     ctrlOpacity.on('change', function(){
         var obj = canvas.getActiveObject();
         obj.setOpacity($(this).val()/100);
@@ -63,6 +78,12 @@ $(function(){
     });
     canvas.on('object:selected', function(){
         var obj = canvas.getActiveObject();
+        if(obj.text !== undefined){
+            ctrlZone.show();
+        }
+        else {
+            ctrlZone.hide();
+        }
         ctrlOpacity.val(obj.opacity * 100);
         ctrlColor.val(rgb2hex(obj.fill));
         canvas.renderAll();
@@ -71,14 +92,15 @@ $(function(){
     });
     canvas.on('selection:cleared', function(){
         btnDeleteWatermask.attr('disabled', 'disabled').removeClass('alert').addClass('disabled');
+        ctrlZone.hide();
     });
 
     $('#watermask-save').on('click', function(){
-        console.log(JSON.stringify(canvas));
-        $.post('/admin/file/watermask-save?id=52', {
+        var url = $(this).data('submit');
+        $.post(url, {
             'fabric': JSON.stringify(canvas)
-        }, function(responce){
-            console.log(responce);
+        }, function(response){
+            window.open(response.src,'Review','width=600,height=400,resizable=1');
         });
     });
 

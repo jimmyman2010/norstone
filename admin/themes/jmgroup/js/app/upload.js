@@ -112,4 +112,11 @@ $(function(){
             }
         );
     });
+
+    $(".various").fancybox({
+        padding     : 0,
+        openEffect	: 'none',
+        closeEffect	: 'none'
+    });
+
 });
