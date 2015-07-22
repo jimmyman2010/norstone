@@ -119,8 +119,9 @@ $(function(){
         closeEffect	: 'none',
         beforeClose : function(){
             $('#filelist').find('img').each(function(){
-                var src = $(this).attr('src');
-                $(this).attr('src', src + '?a=1');
+                var src = $(this).attr('src'),
+                    d = new Date();
+                $(this).attr('src', src + '?a=' + d.getTime());
             });
         }
     });
