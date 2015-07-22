@@ -216,7 +216,8 @@ class UtilHelper{
                 $left -= $l;
             }
         }
-        $urlArray = explode('/', $mask['src']);
+        $src = urldecode($mask['src']);
+        $urlArray = explode('/', $src);
         unset($urlArray[0]);
         unset($urlArray[1]);
         unset($urlArray[2]);
