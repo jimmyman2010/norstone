@@ -201,7 +201,8 @@
 #main_content .product .product_img {/*width: 120px;*/float: left;margin: 0 15px 0 0;}
 #main_content .product .product_img a {}
 
-#main_content .product .product_name {margin: 0;padding: 0;}
+#main_content .product .product_name {margin: 0;padding: 0;
+    font-size: 16px;}
 
 #main_content .product .product_price {}
 #main_content .product .product_price .money {}
@@ -322,8 +323,8 @@
     }
 
     #main_content .product .product_img a{
-        float: left;
         margin-right: 10px;
+        text-align: center;
     }
 }
 
