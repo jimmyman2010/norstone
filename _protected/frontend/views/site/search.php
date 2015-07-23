@@ -66,7 +66,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                         <div class="search-result_container">
 
                             <div class="search-result_image pull-left">
-                                <a href="<?= Url::toRoute($item->name, ['product/view', 'id' => $item->id, 'slug' => $item->slug]) ?>" title="<?= $item->name ?>">
+                                <a href="<?= Url::toRoute(['product/view', 'id' => $item->id, 'slug' => $item->slug]) ?>" title="<?= $item->name ?>">
                                     <?= UtilHelper::getPicture($item->image_id, 'thumbnail-search') ?>
                                 </a>
                             </div>
