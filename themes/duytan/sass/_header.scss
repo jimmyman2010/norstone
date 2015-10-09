@@ -1,0 +1,110 @@
+.top-nav{
+    border-bottom: 1px solid #E2E2E2;
+    height: 32px;
+    font-size: 14px;
+    @include background-image(linear-gradient(#FFF, #FFF 40%, #FCFCFC 80%, #EFEFEF));
+    .top-left{
+        float: left;
+        margin-top: 8px;
+    }
+    .top-right{
+        float: right;
+        margin-top: 8px;
+    }
+    a{
+        &.tel{
+            color: red;
+            font-style: italic;
+        }
+    }
+}
+.header {
+    margin-top: 15px;
+    .logo {
+        float: left;
+        margin-left: 50px;
+        img {
+            height: 60px;
+            margin: 0 0 3px 0px;
+            width: 120px;
+        }
+        figcaption {
+            font-weight: bold;
+            font-size: 12px;
+            letter-spacing: -0.05em;
+            color: #303EF8;
+        }
+    }
+    .main-menu {
+        float: left;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 47px 0 0 100px;
+        ul{
+            text-align: left;
+            border-width: 1px 1px 0 1px;
+            border-style: solid;
+            border-color: #FEB951;
+            @include border-radius(10px 10px 0 0);
+            @include background-image(linear-gradient(#FEFCF0, #FDDAA2));
+        }
+        li{
+            display: inline-block;
+            margin: 8px 0 8px 5px;
+            border-left: 1px solid #FEB23F;
+            &:first-child{
+                border-left: none;
+            }
+            &:last-child{
+                padding-right: 10px;
+            }
+            a{
+                padding: 5px 5px 5px 10px;
+                display: block;
+                line-height: 8px;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+.header-bar{
+    border: 1px solid #D91C1B;
+    @include border-radius(10px);
+    @include background-image(linear-gradient(#FA5150, #D91C1B));
+    height: 48px;
+    text-align: center;
+    .main-search{
+        margin: 7px 0 0 0;
+        position: relative;
+        display: inline-block;
+        input{
+            border: 1px solid #B70504;
+            @include background-image(linear-gradient(#D3D3D3, #F8F8F8 40%, #FFF));
+            height: 32px;
+            width: 333px;
+            padding: 0 10px 0 40px;
+            font-size: 14px;
+        }
+        i{
+            margin: 9px 0 0 14px;
+            position: absolute;
+            color: #C5C5C5;
+        }
+        button{
+            font-weight: 800;
+            color: #B70504;
+            position: absolute;
+            left: 332px;
+            top: 0;
+            @include background-image(linear-gradient(#FFF9C5, #FEE77A 50%, #FED250 51%, #FEDE85));
+            border: 1px solid #B70504;
+            height: 32px;
+            padding: 0 15px;
+            &:active {
+                @include background-image(linear-gradient(#FFF9C5, #FEDE85));
+            }
+        }
+    }
+}

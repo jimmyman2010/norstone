@@ -1,0 +1,80 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities/general";
+
+$font-opensans: 'Open Sans', Arial, Verdana, sans-serif;;
+
+body{
+    font-family: $font-opensans;
+    font-size: 100%;
+    background-color: #F7F7F7;
+}
+
+a{
+    color: #444;
+    text-decoration: none;
+    outline: none;
+    &:hover{
+        color: #b00;
+        text-decoration: underline;
+    }
+}
+
+i{
+    margin: 0 8px 0 20px;
+    color: #b00;
+}
+
+img{
+    max-width: 100%;
+    vertical-align: bottom;
+}
+
+@import "header";
+@import "rail";
+@import "content";
+@import "footer";
+
+.banner-ext{
+    display: none;
+}
+
+/*------------------------------------*\
+    RESPONSIVE
+\*------------------------------------*/
+
+@media only screen and (max-width: 480px) {
+
+}
+
+@media only screen and (min-width: 320px) {
+
+}
+
+@media only screen and (min-width: 480px) {
+
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 992px) {
+    .banner{
+        padding-left: 0;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .banner{
+        padding-right: 0;
+    }
+    .banner-ext{
+        display: block;
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 144dpi) {
+
+}

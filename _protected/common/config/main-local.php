@@ -10,7 +10,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=norstone',
+            'dsn' => 'mysql:host=localhost;dbname=vitinhgiatot',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

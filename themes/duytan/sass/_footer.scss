@@ -1,0 +1,80 @@
+.footer{
+    color: #444;
+    font-size: 14px;
+    .information{
+        .title{
+            border-top: 1px solid #E4E4E4;
+            border-left: 1px solid #E4E4E4;
+            border-right: 1px solid #E4E4E4;
+            background-color: #FFF;
+            @include border-radius(5px 5px 0 0);
+            text-align: right;
+            padding: 12px 14px;
+            i{
+                margin: 0 5px;
+            }
+        }
+        .content{
+            @include clearfix;
+            border: 1px solid #E4E4E4;
+            background-color: #FFF;
+        }
+    }
+    .contact-info{
+        padding: 18px 5px;
+        h4{
+            font-size: 14px;
+            font-weight: 800;
+        }
+        p{
+            margin: 5px 0;
+            line-height: 18px;
+        }
+        .tel{
+            font-size: 26px;
+            margin: 10px 0;
+            line-height: 30px;
+            a {
+                color: #bb0000;
+                text-decoration: none;
+            }
+        }
+    }
+    .menu-footer{
+        .mainmenu{
+            @include clearfix;
+            padding: 18px 0;
+            > li{
+                float: left;
+                width: 33.3%;
+                > a{
+                    font-size: 14px;
+                    font-weight: 800;
+                }
+                ul {
+                    margin-top: 10px;
+                    li {
+                        list-style: square inside;
+                        font-size: 13px;
+                        padding: 8px 2px;
+                        color: #b00;
+                    }
+                }
+            }
+        }
+    }
+    .copyright{
+        color: #999;
+        font-size: 12px;
+        padding: 10px 20px 50px;
+        @include clearfix;
+        p {
+            &:first-child{
+                float: left;
+            }
+            &:last-child {
+                float: right;
+            }
+        }
+    }
+}
