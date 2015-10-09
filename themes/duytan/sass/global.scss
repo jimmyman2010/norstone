@@ -56,7 +56,11 @@ img{
 }
 
 @media only screen and (min-width: 768px) {
-
+    .footer .menu-footer .mainmenu>li{
+        float: left;
+        width: 33.3%;
+        margin-top: 0;
+    }
 }
 
 @media only screen and (min-width: 992px) {
@@ -74,6 +78,9 @@ img{
     }
     .banner-ext{
         display: block;
+    }
+    .module-content .content.list article figure img{
+        width: 150px;
     }
 }
 

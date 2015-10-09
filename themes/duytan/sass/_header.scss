@@ -71,7 +71,7 @@
 }
 .header-bar{
     border: 1px solid #D91C1B;
-    @include border-radius(10px);
+    @include border-radius(8px);
     @include background-image(linear-gradient(#FA5150, #D91C1B));
     height: 48px;
     text-align: center;

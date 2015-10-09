@@ -165,9 +165,9 @@ img {
 
 .header-bar {
   border: 1px solid #D91C1B;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhNTE1MCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2Q5MWMxYiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fa5150), color-stop(100%, #d91c1b));
@@ -434,17 +434,34 @@ img {
   border-right: 1px solid #E4E4E4;
   border-bottom: 1px solid #E4E4E4;
   border-top: 2px solid #D91C1B;
-  padding: 10px;
+  padding: 20px 10px;
   font-size: 14px;
+}
+.module-content .content.list article {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
 }
 .module-content .content.list article figure {
   text-align: center;
-  border-bottom: 1px dotted #aaa;
+  border-bottom: 1px dotted #CECECE;
   padding-bottom: 7px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 }
 .module-content .content.list article figure img {
   width: 185px;
+}
+.module-content .content.list article .price {
+  line-height: 20px;
+  margin-top: 10px;
+}
+.module-content .content.list article .price strong {
+  font-weight: 800;
+  color: #f04331;
+  font-size: 16px;
+}
+.module-content .content.list article .price em {
+  text-decoration: line-through;
 }
 
 .footer {
@@ -497,8 +514,7 @@ img {
   padding: 18px 0;
 }
 .footer .menu-footer .mainmenu > li {
-  float: left;
-  width: 33.3%;
+  margin-top: 20px;
 }
 .footer .menu-footer .mainmenu > li > a {
   font-size: 14px;
@@ -534,6 +550,13 @@ img {
 /*------------------------------------*\
     RESPONSIVE
 \*------------------------------------*/
+@media only screen and (min-width: 768px) {
+  .footer .menu-footer .mainmenu > li {
+    float: left;
+    width: 33.3%;
+    margin-top: 0;
+  }
+}
 @media only screen and (min-width: 992px) {
   .banner {
     padding-left: 0;
@@ -550,5 +573,9 @@ img {
 
   .banner-ext {
     display: block;
+  }
+
+  .module-content .content.list article figure img {
+    width: 150px;
   }
 }
