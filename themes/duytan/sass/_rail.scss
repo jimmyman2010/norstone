@@ -21,8 +21,6 @@
             border-top: 1px solid #F5E6D3;
             font-weight: 600;
             font-size: 14px;
-            list-style: square;
-            list-style-position: inside;
             &:first-child{
                 border-top: none;
             }
@@ -63,6 +61,7 @@
                 border: 2px solid #ff9900;
                 padding: 5px;
                 font-weight: normal;
+                z-index: 100;
                 li{
                     padding: 10px;
                     a{
@@ -74,7 +73,6 @@
     }
 }
 .module{
-    background-color: #FFF;
     margin: 20px 0;
     .title{
         @include border-radius(5px 5px 0 0);
@@ -89,6 +87,7 @@
         border-right: 1px solid #E4E4E4;
     }
     .content{
+        background-color: #FFF;
         border: 1px solid #E4E4E4;
         padding: 10px;
         font-size: 14px;
