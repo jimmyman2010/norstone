@@ -16,27 +16,24 @@ use common\helpers\CurrencyHelper;
 
 ?>
 
-<div class="product product__product-grid-item columns-3 col-sm-4 <?php if($index%3 === 0) echo 'item_alpha'; elseif($index%3 === 2) echo 'item_omega'; ?>">
-    <div class="product_img">
-        <?php if($product->is_discount) { ?>
-            <span class="discount"></span>
-        <?php } ?>
-        <?php if($product->is_hot) { ?>
-            <span class="hot"></span>
-        <?php } ?>
+<article class="col-xs-12 col-sm-4 col-lg-3">
+    <figure>
         <a href="<?= Url::toRoute(['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>">
             <?= UtilHelper::getPicture($product->image_id, 'thumbnail') ?>
         </a>
-    </div>
-    <h2 class="product_name">
-        <?= Html::a($product->name, ['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>
-    </h2>
-    <div class="product_links">
-        <?= Html::a(intval($product->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($product->price), ['product/view', 'id' => $product->id, 'slug' => $product->slug], ['class'=>'btn btn-cart price-current']) ?>
+        <figcaption>
+            <span class="hot"></span>
+            <span class="discount"></span>
+        </figcaption>
+    </figure>
+    <h3><?= Html::a($product->name, ['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?></h3>
+    <p class="price">
+        <strong><nobr><?= intval($product->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($product->price) ?></nobr></strong>
+        &nbsp;&nbsp;
         <?php if(!empty($product->price_string)) {
-         $priceArray = Json::decode($product->price_string);
+            $priceArray = Json::decode($product->price_string);
             if(intval($priceArray['month3']['old']) !== 0) { ?>
-            <?= Html::a($priceArray['month3']['old'], ['product/view', 'id' => $product->id, 'slug' => $product->slug], ['class'=>'btn price-old']) ?>
-        <?php } } ?>
-    </div>
-</div>
+        <em><nobr><?= $priceArray['month3']['old'] ?></nobr></em>
+            <?php } } ?>
+    </p>
+</article>

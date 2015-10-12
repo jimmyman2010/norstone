@@ -36,13 +36,22 @@
             }
             > a{
                 display: block;
-                padding: 12px;
+                padding: 12px 12px 12px 24px;
                 position: relative;
                 &:hover{
                     color: #FFF;
                     text-decoration: none;
                 }
                 &:before{
+                    content: "*";
+                    position: absolute;
+                    left: 10px;
+                    font-size: 10px;
+                    top: 13px;
+                }
+            }
+            &.has-submenu{
+                > a:after{
                     font-family: 'Glyphicons Halflings';
                     content: "\e258";
                     position: absolute;

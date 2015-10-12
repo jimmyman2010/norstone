@@ -168,4 +168,40 @@ class Product extends \yii\db\ActiveRecord
         }
         return $result;
     }
+
+    /**
+     * @param $categoryId
+     * @return static
+     */
+    public static function getProductByParentCategory($categoryId) {
+        $categoryObjects = Category::findAll(['deleted' => 0, 'parent_id' => $categoryId]);
+        $categoryArray = [$categoryId];
+        foreach ($categoryObjects as $index => $category) {
+            array_push($categoryArray, $category->id);
+        }
+        $query = Product::find()
+            ->distinct()
+            ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
+            ->where([
+                'tbl_product_category.deleted' => 0,
+                'tbl_product.deleted' => 0,
+            ])
+            ->andWhere(['IN', 'tbl_product_category.category_id', $categoryArray]);
+        return $query;
+    }
+
+    /**
+     * @param $categoryId
+     * @return static
+     */
+    public static function getProductByChildCategory($categoryId) {
+        $query = Product::find()
+            ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
+            ->where([
+                'tbl_product_category.deleted' => 0,
+                'tbl_product.deleted' => 0,
+                'tbl_product_category.category_id' => $categoryId,
+            ]);
+        return $query;
+    }
 }

@@ -46,8 +46,8 @@ return [
         ],
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@webroot/themes/vitinhgiatot/views'],
-                'baseUrl' => '@web/themes/vitinhgiatot',
+                'pathMap' => ['@app/views' => '@webroot/themes/duytan/views'],
+                'baseUrl' => '@web/themes/duytan',
             ],
         ],
         'user' => [

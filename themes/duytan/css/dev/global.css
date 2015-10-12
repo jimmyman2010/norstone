@@ -69,6 +69,9 @@ a:hover {
   color: #b00;
   text-decoration: underline;
 }
+a:focus {
+  outline: none;
+}
 
 i {
   margin: 0 8px 0 20px;
@@ -78,6 +81,17 @@ i {
 img {
   max-width: 100%;
   vertical-align: bottom;
+}
+
+.rte {
+  font-size: 14px;
+  line-height: 20px;
+}
+.rte b, .rte strong {
+  font-weight: 600;
+}
+.rte i, .rte em {
+  font-style: italic;
 }
 
 .top-nav {
@@ -273,7 +287,7 @@ img {
 }
 .nav-left .mainmenu > li > a {
   display: block;
-  padding: 12px;
+  padding: 12px 12px 12px 24px;
   position: relative;
 }
 .nav-left .mainmenu > li > a:hover {
@@ -281,6 +295,13 @@ img {
   text-decoration: none;
 }
 .nav-left .mainmenu > li > a:before {
+  content: "*";
+  position: absolute;
+  left: 10px;
+  font-size: 10px;
+  top: 13px;
+}
+.nav-left .mainmenu > li.has-submenu > a:after {
   font-family: 'Glyphicons Halflings';
   content: "\e258";
   position: absolute;
@@ -464,6 +485,62 @@ img {
   text-decoration: line-through;
 }
 
+.breadcrumb {
+  padding: 10px 0;
+  font-size: 12px;
+  margin: 0;
+}
+.breadcrumb i {
+  margin: 0 5px;
+}
+
+.product-detail {
+  background-color: #FFF;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 0;
+  padding: 0 15px;
+}
+.product-detail h1 {
+  padding: 18px 0 10px;
+  border-bottom: 1px dotted #CECECE;
+  margin: 0 0 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.product-detail .slider-nav a {
+  padding: 5px;
+}
+.product-detail .slider-nav a.slick-current {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+}
+.product-detail .price li strong {
+  display: block;
+  margin: 12px 0 5px;
+  font-size: 15px;
+}
+.product-detail .price li .new {
+  font-size: 20px;
+  font-weight: 800;
+  color: #f04331;
+  display: inline-block;
+  margin-right: 10px;
+}
+.product-detail .price li .old {
+  font-size: 16px;
+  text-decoration: line-through;
+  color: #776C6C;
+}
+.product-detail .product_description {
+  margin: 15px 0;
+  padding: 12px 0;
+  border-top: 1px solid #F5E6D3;
+  border-bottom: 1px solid #F5E6D3;
+  line-height: 22px;
+}
+
 .footer {
   color: #444;
   font-size: 14px;
@@ -547,10 +624,26 @@ img {
   display: none;
 }
 
+.phone {
+  display: block !important;
+}
+
+.desktop {
+  display: none !important;
+}
+
 /*------------------------------------*\
     RESPONSIVE
 \*------------------------------------*/
 @media only screen and (min-width: 768px) {
+  .phone {
+    display: none !important;
+  }
+
+  .desktop {
+    display: block !important;
+  }
+
   .footer .menu-footer .mainmenu > li {
     float: left;
     width: 33.3%;
@@ -567,10 +660,6 @@ img {
   }
 }
 @media only screen and (min-width: 1200px) {
-  .banner {
-    padding-right: 0;
-  }
-
   .banner-ext {
     display: block;
   }

@@ -30,22 +30,18 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
 
 ?>
 
-<div id="main_content" class="col-sm-9">
-    <ul class="breadcrumb">
-        <li class="firstItem"><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="<?= Yii::t('app', 'Back to the homepage') ?>"><?= Yii::t('app', 'Home') ?></a></li>
-        <?php if(!empty($category)) { ?>
-            <li><a href="<?= Url::toRoute(['product/category', 'id' => $category->id, 'slug' => $category->slug]) ?>" title="<?= $category->name ?>"><?= $category->name ?></a></li>
-        <?php } ?>
-        <li class="lastItem"><span class="page-title"><?= $model->name ?></span></li>
-    </ul>
-
-    <div itemscope="" itemtype="http://schema.org/Product" class="product-scope">
-
-        <meta itemprop="url" content="<?= Url::toRoute(['product/view', 'id' => $model->id, 'slug' => $model->slug]) ?>">
-        <meta itemprop="image" content="<?= UtilHelper::getPicture($model->image_id, '', true) ?>">
-
-        <div class="product_wrap">
-            <div class="row">
+<div class="row" role="article">
+    <div class="col-md-12 main-container">
+        <ul class="breadcrumb">
+            <li><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="Quay lại trang chủ"><i class="glyphicon glyphicon-home"></i> Trang chủ</a></li>
+            <?php if(!empty($category)) { ?>
+                <li><a href="<?= Url::toRoute(['product/category', 'id' => $category->id, 'slug' => $category->slug]) ?>" title="<?= $category->name ?>"><?= $category->name ?></a></li>
+            <?php } ?>
+            <li><span class="page-title"><?= $model->name ?></span></li>
+        </ul>
+        <div class="module-content product-detail">
+            <h1 itemprop="name" class="product_name"><?= $model->name ?></h1>
+            <div class="product_wrap row">
                 <div id="product_image-container" class="col-sm-5">
                     <?php if($model->is_discount) { ?>
                         <span class="discount"></span>
@@ -54,7 +50,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         <span class="hot"></span>
                     <?php } ?>
                     <div class="product_image">
-                        <ul class="bxslider">
+                        <ul class="slider-for">
                             <?php foreach ($pictures as $index => $photo) { ?>
                                 <li>
                                     <a rel="product_images" class="fancybox" href="<?= UtilHelper::getPicture($photo, '', true) ?>">
@@ -64,68 +60,62 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                             <?php } ?>
                         </ul>
                     </div>
-                    <div id="bx-pager" class="product_image-additioanl">
+                    <div class="slider-nav">
                         <?php foreach ($pictures as $index => $photo) { ?>
-                            <a href="javascript:;" data-slide-index="<?= $index ?>" <?php if($index===0) echo 'class="active"';?>>
+                            <a href="javascript:;">
                                 <?= UtilHelper::getPicture($photo, 'thumbnail-slide') ?>
                             </a>
                         <?php } ?>
                     </div>
-                </div><!-- #product-photos -->
+                </div>
 
                 <div class="col-sm-7">
-                    <h1 itemprop="name" class="product_name"><?= $model->name ?></h1>
-                    <div class="options clearfix">
-                        <ul>
+                    <ul class="price">
+                        <?php
+                        if(empty($model->price_string)) { ?>
+                            <li>
+                                <strong>Bảo hành 3 tháng: </strong>
+                                <span class="new"><?= intval($model->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($model->price) ?></span>
+                            </li>
                             <?php
-                            if(empty($model->price_string)) { ?>
-                                <li>
-                                    <strong>Bảo hành 3 tháng: </strong>
-                                    <input class="btn btn-cart price-current" type="button" name="add" id="add-to-cart"
-                                           value="<?= intval($model->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($model->price) ?>">
-                                </li>
-                            <?php
-                            } else {
-                                $priceArray = Json::decode($model->price_string);
+                        } else {
+                            $priceArray = Json::decode($model->price_string);
                             ?>
-                                <li>
-                                    <strong>Bảo hành 3 tháng</strong>
-                                    <input class="btn btn-cart price-current" type="button" name="add" id="add-to-cart" value="<?= intval($priceArray['month3']['current']) === 0 ? 'Liên hệ' : $priceArray['month3']['current'] ?>">
-                                    <?php if(intval($priceArray['month3']['old']) !== 0) { ?>
-                                        <input class="btn price-old" type="button" name="add" id="add-to-cart" value="<?= $priceArray['month3']['old'] ?>">
-                                    <?php } ?>
-                                </li>
-                                <?php if(!(intval($priceArray['month3']['current']) === 0 && intval($priceArray['month12']['current']) === 0)) { ?>
-                                <li>
-                                    <strong>Bảo hành 12 tháng</strong>
-                                    <input class="btn btn-cart price-current" type="button" name="add" id="add-to-cart" value="<?= intval($priceArray['month12']['current']) === 0 ? 'Liên hệ' : $priceArray['month12']['current'] ?>">
-                                    <?php if(intval($priceArray['month12']['old']) !== 0) { ?>
-                                        <input class="btn price-old" type="button" name="add" id="add-to-cart" value="<?= $priceArray['month12']['old'] ?>">
-                                    <?php } ?>
-                                </li>
+                            <li>
+                                <strong>Bảo hành 3 tháng: </strong>
+                                <span class="new"><?= intval($priceArray['month3']['current']) === 0 ? 'Liên hệ' : $priceArray['month3']['current'] ?></span>
+                                <?php if(intval($priceArray['month3']['old']) !== 0) { ?>
+                                    <span class="old"><?= $priceArray['month3']['old'] ?></span>
                                 <?php } ?>
+                            </li>
+                            <?php if(!(intval($priceArray['month3']['current']) === 0 && intval($priceArray['month12']['current']) === 0)) { ?>
+                                <li>
+                                    <strong>Bảo hành 12 tháng: </strong>
+                                    <span class="new"><?= intval($priceArray['month12']['current']) === 0 ? 'Liên hệ' : $priceArray['month12']['current'] ?></span>
+                                    <?php if(intval($priceArray['month12']['old']) !== 0) { ?>
+                                        <span class="old"><?= $priceArray['month12']['old'] ?></span>
+                                    <?php } ?>
+                                </li>
                             <?php } ?>
-                        </ul>
-                    </div><!-- /.options -->
+                        <?php } ?>
+                    </ul>
                     <?php if(count($tags) > 0) { ?>
-                        <div class="product_details">
-                            <span>Tags: </span>
-                            <?php
-                            }
-                            foreach ($tags as $index => $tag) {
-                                if($index > 0)
-                                    echo ', ';
-                                echo Html::a($tag->name, ['product/tag', 'slug' => $tag->slug]);
-                            }
-                            ?>
-                            <?php if(count($tags) > 0) { ?>
-                        </div>
-                    <?php } ?>
+                    <div class="product_details">
+                        <span>Tags: </span>
+                        <?php
+                        }
+                        foreach ($tags as $index => $tag) {
+                            if($index > 0)
+                                echo ', ';
+                            echo Html::a($tag->name, ['product/tag', 'slug' => $tag->slug]);
+                        }
+                        ?>
+                        <?php if(count($tags) > 0) { ?>
+                    </div>
+                <?php } ?>
 
-                    <div id="product_description" class="rte" itemprop="description">
-                        <div class="product_desc">
-                            <?= $model->description ?>
-                        </div>
+                    <div class="product_description rte" itemprop="description">
+                        <?= $model->description ?>
                     </div>
                     <!-- AddThis Button BEGIN -->
                     <div class="addthis_toolbox addthis_default_style ">
@@ -138,69 +128,59 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50568dd4418a8df1"></script>
                     <!-- AddThis Button END -->
                 </div>
+            </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="pagination pagination__product">
-                            <ul>
-<!--                                <li class="right-arrow lastItem firstItem"><span class="right"><a href="product-detail.php#content" title="">Sản phẩm khác →</a></span></li>-->
-                            </ul>
+            <div class="information" role="tabpanel">
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active firstItem"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Tổng quan</a></li>
+                    <?php if($model->info_tech) { ?>
+                        <li role="presentation" class=""><a href="#infoTech" aria-controls="infoTech" role="tab" data-toggle="tab">Cấu hình chi tiết</a></li>
+                    <?php } ?>
+                    <li role="presentation" class=""><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Ý kiến khách hàng</a></li>
+                    <li role="presentation" class="lastItem"><a href="#related" aria-controls="related" role="tab" data-toggle="tab">Sản phẩm liên quan</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="general">
+                        <div class="rte">
+                            <?= $model->general ?>
+                        </div>
+                    </div>
+                    <?php if($model->info_tech) { ?>
+                        <div role="tabpanel" class="tab-pane" id="infoTech">
+                            <div class="rte">
+                                <?= $model->info_tech ?>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <div role="tabpanel" class="tab-pane" id="comments">
+                        <div class="widget_content">
+                            <div class="fb-comments" data-version="v2.3"></div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="related">
+                        <div class="widget widget__related-products">
+                            <div class="widget_content">
+                                <div class="row">
+                                    <ul class="product-listing product-listing__related">
+                                        <?php foreach ($relatedList as $index => $related) { ?>
+                                            <?= $this->render('_item', [
+                                                'index' => $index,
+                                                'product' => $related,
+                                            ]) ?>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-    </div>
 
 
-    <div class="information" role="tabpanel">
-
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active firstItem"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Tổng quan</a></li>
-            <?php if($model->info_tech) { ?>
-            <li role="presentation" class=""><a href="#infoTech" aria-controls="infoTech" role="tab" data-toggle="tab">Cấu hình chi tiết</a></li>
-            <?php } ?>
-            <li role="presentation" class=""><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Ý kiến khách hàng</a></li>
-            <li role="presentation" class="lastItem"><a href="#related" aria-controls="related" role="tab" data-toggle="tab">Sản phẩm liên quan</a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="general">
-                <div class="rte">
-                    <?= $model->general ?>
-                </div>
-            </div>
-            <?php if($model->info_tech) { ?>
-            <div role="tabpanel" class="tab-pane" id="infoTech">
-                <div class="rte">
-                    <?= $model->info_tech ?>
-                </div>
-            </div>
-            <?php } ?>
-            <div role="tabpanel" class="tab-pane" id="comments">
-                <div class="widget_content">
-                    <div class="fb-comments" data-version="v2.3"></div>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="related">
-                <div class="widget widget__related-products">
-                    <div class="widget_content">
-                        <div class="row">
-                            <ul class="product-listing product-listing__related">
-                                <?php foreach ($relatedList as $index => $related) { ?>
-                                    <?= $this->render('_item', [
-                                        'index' => $index,
-                                        'product' => $related,
-                                    ]) ?>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -208,16 +188,19 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
 <?php
 $this->registerJs("
 
-$('.bxslider').bxSlider({
-    pagerCustom: '#bx-pager'
+$('.slider-for').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  asNavFor: '.slider-nav'
 });
-
-$('a.fancybox').fancybox({
-    'transitionIn'  : 'elastic',
-    'transitionOut' : 'elastic',
-    'speedIn'   : 600,
-    'speedOut'    : 200,
-    'overlayShow' : true
+$('.slider-nav').slick({
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  asNavFor: '.slider-for',
+  dots: false,
+  focusOnSelect: true
 });
 
 ");

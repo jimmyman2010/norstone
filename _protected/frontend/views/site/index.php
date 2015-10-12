@@ -16,54 +16,58 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
 
 ?>
 
-<div id="main_content" class="col-sm-9">
-    <!-- SLIDER -->
-    <div class="slider_wrap">
-        <div class="nivoSlider">
-            <?php foreach ($dataProvider->getModels() as $index => $slide) { ?>
-                <img src="<?= UtilHelper::getPicture($slide->image_id, '', true) ?>" title="#htmlcaption-<?= $index + 1 ?>" alt="" />
-            <?php } ?>
-        </div>
-    </div>
-
-    <div class="caption_hidden">
-        <?php foreach ($dataProvider->getModels() as $index => $slide) { ?>
-            <div id="htmlcaption-<?= $index + 1 ?>">
-                <?= $slide->content ?>
-            </div>
-        <?php } ?>
-    </div>
-
-<?php
-$this->registerJs("
-    $('.nivoSlider').nivoSlider({
-        effect:'fade',
-        animSpeed:500,
-        pauseTime:7000,
-        startSlide:0,
-        pauseOnHover:true,
-        directionNav:false,
-        directionNavHide:false,
-        controlNav:true
-    });
-");
-
-?>
-    <div class="index-scope">
-
-        <h2 class="page_heading">SẢN PHẨM NỔI BẬT</h2>
-
-        <div class="product-listing product-listing__index">
-            <div class="row">
-            <?php foreach ($featured as $index => $product) { ?>
-                <?= $this->render('../product/_item', [
-                    'index' => $index,
-                    'product' => $product,
-                ]) ?>
-            <?php } ?>
+<div class="row" role="presentation">
+    <div class="col-md-12 banner">
+        <div class="slide-container">
+            <div class="slider single-item">
+                <?php foreach ($dataProvider->getModels() as $index => $slide) { ?>
+                <div>
+                    <img class="desktop" src="<?= UtilHelper::getPicture($slide->image_id, 'feature-desktop', true) ?>" title="#htmlcaption-<?= $index + 1 ?>" alt="" />
+                    <img class="phone" src="<?= UtilHelper::getPicture($slide->image_id, 'feature-phone', true) ?>" title="#htmlcaption-<?= $index + 1 ?>" alt="" />
+                </div>
+                <?php } ?>
             </div>
         </div>
-
     </div>
-
+    <div class="col-md-12 main-container">
+        <div class="module-content">
+            <header>
+                <h2 class="title">SẢN PHẨM NỔI BẬT</h2>
+            </header>
+            <div class="content list">
+                <?php foreach ($featured as $index => $product) { ?>
+                    <?= $this->render('../product/_item', [
+                        'index' => $index,
+                        'product' => $product,
+                    ]) ?>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="module-content">
+            <header>
+                <h2 class="title">MÁY BỘ HP</h2>
+            </header>
+            <div class="content list">
+                <?php foreach ($hpList as $index => $product) { ?>
+                    <?= $this->render('../product/_item', [
+                        'index' => $index,
+                        'product' => $product,
+                    ]) ?>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="module-content">
+            <header>
+                <h2 class="title">MÁY BỘ DELL</h2>
+            </header>
+            <div class="content list">
+                <?php foreach ($dellList as $index => $product) { ?>
+                    <?= $this->render('../product/_item', [
+                        'index' => $index,
+                        'product' => $product,
+                    ]) ?>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
 </div>

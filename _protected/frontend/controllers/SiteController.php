@@ -104,9 +104,14 @@ class SiteController extends Controller
         $params['ContentSearch']['content_type'] = Content::TYPE_SLIDER;
         $dataProvider = $searchModel->search($params);
 
+        $queryHp = Product::getProductByParentCategory(262);
+        $queryDell = Product::getProductByParentCategory(261);
+
         return $this->render('index', [
             'featured' => $featured,
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'hpList' => $queryHp->limit(12)->all(),
+            'dellList' => $queryDell->limit(12)->all()
         ]);
     }
 
