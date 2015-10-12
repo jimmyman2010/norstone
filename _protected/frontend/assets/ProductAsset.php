@@ -26,8 +26,7 @@ class ProductAsset extends AssetBundle
     public $css = [
     ];
     public $js = [
-        'assets/js/jquery.fancybox-1.3.4.js',
-        'assets/js/jquery.bxslider.min.js',
+        'js/lib/jquery.fancybox-1.3.4.js',
     ];
 
     public $depends = [

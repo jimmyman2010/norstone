@@ -202,5 +202,8 @@ $('.slider-nav').slick({
   dots: false,
   focusOnSelect: true
 });
+$('.fancybox').fancybox({
+
+});
 
 ");
