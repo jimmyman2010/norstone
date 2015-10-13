@@ -564,6 +564,12 @@ img {
   text-decoration: line-through;
   color: #776C6C;
 }
+.product-detail .product-tags {
+  font-size: 13px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #F5E6D3;
+}
 .product-detail .product-description {
   margin: 15px 0;
   padding: 12px 0;

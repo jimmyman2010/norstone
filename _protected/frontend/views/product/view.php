@@ -99,24 +99,23 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                             <?php } ?>
                         <?php } ?>
                     </ul>
-                    <?php if(count($tags) > 0) { ?>
-                    <div class="product-details">
-                        <span>Tags: </span>
-                        <?php
-                        }
-                        foreach ($tags as $index => $tag) {
-                            if($index > 0)
-                                echo ', ';
-                            echo Html::a($tag->name, ['product/tag', 'slug' => $tag->slug]);
-                        }
-                        ?>
-                        <?php if(count($tags) > 0) { ?>
-                    </div>
-                <?php } ?>
-
                     <div class="product-description rte" itemprop="description">
                         <?= $model->description ?>
                     </div>
+                    <?php if(count($tags) > 0) { ?>
+                        <div class="product-tags">
+                            <span>Tags: </span>
+                            <?php
+                            }
+                            foreach ($tags as $index => $tag) {
+                                if($index > 0)
+                                    echo ', ';
+                                echo Html::a($tag->name, ['product/tag', 'slug' => $tag->slug]);
+                            }
+                            ?>
+                            <?php if(count($tags) > 0) { ?>
+                        </div>
+                    <?php } ?>
                     <!-- Go to www.addthis.com/dashboard to customize your tools -->
                     <div class="addthis_native_toolbox"></div>
                 </div>
