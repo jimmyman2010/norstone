@@ -105,6 +105,9 @@ AppAsset::register($this);
                 <nav class="main-menu" role="navigation">
                     <ul>
                         <li>
+                            <a href="<?= Yii::$app->homeUrl ?>">TRANG CHỦ</a>
+                        </li>
+                        <li>
                             <?= Html::a('GIỚI THIỆU', ['page/view', 'slug' => 'gioi-thieu']) ?>
                         </li>
                         <li>

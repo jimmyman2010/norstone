@@ -412,6 +412,7 @@ img {
 .scrolling .container .floating {
   position: absolute;
   top: 0;
+  display: none;
 }
 
 .banner {
@@ -563,7 +564,7 @@ img {
   text-decoration: line-through;
   color: #776C6C;
 }
-.product-detail .product_description {
+.product-detail .product-description {
   margin: 15px 0;
   padding: 12px 0;
   border-top: 1px solid #F5E6D3;
@@ -637,8 +638,69 @@ img {
   text-decoration: line-through;
 }
 
+.category-detail {
+  background-color: #FFF;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 0;
+  padding: 0 15px;
+  overflow: hidden;
+  *zoom: 1;
+}
+.category-detail h1 {
+  padding: 18px 0 10px;
+  border-bottom: 1px dotted #CECECE;
+  margin: 0 0 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.category-detail header {
+  overflow: hidden;
+  *zoom: 1;
+  font-size: 14px;
+}
+.category-detail header .total-count {
+  float: left;
+  margin: 14px 0;
+}
+.category-detail header .dropdownbox {
+  float: right;
+  margin: 10px 0 8px;
+  font-weight: normal;
+}
+
+.page-detail {
+  background-color: #FFF;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 0;
+  padding: 0 15px;
+  overflow: hidden;
+  *zoom: 1;
+}
+.page-detail h1 {
+  padding: 18px 0 10px;
+  border-bottom: 1px dotted #CECECE;
+  margin: 0 0 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.page-detail .page-content {
+  padding-bottom: 20px;
+  line-height: 24px;
+}
+
+.pagination-bottom {
+  text-align: center;
+}
 .pagination-bottom .pagination {
+  margin-top: 50px;
   margin-bottom: 0;
+}
+.pagination-bottom .pagination li a, .pagination-bottom .pagination li span {
+  border: none;
 }
 
 .footer {

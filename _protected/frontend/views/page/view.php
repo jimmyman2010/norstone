@@ -6,17 +6,10 @@
  * Time: 3:16 PM
  */
 
-use yii\helpers\Html;
-use yii\helpers\Url;
-use common\helpers\UtilHelper;
-use frontend\assets\ProductAsset;
-use yii\widgets\Breadcrumbs;
 use common\models\Config;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
-
-ProductAsset::register($this);
 
 $this->title = !empty($model->seo_title) ? $model->seo_title : $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
@@ -25,13 +18,15 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
 
 ?>
 
-<div id="main_content" class="col-sm-9">
-    <div class="page-scope">
-        <div class="page_header">
-            <h1 class="page_heading"><?= $model->name ?></h1>
-        </div>
-        <div class="page_content">
-            <div class="rte">
+<div class="row" role="article">
+    <div class="col-md-12 main-container">
+        <ul class="breadcrumb">
+            <li><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="Quay lại trang chủ"><i class="glyphicon glyphicon-home"></i> Trang chủ</a></li>
+            <li><span class="page-title"><?= $model->name ?></span></li>
+        </ul>
+        <div class="module-content page-detail">
+            <h1><?= $model->name ?></h1>
+            <div class="page-content rte">
                 <?= $model->content ?>
             </div>
         </div>

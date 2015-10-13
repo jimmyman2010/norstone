@@ -9,7 +9,6 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\UtilHelper;
-use frontend\assets\ProductAsset;
 use yii\widgets\LinkPager;
 use common\models\Config;
 use common\models\File;
@@ -23,8 +22,6 @@ $this->title = 'Tin tức | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
 $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
-
-ProductAsset::register($this);
 
 ?>
 

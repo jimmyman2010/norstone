@@ -40,16 +40,16 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
             <li><span class="page-title"><?= $model->name ?></span></li>
         </ul>
         <div class="module-content product-detail">
-            <h1 itemprop="name" class="product_name"><?= $model->name ?></h1>
-            <div class="product_wrap row">
-                <div id="product_image-container" class="col-sm-5">
+            <h1 itemprop="name"><?= $model->name ?></h1>
+            <div class="row">
+                <div class="col-sm-5">
                     <?php if($model->is_discount) { ?>
                         <span class="discount"></span>
                     <?php } ?>
                     <?php if($model->is_hot) { ?>
                         <span class="hot"></span>
                     <?php } ?>
-                    <div class="product_image">
+                    <div class="product-image">
                         <ul class="slider-for">
                             <?php foreach ($pictures as $index => $photo) { ?>
                                 <li class="item"<?= $index > 0 ? ' style="display:none" ' : '' ?>>
@@ -100,7 +100,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         <?php } ?>
                     </ul>
                     <?php if(count($tags) > 0) { ?>
-                    <div class="product_details">
+                    <div class="product-details">
                         <span>Tags: </span>
                         <?php
                         }
@@ -114,7 +114,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     </div>
                 <?php } ?>
 
-                    <div class="product_description rte" itemprop="description">
+                    <div class="product-description rte" itemprop="description">
                         <?= $model->description ?>
                     </div>
                     <!-- Go to www.addthis.com/dashboard to customize your tools -->
