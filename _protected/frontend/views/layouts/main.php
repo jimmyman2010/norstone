@@ -19,16 +19,19 @@ AppAsset::register($this);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
-    <title>Duy Tân Computer</title>
+    <meta property="fb:app_id" content="<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>" />
+    <?= Html::csrfMetaTags() ?>
+    <base href="<?= Url::base(true) ?>">
+    <title><?= $this->title ?></title>
     <link rel="icon" type="image/x-icon" href="<?= Yii::$app->view->theme->baseUrl ?>/images/favicon/favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="<?= Yii::$app->view->theme->baseUrl ?>/images/favicon/favicon.png" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,600italic' rel='stylesheet' type='text/css'>
+    <link rel="publisher" href="https://plus.google.com/<?= Config::findOne(['key' => 'GOOGLE_PUBLISHER'])->value ?>" />
+    <link rel="canonical" href="<?= Url::canonical() ?>" />
 
     <script src="<?= Yii::$app->view->theme->baseUrl ?>/js/lib/modernizr.min.js"></script>
-<!--    <script src="--><?php //echo Yii::$app->view->theme->baseUrl ?><!--/js/lib/jquery.min.js"></script>-->
     <?php $this->head() ?>
+</head>
 <body>
 <div id="fb-root"></div>
 <?php $this->beginBody() ?>
@@ -38,10 +41,54 @@ AppAsset::register($this);
             <div class="container">
                 <div class="top-left">
                     Hotline: <a class="tel" href="tel:<?= Config::findOne(['key' => 'PHONE'])->value ?>"><?= Config::findOne(['key' => 'PHONE'])->value ?></a> !
-                    <a href="#dang-nhap"><i class="glyphicon glyphicon-user"></i>Đăng nhập</a>
+                    <?php if(Yii::$app->user->isGuest) { ?>
+                        <?= Html::a('<i class="glyphicon glyphicon-user"></i>Đăng nhập', ['site/login']) ?>
+                    <?php } else { ?>
+                        <i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !
+                        <?= Html::a('<i class="glyphicon glyphicon-log-out"></i>Đăng xuất', ['site/logout'], ['data'=>['method'=>'POST']]) ?>
+                    <?php } ?>
                 </div>
                 <div class="top-right">
                     <i class="glyphicon glyphicon-road"></i><span><?= Config::findOne(['key' => 'ADDRESS'])->value ?></span>
+                </div>
+            </div>
+        </div>
+        <div class="scrolling">
+            <div class="container">
+                <?php $widthBanner = Config::findOne(['key' => 'BANNER_WIDTH'])->value; ?>
+                <div id="floatdiv" class="adv floating left" style="left: -<?= $widthBanner ?>px; width: <?= $widthBanner ?>px;" data-width="<?= $widthBanner ?>">
+                    <div class="content">
+                        <?php
+                        $widget = Content::find()->where([
+                            'content_type' => Content::TYPE_BANNER,
+                            'status' => Content::STATUS_PUBLISHED,
+                            'deleted' => 0,
+                            'parent_id' => 0
+                        ])->orderBy('sorting')->all();
+                        ?>
+                        <?php foreach ($widget as $index => $item) { ?>
+                            <a href="">
+                                <img src="<?= $item->summary ?>" alt="" />
+                            </a>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="adv floating right" style="right: -<?= $widthBanner ?>px; width: <?= $widthBanner ?>px;" data-width="<?= $widthBanner ?>">
+                    <div class="content">
+                        <?php
+                        $widget = Content::find()->where([
+                            'content_type' => Content::TYPE_BANNER,
+                            'status' => Content::STATUS_PUBLISHED,
+                            'deleted' => 0,
+                            'parent_id' => 1
+                        ])->orderBy('sorting')->all();
+                        ?>
+                        <?php foreach ($widget as $index => $item) { ?>
+                            <a href="<?= $item->content ?>">
+                                <img src="<?= $item->summary ?>" alt="" />
+                            </a>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,6 +216,23 @@ AppAsset::register($this);
                                 </div>
                             </div>
                         </div>
+                        <div class="module adv">
+                            <div class="content">
+                                <?php
+                                $widget = Content::find()->where([
+                                    'content_type' => Content::TYPE_BANNER,
+                                    'status' => Content::STATUS_PUBLISHED,
+                                    'deleted' => 0,
+                                    'parent_id' => 2
+                                ])->orderBy('sorting')->all();
+                                ?>
+                                <?php foreach ($widget as $index => $item) { ?>
+                                    <a href="<?= $item->content ?>">
+                                        <img src="<?= $item->summary ?>" alt="" />
+                                    </a>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-9">
                         <?= $content ?>
@@ -278,12 +342,13 @@ AppAsset::register($this);
         </footer>
     </div>
 </div>
+
 <?php $this->endBody() ?>
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=385946311598320";
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>

@@ -29,12 +29,11 @@ class AppAsset extends AssetBundle
     
     public $css = [
         "css/lib/bootstrap.min.css",
-        "css/lib/slick.css",
         "css/global.css",
     ];
     public $js = [
         "js/lib/bootstrap.min.js",
-        "js/lib/slick.min.js",
+        'js/lib/jquery.fancybox-1.3.4.js',
         "js/global.js",
     ];
     

@@ -48,6 +48,7 @@
                     left: 10px;
                     font-size: 10px;
                     top: 13px;
+                    color: #F60;
                 }
             }
             &.has-submenu{
@@ -72,7 +73,7 @@
                 font-weight: normal;
                 z-index: 100;
                 li{
-                    padding: 10px;
+                    padding: 13px 8px 12px 10px;
                     a{
                         color: #b00;
                     }
@@ -131,6 +132,33 @@
                 display: inline-block;
                 margin: 4px 5px;
             }
+        }
+    }
+}
+
+.adv {
+    .content{
+        text-align: center;
+        @include border-radius(5px);
+        > *{
+            display: inline-block;
+            margin-top: 10px;
+            &:first-child{
+                margin-top: 0;
+            }
+        }
+        img{
+            width: 100%;
+        }
+    }
+}
+
+.scrolling{
+    .container{
+        position: relative;
+        .floating{
+            position: absolute;
+            top: 0;
         }
     }
 }

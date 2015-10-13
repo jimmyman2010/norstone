@@ -18,15 +18,16 @@ Yii::setAlias('@themes', Yii::$app->view->theme->baseUrl);
  * Class ProductAsset
  * @package frontend\assets
  */
-class ProductAsset extends AssetBundle
+class SliderAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@themes';
 
     public $css = [
+        "css/lib/slick.css",
     ];
     public $js = [
-        'js/lib/jquery.fancybox-1.3.4.js',
+        "js/lib/slick.min.js",
     ];
 
     public $depends = [

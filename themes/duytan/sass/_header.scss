@@ -1,4 +1,8 @@
 .top-nav{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
     border-bottom: 1px solid #E2E2E2;
     height: 32px;
     font-size: 14px;

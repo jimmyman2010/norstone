@@ -6,11 +6,7 @@
  * Time: 11:07 AM
  */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
-use common\helpers\UtilHelper;
-use frontend\assets\ProductAsset;
-use yii\widgets\Breadcrumbs;
 use common\models\Config;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
@@ -20,34 +16,33 @@ use yii\widgets\Pjax;
 /* @var $product common\models\Product */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-ProductAsset::register($this);
-
 $this->title = !empty($model->seo_title) ? $model->seo_title : $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => !empty($model->seo_keyword) ? $model->seo_keyword : Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
 $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo_description) ? $model->seo_description : Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
 
 ?>
+<div class="row" role="article">
+    <div class="col-md-12 main-container">
+        <ul class="breadcrumb">
+            <li class="firstItem"><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="<?= Yii::t('app', 'Back to the homepage') ?>"><?= Yii::t('app', 'Home') ?></a></li>
+            <?php if($model->parent_id > 0) { ?>
+                <li><a href="<?= Url::toRoute(['product/category', 'id' => $model->parent_id, 'slug' => $model->parent->slug]) ?>" title="<?= $model->parent->name ?>"><?= $model->parent->name ?></a></li>
+            <?php } ?>
+            <li class="lastItem"><span class="page-title"><?= $model->name ?></span></li>
+        </ul>
 
-<div id="main_content" class="col-sm-9">
-    <ul class="breadcrumb">
-        <li class="firstItem"><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="<?= Yii::t('app', 'Back to the homepage') ?>"><?= Yii::t('app', 'Home') ?></a></li>
-        <?php if($model->parent_id > 0) { ?>
-            <li><a href="<?= Url::toRoute(['product/category', 'id' => $model->parent_id, 'slug' => $model->parent->slug]) ?>" title="<?= $model->parent->name ?>"><?= $model->parent->name ?></a></li>
-        <?php } ?>
-        <li class="lastItem"><span class="page-title"><?= $model->name ?></span></li>
-    </ul>
 
-    <div class="index-scope">
+        <div class="module-content product-detail">
+            <h1><?= $model->name ?></h1>
+            <div class="content">
+                <?= $model->description ?>
+            </div>
+        </div>
 
-        <h2 class="page_heading"><?= $model->name ?></h2>
-
-        <?php if($model->description) { ?>
-            <div class="rte"><?= $model->description ?></div>
-        <?php } ?>
         <?php Pjax::begin(['id' => 'products']) ?>
-        <div class="product-listing product-listing__index">
-            <div class="category-sorting clearfix">
+        <div class="widget">
+            <header>
                 <div class="total-count">Tổng cộng có <?= $dataProvider->totalCount ?> sản phẩm</div>
                 <div class="dropdownbox">
                     <span>Sắp xếp</span>
@@ -60,23 +55,23 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         <option <?= $orderBy === 'za' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'za']) ?>">Tên Z - A</option>
                     </select>
                 </div>
-            </div>
-            <div class="row">
+            </header>
+            <div class="content-widget list">
                 <?php foreach ($dataProvider->getModels() as $index => $product) { ?>
                     <?= $this->render('_item', [
                         'index' => $index,
                         'product' => $product,
                     ]) ?>
                 <?php } ?>
+                <br clear="all"/>
+                <nav class="pagination-bottom">
+                    <?= LinkPager::widget([
+                        'pagination'=>$dataProvider->pagination,
+                        'nextPageLabel' => 'Trang kế tiếp &raquo;',
+                        'prevPageLabel' => '&laquo; Quay lại',
+                    ]) ?>
+                </nav>
             </div>
-
-            <nav class="pagination">
-                <?= LinkPager::widget([
-                    'pagination'=>$dataProvider->pagination,
-                    'nextPageLabel' => 'Trang kế tiếp &raquo;',
-                    'prevPageLabel' => '&laquo; Quay lại',
-                ]) ?>
-            </nav>
         </div>
         <?php Pjax::end() ?>
     </div>

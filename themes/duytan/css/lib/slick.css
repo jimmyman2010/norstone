@@ -235,8 +235,9 @@
 }
 
 /* Dots */
-.slick-slider
+.slick-slide:focus
 {
+    outline: none;
 }
 
 .slick-dots

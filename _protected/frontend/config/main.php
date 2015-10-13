@@ -34,6 +34,8 @@ return [
                 'tin-tuc/<slug>' => 'news/view',
                 'tin-tuc/tag/<slug>' => 'news/tag',
                 'tim-kiem' => 'site/search',
+                'dang-nhap' => 'site/login',
+                'dang-xuat' => 'site/logout',
                 '<slug>' => 'page/view',
                 'defaultRoute' => 'site/index',
             ]

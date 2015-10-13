@@ -9,7 +9,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\UtilHelper;
-use frontend\assets\ProductAsset;
+use frontend\assets\SliderAsset;
 use yii\helpers\Json;
 use common\models\Config;
 use common\helpers\CurrencyHelper;
@@ -21,7 +21,7 @@ use common\helpers\CurrencyHelper;
 /* @var $relatedList array */
 /* @var $related common\models\Product */
 
-ProductAsset::register($this);
+SliderAsset::register($this);
 
 $this->title = !empty($model->seo_title) ? $model->seo_title : $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
@@ -52,7 +52,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <div class="product_image">
                         <ul class="slider-for">
                             <?php foreach ($pictures as $index => $photo) { ?>
-                                <li>
+                                <li class="item"<?= $index > 0 ? ' style="display:none" ' : '' ?>>
                                     <a rel="product_images" class="fancybox" href="<?= UtilHelper::getPicture($photo, '', true) ?>">
                                         <?= UtilHelper::getPicture($photo, 'slide') ?>
                                     </a>
@@ -62,7 +62,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     </div>
                     <div class="slider-nav">
                         <?php foreach ($pictures as $index => $photo) { ?>
-                            <a href="javascript:;">
+                            <a class="item" href="javascript:;" style="display:none">
                                 <?= UtilHelper::getPicture($photo, 'thumbnail-slide') ?>
                             </a>
                         <?php } ?>
@@ -117,67 +117,46 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <div class="product_description rte" itemprop="description">
                         <?= $model->description ?>
                     </div>
-                    <!-- AddThis Button BEGIN -->
-                    <div class="addthis_toolbox addthis_default_style ">
-                        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-                        <a class="addthis_button_tweet"></a>
-                        <a class="addthis_button_pinterest_pinit"></a>
-                        <a class="addthis_counter addthis_pill_style"></a>
-                    </div>
-                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50568dd4418a8df1"></script>
-                    <!-- AddThis Button END -->
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <div class="addthis_native_toolbox"></div>
                 </div>
             </div>
 
-            <div class="information" role="tabpanel">
-
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active firstItem"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Tổng quan</a></li>
-                    <?php if($model->info_tech) { ?>
-                        <li role="presentation" class=""><a href="#infoTech" aria-controls="infoTech" role="tab" data-toggle="tab">Cấu hình chi tiết</a></li>
-                    <?php } ?>
-                    <li role="presentation" class=""><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Ý kiến khách hàng</a></li>
-                    <li role="presentation" class="lastItem"><a href="#related" aria-controls="related" role="tab" data-toggle="tab">Sản phẩm liên quan</a></li>
-                </ul>
-
+            <div class="information">
                 <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="general">
-                        <div class="rte">
+                <aside>
+                    <div class="widget">
+                        <header><h2>Tổng quan</h2></header>
+                        <div class="content-widget rte">
                             <?= $model->general ?>
                         </div>
                     </div>
-                    <?php if($model->info_tech) { ?>
-                        <div role="tabpanel" class="tab-pane" id="infoTech">
-                            <div class="rte">
-                                <?= $model->info_tech ?>
-                            </div>
-                        </div>
-                    <?php } ?>
-                    <div role="tabpanel" class="tab-pane" id="comments">
-                        <div class="widget_content">
-                            <div class="fb-comments" data-version="v2.3"></div>
+                <?php if($model->info_tech) { ?>
+                    <div class="widget">
+                        <header><h2>Thông số kỷ thuật</h2></header>
+                        <div class="content-widget rte">
+                            <?= $model->info_tech ?>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="related">
-                        <div class="widget widget__related-products">
-                            <div class="widget_content">
-                                <div class="row">
-                                    <ul class="product-listing product-listing__related">
-                                        <?php foreach ($relatedList as $index => $related) { ?>
-                                            <?= $this->render('_item', [
-                                                'index' => $index,
-                                                'product' => $related,
-                                            ]) ?>
-                                        <?php } ?>
-                                    </ul>
-                                </div>
-                            </div>
+                <?php } ?>
+                    <div class="widget">
+                        <header><h2>Ý kiến khách hàng</h2></header>
+                        <div class="content-widget">
+                            <div class="fb-comments" data-width="100%"></div>
                         </div>
                     </div>
-                </div>
+                    <div class="widget">
+                        <header><h2>Sản phẩm liên quan</h2></header>
+                        <div class="content-widget list">
+                            <?php foreach ($relatedList as $index => $related) { ?>
+                                <?= $this->render('_item', [
+                                    'index' => $index,
+                                    'product' => $related,
+                                ]) ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </aside>
             </div>
 
 
@@ -187,23 +166,28 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
 
 <?php
 $this->registerJs("
+    $('.slider-for .item').show();
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
 
-$('.slider-for').slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  fade: true,
-  asNavFor: '.slider-nav'
-});
-$('.slider-nav').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  asNavFor: '.slider-for',
-  dots: false,
-  focusOnSelect: true
-});
-$('.fancybox').fancybox({
-
-});
+    $('.slider-nav .item').show();
+    $('.slider-nav').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: false,
+        focusOnSelect: true
+    });
+    $('.fancybox').fancybox({
+        nextEffect : 'none',
+    	prevEffect	: 'none'
+    });
 
 ");
+
+$this->registerJsFile('//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50568dd4418a8df1', ['async' => 'async']);

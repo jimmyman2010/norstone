@@ -1,13 +1,13 @@
 <?php
 
-use yii\helpers\Url;
-use yii\helpers\Html;
 use common\helpers\UtilHelper;
 use common\models\Config;
-use common\helpers\SlugHelper;
+use frontend\assets\SliderAsset;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider; */
+
+SliderAsset::register($this);
 
 $this->title = Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
@@ -21,7 +21,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
         <div class="slide-container">
             <div class="slider single-item">
                 <?php foreach ($dataProvider->getModels() as $index => $slide) { ?>
-                <div>
+                <div class="item"<?= $index > 0 ? ' style="display:none" ' : '' ?>>
                     <img class="desktop" src="<?= UtilHelper::getPicture($slide->image_id, 'feature-desktop', true) ?>" title="#htmlcaption-<?= $index + 1 ?>" alt="" />
                     <img class="phone" src="<?= UtilHelper::getPicture($slide->image_id, 'feature-phone', true) ?>" title="#htmlcaption-<?= $index + 1 ?>" alt="" />
                 </div>
@@ -71,3 +71,13 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
         </div>
     </div>
 </div>
+
+<?php
+$this->registerJs("
+    $('.single-item .item').show();
+    $('.single-item').slick({
+        dots: true,
+        autoplay: true,
+        arrows: false
+    });
+");

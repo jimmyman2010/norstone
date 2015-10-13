@@ -117,7 +117,7 @@ class ProductController extends FrontendController {
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 9,
+                'pageSize' => 12,
             ],
         ]);
 
@@ -171,7 +171,7 @@ class ProductController extends FrontendController {
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 9,
+                'pageSize' => 12,
             ],
         ]);
 

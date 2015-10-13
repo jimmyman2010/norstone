@@ -2,7 +2,7 @@
 @import "compass/css3";
 @import "compass/utilities/general";
 
-$font-opensans: 'Open Sans', Arial, Verdana, sans-serif;;
+$font-opensans: 'Open Sans', Arial, Verdana, sans-serif;
 
 body{
     font-family: $font-opensans;
@@ -60,6 +60,9 @@ img{
 .desktop{
     display: none !important;
 }
+.site-wrapper{
+    padding-top: 32px;
+}
 
 /*------------------------------------*\
     RESPONSIVE
@@ -89,6 +92,10 @@ img{
         width: 33.3%;
         margin-top: 0;
     }
+    .module-content .content.list article:nth-child(3n+1),
+    .widget .content-widget.list article:nth-child(3n+1) {
+        clear: left;
+    }
 }
 
 @media only screen and (min-width: 992px) {
@@ -109,6 +116,14 @@ img{
     }
     .module-content .content.list article figure img{
         width: 150px;
+    }
+    .module-content .content.list article:nth-child(3n+1),
+    .widget .content-widget.list article:nth-child(3n+1) {
+        clear: none;
+    }
+    .module-content .content.list article:nth-child(4n+1),
+    .widget .content-widget.list article:nth-child(4n+1) {
+        clear: left;
     }
 }
 

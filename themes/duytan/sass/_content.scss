@@ -39,8 +39,8 @@
             border-left: 1px solid #D91C1B;
             color: #FFF;
             display: inline-block;
-            padding: 9px 10px 13px;
-            margin-top: 4px;
+            padding: 7px 10px 13px;
+            margin-top: 6px;
             font-size: 14px;
         }
     }
@@ -58,7 +58,6 @@
                 padding-top: 10px;
                 padding-bottom: 10px;
                 line-height: 20px;
-                //border: 1px solid #CECECE;
                 figure{
                     text-align: center;
                     border-bottom: 1px dotted #CECECE;
@@ -140,5 +139,67 @@
         border-top: 1px solid #F5E6D3;
         border-bottom: 1px solid #F5E6D3;
         line-height: 22px;
+    }
+}
+.information{
+    @include clearfix;
+}
+.widget{
+    margin: 20px 0;
+    > header{
+        @include border-radius(5px 5px 0 0);
+        @include background-image(linear-gradient(#FFFFFF, #EDEDED));
+        font-weight: 600;
+        font-size: 15px;
+        padding: 0 14px;
+        border-left: 1px solid #E4E4E4;
+        border-top: 1px solid #E4E4E4;
+        border-right: 1px solid #E4E4E4;
+        h2{
+            padding: 10px 0;
+        }
+    }
+    .content-widget{
+        @include clearfix;
+        background-color: #FFF;
+        border-left: 1px solid #E4E4E4;
+        border-right: 1px solid #E4E4E4;
+        border-bottom: 1px solid #E4E4E4;
+        border-top: 2px solid #D91C1B;
+        padding: 20px 10px;
+        font-size: 14px;
+        &.list{
+            article{
+                padding-top: 10px;
+                padding-bottom: 10px;
+                line-height: 20px;
+                figure{
+                    text-align: center;
+                    border-bottom: 1px dotted #CECECE;
+                    padding-bottom: 7px;
+                    margin-bottom: 7px;
+                    img{
+                        width: 185px;
+                    }
+                }
+                .price {
+                    line-height: 20px;
+                    margin-top: 10px;
+                    strong {
+                        font-weight: 800;
+                        color: #f04331;
+                        font-size: 16px;
+                    }
+                    em {
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+}
+.pagination-bottom{
+    .pagination{
+        margin-bottom: 0;
     }
 }
