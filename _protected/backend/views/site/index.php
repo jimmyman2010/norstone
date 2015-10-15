@@ -17,7 +17,7 @@ ArrangementAsset::register($this);
 <article class="site-index">
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">Homepage</div>
+            <div class="caption">Tổng quan hoạt động</div>
         </div>
         <div class="portlet-body">
             <div class="row">
@@ -25,7 +25,7 @@ ArrangementAsset::register($this);
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-flash"></i><?= Yii::t('app', 'Arrangement of Featured Products') ?>
+                                <i class="fa fa-flash"></i>Sắp xếp sản phẩm nổi bật
                             </div>
                         </div>
                         <div class="portlet-body feature-products">
@@ -33,7 +33,7 @@ ArrangementAsset::register($this);
                                 <div class="portlet small">
                                     <div class="portlet-title">
                                         <div class="caption">
-                                            <i class="fa fa-check"></i><?= Yii::t('app', 'Featured Products') ?>
+                                            <i class="fa fa-check"></i>Sản phẩm nổi bật
                                         </div>
                                     </div>
                                     <div class="portlet-body">
@@ -55,7 +55,7 @@ ArrangementAsset::register($this);
                                 <div class="portlet small">
                                     <div class="portlet-title">
                                         <div class="caption">
-                                            <i class="fa fa-database"></i><?= Yii::t('app', 'All Products') ?>
+                                            <i class="fa fa-database"></i>Tất cả sản phẩm
                                         </div>
                                     </div>
                                     <div class="portlet-body">
@@ -79,8 +79,8 @@ ArrangementAsset::register($this);
                                         'id' => 'arrangement-form'
                                     ]); ?>
                                     <input id="arrangementProduct" type="hidden" name="ArrangementProduct" value="" />
-                                    <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
-                                    <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                                    <?= Html::submitButton('Cập nhật', ['class' => 'small button radius']) ?>
+                                    <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
                                     <?php ActiveForm::end(); ?>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ ArrangementAsset::register($this);
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'Configuration') ?>
+                                <i class="fa fa-cogs"></i>Cấu hình
                             </div>
                         </div>
                         <div class="portlet-body has-padding-full">
@@ -109,8 +109,8 @@ ArrangementAsset::register($this);
                             <?php } ?>
 
                             <div class="action-buttons">
-                                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
-                                <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                                <?= Html::submitButton('Cập nhật', ['class' => 'small button radius']) ?>
+                                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
                             </div>
 
                             <?php ActiveForm::end(); ?>
@@ -121,7 +121,7 @@ ArrangementAsset::register($this);
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'SEO Global') ?>
+                                <i class="fa fa-cogs"></i>SEO chính
                             </div>
                         </div>
                         <div class="portlet-body has-padding-full">
@@ -137,8 +137,8 @@ ArrangementAsset::register($this);
                             <?php } ?>
 
                             <div class="action-buttons">
-                                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
-                                <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                                <?= Html::submitButton('Cập nhật', ['class' => 'small button radius']) ?>
+                                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
                             </div>
 
                             <?php ActiveForm::end(); ?>
@@ -151,7 +151,7 @@ ArrangementAsset::register($this);
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'Social Configuration') ?>
+                                <i class="fa fa-cogs"></i>Cấu hình Social
                             </div>
                         </div>
                         <div class="portlet-body has-padding-full">
@@ -167,8 +167,8 @@ ArrangementAsset::register($this);
                             <?php } ?>
 
                             <div class="action-buttons">
-                                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'small button radius']) ?>
-                                <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                                <?= Html::submitButton('Cập nhật', ['class' => 'small button radius']) ?>
+                                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
                             </div>
 
                             <?php ActiveForm::end(); ?>
@@ -179,7 +179,7 @@ ArrangementAsset::register($this);
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'SUPPORT') ?>
+                                <i class="fa fa-cogs"></i>Hỗ trợ
                             </div>
                         </div>
                         <div class="portlet-body has-padding-full">
@@ -216,9 +216,9 @@ ArrangementAsset::register($this);
                             </ul>
 
                             <div class="action-buttons">
-                                <?= Html::a(Yii::t('app', 'Add contact'), 'javascript:;', ['class' => 'add-support small button success radius']) ?>
-                                <?= Html::submitButton(Yii::t('app', 'Save'), ['name' => 'Support[submit]', 'class' => 'small button radius']) ?>
-                                <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                                <?= Html::a('Thêm hỗ trợ', 'javascript:;', ['class' => 'add-support small button success radius']) ?>
+                                <?= Html::submitButton('Cập nhật', ['name' => 'Support[submit]', 'class' => 'small button radius']) ?>
+                                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
                             </div>
 
                             <?php ActiveForm::end(); ?>

@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Users');
+$this->title = 'Quản lý người dùng';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="user-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Thêm mới', ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'username',
-            'email:email',
+            //'email:email',
             // status
             [
                 'attribute'=>'status',

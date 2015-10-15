@@ -14,14 +14,14 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(['id' => 'form-user']); ?>
 
         <?= $form->field($user, 'username') ?>
-        
+
         <?= $form->field($user, 'email') ?>
 
         <?php if ($user->scenario === 'create'): ?>
             <?= $form->field($user, 'password')->widget(PasswordInput::classname(), []) ?>
         <?php else: ?>
             <?= $form->field($user, 'password')->widget(PasswordInput::classname(), [])
-                     ->passwordInput(['placeholder' => Yii::t('app', 'New pwd ( if you want to change it )')]) 
+                     ->passwordInput(['placeholder' => 'Nhập mật khẩu mới nếu muốn thay đổi'])
             ?>       
         <?php endif ?>
 
@@ -32,16 +32,16 @@ use yii\widgets\ActiveForm;
         <?php foreach (AuthItem::getRoles() as $item_name): ?>
             <?php $roles[$item_name->name] = $item_name->name ?>
         <?php endforeach ?>
-        <?= $form->field($role, 'item_name')->dropDownList($roles) ?>
+        <?= $form->field($role, 'item_name')->dropDownList(['member' => 'member', 'admin' => 'admin']) ?>
 
     </div>
 
     <div class="form-group">     
-        <?= Html::submitButton($user->isNewRecord ? Yii::t('app', 'Create') 
-            : Yii::t('app', 'Update'), ['class' => $user->isNewRecord 
+        <?= Html::submitButton($user->isNewRecord ? 'Thêm mới'
+            : 'Cập nhật', ['class' => $user->isNewRecord
             ? 'small button success radius' : 'small button radius']) ?>
 
-        <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+        <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

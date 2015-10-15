@@ -91,12 +91,12 @@ class User extends UserIdentity
         return [
             'id' => Yii::t('app', 'ID'),
             'username' => Yii::t('app', 'Username'),
-            'password' => Yii::t('app', 'Password'),
+            'password' => 'Mật khẩu',
             'email' => Yii::t('app', 'Email'),
-            'status' => Yii::t('app', 'Status'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'item_name' => Yii::t('app', 'Role'),
+            'status' => 'Trạng thái',
+            'created_at' => 'Ngày tạo mới',
+            'updated_at' => 'Ngày cập nhật',
+            'item_name' => 'Quyền',
         ];
     }
 
@@ -229,15 +229,15 @@ class User extends UserIdentity
 
         if ($status === self::STATUS_DELETED)
         {
-            return "Deleted";
+            return "Đã xóa";
         }
         elseif ($status === self::STATUS_NOT_ACTIVE)
         {
-            return "Inactive";
+            return "Đã tắt";
         }
         else
         {
-            return "Active";
+            return "Kích hoạt";
         }
     }
 
@@ -249,9 +249,9 @@ class User extends UserIdentity
     public function getStatusList()
     {
         $statusArray = [
-            self::STATUS_ACTIVE     => 'Active',
-            self::STATUS_NOT_ACTIVE => 'Inactive',
-            self::STATUS_DELETED    => 'Deleted'
+            self::STATUS_ACTIVE     => 'Kích hoạt',
+            self::STATUS_NOT_ACTIVE => 'Đã tắt',
+            self::STATUS_DELETED    => 'Đã xóa'
         ];
 
         return $statusArray;

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\User */
 
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Danh sách người dùng', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="user-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny round button secondary']) ?></li>
-                    <li><?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
+                    <li><?= Html::a('Quay lại', ['index'], ['class' => 'tiny round button secondary']) ?></li>
+                    <li><?= Html::a('Cập nhật', ['update', 'id' => $model->id], [
                             'class' => 'tiny round button']) ?>
                     </li>
-                    <li><?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                    <li><?= Html::a('Xóa', ['delete', 'id' => $model->id], [
                             'class' => 'tiny round button alert',
                             'data' => [
                                 'confirm' => Yii::t('app', 'Are you sure you want to delete this user?'),

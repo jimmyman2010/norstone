@@ -34,10 +34,15 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'lock-screen', 'index'],
+                        'actions' => ['logout', 'lock-screen'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['admin']
+                    ]
                 ],
             ],
             'verbs' => [
@@ -190,11 +195,17 @@ class SiteController extends Controller
         // everything went fine, log in the user
         if ($model->load(Yii::$app->request->post()) && $model->login()) 
         {
-            if(!empty($previous)){
-                return $this->redirect($previous);
+            $role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
+            if(isset($role['admin'])) {
+                if (!empty($previous)) {
+                    return $this->redirect($previous);
+                } else {
+                    return $this->goBack();
+                }
             }
-            else{
-                return $this->goBack();
+            else {
+                Yii::$app->user->logout();
+                return $this->goHome();
             }
         } 
         // errors will be displayed

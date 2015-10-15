@@ -9,6 +9,11 @@ use yii\helpers\Url;
 /* @var $content string */
 
 AppAsset::register($this);
+
+$role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
+if(!isset($role['admin'])) {
+    Yii::$app->user->logout();
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -52,7 +57,7 @@ AppAsset::register($this);
                                 <div class="large-4 medium-6 small-12 columns">
                                     <div class="row">
                                         <div class="medium-9 small-9 columns howdy">
-                                            <?= Yii::t('app', 'Howdy') ?>, <?= Yii::$app->user->identity->username ?>
+                                            Chào, <?= Yii::$app->user->identity->username ?>
                                         </div>
                                         <div class="medium-3 small-3 columns logout">
                                             <?= Html::a('<i class="fa fa-power-off"></i>', ['/site/logout'], ['data-method'=>'post']) ?>
@@ -77,21 +82,25 @@ AppAsset::register($this);
                                         'label' => 'Quản lý chung',
                                         'url' => ['javascript:;'],
                                         'template' => '{label}',
-                                        'options' => ['class' => 'group-item']
+                                        'options' => ['class' => 'group-item'],
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Tổng quan hoạt động',
                                         'url' => ['site/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-home"></i>{label}</a>'
+                                        'template' => '<a href="{url}"><i class="fa fa-home"></i>{label}</a>',
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Quản lý sản phẩm',
                                         'url' => ['product/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-archive"></i>{label}</a>',
+                                        'visible' => isset($role['admin']),
                                         'items' => [
                                             [
                                                 'label' => 'Quản lý danh mục',
-                                                'url' => ['category/index']
+                                                'url' => ['category/index'],
+                                                'visible' => isset($role['admin'])
                                             ]
                                         ]
                                     ],
@@ -99,51 +108,44 @@ AppAsset::register($this);
                                         'label' => 'Quản lý Tin tức',
                                         'url' => ['news/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-newspaper-o"></i>{label}</a>',
-                                        'items' => [
-                                        ]
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Quản lý Tags',
                                         'url' => ['tag/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-tags"></i>{label}</a>'
+                                        'template' => '<a href="{url}"><i class="fa fa-tags"></i>{label}</a>',
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Hệ thống',
                                         'url' => ['javascript:;'],
                                         'template' => '{label}',
-                                        'options' => ['class' => 'group-item']
+                                        'options' => ['class' => 'group-item'],
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Quản lý người dùng',
                                         'url' => ['user/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-user"></i>{label}</a>',
-                                        /*'items' => [
-                                            [
-                                                'label' => 'Add user',
-                                                'url' => ['user/create']
-                                            ]
-                                        ]*/
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Quản lý Slide',
                                         'url' => ['slider/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-indent"></i>{label}</a>',
-                                        'items' => [
-                                        ]
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Quản lý Banner',
                                         'url' => ['banner/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-columns"></i>{label}</a>',
-                                        'items' => [
-                                        ]
+                                        'visible' => isset($role['admin'])
                                     ],
                                     [
                                         'label' => 'Quản lý trang',
                                         'url' => ['page/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>',
-                                        'items' => [
-                                        ]
+                                        'visible' => isset($role['admin'])
                                     ],
                                 ],
                             ]);
