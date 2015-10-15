@@ -74,47 +74,47 @@ AppAsset::register($this);
                                 ],
                                 'items' => [
                                     [
-                                        'label' => Yii::t('app', 'General'),
+                                        'label' => 'Quản lý chung',
                                         'url' => ['javascript:;'],
                                         'template' => '{label}',
                                         'options' => ['class' => 'group-item']
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Dashboard'),
+                                        'label' => 'Tổng quan hoạt động',
                                         'url' => ['site/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-home"></i>{label}</a>'
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Products'),
+                                        'label' => 'Quản lý sản phẩm',
                                         'url' => ['product/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-archive"></i>{label}</a>',
                                         'items' => [
                                             [
-                                                'label' => Yii::t('app', 'Category'),
+                                                'label' => 'Quản lý danh mục',
                                                 'url' => ['category/index']
                                             ]
                                         ]
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'News'),
+                                        'label' => 'Quản lý Tin tức',
                                         'url' => ['news/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-newspaper-o"></i>{label}</a>',
                                         'items' => [
                                         ]
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Tags'),
+                                        'label' => 'Quản lý Tags',
                                         'url' => ['tag/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-tags"></i>{label}</a>'
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'System'),
+                                        'label' => 'Hệ thống',
                                         'url' => ['javascript:;'],
                                         'template' => '{label}',
                                         'options' => ['class' => 'group-item']
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Users'),
+                                        'label' => 'Quản lý người dùng',
                                         'url' => ['user/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-user"></i>{label}</a>',
                                         /*'items' => [
@@ -125,28 +125,21 @@ AppAsset::register($this);
                                         ]*/
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Slider'),
+                                        'label' => 'Quản lý Slide',
                                         'url' => ['slider/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-indent"></i>{label}</a>',
                                         'items' => [
                                         ]
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Banner'),
+                                        'label' => 'Quản lý Banner',
                                         'url' => ['banner/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-columns"></i>{label}</a>',
                                         'items' => [
                                         ]
                                     ],
                                     [
-                                        'label' => Yii::t('app', 'Widget'),
-                                        'url' => ['widget/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-tasks"></i>{label}</a>',
-                                        'items' => [
-                                        ]
-                                    ],
-                                    [
-                                        'label' => Yii::t('app', 'Pages'),
+                                        'label' => 'Quản lý trang',
                                         'url' => ['page/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>',
                                         'items' => [

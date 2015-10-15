@@ -9,7 +9,7 @@ use common\helpers\UtilHelper;
 /* @var $searchModel common\models\ContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Slider');
+$this->title = 'Quản lý slide';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="page-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create Slide'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>

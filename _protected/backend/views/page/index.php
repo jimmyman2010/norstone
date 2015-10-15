@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\ContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pages');
+$this->title = 'Quản lý trang';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="page-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create Page'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>

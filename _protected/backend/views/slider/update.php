@@ -5,11 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Content',
-]) . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Slider'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->title = 'Cập nhật slide';
+$this->params['breadcrumbs'][] = ['label' => 'Danh sách slide', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <article class="page-update">
@@ -19,8 +17,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
-                    <li><?= Html::a(Yii::t('app', 'Create Slide'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a('Quay lại', ['index'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round secondary']) ?></li>
                 </ul>
             </div>
         </div>

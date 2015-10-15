@@ -11,11 +11,9 @@ use yii\helpers\Html;
 /* @var $products Array */
 /* @var $productSuggestion Array */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Product',
-]) . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->title = 'Cập nhật sản phẩm';
+$this->params['breadcrumbs'][] = ['label' => 'Danh sách sản phẩm', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <article class="product-update">
@@ -25,8 +23,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'tiny button round secondary']) ?></li>
-                    <li><?= Html::a(Yii::t('app', 'Create Product'), ['create'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a('Quay lại', ['index'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a('Thêm sản phẩm mới', ['create'], ['class' => 'tiny button round secondary']) ?></li>
                 </ul>
             </div>
         </div>

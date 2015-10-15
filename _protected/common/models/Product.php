@@ -70,17 +70,17 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => 'Tên sản phẩm',
             'slug' => Yii::t('app', 'Slug'),
             'image_id' => Yii::t('app', 'Image'),
-            'description' => Yii::t('app', 'Description'),
-            'general' => Yii::t('app', 'General'),
-            'info_tech' => Yii::t('app', 'Info Tech'),
+            'description' => 'Mô tả ngắn',
+            'general' => 'Tổng quan',
+            'info_tech' => 'Thông số kỷ thuật',
             'price_init' => Yii::t('app', 'Price Init'),
-            'price' => Yii::t('app', 'Price'),
-            'price_string' => Yii::t('app', 'Price String'),
-            'is_hot' => Yii::t('app', 'Hot'),
-            'is_discount' => Yii::t('app', 'Discount'),
+            'price' => 'Giá',
+            'price_string' => 'Quản lý giá',
+            'is_hot' => 'Sản phẩm hot',
+            'is_discount' => 'Sản phẩm giảm giá',
             'viewed' => Yii::t('app', 'Viewed'),
             'status' => Yii::t('app', 'Status'),
             'seo_title' => Yii::t('app', 'Seo Title'),
@@ -111,9 +111,9 @@ class Product extends \yii\db\ActiveRecord
     public function getStatusList()
     {
         $statusArray = [
-            self::STATUS_INSTOCK    => 'In Stock',
-            self::STATUS_WAITING   => 'Waiting',
-            self::STATUS_DRAFT => 'Draft'
+            self::STATUS_INSTOCK    => 'Còn hàng',
+            self::STATUS_WAITING   => 'Hết hàng',
+            self::STATUS_DRAFT => 'Tạm'
         ];
 
         return $statusArray;
@@ -131,15 +131,15 @@ class Product extends \yii\db\ActiveRecord
 
         if ($status === self::STATUS_INSTOCK)
         {
-            return "In Stock";
+            return "Còn hàng";
         }
         elseif ($status === self::STATUS_WAITING)
         {
-            return "Waiting";
+            return "Hết hàng";
         }
         else
         {
-            return "Draft";
+            return "Tạm";
         }
     }
 

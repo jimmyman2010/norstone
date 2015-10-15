@@ -9,7 +9,7 @@ use common\helpers\UtilHelper;
 /* @var $searchModel common\models\ContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Banner');
+$this->title = 'Quản lý banner';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="page-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create Banner'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Thêm banner', ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>
@@ -42,16 +42,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function($data) {
                             switch($data->parent_id) {
                                 case 2:{
-                                    return Yii::t('app', 'Sidebar');
+                                    return 'Cột trái';
                                     break;
                                 }
                                 case 1:{
-                                    return Yii::t('app', 'Right');
+                                    return 'Scroll phải';
                                     break;
                                 }
                                 case 0:
                                 default: {
-                                    return Yii::t('app', 'Left');
+                                    return 'Scroll trái';
                                     break;
                                 }
                             }

@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel common\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Categories');
+$this->title = 'Quản lý danh mục';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="category-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create Category'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Thêm danh mục', ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>
@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <table class="table table-striped table-bordered"><thead>
                 <tr>
                     <th>#</th>
-                    <th><?= Yii::t('app', 'Name') ?></th>
-                    <th><?= Yii::t('app', 'Show In Menu') ?></th>
-                    <th><?= Yii::t('app', 'Activated') ?></th>
-                    <th><?= Yii::t('app', 'Sorting') ?></th>
-                    <th><?= Yii::t('app', 'Menu') ?></th>
+                    <th>Tên danh mục</th>
+                    <th>Hiển thị</th>
+                    <th>Kích hoạt</th>
+                    <th>Sắp xếp</th>
+                    <th>Menu</th>
                 </tr>
                 </thead>
                 <tbody>

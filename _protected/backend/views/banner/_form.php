@@ -83,19 +83,19 @@ $this->registerJs("
         <div class="large-12 columns">
             <div class="action-buttons">
                 <input type="hidden" name="type-submit" value="" />
-                <?= Html::submitButton($model->status === Content::STATUS_DRAFT ? Yii::t('app', 'Publish') : Yii::t('app', 'Update'),
+                <?= Html::submitButton($model->status === Content::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
                     [
                         'class' => 'small button radius',
                         'data' => ['submit' => 1]
                     ]) ?>
                 <?php if($model->status === null || $model->status === Content::STATUS_DRAFT) { ?>
-                    <?= Html::submitButton($model->id ? Yii::t('app', 'Update Draft') : Yii::t('app', 'Save Draft'),
+                    <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
                         [
                             'class' => 'small button radius info',
                             'data' => ['submit' => 0]
                         ]) ?>
                 <?php } ?>
-                <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
             </div>
         </div>
     </div>

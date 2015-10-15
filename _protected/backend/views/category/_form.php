@@ -42,12 +42,12 @@ $this->registerJs("
         <ul class="tabs" data-tab role="tablist">
             <li class="tab-title active" role="presentational" >
                 <a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">
-                    <?=Yii::t('app', 'Contents') ?>
+                    Nội dung
                 </a>
             </li>
             <li class="tab-title" role="presentational">
                 <a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">
-                    <?=Yii::t('app', 'SEO') ?>
+                    SEO
                 </a>
             </li>
         </ul>
@@ -90,7 +90,7 @@ $this->registerJs("
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => 'small button radius']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'Tạo mới' : 'Cập nhật', ['class' => 'small button radius']) ?>
         </div>
     </div>
 

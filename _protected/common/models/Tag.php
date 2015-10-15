@@ -42,7 +42,7 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => 'Tag',
             'slug' => Yii::t('app', 'Slug'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];

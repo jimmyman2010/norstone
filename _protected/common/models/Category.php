@@ -56,17 +56,17 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => 'Tên danh mục',
             'slug' => Yii::t('app', 'Slug'),
-            'description' => Yii::t('app', 'Description'),
+            'description' => 'Mô tả',
             'seo_title' => Yii::t('app', 'SEO Title'),
             'seo_keyword' => Yii::t('app', 'SEO Keyword'),
             'seo_description' => Yii::t('app', 'SEO Description'),
             'cat_type' => Yii::t('app', 'Type'),
-            'parent_id' => Yii::t('app', 'Parent'),
-            'sorting' => Yii::t('app', 'Sorting'),
-            'show_in_menu' => Yii::t('app', 'Show in menu'),
-            'activated' => Yii::t('app', 'Activated'),
+            'parent_id' => 'Danh mục cha',
+            'sorting' => 'Sắp xếp',
+            'show_in_menu' => 'Hiển thị',
+            'activated' => 'Kích hoạt',
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }

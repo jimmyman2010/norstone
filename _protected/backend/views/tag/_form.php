@@ -35,7 +35,7 @@ $this->registerJs("
     <?= $form->field($model, 'name')->textInput(['maxlength' => 128]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => 'small button radius']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Tạo mới' : 'Cập nhật', ['class' => 'small button radius']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

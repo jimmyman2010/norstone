@@ -11,16 +11,16 @@ use common\models\Category;
 /* @var $searchModel common\models\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Products');
+$this->title = 'Quản lý sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="product-index">
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption"><?= Html::encode($this->title) ?></div>
+            <div class="caption">Danh sách sản phẩm</div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create Product'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Thêm sản phẩm mới', ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>

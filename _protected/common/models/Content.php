@@ -72,22 +72,22 @@ class Content extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => 'Tiêu đề',
             'slug' => Yii::t('app', 'Slug'),
             'image_id' => Yii::t('app', 'Image'),
             'content_type' => Yii::t('app', 'Content Type'),
-            'status' => Yii::t('app', 'Status'),
+            'status' => 'Trạng thái',
             'published_date' => Yii::t('app', 'Published Date'),
             'using_page_builder' => Yii::t('app', 'Using page builder'),
-            'summary' => Yii::t('app', 'Summary'),
-            'content' => Yii::t('app', 'Content'),
-            'parent_id' => Yii::t('app', 'Parent'),
+            'summary' => 'Mô tả ngắn',
+            'content' => 'Nội dung',
+            'parent_id' => 'Cha',
             'seo_title' => Yii::t('app', 'SEO Title'),
             'seo_keyword' => Yii::t('app', 'SEO Keyword'),
             'seo_description' => Yii::t('app', 'SEO Description'),
             'show_in_menu' => Yii::t('app', 'Show In Menu'),
             'updated_date' => Yii::t('app', 'Updated Date'),
-            'sorting' => Yii::t('app', 'Sorting'),
+            'sorting' => 'Sắp xếp',
             'created_date' => Yii::t('app', 'Created Date'),
             'created_by' => Yii::t('app', 'Created By'),
             'deleted' => Yii::t('app', 'Deleted'),
@@ -125,9 +125,9 @@ class Content extends \yii\db\ActiveRecord
     public function getStatusList()
     {
         $statusArray = [
-            self::STATUS_PUBLISHED    => 'Published',
-            self::STATUS_WAITING   => 'Waiting',
-            self::STATUS_DRAFT => 'Draft'
+            self::STATUS_PUBLISHED    => 'Hiển thị',
+            self::STATUS_WAITING   => 'Chờ',
+            self::STATUS_DRAFT => 'Tạm'
         ];
 
         return $statusArray;
@@ -145,15 +145,15 @@ class Content extends \yii\db\ActiveRecord
 
         if ($status === self::STATUS_PUBLISHED)
         {
-            return "Published";
+            return "Hiển thị";
         }
         elseif ($status === self::STATUS_WAITING)
         {
-            return "Waiting";
+            return "Chờ";
         }
         else
         {
-            return "Draft";
+            return "Tạm";
         }
     }
 

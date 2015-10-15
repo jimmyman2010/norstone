@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a(Yii::t('app', 'Create News'), ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round']) ?></li>
                 </ul>
             </div>
         </div>

@@ -52,22 +52,22 @@ $this->registerJs("
         <ul class="tabs" data-tab role="tablist">
             <li class="tab-title active" role="presentational" >
                 <a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">
-                    <?=Yii::t('app', 'Contents') ?>
+                    Thông tin sản phẩm
                 </a>
             </li>
             <li class="tab-title" role="presentational" >
                 <a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">
-                    <?=Yii::t('app', 'Information') ?>
+                    Nội dung
                 </a>
             </li>
             <li class="tab-title" role="presentational">
                 <a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">
-                    <?=Yii::t('app', 'SEO') ?>
+                    SEO
                 </a>
             </li>
             <li class="tab-title" role="presentational" >
                 <a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">
-                    <?=Yii::t('app', 'Related products') ?>
+                    Sản phẩm liên quan
                 </a>
             </li>
         </ul>
@@ -80,13 +80,17 @@ $this->registerJs("
                         <?php foreach (Json::decode($model->price_string) as $index => $prices) { ?>
                             <div class="row">
                                 <div class="small-4 columns">
-                                    <strong><?= Yii::t('app', 'Price for '.$index.' warranty') ?></strong>
+                                    <strong>Giá bảo hành <?= strpos($index, '3') > 0 ? 3 : 12 ?> tháng</strong>
                                 </div>
                                 <?php foreach ($prices as $key => $value) { ?>
                                     <div class="small-4 columns">
                                         <div class="form-group">
                                             <label><span><?= Yii::t('app', $key) ?></span>
-                                                <?= Html::textInput('Price['.$index.']['.$key.']', $value, ['class'=>'money-input']) ?>
+                                                <?php if($index === 'month3' && $key === 'current') { ?>
+                                                    <?= Html::textInput('Price['.$index.']['.$key.']', (intval($value) !== 0 ? $value : CurrencyHelper::formatNumber($model->price)), ['class'=>'money-input']) ?>
+                                                <?php } else { ?>
+                                                    <?= Html::textInput('Price['.$index.']['.$key.']', $value, ['class'=>'money-input']) ?>
+                                                <?php } ?>
                                             </label>
                                         </div>
                                     </div>
@@ -114,7 +118,7 @@ $this->registerJs("
 
                     <div>
                         <hr>
-                        <h6><?= Yii::t('app', 'Pictures') ?></h6>
+                        <h6>Hình sản phẩm</h6>
                         <div id="filelist" class="view-thumbnail row">
                             <?php
                             foreach ($pictures as $index => $item) {
@@ -122,7 +126,7 @@ $this->registerJs("
                                 <div id="<?= $item->id ?>" class="photo-zone large-4 medium-6 columns">
                                     <table cellpadding="0" cellspacing="0">
                                         <tr><td class="controls">
-                                                <label><input type="radio" name="Product[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> Main picture</label>
+                                                <label><input type="radio" name="Product[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> Hình chính</label>
                                                 <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
                                             </td></tr>
                                         <tr><td class="edit"><span class="name">
@@ -191,7 +195,7 @@ $this->registerJs("
                         ];
                     </script>
                     <div class="form-group">
-                        <label><?= Yii::t('app', 'Categories') ?></label>
+                        <label>Danh mục</label>
                         <div id="tree2"></div>
                         <input id="echoSelection2" type="hidden" name="Category" value="<?= implode(',', $categoryList) ?>"/>
                     </div>
@@ -206,12 +210,12 @@ $this->registerJs("
                     <ul class="tabs" data-tab role="tablist">
                         <li class="tab-title active" role="presentational" >
                             <a href="#panel1-1" role="tab" tabindex="0" aria-selected="true" controls="panel1-1">
-                                <?=Yii::t('app', 'General') ?>
+                                Tổng quan
                             </a>
                         </li>
                         <li class="tab-title" role="presentational" >
                             <a href="#panel1-2" role="tab" tabindex="0"aria-selected="false" controls="panel1-2">
-                                <?=Yii::t('app', 'Technical') ?>
+                                Thông số kỷ thuật
                             </a>
                         </li>
                     </ul>
@@ -276,7 +280,7 @@ $this->registerJs("
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'Related Products') ?>
+                                <i class="fa fa-cogs"></i>Sản phẩm liên quan
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -298,7 +302,7 @@ $this->registerJs("
                     <div class="portlet small">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-cogs"></i><?= Yii::t('app', 'All Products') ?>
+                                <i class="fa fa-cogs"></i>Tất cả sản phẩm
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -322,19 +326,19 @@ $this->registerJs("
 
             <div class="action-buttons">
                 <input type="hidden" name="type-submit" value="" />
-                <?= Html::submitButton($model->status === Product::STATUS_DRAFT ? Yii::t('app', 'Publish') : Yii::t('app', 'Update'),
+                <?= Html::submitButton($model->status === Product::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
                     [
                         'class' => 'small button radius',
                         'data' => ['submit' => 1]
                     ]) ?>
                 <?php if($model->status === null || $model->status === Product::STATUS_DRAFT) { ?>
-                    <?= Html::submitButton($model->id ? Yii::t('app', 'Update Draft') : Yii::t('app', 'Save Draft'),
+                    <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
                         [
                             'class' => 'small button radius info',
                             'data' => ['submit' => 0]
                         ]) ?>
                 <?php } ?>
-                <?= Html::a(Yii::t('app', 'Cancel'), ['index'], ['class' => 'small button secondary radius']) ?>
+                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
             </div>
         </div>
     </div>
