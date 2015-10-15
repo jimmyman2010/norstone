@@ -6,11 +6,7 @@
  * Time: 11:07 AM
  */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
-use common\helpers\UtilHelper;
-use frontend\assets\ProductAsset;
-use yii\widgets\Breadcrumbs;
 use common\models\Config;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
@@ -20,57 +16,65 @@ use yii\widgets\Pjax;
 /* @var $product common\models\Product */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-ProductAsset::register($this);
-
 $this->title = $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
 $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
 
 ?>
-
-<div id="main_content" class="col-sm-9">
-    <ul class="breadcrumb">
-        <li class="firstItem"><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="<?= Yii::t('app', 'Back to the homepage') ?>"><?= Yii::t('app', 'Home') ?></a></li>
-        <li class="lastItem"><span class="page-title"><?= ucfirst($model->name) ?></span></li>
-    </ul>
-
-    <div class="index-scope">
-
-        <h2 class="page_heading"><?= $model->name ?></h2>
-        <?php Pjax::begin(['id' => 'products']) ?>
-        <div class="product-listing product-listing__index">
-            <div class="category-sorting clearfix">
-                <div class="total-count">Tổng cộng có <?= $dataProvider->totalCount ?> sản phẩm</div>
-                <div class="dropdownbox">
-                    <span>Sắp xếp</span>
-                    <?php $orderBy = Yii::$app->getRequest()->getQueryParam('orderby'); ?>
-                    <select>
-                        <option value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug]) ?>">Mặc định</option>
-                        <option <?= $orderBy === 'gt' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'gt']) ?>">Giá tăng</option>
-                        <option <?= $orderBy === 'gg' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'gg']) ?>">Giá giảm</option>
-                        <option <?= $orderBy === 'az' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'az']) ?>">Tên A - Z</option>
-                        <option <?= $orderBy === 'za' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'za']) ?>">Tên Z - A</option>
-                    </select>
+    <div class="row" role="article">
+        <div class="col-md-12 main-container">
+            <ul class="breadcrumb">
+                <li><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="Quay lại trang chủ"><i class="glyphicon glyphicon-home"></i> Trang chủ</a></li>
+                <li><span class="page-title"><?= $model->name ?></span></li>
+            </ul>
+            <div class="module-content category-detail">
+                <h1>Tag: <?= $model->name ?></h1>
+                <?php Pjax::begin(['id' => 'products']) ?>
+                <div class="widget">
+                    <header>
+                        <?php if($dataProvider->totalCount === 0) { ?>
+                            <div class="total-count">Không có sản phẩm</div>
+                        <?php } else { ?>
+                            <div class="total-count">Tổng cộng có <?= $dataProvider->totalCount ?> sản phẩm</div>
+                            <div class="dropdownbox">
+                                <span>Sắp xếp</span>
+                                <?php $orderBy = Yii::$app->getRequest()->getQueryParam('orderby'); ?>
+                                <select>
+                                    <option value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug]) ?>">Mặc định</option>
+                                    <option <?= $orderBy === 'gt' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'gt']) ?>">Giá tăng</option>
+                                    <option <?= $orderBy === 'gg' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'gg']) ?>">Giá giảm</option>
+                                    <option <?= $orderBy === 'az' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'az']) ?>">Tên A - Z</option>
+                                    <option <?= $orderBy === 'za' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['product/category', 'id' => $model->id, 'slug' => $model->slug, 'orderby' => 'za']) ?>">Tên Z - A</option>
+                                </select>
+                            </div>
+                        <?php } ?>
+                    </header>
+                    <div class="content-widget list">
+                        <?php foreach ($dataProvider->getModels() as $index => $product) { ?>
+                            <?= $this->render('_item', [
+                                'index' => $index,
+                                'product' => $product,
+                            ]) ?>
+                        <?php } ?>
+                        <br clear="all"/>
+                        <nav class="pagination-bottom">
+                            <?= LinkPager::widget([
+                                'pagination'=>$dataProvider->pagination,
+                                'nextPageLabel' => 'Trang kế tiếp &raquo;',
+                                'prevPageLabel' => '&laquo; Quay lại',
+                            ]) ?>
+                        </nav>
+                    </div>
                 </div>
+                <?php Pjax::end() ?>
             </div>
-            <div class="row">
-                <?php foreach ($dataProvider->getModels() as $index => $product) { ?>
-                    <?= $this->render('_item', [
-                        'index' => $index,
-                        'product' => $product,
-                    ]) ?>
-                <?php } ?>
-            </div>
-
-            <nav class="pagination">
-                <?= LinkPager::widget([
-                    'pagination'=>$dataProvider->pagination,
-                    'nextPageLabel' => 'Trang kế tiếp &raquo;',
-                    'prevPageLabel' => '&laquo; Quay lại',
-                ]) ?>
-            </nav>
         </div>
-        <?php Pjax::end() ?>
     </div>
-</div>
+<?php
+$this->registerJs("
+    $('.dropdownbox select').on('change', function(){
+        var url = $(this).val();
+        window.location.href = url;
+    });
+");

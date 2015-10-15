@@ -35,18 +35,25 @@ img{
 
 .rte{
     font-size: 14px;
-    line-height: 20px;
+    line-height: 22px;
     b, strong{
         font-weight: 600;
     }
     i, em{
         font-style: italic;
     }
+    h2,h3,h4,h5{
+        font-weight: 600;
+    }
+    table{
+        
+    }
 }
 
 @import "header";
 @import "rail";
 @import "content";
+@import "scrolling";
 @import "footer";
 @import "fancy-box";
 

@@ -123,28 +123,36 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
 
             <div class="information">
                 <!-- Tab panes -->
-                <aside>
-                    <div class="widget">
+                <aside class="scrolling-container">
+                    <ul class="scrolling-content col-xs-12">
+                        <li><a href="javascript:void(0);" class="active" data-target="#general">Tổng quan</a></li>
+                        <?php if($model->info_tech) { ?>
+                            <li><a href="javascript:void(0);" data-target="#info-tech">Thông số kỷ thuật</a></li>
+                        <?php } ?>
+                        <li><a href="javascript:void(0);" data-target="#comment">Ý kiến khách hàng</a></li>
+                        <li><a href="javascript:void(0);" data-target="#related">Sản phẩm liên quan</a></li>
+                    </ul>
+                    <div class="widget" id="general">
                         <header><h2>Tổng quan</h2></header>
                         <div class="content-widget rte">
                             <?= $model->general ?>
                         </div>
                     </div>
                 <?php if($model->info_tech) { ?>
-                    <div class="widget">
+                    <div class="widget" id="info-tech">
                         <header><h2>Thông số kỷ thuật</h2></header>
                         <div class="content-widget rte">
                             <?= $model->info_tech ?>
                         </div>
                     </div>
                 <?php } ?>
-                    <div class="widget">
+                    <div class="widget" id="comment">
                         <header><h2>Ý kiến khách hàng</h2></header>
                         <div class="content-widget">
                             <div class="fb-comments" data-width="100%"></div>
                         </div>
                     </div>
-                    <div class="widget">
+                    <div class="widget" id="related">
                         <header><h2>Sản phẩm liên quan</h2></header>
                         <div class="content-widget list">
                             <?php foreach ($relatedList as $index => $related) { ?>
@@ -187,6 +195,28 @@ $this->registerJs("
     	prevEffect	: 'none'
     });
 
+    $(window).on('load scroll resize', function(){
+        var container = $('.scrolling-container');
+        var top = $(window).scrollTop() - container.offset().top + 32;
+        var scrolling = container.children('.scrolling-content');
+        if(top > 0) {
+            scrolling.css({
+                '-webkit-transform': 'translateY(' + top + 'px)',
+                '-ms-transform': 'translateY(' + top + 'px)',
+                '-o-transform': 'translateY(' + top + 'px)',
+                'transform': 'translateY(' + top + 'px)'
+            });
+        }
+        else {
+            scrolling.removeAttr('style');
+        }
+    });
+    $('.scrolling-content a').on('click', function(){
+        $('.scrolling-content a').removeClass('active');
+        $(this).addClass('active');
+        var top = $($(this).data('target')).offset().top - 32;
+        $('html, body').animate({scrollTop: top}, 500);
+    });
 ");
 
 $this->registerJsFile('//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50568dd4418a8df1', ['async' => 'async']);
