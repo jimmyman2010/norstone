@@ -57,9 +57,10 @@ class Content extends \yii\db\ActiveRecord
             [['name', 'created_date', 'created_by', 'content_type', 'summary'], 'required'],
             [['content_type', 'status', 'content'], 'string'],
             [['image_id', 'published_date', 'show_in_menu', 'parent_id', 'using_page_builder', 'updated_date', 'sorting', 'created_date', 'deleted'], 'integer'],
-            [['summary'], 'string', 'max' => 2048],
-            [['name', 'seo_description', 'seo_keyword'], 'string', 'max' => 256],
-            [['slug', 'seo_title'], 'string', 'max' => 128],
+            [['name', 'seo_title'], 'string', 'max' => 256],
+            [['seo_description', 'seo_keyword'], 'string', 'max' => 512],
+            [['slug'], 'string', 'max' => 128],
+            [['summary', 'content'], 'safe'],
             [['created_by'], 'string', 'max' => 32]
         ];
     }

@@ -151,10 +151,11 @@
     }
     .widget{
         > header{
-            @include background-image(linear-gradient(#FFFFFF, #FEFEFE));
+            @include background-image(linear-gradient(#FFFFFF, #EEEEEE));
         }
         .content-widget{
-            border-top: 1px dashed #E4E4E4;
+            border-top-width: 1px;
+            border-top-style: dashed;
         }
     }
 }

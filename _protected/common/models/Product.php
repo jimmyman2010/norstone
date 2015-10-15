@@ -55,10 +55,10 @@ class Product extends \yii\db\ActiveRecord
             [['image_id', 'is_hot', 'is_discount', 'viewed', 'published_date', 'updated_date', 'created_date', 'activated', 'deleted'], 'integer'],
             [['general', 'info_tech', 'status'], 'string'],
             [['price_init', 'price'], 'number'],
-            [['name', 'seo_description', 'seo_keyword'], 'string', 'max' => 256],
-            [['slug', 'seo_title'], 'string', 'max' => 128],
-            [['description'], 'string', 'max' => 1024],
-            [['price_string'], 'string', 'max' => 2048],
+            [['name', 'seo_title'], 'string', 'max' => 256],
+            [['seo_description', 'seo_keyword'], 'string', 'max' => 512],
+            [['slug'], 'string', 'max' => 128],
+            [['description', 'price_string', 'info_tech', 'general'], 'safe'],
             [['created_by'], 'string', 'max' => 32]
         ];
     }

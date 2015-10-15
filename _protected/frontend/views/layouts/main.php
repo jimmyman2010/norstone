@@ -104,7 +104,7 @@ AppAsset::register($this);
                 </div>
                 <nav class="main-menu" role="navigation">
                     <ul>
-                        <li>
+                        <li class="current">
                             <a href="<?= Yii::$app->homeUrl ?>">TRANG CHỦ</a>
                         </li>
                         <li>

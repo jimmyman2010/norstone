@@ -34,8 +34,14 @@ img{
 }
 
 .rte{
+    *:empty{
+        display: none;
+    }
+    > *{
+        margin-bottom: 10px;
+    }
     font-size: 14px;
-    line-height: 22px;
+    line-height: 20px;
     b, strong{
         font-weight: 600;
     }
@@ -44,6 +50,15 @@ img{
     }
     h2,h3,h4,h5{
         font-weight: 600;
+    }
+    ul{
+        list-style: disc inside;
+    }
+    ol{
+        list-style: decimal inside;
+    }
+    li{
+        padding: 3px 0;
     }
     table{
         

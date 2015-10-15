@@ -85,7 +85,13 @@ img {
 
 .rte {
   font-size: 14px;
-  line-height: 22px;
+  line-height: 20px;
+}
+.rte *:empty {
+  display: none;
+}
+.rte > * {
+  margin-bottom: 10px;
 }
 .rte b, .rte strong {
   font-weight: 600;
@@ -95,6 +101,15 @@ img {
 }
 .rte h2, .rte h3, .rte h4, .rte h5 {
   font-weight: 600;
+}
+.rte ul {
+  list-style: disc inside;
+}
+.rte ol {
+  list-style: decimal inside;
+}
+.rte li {
+  padding: 3px 0;
 }
 
 .top-nav {
@@ -147,7 +162,7 @@ img {
   float: left;
   font-size: 14px;
   font-weight: 600;
-  margin: 47px 0 0 100px;
+  margin: 52px 0 0 100px;
 }
 .header .main-menu ul {
   text-align: left;
@@ -163,10 +178,11 @@ img {
   background-image: -moz-linear-gradient(#fefcf0, #fddaa2);
   background-image: -webkit-linear-gradient(#fefcf0, #fddaa2);
   background-image: linear-gradient(#fefcf0, #fddaa2);
+  height: 28px;
 }
 .header .main-menu li {
-  display: inline-block;
-  margin: 8px 0 8px 5px;
+  float: left;
+  margin: 5px 0 0 10px;
   border-left: 1px solid #FEB23F;
 }
 .header .main-menu li:first-child {
@@ -183,9 +199,32 @@ img {
 .header .main-menu li a:hover {
   text-decoration: none;
 }
+.header .main-menu li.current {
+  margin-top: -10px;
+  border-left: none;
+}
+.header .main-menu li.current a {
+  -moz-border-radius: 10px 10px 0 0;
+  -webkit-border-radius: 10px;
+  border-radius: 10px 10px 0 0;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlN2Y3ZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2Y5NTA0ZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fe7f7f), color-stop(100%, #f9504f));
+  background-image: -moz-linear-gradient(#fe7f7f, #f9504f);
+  background-image: -webkit-linear-gradient(#fe7f7f, #f9504f);
+  background-image: linear-gradient(#fe7f7f, #f9504f);
+  border-top: 1px solid #F01F1E;
+  border-left: 1px solid #F01F1E;
+  border-right: 1px solid #F01F1E;
+  padding: 10px 20px;
+  line-height: 16px;
+  color: #ffffff;
+}
 
 .header-bar {
-  border: 1px solid #D91C1B;
+  border-right: 1px solid #D91C1B;
+  border-bottom: 1px solid #D91C1B;
+  border-left: 1px solid #D91C1B;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
@@ -581,15 +620,16 @@ img {
   line-height: 22px;
 }
 .product-detail .widget > header {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZlZmVmZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background-size: 100%;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fefefe));
-  background-image: -moz-linear-gradient(#ffffff, #fefefe);
-  background-image: -webkit-linear-gradient(#ffffff, #fefefe);
-  background-image: linear-gradient(#ffffff, #fefefe);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
+  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
+  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
+  background-image: linear-gradient(#ffffff, #eeeeee);
 }
 .product-detail .widget .content-widget {
-  border-top: 1px dashed #E4E4E4;
+  border-top-width: 1px;
+  border-top-style: dashed;
 }
 
 .information {
