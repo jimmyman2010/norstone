@@ -79,7 +79,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
 </div>
 <?php
 $this->registerJs("
-    $('.dropdownbox select').on('change', function(){
+    $('#products').on('change', '.dropdownbox select', function(){
         var url = $(this).val();
         window.location.href = url;
     });

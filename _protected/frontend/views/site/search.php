@@ -11,7 +11,6 @@ use frontend\assets\SearchAsset;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
-use common\helpers\UtilHelper;
 use \common\models\Config;
 
 /* @var $this yii\web\View */
@@ -25,73 +24,59 @@ $this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key
 $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
 
 ?>
-
-<div id="main_content" class="col-sm-9">
-    <ul class="breadcrumb">
-        <li><a href="index.php" class="homepage-link" title="Back to the frontpage">Home</a></li>
-        <li><span class="page-title">Contacts</span></li>
-    </ul>
-
-    <?php Pjax::begin(['id' => 'products']) ?>
-    <div id="searchresults" class="search-scope">
-        <h2 class="page_heading">KẾT QUẢ TÌM KIẾM CHO "<?= Html::decode($_REQUEST['term']) ?>"</h2>
-
-        <form action="<?= Url::toRoute(['site/search']) ?>" method="get" class="search-form form-inline" role="search">
-            <div class="form-group">
-                <label for="term" class="sr-only">Tìm kiếm: </label>
-                <input class="form-control" type="text" name="term" value="<?= Html::decode($_REQUEST['term']) ?>" placeholder="Search" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Tìm kiếm" class="btn btn-primary"/>
-            </div>
-        </form>
-
-        <ol class="search-results">
-            <?php
-            $products = $dataProvider->getModels();
-            if(count($products) === 0) {
-                ?>
-                <li class="no-results text-center">
-                    <h2>We are sorry but now image matched your search criteria</h2>
-                    <a class="button">Please try again</a>
-                </li>
-            <?php
-            }
-            else {
-                foreach ($products as $index => $item) { ?>
-                    <li class="search-result">
-                        <div class="product_name">
-                            <?= Html::a($item->name, ['product/view', 'id' => $item->id, 'slug' => $item->slug]) ?>
-                        </div>
-                        <div class="search-result_container">
-
-                            <div class="search-result_image pull-left">
-                                <a href="<?= Url::toRoute(['product/view', 'id' => $item->id, 'slug' => $item->slug]) ?>" title="<?= $item->name ?>">
-                                    <?= UtilHelper::getPicture($item->image_id, 'thumbnail-search') ?>
-                                </a>
+    <div class="row" role="article">
+        <div class="col-md-12 main-container">
+            <ul class="breadcrumb">
+                <li><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="Quay lại trang chủ"><i class="glyphicon glyphicon-home"></i> Trang chủ</a></li>
+                <li><span class="page-title">Tìm kiếm</span></li>
+            </ul>
+            <div class="module-content category-detail">
+                <h1>Kết quả tìm kiếm cho: <?= Yii::$app->request->get('term') ?></h1>
+                <?php Pjax::begin(['id' => 'products']) ?>
+                <div class="widget">
+                    <header>
+                        <?php if($dataProvider->totalCount === 0) { ?>
+                            <div class="total-count">Không có sản phẩm</div>
+                        <?php } else { ?>
+                            <div class="total-count">Tổng cộng có <?= $dataProvider->totalCount ?> sản phẩm</div>
+                            <div class="dropdownbox">
+                                <span>Sắp xếp</span>
+                                <?php $orderBy = Yii::$app->getRequest()->getQueryParam('orderby'); ?>
+                                <select>
+                                    <option value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term')]) ?>">Mặc định</option>
+                                    <option <?= $orderBy === 'gt' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'gt']) ?>">Giá tăng</option>
+                                    <option <?= $orderBy === 'gg' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'gg']) ?>">Giá giảm</option>
+                                    <option <?= $orderBy === 'az' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'az']) ?>">Tên A - Z</option>
+                                    <option <?= $orderBy === 'za' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'za']) ?>">Tên Z - A</option>
+                                </select>
                             </div>
-
-                            <div class="product_desc"><?= strip_tags($item->description) ?></div>
-                        </div>
-                    </li>
-                <?php }
-            }
-            ?>
-
-
-        </ol>
-        <nav class="pagination">
-            <?= LinkPager::widget([
-                'pagination'=>$dataProvider->pagination,
-                'nextPageLabel' => 'Trang kế tiếp &raquo;',
-                'prevPageLabel' => '&laquo; Quay lại',
-            ]) ?>
-        </nav>
+                        <?php } ?>
+                    </header>
+                    <div class="content-widget list">
+                        <?php foreach ($dataProvider->getModels() as $index => $product) { ?>
+                            <?= $this->render('../product/_item', [
+                                'index' => $index,
+                                'product' => $product,
+                            ]) ?>
+                        <?php } ?>
+                        <br clear="all"/>
+                        <nav class="pagination-bottom">
+                            <?= LinkPager::widget([
+                                'pagination'=>$dataProvider->pagination,
+                                'nextPageLabel' => 'Trang kế tiếp &raquo;',
+                                'prevPageLabel' => '&laquo; Quay lại',
+                            ]) ?>
+                        </nav>
+                    </div>
+                </div>
+                <?php Pjax::end() ?>
+            </div>
+        </div>
     </div>
-    <?php Pjax::end() ?>
-</div>
-
 <?php
 $this->registerJs("
-    $('.search-results').highlight(\"" . Html::decode($_REQUEST['term']) . "\");
+    $('#products').on('change', '.dropdownbox select', function(){
+        var url = $(this).val();
+        window.location.href = url;
+    });
 ");

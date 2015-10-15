@@ -129,7 +129,7 @@ AppAsset::register($this);
                     <div class="main-search">
                         <form action="<?= Url::toRoute(['site/search']) ?>">
                             <i class="glyphicon glyphicon-search"></i>
-                            <input type="search" />
+                            <input name="term" type="search" />
                             <button>TÌM</button>
                         </form>
                     </div>

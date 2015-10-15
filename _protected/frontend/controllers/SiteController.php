@@ -121,7 +121,7 @@ class SiteController extends Controller
      */
     public function actionSearch($term = '')
     {
-        $pageSize = 9;
+        $pageSize = 12;
 
         $query = Product::find();
         $query->where([
@@ -131,6 +131,30 @@ class SiteController extends Controller
 
         if(!empty($term)) {
             $query->andWhere(["OR", "name LIKE '%$term%'", "description LIKE '%$term%'", "general LIKE '%$term%'", "info_tech LIKE '%$term%'"]);
+        }
+
+        $orderBy = Yii::$app->getRequest()->getQueryParam('orderby');
+        switch($orderBy) {
+            case 'gt':{
+                $query->orderBy('tbl_product.price ASC');
+                break;
+            }
+            case 'gg':{
+                $query->orderBy('tbl_product.price DESC');
+                break;
+            }
+            case 'az':{
+                $query->orderBy('tbl_product.name ASC');
+                break;
+            }
+            case 'za':{
+                $query->orderBy('tbl_product.name DESC');
+                break;
+            }
+            default: {
+                $query->orderBy('tbl_product.id DESC');
+                break;
+            }
         }
 
         $dataProvider = new ActiveDataProvider([
