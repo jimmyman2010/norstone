@@ -43,11 +43,13 @@
                     text-decoration: none;
                 }
                 &:before{
-                    content: "*";
+                    content: "\2a";
                     position: absolute;
+                    font-family: 'Glyphicons Halflings';
                     left: 10px;
                     font-size: 10px;
                     top: 13px;
+                    font-size: 7px;
                     color: #F60;
                 }
             }
@@ -89,8 +91,8 @@
         @include background-image(linear-gradient(#FFFFFF, #EDEDED));
         font-weight: 800;
         font-size: 15px;
-        height: 30px;
-        line-height: 30px;
+        height: 35px;
+        line-height: 35px;
         padding: 0 14px;
         border-left: 1px solid #E4E4E4;
         border-top: 1px solid #E4E4E4;
@@ -161,5 +163,20 @@
             top: 0;
             display: none;
         }
+    }
+}
+
+.news li{
+    line-height: 20px;
+    padding-left: 15px;
+    position: relative;
+    &:before {
+        content: '\e072';
+        font-family: 'Glyphicons Halflings';
+        font-size: 9px;
+        color: #BFB4B4;
+        text-decoration: none;
+        position: absolute;
+        left: 0;
     }
 }

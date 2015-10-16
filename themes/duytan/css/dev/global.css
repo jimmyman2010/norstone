@@ -179,31 +179,41 @@ img {
   background-image: -webkit-linear-gradient(#fefcf0, #fddaa2);
   background-image: linear-gradient(#fefcf0, #fddaa2);
   height: 28px;
+  padding: 0 10px;
 }
 .header .main-menu li {
   float: left;
-  margin: 5px 0 0 10px;
-  border-left: 1px solid #FEB23F;
+  margin: 5px 0 0;
+  position: relative;
 }
-.header .main-menu li:first-child {
-  border-left: none;
+.header .main-menu li:before {
+  content: '|';
+  position: absolute;
+  color: #FEB23F;
+  left: -3px;
 }
-.header .main-menu li:last-child {
-  padding-right: 10px;
+.header .main-menu li:first-child:before {
+  content: '';
 }
 .header .main-menu li a {
-  padding: 5px 5px 5px 10px;
+  padding: 5px 12px;
   display: block;
   line-height: 8px;
 }
 .header .main-menu li a:hover {
   text-decoration: none;
 }
-.header .main-menu li.current {
+.header .main-menu li.active {
   margin-top: -10px;
   border-left: none;
 }
-.header .main-menu li.current a {
+.header .main-menu li.active:before {
+  content: '';
+}
+.header .main-menu li.active + li:before {
+  content: '';
+}
+.header .main-menu li.active a {
   -moz-border-radius: 10px 10px 0 0;
   -webkit-border-radius: 10px;
   border-radius: 10px 10px 0 0;
@@ -341,11 +351,13 @@ img {
   text-decoration: none;
 }
 .nav-left .mainmenu > li > a:before {
-  content: "*";
+  content: "\2a";
   position: absolute;
+  font-family: 'Glyphicons Halflings';
   left: 10px;
   font-size: 10px;
   top: 13px;
+  font-size: 7px;
   color: #F60;
 }
 .nav-left .mainmenu > li.has-submenu > a:after {
@@ -390,8 +402,8 @@ img {
   background-image: linear-gradient(#ffffff, #ededed);
   font-weight: 800;
   font-size: 15px;
-  height: 30px;
-  line-height: 30px;
+  height: 35px;
+  line-height: 35px;
   padding: 0 14px;
   border-left: 1px solid #E4E4E4;
   border-top: 1px solid #E4E4E4;
@@ -455,6 +467,21 @@ img {
   position: absolute;
   top: 0;
   display: none;
+}
+
+.news li {
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+.news li:before {
+  content: '\e072';
+  font-family: 'Glyphicons Halflings';
+  font-size: 9px;
+  color: #BFB4B4;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
 }
 
 .banner {
@@ -531,10 +558,14 @@ img {
   padding: 20px 10px;
   font-size: 14px;
 }
+.module-content .content.list {
+  padding: 10px 0 20px;
+}
 .module-content .content.list article {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
+  font-size: 14px;
 }
 .module-content .content.list article figure {
   text-align: center;
@@ -671,10 +702,14 @@ img {
   padding: 20px 10px;
   font-size: 14px;
 }
+.widget .content-widget.list {
+  padding: 10px 0 20px;
+}
 .widget .content-widget.list article {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
+  font-size: 14px;
 }
 .widget .content-widget.list article figure {
   text-align: center;
@@ -761,6 +796,66 @@ img {
 }
 .pagination-bottom .pagination li a, .pagination-bottom .pagination li span {
   border: none;
+}
+
+.product-information {
+  overflow: hidden;
+  *zoom: 1;
+  background-color: #ffffff;
+  border: 1px solid #E4E4E4;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px;
+  border-radius: 5px 5px 0 0;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.product-information .widget-title header {
+  background-color: #f6f6f6;
+  font-weight: 600;
+  font-size: 15px;
+}
+.product-information .widget-title header h2 {
+  padding: 14px 15px;
+}
+.product-information .product-content {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 15px;
+}
+.product-information .product-content.list {
+  padding: 15px 0;
+}
+.product-information .product-content.list article {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+  font-size: 14px;
+}
+.product-information .product-content.list article figure {
+  text-align: center;
+  border-bottom: 1px dotted #CECECE;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+}
+.product-information .product-content.list article figure img {
+  width: 185px;
+}
+.product-information .product-content.list article .price {
+  line-height: 20px;
+  margin-top: 10px;
+}
+.product-information .product-content.list article .price strong {
+  font-weight: 800;
+  color: #f04331;
+  font-size: 16px;
+}
+.product-information .product-content.list article .price em {
+  text-decoration: line-through;
+}
+
+.fb-comments, .fb-comments iframe[style] {
+  width: 100% !important;
 }
 
 .scrolling-container {
@@ -905,7 +1000,7 @@ img {
 .footer .menu-footer .mainmenu {
   overflow: hidden;
   *zoom: 1;
-  padding: 18px 0;
+  padding: 0 0 15px;
 }
 .footer .menu-footer .mainmenu > li {
   margin-top: 20px;
@@ -926,7 +1021,7 @@ img {
 .footer .copyright {
   color: #999;
   font-size: 12px;
-  padding: 10px 20px 50px;
+  padding: 10px 0 30px;
   overflow: hidden;
   *zoom: 1;
 }
@@ -1222,10 +1317,11 @@ img {
     display: block !important;
   }
 
-  .footer .menu-footer .mainmenu > li {
-    float: left;
-    width: 33.3%;
-    margin-top: 0;
+  .footer .menu-footer .mainmenu:first-child {
+    padding: 0;
+  }
+  .footer .copyright {
+    padding: 10px 20px 50px;
   }
 
   .module-content .content.list article:nth-child(3n+1),

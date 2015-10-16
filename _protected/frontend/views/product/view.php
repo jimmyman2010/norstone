@@ -132,41 +132,41 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         <li><a href="javascript:void(0);" data-target="#comment">Ý kiến khách hàng</a></li>
                         <li><a href="javascript:void(0);" data-target="#related">Sản phẩm liên quan</a></li>
                     </ul>
-                    <div class="widget" id="general">
-                        <header><h2>Tổng quan</h2></header>
-                        <div class="content-widget rte">
-                            <?= $model->general ?>
+                    <div class="product-information">
+                        <div class="widget-title" id="general">
+                            <header><h2>Tổng quan</h2></header>
+                            <div class="product-content rte">
+                                <?= $model->general ?>
+                            </div>
                         </div>
-                    </div>
-                <?php if($model->info_tech) { ?>
-                    <div class="widget" id="info-tech">
-                        <header><h2>Thông số kỷ thuật</h2></header>
-                        <div class="content-widget rte">
-                            <?= $model->info_tech ?>
+                    <?php if($model->info_tech) { ?>
+                        <div class="widget-title" id="info-tech">
+                            <header><h2>Thông số kỷ thuật</h2></header>
+                            <div class="product-content rte">
+                                <?= $model->info_tech ?>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
-                    <div class="widget" id="comment">
-                        <header><h2>Ý kiến khách hàng</h2></header>
-                        <div class="content-widget">
-                            <div class="fb-comments" data-width="100%"></div>
+                    <?php } ?>
+                        <div class="widget-title" id="comment">
+                            <header><h2>Ý kiến khách hàng</h2></header>
+                            <div class="product-content">
+                                <div class="fb-comments" data-width="100%" data-href="<?= Url::toRoute(['product/view', 'id' => $model->id, 'slug' => $model->slug], true) ?>"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="widget" id="related">
-                        <header><h2>Sản phẩm liên quan</h2></header>
-                        <div class="content-widget list">
-                            <?php foreach ($relatedList as $index => $related) { ?>
-                                <?= $this->render('_item', [
-                                    'index' => $index,
-                                    'product' => $related,
-                                ]) ?>
-                            <?php } ?>
+                        <div class="widget-title" id="related">
+                            <header><h2>Sản phẩm liên quan</h2></header>
+                            <div class="product-content list">
+                                <?php foreach ($relatedList as $index => $related) { ?>
+                                    <?= $this->render('_item', [
+                                        'index' => $index,
+                                        'product' => $related,
+                                    ]) ?>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </aside>
             </div>
-
-
         </div>
     </div>
 </div>

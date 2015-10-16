@@ -16,7 +16,7 @@ use yii\widgets\Pjax;
 /* @var $product common\models\Product */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
+$this->title = 'Tag: ' . $model->name . ' | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
 $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);

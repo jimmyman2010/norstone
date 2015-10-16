@@ -54,10 +54,12 @@
         padding: 20px 10px;
         font-size: 14px;
         &.list{
+            padding: 10px 0 20px;
             article{
                 padding-top: 10px;
                 padding-bottom: 10px;
                 line-height: 20px;
+                font-size: 14px;
                 figure{
                     text-align: center;
                     border-bottom: 1px dotted #CECECE;
@@ -187,10 +189,12 @@
         padding: 20px 10px;
         font-size: 14px;
         &.list{
+            padding: 10px 0 20px;
             article{
                 padding-top: 10px;
                 padding-bottom: 10px;
                 line-height: 20px;
+                font-size: 14px;
                 figure{
                     text-align: center;
                     border-bottom: 1px dotted #CECECE;
@@ -273,3 +277,58 @@
         }
     }
 }
+
+.product-information{
+    @include clearfix;
+    background-color: #ffffff;
+    border: 1px solid #E4E4E4;
+    @include border-radius(5px 5px 0 0);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    .widget-title{
+        header{
+            background-color: #f6f6f6;
+            font-weight: 600;
+            font-size: 15px;
+            h2{
+                padding: 14px 15px;
+            }
+        }
+    }
+    .product-content{
+        @include clearfix;
+        padding: 15px;
+        &.list{
+            padding: 15px 0;
+            article{
+                padding-top: 10px;
+                padding-bottom: 10px;
+                line-height: 20px;
+                font-size: 14px;
+                figure{
+                    text-align: center;
+                    border-bottom: 1px dotted #CECECE;
+                    padding-bottom: 7px;
+                    margin-bottom: 7px;
+                    img{
+                        width: 185px;
+                    }
+                }
+                .price {
+                    line-height: 20px;
+                    margin-top: 10px;
+                    strong {
+                        font-weight: 800;
+                        color: #f04331;
+                        font-size: 16px;
+                    }
+                    em {
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+}
+.fb-comments, .fb-comments iframe[style] {width: 100% !important;}

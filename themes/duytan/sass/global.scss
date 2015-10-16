@@ -110,10 +110,13 @@ img{
     .desktop{
         display: block !important;
     }
-    .footer .menu-footer .mainmenu>li{
-        float: left;
-        width: 33.3%;
-        margin-top: 0;
+    .footer{
+        .menu-footer .mainmenu:first-child{
+            padding: 0;
+        }
+        .copyright{
+            padding: 10px 20px 50px;
+        }
     }
     .module-content .content.list article:nth-child(3n+1),
     .widget .content-widget.list article:nth-child(3n+1) {

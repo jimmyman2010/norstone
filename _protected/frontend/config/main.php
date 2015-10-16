@@ -37,7 +37,7 @@ return [
                 'dang-nhap' => 'site/login',
                 'dang-xuat' => 'site/logout',
                 '<slug>' => 'page/view',
-                'defaultRoute' => 'site/index',
+                '/' => 'site/index',
             ]
         ],
         'search' => [

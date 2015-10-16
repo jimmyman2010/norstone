@@ -6,6 +6,7 @@ use common\models\Config;
 use common\models\Category;
 use yii\helpers\Json;
 use common\models\Content;
+use yii\widgets\Menu;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -14,7 +15,7 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -103,26 +104,7 @@ AppAsset::register($this);
                     </figure>
                 </div>
                 <nav class="main-menu" role="navigation">
-                    <ul>
-                        <li class="current">
-                            <a href="<?= Yii::$app->homeUrl ?>">TRANG CHỦ</a>
-                        </li>
-                        <li>
-                            <?= Html::a('GIỚI THIỆU', ['page/view', 'slug' => 'gioi-thieu']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('BẢNG GIÁ', ['page/view', 'slug' => 'bang-gia']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('BLOG', ['news/index']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('HƯỚNG DẪN MUA HÀNG', ['page/view', 'slug' => 'huong-dan-mua-hang']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('LIÊN HỆ', ['site/contact']) ?>
-                        </li>
-                    </ul>
+                    <?= \frontend\widgets\MenuTop::widget() ?>
                 </nav>
                 <br clear="all" />
                 <div class="header-bar">
@@ -140,34 +122,9 @@ AppAsset::register($this);
             <div class="container">
                 <div class="row">
                     <div class="col-md-3" role="complementary">
-                        <nav class="nav-left" role="navigation">
-                            <header><h3 class="title">DANH MỤC SẢN PHẨM</h3></header>
-                            <ul class="mainmenu">
-                                <?php foreach(Category::getTree() as $index => $category) { ?>
-                                    <?php if($category['show_in_menu']) { ?>
-                                        <?php if(count($category['children']) > 0) { ?>
-                                            <li class="has-submenu">
-                                                <?= Html::a($category['name'], ['product/category', 'id' => $category['id'], 'slug' => $category['slug']]) ?>
-                                                <ul class="submenu">
-                                                    <?php foreach ($category['children'] as $child) { ?>
-                                                        <?php if($child['show_in_menu']) { ?>
-                                                            <li>
-                                                                <?= Html::a($child['name'], ['product/category', 'id' => $child['id'], 'slug' => $child['slug']]) ?>
-                                                            </li>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </ul>
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <?= Html::a($category['name'],
-                                                    ['product/category', 'id' => $category['id'], 'slug' => $category['slug']]) ?>
-                                            </li>
-                                        <?php } ?>
-                                    <?php } ?>
-                                <?php } ?>
-                            </ul>
-                        </nav>
+
+                        <?= \frontend\widgets\MenuLeft::widget() ?>
+
                         <div class="module support">
                             <h3 class="title">Hỗ trợ</h3>
                             <ul class="content list">
@@ -197,17 +154,20 @@ AppAsset::register($this);
                             </ul>
                         </div>
                         <div class="module news">
-                            <h3 class="title">Tin tức</h3>
+                            <h3 class="title">Blog</h3>
                             <ul class="content list">
-                                <li>
-                                    <a href="#">tin tức thời sự</a>
-                                </li>
-                                <li>
-                                    <a href="#">tin tức thời sự</a>
-                                </li>
-                                <li>
-                                    <a href="#">tin tức thời sự</a>
-                                </li>
+                                <?php
+                                $news = Content::find()->where([
+                                    'content_type' => Content::TYPE_NEWS,
+                                    'status' => Content::STATUS_PUBLISHED,
+                                    'deleted' => 0
+                                ])->orderBy('created_date DESC')->limit(5)->all();
+                                ?>
+                                <?php foreach ($news as $index => $item) { ?>
+                                    <li>
+                                        <?= Html::a($item->name, ['news/view', 'id' => $item->id, 'slug' => $item->slug]) ?>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </div>
                         <div class="module">
@@ -258,79 +218,9 @@ AppAsset::register($this);
                         </div>
                         <div class="col-md-8">
                             <div class="menu-footer">
-                                <nav class="nav-footer" role="navigation">
-                                    <ul class="mainmenu">
-                                        <li role="menuitem">
-                                            <a href="#">menu menu menu 1</a>
-                                            <ul class="submenu">
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li role="menuitem">
-                                            <a href="#">menu menu menu 1</a>
-                                            <ul class="submenu">
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li role="menuitem">
-                                            <a href="#">menu menu menu 1</a>
-                                            <ul class="submenu">
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                                <li role="menuitem">
-                                                    <a href="#">menu menu menu 1</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </nav>
+
+                                <?= \frontend\widgets\MenuBottom::widget() ?>
+
                             </div>
                         </div>
                     </div>
