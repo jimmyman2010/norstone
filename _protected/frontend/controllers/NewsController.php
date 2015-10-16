@@ -27,7 +27,7 @@ class NewsController extends FrontendController {
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 3,
+                'pageSize' => 5,
             ],
         ]);
 

@@ -105,7 +105,7 @@ if(!isset($role['admin'])) {
                                         ]
                                     ],
                                     [
-                                        'label' => 'Quản lý Tin tức',
+                                        'label' => 'Quản lý bài viết',
                                         'url' => ['news/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-newspaper-o"></i>{label}</a>',
                                         'visible' => isset($role['admin'])

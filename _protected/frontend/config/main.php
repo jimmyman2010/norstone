@@ -30,7 +30,7 @@ return [
                 'san-pham/<id:\d+>/<slug>' => 'product/category',
                 'san-pham/tag/<slug>' => 'product/tag',
                 'lien-he' => 'site/contact',
-                'tin-tuc' => 'news/index',
+                'blog' => 'news/index',
                 'tin-tuc/<slug>' => 'news/view',
                 'tin-tuc/tag/<slug>' => 'news/tag',
                 'tim-kiem' => 'site/search',

@@ -114,7 +114,7 @@ AppAsset::register($this);
                             <?= Html::a('BẢNG GIÁ', ['page/view', 'slug' => 'bang-gia']) ?>
                         </li>
                         <li>
-                            <?= Html::a('TIN TỨC', ['news/index']) ?>
+                            <?= Html::a('BLOG', ['news/index']) ?>
                         </li>
                         <li>
                             <?= Html::a('HƯỚNG DẪN MUA HÀNG', ['page/view', 'slug' => 'huong-dan-mua-hang']) ?>
