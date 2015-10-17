@@ -40,15 +40,14 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
             <li><span class="page-title"><?= $model->name ?></span></li>
         </ul>
         <div class="module-content product-detail">
-            <h1 itemprop="name"><?= $model->name ?></h1>
+            <h1 itemprop="name">
+                <?= $model->name ?>
+                <?php if($model->is_hot) { ?>
+                    <span class="hot"></span>
+                <?php } ?>
+            </h1>
             <div class="row">
                 <div class="col-sm-5">
-                    <?php if($model->is_discount) { ?>
-                        <span class="discount"></span>
-                    <?php } ?>
-                    <?php if($model->is_hot) { ?>
-                        <span class="hot"></span>
-                    <?php } ?>
                     <div class="product-image">
                         <ul class="slider-for">
                             <?php foreach ($pictures as $index => $photo) { ?>
@@ -56,6 +55,9 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                                     <a rel="product_images" class="fancybox" href="<?= UtilHelper::getPicture($photo, '', true) ?>">
                                         <?= UtilHelper::getPicture($photo, 'slide') ?>
                                     </a>
+                                    <?php if($model->is_discount) { ?>
+                                        <span class="discount other"></span>
+                                    <?php } ?>
                                 </li>
                             <?php } ?>
                         </ul>

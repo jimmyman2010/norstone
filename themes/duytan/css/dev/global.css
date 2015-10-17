@@ -608,6 +608,7 @@ img {
   border-bottom: 1px dotted #CECECE;
   padding-bottom: 7px;
   margin-bottom: 7px;
+  position: relative;
 }
 .module-content .content.list article figure img {
   width: 185px;
@@ -617,12 +618,15 @@ img {
   margin-top: 10px;
 }
 .module-content .content.list article .price strong {
-  font-weight: 800;
+  font-weight: 600;
   color: #f04331;
   font-size: 16px;
 }
 .module-content .content.list article .price em {
   text-decoration: line-through;
+}
+.module-content .content.list article .price span {
+  color: #f04331;
 }
 
 .breadcrumb {
@@ -752,6 +756,7 @@ img {
   border-bottom: 1px dotted #CECECE;
   padding-bottom: 7px;
   margin-bottom: 7px;
+  position: relative;
 }
 .widget .content-widget.list article figure img {
   width: 185px;
@@ -761,12 +766,15 @@ img {
   margin-top: 10px;
 }
 .widget .content-widget.list article .price strong {
-  font-weight: 800;
+  font-weight: 600;
   color: #f04331;
   font-size: 16px;
 }
 .widget .content-widget.list article .price em {
   text-decoration: line-through;
+}
+.widget .content-widget.list article .price span {
+  color: #f04331;
 }
 
 .category-detail {
@@ -873,6 +881,7 @@ img {
   border-bottom: 1px dotted #CECECE;
   padding-bottom: 7px;
   margin-bottom: 7px;
+  position: relative;
 }
 .product-information .product-content.list article figure img {
   width: 185px;
@@ -882,12 +891,15 @@ img {
   margin-top: 10px;
 }
 .product-information .product-content.list article .price strong {
-  font-weight: 800;
+  font-weight: 600;
   color: #f04331;
   font-size: 16px;
 }
 .product-information .product-content.list article .price em {
   text-decoration: line-through;
+}
+.product-information .product-content.list article .price span {
+  color: #f04331;
 }
 
 #map-canvas {
@@ -1361,6 +1373,29 @@ img {
 
 .site-wrapper {
   padding-top: 32px;
+}
+
+.hot {
+  background: url(../images/hot.gif) no-repeat center;
+  display: inline-block;
+  width: 35px;
+  height: 11px;
+}
+
+.discount {
+  background: url(../images/giamgia.gif) no-repeat center;
+  display: inline-block;
+  width: 49px;
+  height: 54px;
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+}
+.discount.other {
+  left: auto;
+  bottom: 0;
+  right: 0;
+  z-index: 50;
 }
 
 /*------------------------------------*\

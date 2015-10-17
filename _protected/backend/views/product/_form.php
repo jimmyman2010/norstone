@@ -150,6 +150,7 @@ $this->registerJs("
                 <div class="large-3 columns">
                     <?= $form->field($model, 'is_hot')->checkbox() ?>
                     <?= $form->field($model, 'is_discount')->checkbox() ?>
+                    <?= $form->field($model, 'discount')->textInput(['value' => CurrencyHelper::formatNumber($model->discount), 'class' => 'money-input']) ?>
                     <hr/>
                     <script>
                         var treeData = [

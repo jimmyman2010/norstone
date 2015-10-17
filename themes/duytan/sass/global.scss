@@ -86,6 +86,28 @@ img{
 .site-wrapper{
     padding-top: 32px;
 }
+.hot{
+    background: url(../images/hot.gif) no-repeat center;
+    display: inline-block;
+    width: 35px;
+    height: 11px;
+}
+
+.discount{
+    background: url(../images/giamgia.gif) no-repeat center;
+    display: inline-block;
+    width: 49px;
+    height: 54px;
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    &.other{
+        left: auto;
+        bottom: 0;
+        right: 0;
+        z-index: 50;
+    }
+}
 
 /*------------------------------------*\
     RESPONSIVE

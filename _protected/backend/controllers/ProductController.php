@@ -267,6 +267,9 @@ class ProductController extends BackendController
                     $model->published_date = time();
                 }
             }
+            if(isset(Yii::$app->request->post()['Product']['discount'])) {
+                $model->discount = CurrencyHelper::toNumber(Yii::$app->request->post()['Product']['discount']);
+            }
             if(isset(Yii::$app->request->post()['Price'])) {
                 $priceData = Yii::$app->request->post()['Price'];
                 $model->price_string = Json::encode($priceData);
@@ -330,6 +333,7 @@ class ProductController extends BackendController
                     ]
                 ]);
             }
+
             return $this->render('update', [
                 'model' => $model,
                 'pictures' => $pictures,

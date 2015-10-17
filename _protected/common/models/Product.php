@@ -16,6 +16,7 @@ use Yii;
  * @property string $info_tech
  * @property string $price_init
  * @property string $price
+ * @property string $discount
  * @property string $price_string
  * @property integer $is_hot
  * @property integer $is_discount
@@ -78,6 +79,7 @@ class Product extends \yii\db\ActiveRecord
             'info_tech' => 'Thông số kỷ thuật',
             'price_init' => Yii::t('app', 'Price Init'),
             'price' => 'Giá',
+            'discount' => 'Giảm',
             'price_string' => 'Quản lý giá',
             'is_hot' => 'Sản phẩm hot',
             'is_discount' => 'Sản phẩm giảm giá',

@@ -153,7 +153,7 @@ AppAsset::register($this);
                                 <?php } ?>
                             </ul>
                         </div>
-                        <div class="module news">
+                        <div class="desktop module news">
                             <h3 class="title">Blog</h3>
                             <ul class="content list">
                                 <?php
@@ -170,7 +170,7 @@ AppAsset::register($this);
                                 <?php } ?>
                             </ul>
                         </div>
-                        <div class="module">
+                        <div class="desktop module">
                             <div class="fb-page" data-href="https://www.facebook.com/maytinhdebandongbo" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
                                 <div class="fb-xfbml-parse-ignore">
                                     <blockquote cite="https://www.facebook.com/maytinhdebandongbo">
@@ -179,7 +179,7 @@ AppAsset::register($this);
                                 </div>
                             </div>
                         </div>
-                        <div class="module adv">
+                        <div class="desktop module adv">
                             <div class="content">
                                 <?php
                                 $widget = Content::find()->where([

@@ -22,13 +22,21 @@ use common\helpers\CurrencyHelper;
             <?= UtilHelper::getPicture($product->image_id, 'thumbnail') ?>
         </a>
         <figcaption>
-            <span class="hot"></span>
+            <?php if($product->is_discount) { ?>
             <span class="discount"></span>
+            <?php } ?>
         </figcaption>
     </figure>
-    <h3><?= Html::a($product->name, ['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?></h3>
+    <h3>
+        <a href="<?= Url::toRoute(['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>">
+            <?= $product->name ?>
+            <?php if($product->is_hot) { ?>
+                <span class="hot"></span>
+            <?php } ?>
+        </a>
+    </h3>
     <p class="price">
-        <strong><nobr><?= intval($product->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($product->price) ?></nobr></strong>
+        <?= intval($product->price) === 0 ? '<span><nobr>Liên hệ</nobr></span>' : '<strong><nobr>' . CurrencyHelper::formatNumber($product->price) . '</nobr></strong>' ?>
         &nbsp;&nbsp;
         <?php if(!empty($product->price_string)) {
             $priceArray = Json::decode($product->price_string);
