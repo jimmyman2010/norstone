@@ -8,67 +8,72 @@ use common\models\Config;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\ContactForm */
 
-$this->title = Config::findOne(['key' => 'SEO_TITLE'])->value;
+$this->title = 'Liên hệ | ' . Config::findOne(['key' => 'SEO_TITLE'])->value;
 $this->registerMetaTag(['name' => 'author', 'content' => Yii::$app->name]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => Config::findOne(['key' => 'SEO_KEYWORD'])->value]);
 $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['key' => 'SEO_DESCRIPTION'])->value]);
 
 ?>
 
-<div id="main_content" class="col-sm-9">
-    <div class="contact-scope">
-        <h1 class="page_heading">Liên hệ</h1>
-        <div id="map-canvas"></div>
-        <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-            <div id="contactFormWrapper">
-                <div class="row">
-                    <?= $form->field($model, 'name', ['options' => ['class' => 'col-sm-4 form-group']]) ?>
-                    <?= $form->field($model, 'email', ['options' => ['class' => 'col-sm-4 form-group']]) ?>
-                    <?= $form->field($model, 'subject', ['options' => ['class' => 'col-sm-4 form-group']]) ?>
+<div class="row" role="article">
+    <div class="col-md-12 main-container">
+        <ul class="breadcrumb">
+            <li><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="Quay lại trang chủ"><i class="glyphicon glyphicon-home"></i> Trang chủ</a></li>
+            <li><span class="page-title">Liên hệ</span></li>
+        </ul>
+        <div class="module-content page-detail form-page">
+            <h1>Liên hệ</h1>
+            <div class="page-content">
+                <div id="map-canvas" style="width: 100%; height: 500px; position: relative; margin-bottom: 20px">
                 </div>
-                <div class="row">
-                    <?= $form->field($model, 'body', ['options' => ['class' => 'col-sm-12 form-group']])->textArea(['rows' => 6]) ?>
-                    <?= $form->field($model, 'verifyCode', ['options' => ['class' => 'col-sm-12 form-group']])
-                        ->widget(Captcha::className(), [
-                            'template' => '<div class="row"><div class="col-sm-4">{image}</div><div class="col-sm-4">{input}</div></div>'
-                        ]) ?>
+                <div class="widget">
+                    <header><h2>Email cho chúng tôi</h2></header>
+                    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                    <div class="content-widget">
+                            <?= $form->field($model, 'name', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
+                            <?= $form->field($model, 'email', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
+                            <?= $form->field($model, 'subject', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
+                            <?= $form->field($model, 'body', ['options' => ['class' => 'col-sm-12 form-group']])->textArea(['rows' => 6]) ?>
+                            <?= $form->field($model, 'verifyCode', ['options' => ['class' => 'col-sm-6 form-group']])
+                                ->widget(Captcha::className(), [
+                                    'template' => '{image}<br clear="all"/>{input}'
+                                ]) ?>
+                        <div class="col-sm-6 form-group buttons">
+                            <?= Html::submitButton(Yii::t('app', 'Gởi mail'), ['class' => 'btn btn-primary radius', 'name' => 'contact-button']) ?>
+                            &nbsp;
+                            <input type="reset" value="Bỏ qua" class="btn btn-info">
+                        </div>
+                    </div><!-- contactFormWrapper -->
+                    <?php ActiveForm::end(); ?>
                 </div>
-                <div class="form-group text-center">
-                    <?= Html::submitButton(Yii::t('app', 'Gởi mail'), ['class' => 'btn btn-primary radius', 'name' => 'contact-button']) ?>
-                    <input type="reset" value="Bỏ qua" class="btn btn-info">
-                </div>
-            </div><!-- contactFormWrapper -->
-        <?php ActiveForm::end(); ?>
+            </div>
+        </div>
     </div>
-
 </div>
+<script>
 
+</script>
 <?php
 
-$this->registerJsFile('https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&language=vi');
+$this->registerJsFile('https://maps.googleapis.com/maps/api/js?key=' . Config::findOne(['key' => 'GOOGLE_API_KEY'])->value . '&callback=initMap');
 $this->registerJs("
-
-function initialize() {
-  var mapOptions = {
-    scaleControl: true,
-    center: new google.maps.LatLng(" . Config::findOne(['key' => 'G_MAP'])->value . "),
-    zoom: 17
-  };
-
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
-
-  var marker = new google.maps.Marker({
-    map: map,
-    position: map.getCenter()
-  });
-  var infowindow = new google.maps.InfoWindow();
-  infowindow.setContent('Duy Tân Computer');
-  google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map, marker);
-  });
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: {
+            lat: " . Config::findOne(['key' => 'LATITUDE'])->value . ",
+            lng: " . Config::findOne(['key' => 'LONGITUDE'])->value . "
+        },
+        zoom: 17
+    });
+    var marker = new google.maps.Marker({
+        position: {
+            lat: " . Config::findOne(['key' => 'LATITUDE'])->value . ",
+            lng: " . Config::findOne(['key' => 'LONGITUDE'])->value . "
+        },
+        map: map,
+        title: 'DUY TÂN COMPUTER',
+        zIndex: 1
+    });
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-");
+", \yii\web\View::POS_BEGIN);

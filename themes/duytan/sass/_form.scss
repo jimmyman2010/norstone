@@ -1,0 +1,31 @@
+.form-page{
+    font-size: 14px;
+    .form-group{
+        margin: 0;
+        &.buttons{
+            margin: 50px 0 0;
+        }
+    }
+    .form-control{
+        font-size: 13px;
+        @include background-image(linear-gradient(#F7F7F7, #FEFEFE 5px, #FEFEFE));
+    }
+    .help-block{
+        font-size: 12px;
+    }
+    .widget{
+        margin-bottom: 0;
+    }
+}
+.field-contactform-verifycode{
+    label, img{
+        float: left;
+        width: auto;
+    }
+    label{
+        margin-top: 12px;
+    }
+    input{
+        width: auto;
+    }
+}

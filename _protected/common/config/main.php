@@ -1,7 +1,8 @@
 <?php
 return [
     'name' => 'Duy Tân Computer',
-    //'language' => 'en',
+    'language' => 'vi',
+    'timeZone' => 'Asia/Ho_Chi_Minh',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'assetManager' => [

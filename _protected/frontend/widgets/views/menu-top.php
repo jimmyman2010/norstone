@@ -9,11 +9,11 @@
 
 <?= \yii\widgets\Menu::widget([
     'items' => [
-        ['label' => 'TRANG CHỦ', 'url' => ['site/index']],
-        ['label' => 'GIỚI THIỆU', 'url' => ['page/view', 'slug' => 'gioi-thieu']],
-        ['label' => 'BẢNG GIÁ', 'url' => ['page/view', 'slug' => 'bang-gia']],
-        ['label' => 'BLOG', 'url' => ['news/index']],
-        ['label' => 'HƯỚNG DẪN MUA HÀNG', 'url' => ['page/view', 'slug' => 'huong-dan-mua-hang']],
-        ['label' => 'LIÊN HỆ', 'url' => ['site/contact']],
+        ['label' => 'Trang chủ', 'url' => ['site/index']],
+        ['label' => 'Giới thiệu', 'url' => ['page/view', 'slug' => 'gioi-thieu']],
+        ['label' => 'Bảng giá', 'url' => ['page/view', 'slug' => 'bang-gia']],
+        ['label' => 'Blog', 'url' => ['news/index']],
+        ['label' => 'Hướng dẫn mua hàng', 'url' => ['page/view', 'slug' => 'huong-dan-mua-hang']],
+        ['label' => 'Liên hệ', 'url' => ['site/contact']],
     ]
 ]) ?>
