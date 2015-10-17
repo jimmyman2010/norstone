@@ -24,8 +24,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
         <div class="module-content page-detail form-page">
             <h1>Liên hệ</h1>
             <div class="page-content">
-                <div id="map-canvas" style="width: 100%; height: 500px; position: relative; margin-bottom: 20px">
-                </div>
+                <div id="map-canvas"></div>
                 <div class="widget">
                     <header><h2>Email cho chúng tôi</h2></header>
                     <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
@@ -64,7 +63,8 @@ function initMap() {
             lat: " . Config::findOne(['key' => 'LATITUDE'])->value . ",
             lng: " . Config::findOne(['key' => 'LONGITUDE'])->value . "
         },
-        zoom: 17
+        zoom: 17,
+        scrollwheel: false
     });
     var marker = new google.maps.Marker({
         position: {
