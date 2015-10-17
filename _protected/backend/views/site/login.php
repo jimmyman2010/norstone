@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Đăng nhập | ' . Yii::$app->name;
 ?>
     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-    <h3 class="form-title">Đăng nhập</h3>
+    <h3 class="form-title">Đăng nhập vào tài khoản</h3>
     <?php //-- use email or username field depending on model scenario --// ?>
 
     <?php if (false): ?>

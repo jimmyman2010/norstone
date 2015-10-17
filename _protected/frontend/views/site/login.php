@@ -17,10 +17,10 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
     <div class="col-md-12 main-container">
         <ul class="breadcrumb">
             <li><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="Quay lại trang chủ"><i class="glyphicon glyphicon-home"></i> Trang chủ</a></li>
-            <li><span class="page-title">Đăng nhập</span></li>
+            <li><span class="page-title">Đăng nhập vào tài khoản</span></li>
         </ul>
         <div class="module-content page-detail">
-            <h1>Đăng nhập</h1>
+            <h1>Đăng nhập vào tài khoản</h1>
             <div class="page-content">
                 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
