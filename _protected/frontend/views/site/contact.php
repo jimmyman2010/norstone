@@ -30,14 +30,14 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                     <header><h2>Email cho chúng tôi</h2></header>
                     <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                     <div class="content-widget">
-                            <?= $form->field($model, 'name', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
-                            <?= $form->field($model, 'email', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
-                            <?= $form->field($model, 'subject', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
-                            <?= $form->field($model, 'body', ['options' => ['class' => 'col-sm-12 form-group']])->textArea(['rows' => 6]) ?>
-                            <?= $form->field($model, 'verifyCode', ['options' => ['class' => 'col-sm-6 form-group']])
-                                ->widget(Captcha::className(), [
-                                    'template' => '{image}<br clear="all"/>{input}'
-                                ]) ?>
+                        <?= $form->field($model, 'name', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
+                        <?= $form->field($model, 'email', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
+                        <?= $form->field($model, 'subject', ['options' => ['class' => 'col-sm-12 form-group']]) ?>
+                        <?= $form->field($model, 'body', ['options' => ['class' => 'col-sm-12 form-group']])->textArea(['rows' => 6]) ?>
+                        <?= $form->field($model, 'verifyCode', ['options' => ['class' => 'col-sm-6 form-group']])
+                            ->widget(Captcha::className(), [
+                                'template' => '{image}<br clear="all"/>{input}'
+                            ]) ?>
                         <div class="col-sm-6 form-group buttons">
                             <?= Html::submitButton(Yii::t('app', 'Gởi mail'), ['class' => 'btn btn-primary radius', 'name' => 'contact-button']) ?>
                             &nbsp;
