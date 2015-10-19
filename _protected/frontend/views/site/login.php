@@ -19,7 +19,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
             <li><a href="<?= Yii::$app->homeUrl ?>" class="homepage-link" title="Quay lại trang chủ"><i class="glyphicon glyphicon-home"></i> Trang chủ</a></li>
             <li><span class="page-title">Đăng nhập</span></li>
         </ul>
-        <div class="module-content page-form-detail">
+        <div class="page-form-detail">
             <h1>Đăng nhập</h1>
             <div class="page-content row">
                 <div class="widget col-sm-6">

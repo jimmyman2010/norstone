@@ -26,7 +26,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'exist',
                 'targetClass' => '\common\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
+                'message' => 'Không tím thấy tài khoản với email đã nhập.'
             ],
         ];
     }
@@ -51,9 +51,9 @@ class PasswordResetRequestForm extends Model
             if ($user->save()) 
             {
                 return Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
-                    ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                    ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
                     ->setTo($this->email)
-                    ->setSubject('Password reset for ' . Yii::$app->name)
+                    ->setSubject('Lấy lại mật khẩu cho: ' . Yii::$app->name)
                     ->send();
             }
         }

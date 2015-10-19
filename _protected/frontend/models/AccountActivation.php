@@ -28,14 +28,14 @@ class AccountActivation extends Model
     {
         if (empty($token) || !is_string($token)) 
         {
-            throw new InvalidParamException('Account activation token cannot be blank.');
+            throw new InvalidParamException('Token không được để trống.');
         }
 
         $this->_user = User::findByAccountActivationToken($token);
 
         if (!$this->_user) 
         {
-            throw new InvalidParamException('Wrong account activation token. Please try again.');
+            throw new InvalidParamException('Không tìm thấy token này.');
         }
 
         parent::__construct($config);

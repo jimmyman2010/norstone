@@ -549,6 +549,10 @@ img {
 }
 .page-form-detail .widget .content-widget {
   border-top: 1px solid #E4E4E4;
+  padding-top: 10px;
+}
+.page-form-detail .widget .content-widget > p {
+  margin-bottom: 10px;
 }
 .page-form-detail .field-loginform-rememberme {
   margin-bottom: 0;
@@ -561,6 +565,10 @@ img {
 }
 .page-form-detail .forget-link {
   margin-bottom: 10px;
+}
+
+.nz-score {
+  line-height: 14px;
 }
 
 .banner {

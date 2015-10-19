@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Đăng nhập | ' . Yii::$app->name;
 ?>
     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-    <h3 class="form-title">Đăng nhập vào tài khoản</h3>
+    <h3 class="form-title">Đăng nhập tài khoản</h3>
     <?php //-- use email or username field depending on model scenario --// ?>
 
     <?php if (false): ?>
@@ -28,7 +28,7 @@ $this->title = 'Đăng nhập | ' . Yii::$app->name;
 
     <div class="form-actions clearfix">
         <?= $form->field($model, 'rememberMe')->checkbox(['template' => "<label class='checkbox'>{input}{label}</label>"]) ?>
-        <?= Html::submitButton('Đăng nhập' . '&nbsp;&nbsp;&nbsp;<i class="fa fa-sign-in"></i>', ['class' => 'btn green-haze pull-right', 'name' => 'login-button']) ?>
+        <?= Html::submitButton('Đăng nhập <i class="fa fa-sign-in"></i>', ['class' => 'btn green-haze pull-right', 'name' => 'login-button']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
