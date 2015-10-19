@@ -7,6 +7,6 @@ $(function(){
         decimal:',',
         precision: 0,
         allowZero:true,
-        suffix: ' đ'
+        suffix: 'đ'
     });
 });

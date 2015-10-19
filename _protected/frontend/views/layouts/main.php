@@ -37,20 +37,35 @@ AppAsset::register($this);
 <div id="fb-root"></div>
 <?php $this->beginBody() ?>
 <div class="site-wrapper">
+    <div class="left-under">
+        <div class="logo">
+            <figure>
+                <a href="<?= Yii::$app->homeUrl ?>">
+                    <img src="<?= Yii::$app->view->theme->baseUrl ?>/images/duytan.png" alt="DUY TÂN Computer" />
+                </a>
+                <figcaption>DUY TÂN COMPUTER</figcaption>
+            </figure>
+        </div>
+        <a class="close-under" href="javascript:void(0);"></a>
+        <?= \frontend\widgets\LeftUnder::widget() ?>
+    </div>
     <div class="wrapper">
         <div class="top-nav">
+            <a href="javascript:void(0);" data-target=".left-under" class="open-under"></a>
             <div class="container">
                 <div class="top-left">
                     Hotline: <a class="tel" href="tel:<?= Config::findOne(['key' => 'PHONE'])->value ?>"><?= Config::findOne(['key' => 'PHONE'])->value ?></a> !
-                    <?php if(Yii::$app->user->isGuest) { ?>
-                        <?= Html::a('<i class="glyphicon glyphicon-user"></i>Đăng nhập', ['site/login']) ?>
-                    <?php } else { ?>
-                        <i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !
-                        <?= Html::a('<i class="glyphicon glyphicon-log-out"></i>Đăng xuất', ['site/logout'], ['data'=>['method'=>'POST']]) ?>
-                    <?php } ?>
+                    <p>
+                        <?php if(Yii::$app->user->isGuest) { ?>
+                            <?= Html::a('<i class="glyphicon glyphicon-user"></i> Đăng nhập', ['site/login']) ?>
+                        <?php } else { ?>
+                            <i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !
+                            <?= Html::a('<i class="glyphicon glyphicon-log-out"></i> Đăng xuất', ['site/logout'], ['data'=>['method'=>'POST']]) ?>
+                        <?php } ?>
+                    </p>
                 </div>
                 <div class="top-right">
-                    <i class="glyphicon glyphicon-road"></i><span><?= Config::findOne(['key' => 'ADDRESS'])->value ?></span>
+                    <span><i class="glyphicon glyphicon-road"></i><?= Config::findOne(['key' => 'ADDRESS'])->value ?></span>
                 </div>
             </div>
         </div>
@@ -121,8 +136,7 @@ AppAsset::register($this);
         <main class="main" role="main">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3" role="complementary">
-
+                    <div class="col-md-3 left-rail" role="complementary">
                         <?= \frontend\widgets\MenuLeft::widget() ?>
 
                         <div class="module support">
@@ -153,7 +167,7 @@ AppAsset::register($this);
                                 <?php } ?>
                             </ul>
                         </div>
-                        <div class="desktop module news">
+                        <div class="module news">
                             <h3 class="title">Blog</h3>
                             <ul class="content list">
                                 <?php
@@ -170,7 +184,7 @@ AppAsset::register($this);
                                 <?php } ?>
                             </ul>
                         </div>
-                        <div class="desktop module">
+                        <div class="module fan-page">
                             <div class="fb-page" data-href="https://www.facebook.com/maytinhdebandongbo" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
                                 <div class="fb-xfbml-parse-ignore">
                                     <blockquote cite="https://www.facebook.com/maytinhdebandongbo">
@@ -179,7 +193,7 @@ AppAsset::register($this);
                                 </div>
                             </div>
                         </div>
-                        <div class="desktop module adv">
+                        <div class="module adv">
                             <div class="content">
                                 <?php
                                 $widget = Content::find()->where([

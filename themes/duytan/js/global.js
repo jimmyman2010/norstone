@@ -9,8 +9,20 @@ $(function(){
     });
 
     $(window).on('load scroll resize', function(){
-        var winWidth = $(window).outerWidth();
-        if(winWidth > 1500) {
+        var heightWindow = document.documentElement.clientHeight;
+        var widthWindow = document.documentElement.clientWidth;
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if(iOS) {
+            var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
+            heightWindow = window.innerHeight * zoomLevel;
+            widthWindow = window.innerWidth * zoomLevel;
+        }
+
+        $('.left-under').height(heightWindow);
+        $('.wrapper').css({'min-height': heightWindow + 'px'});
+
+        $('.site-wrapper').width(widthWindow).css('overflow-x', 'hidden');
+        if(widthWindow > 1500) {
             var top = $(window).scrollTop();
             $('.floating')
                 .show()
@@ -29,4 +41,49 @@ $(function(){
             $('.floating').hide();
         }
     });
+
+    $('.open-under').on('click', function(){
+        var that = $(this),
+            under = $(that.data('target'));
+        if(under.hasClass('open')) {
+            processUnder(under, 0);
+        }
+        else {
+            processUnder(under, 260);
+        }
+    });
+
+    $('.close-under').on('click', function(){
+        var that = $(this),
+            under = that.parent();
+        processUnder(under, 0);
+    });
+
+    function processUnder(under, path){
+        if(path === 0) {
+            under.removeClass('open').css('z-index', -1);
+            setTimeout(function(){
+                under.removeAttr('style');
+                $('.wrapper').removeAttr('style');
+                $(window).trigger('resize');
+            }, 500);
+        }
+        else {
+            under.addClass('open');
+            setTimeout(function(){
+                under.css('z-index', 1);
+            }, 500);
+        }
+        $('.wrapper').css({
+            '-webkit-transform': 'translate(' + path + 'px)',
+            '-ms-transform': 'translate(' + path + 'px)',
+            '-o-transform': 'translate(' + path + 'px)',
+            'transform': 'translate(' + path + 'px)',
+            '-webkit-transition-duration': '500ms',
+            '-ms-transition-duration': '500ms',
+            '-o-transition-duration': '500ms',
+            'transition-duration': '500ms'
+        });
+    }
+
 });

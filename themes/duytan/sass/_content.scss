@@ -94,6 +94,7 @@
     padding: 10px 0;
     font-size: 12px;
     margin: 0;
+    line-height: 18px;
     i{
         margin: 0 5px;
     }
@@ -120,6 +121,13 @@
     }
     .price{
         li {
+            &:last-child{
+                border-top: 1px solid #ebebeb;
+                margin-top: 15px;
+                padding-top: 15px;
+                color: #b00;
+                font-weight: 600;
+            }
             strong {
                 display: block;
                 margin: 12px 0 5px;
@@ -246,7 +254,7 @@
         font-size: 14px;
         .total-count{
             float: left;
-            margin: 14px 0;
+            margin: 14px 0 0;
         }
         .dropdownbox{
             float: right;

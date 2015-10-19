@@ -19,7 +19,7 @@ class CurrencyHelper {
      * @return string
      */
     public static function formatNumber($number) {
-        return number_format($number, 0, ',', '.') . ' đ';
+        return number_format($number, 0, ',', '.') . 'đ';
     }
 
     public static function toNumber($string) {

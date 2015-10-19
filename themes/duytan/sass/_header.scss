@@ -4,16 +4,18 @@
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid #E2E2E2;
-    height: 32px;
+    height: 40px;
     font-size: 14px;
+    text-align: center;
     @include background-image(linear-gradient(#FFF, #FFF 40%, #FCFCFC 80%, #EFEFEF));
     .top-left{
-        float: left;
-        margin-top: 8px;
+        margin-top: 10px;
+        p{
+            display: none;
+        }
     }
     .top-right{
-        float: right;
-        margin-top: 8px;
+        display: none;
     }
     a{
         &.tel{
@@ -21,10 +23,23 @@
             font-style: italic;
         }
     }
+    .open-under{
+        font-family: 'Glyphicons Halflings';
+        position: absolute;
+        left: 15px;
+        top: 7px;
+        font-size: 24px;
+        text-decoration: none;
+        color: #b00;
+        &:before{
+            content: '\e055';
+        }
+    }
 }
 .header {
     margin-top: 15px;
     .logo {
+        display: none;
         float: left;
         margin-left: 50px;
         img {
@@ -40,10 +55,11 @@
         }
     }
     .main-menu {
+        display: none;
         float: left;
         font-size: 14px;
         font-weight: 600;
-        margin: 52px 0 0 100px;
+        margin: 18px 0 0 25px;
         ul{
             text-align: left;
             border-width: 1px 1px 0 1px;
@@ -115,7 +131,7 @@
             border: 1px solid #B70504;
             @include background-image(linear-gradient(#D3D3D3, #F8F8F8 40%, #FFF));
             height: 32px;
-            width: 333px;
+            width: 255px;
             padding: 0 10px 0 40px;
             font-size: 14px;
         }
@@ -130,6 +146,7 @@
             position: absolute;
             left: 332px;
             top: 0;
+            visibility: hidden;
             @include background-image(linear-gradient(#FFF9C5, #FEE77A 50%, #FED250 51%, #FEDE85));
             border: 1px solid #B70504;
             height: 32px;
