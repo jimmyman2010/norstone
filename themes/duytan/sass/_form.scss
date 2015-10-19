@@ -29,3 +29,43 @@
         width: auto;
     }
 }
+
+.page-form-detail{
+    background-color: #FFF;
+    @include border-radius(5px);
+    margin-top: 0;
+    padding: 0 15px;
+    @include clearfix;
+    font-size: 14px;
+    h1{
+        padding: 18px 0 10px;
+        border-bottom: 1px dotted #CECECE;
+        margin:0 0 10px;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .page-content{
+        line-height: 24px;
+    }
+    .widget {
+        margin-top: 10px;
+        > header h2 {
+            padding: 5px 0;
+        }
+        .content-widget{
+            border-top: 1px solid #E4E4E4
+        }
+    }
+    .field-loginform-rememberme{
+        margin-bottom: 0;
+    }
+    .checkbox{
+        margin: 0;
+        .help-block{
+            display: none;
+        }
+    }
+    .forget-link{
+        margin-bottom: 10px;
+    }
+}

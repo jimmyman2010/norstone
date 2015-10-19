@@ -520,6 +520,49 @@ img {
   width: auto;
 }
 
+.page-form-detail {
+  background-color: #FFF;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 0;
+  padding: 0 15px;
+  overflow: hidden;
+  *zoom: 1;
+  font-size: 14px;
+}
+.page-form-detail h1 {
+  padding: 18px 0 10px;
+  border-bottom: 1px dotted #CECECE;
+  margin: 0 0 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.page-form-detail .page-content {
+  line-height: 24px;
+}
+.page-form-detail .widget {
+  margin-top: 10px;
+}
+.page-form-detail .widget > header h2 {
+  padding: 5px 0;
+}
+.page-form-detail .widget .content-widget {
+  border-top: 1px solid #E4E4E4;
+}
+.page-form-detail .field-loginform-rememberme {
+  margin-bottom: 0;
+}
+.page-form-detail .checkbox {
+  margin: 0;
+}
+.page-form-detail .checkbox .help-block {
+  display: none;
+}
+.page-form-detail .forget-link {
+  margin-bottom: 10px;
+}
+
 .banner {
   margin-top: 20px;
 }
@@ -1412,6 +1455,10 @@ img {
 
   #map-canvas {
     height: 500px;
+  }
+
+  .page-form-detail .field-loginform-rememberme {
+    margin-bottom: 15px;
   }
 
   .footer .menu-footer .mainmenu:first-child {

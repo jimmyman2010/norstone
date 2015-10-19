@@ -71,7 +71,7 @@ class LoginForm extends Model
             'username' => 'Tên đăng nhập',
             'password' => 'Mật khẩu',
             'email' => 'Email',
-            'rememberMe' => 'Ghi nhớ đăng nhập',
+            'rememberMe' => 'Nhớ đăng nhập',
         ];
     }
 
