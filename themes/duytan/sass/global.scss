@@ -33,8 +33,13 @@ img{
 }
 
 .rte{
-    *:empty{
-        display: none;
+    &.table-responsive{
+        border: none;
+    }
+    p {
+        &:empty {
+            display: none;
+        }
     }
     > *{
         margin-bottom: 10px;
@@ -60,7 +65,10 @@ img{
         padding: 3px 0;
     }
     table{
-        
+        max-width: 100%;
+        th{
+            font-weight: 600;
+        }
     }
 }
 @import "header";
@@ -290,6 +298,7 @@ img{
             padding: 10px 20px 50px;
         }
     }
+    .product-information .product-content.list article:nth-child(3n+1),
     .module-content .content.list article:nth-child(3n+1),
     .widget .content-widget.list article:nth-child(3n+1) {
         clear: left;
@@ -352,10 +361,12 @@ img{
     .module-content .content.list article figure img{
         width: 150px;
     }
+    .product-information .product-content.list article:nth-child(3n+1),
     .module-content .content.list article:nth-child(3n+1),
     .widget .content-widget.list article:nth-child(3n+1) {
         clear: none;
     }
+    .product-information .product-content.list article:nth-child(4n+1),
     .module-content .content.list article:nth-child(4n+1),
     .widget .content-widget.list article:nth-child(4n+1) {
         clear: left;

@@ -140,14 +140,14 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                     <div class="product-information">
                         <div class="widget-title" id="general">
                             <header><h2>Tổng quan</h2></header>
-                            <div class="product-content rte">
+                            <div class="product-content rte table-responsive">
                                 <?= $model->general ?>
                             </div>
                         </div>
                     <?php if($model->info_tech) { ?>
                         <div class="widget-title" id="info-tech">
                             <header><h2>Thông số kỷ thuật</h2></header>
-                            <div class="product-content rte">
+                            <div class="product-content rte table-responsive">
                                 <?= $model->info_tech ?>
                             </div>
                         </div>

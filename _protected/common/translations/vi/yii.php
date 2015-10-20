@@ -11,5 +11,7 @@ return [
     'The verification code is incorrect.' => 'Mã xác nhận không đúng.',
     'Home' => 'Trang chủ',
     'You are not allowed to perform this action.' => 'Bạn không có quyền truy cập url này.',
-    '{attribute} is not a valid email address.' => 'Vui lòng nhập đúng định dạng email.'
+    '{attribute} is not a valid email address.' => 'Vui lòng nhập đúng định dạng email.',
+
+    'Not Found (#404)' => 'Không tìm thấy trang.'
 ];

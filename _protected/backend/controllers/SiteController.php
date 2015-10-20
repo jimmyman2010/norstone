@@ -4,7 +4,6 @@ namespace backend\controllers;
 use common\models\Arrangement;
 use common\models\Config;
 use common\models\Product;
-use common\models\Setting;
 use common\models\LoginForm;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -30,7 +29,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login'],
+                        'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
                     [
@@ -75,7 +74,15 @@ class SiteController extends Controller
      */
     public function beforeAction($action) {
         $this->enableCsrfValidation = false;
-        return parent::beforeAction($action);
+        if (parent::beforeAction($action)) {
+            // change layout for error action
+            if ($action->id=='error') {
+                $this->layout = 'full';
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

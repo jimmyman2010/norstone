@@ -22,8 +22,6 @@ class ContentElementController extends BackendController
      * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action) {
-        // Set the special layout
-        $this->layout = 'ajax';
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
@@ -54,7 +52,7 @@ class ContentElementController extends BackendController
 
         $rows = $dataProvider->getModels();
 
-        return $this->render('index', [
+        return $this->renderPartial('index', [
             'rows' => $rows,
         ]);
     }
@@ -112,7 +110,7 @@ class ContentElementController extends BackendController
 
         $model->save(false);
 
-        return $this->render('create-' . $type, [
+        return $this->renderPartial('create-' . $type, [
             'model' => $model,
         ]);
     }
@@ -138,7 +136,7 @@ class ContentElementController extends BackendController
 
         $model->save(false);
 
-        return $this->render('update-' . $model->element_type, [
+        return $this->renderPartial('update-' . $model->element_type, [
             'model' => $model,
         ]);
     }

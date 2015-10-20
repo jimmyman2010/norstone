@@ -180,3 +180,19 @@ body {
   background-color: #44b6ae;
   border-color: transparent;
 }
+
+/* line 80, ../../sass/app/login.scss */
+.site-error {
+  text-align: center;
+  font-size: 18px;
+}
+/* line 84, ../../sass/app/login.scss */
+.site-error a:before {
+  content: '\f112';
+  font-family: 'FontAwesome';
+  margin-right: 8px;
+}
+/* line 89, ../../sass/app/login.scss */
+.site-error a:hover {
+  text-decoration: underline;
+}

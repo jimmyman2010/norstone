@@ -29,7 +29,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
         </ul>
         <div class="module-content page-detail">
             <h1><?= $model->name ?></h1>
-            <div class="page-content rte">
+            <div class="page-content rte table-responsive">
                 <?= $model->content ?>
             </div>
             <?php if(count($tags) > 0) { ?>

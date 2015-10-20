@@ -6,21 +6,15 @@ use yii\helpers\Html;
 /* @var $message string */
 /* @var $exception Exception */
 
-$this->title = $name;
+$this->title = 'Không tìm thấy trang.';
 ?>
 <div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
-    </div>
-
     <p>
-        The above error occurred while the Web server was processing your request.
+        <img src="<?= Yii::$app->view->theme->baseUrl ?>/images/404.jpg" alt="404" />
     </p>
     <p>
-        Please contact us if you think this is a server error. Thank you.
+        <?= Html::a('Quay lại trang chủ', ['site/index']) ?>
     </p>
 
 </div>

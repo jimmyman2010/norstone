@@ -77,3 +77,17 @@ body{
         }
     }
 }
+.site-error{
+    text-align: center;
+    font-size: 18px;
+    a {
+        &:before{
+            content: '\f112';
+            font-family:'FontAwesome';
+            margin-right: 8px;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

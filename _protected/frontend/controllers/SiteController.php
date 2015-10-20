@@ -195,11 +195,11 @@ class SiteController extends Controller
             if ($model->contact(Yii::$app->params['adminEmail'])) 
             {
                 Yii::$app->session->setFlash('success', 
-                    'Thank you for contacting us. We will respond to you as soon as possible.');
+                    'Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ gởi phản hồi đến bạn sớm nhất có thể.');
             } 
             else 
             {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
+                Yii::$app->session->setFlash('error', 'Lỗi xảy ra khi gởi email.');
             }
 
             return $this->refresh();
@@ -245,7 +245,7 @@ class SiteController extends Controller
         {
             // if his account is not activated, he will have to activate it first
             Yii::$app->session->setFlash('error', 
-                'You have to activate your account first. Please check your email.');
+                'Bạn phải kích hoạt tài khoản trước khi đăng nhập. Vui lòng kiểm tra email của bạn.');
 
             return $this->refresh();
         }    
@@ -288,14 +288,14 @@ class SiteController extends Controller
             if ($model->sendEmail()) 
             {
                 Yii::$app->getSession()->setFlash('success', 
-                    'Check your email for further instructions.');
+                    'Kiểm tra email của bạn để lấy lại mật khẩu.');
 
                 return $this->goHome();
             } 
             else 
             {
                 Yii::$app->getSession()->setFlash('error', 
-                    'Sorry, we are unable to reset password for email provided.');
+                    'Xin lổi, chúng thôi không thể đặt lại mật khẩu với email của bạn.');
             }
         }
         else
@@ -355,56 +355,54 @@ class SiteController extends Controller
      *
      * @return string|\yii\web\Response
      */
-    public function actionSignup()
-    {  
-        // get setting value for 'Registration Needs Activation'
-        $rna = Yii::$app->params['rna'];
-
-        // if 'rna' value is 'true', we instantiate SignupForm in 'rna' scenario
-        $model = $rna ? new SignupForm(['scenario' => 'rna']) : new SignupForm();
-
-        // collect and validate user data
-        if ($model->load(Yii::$app->request->post()) && $model->validate())
-        {
-            // try to save user data in database
-            if ($user = $model->signup()) 
-            {
-                // if user is active he will be logged in automatically ( this will be first user )
-                if ($user->status === User::STATUS_ACTIVE)
-                {
-                    if (Yii::$app->getUser()->login($user)) 
-                    {
-                        return $this->goHome();
-                    }
-                }
-                // activation is needed, use signupWithActivation()
-                else 
-                {
-                    $this->signupWithActivation($model, $user);
-
-                    return $this->refresh();
-                }            
-            }
-            // user could not be saved in database
-            else
-            {
-                // display error message to user
-                Yii::$app->session->setFlash('error', 
-                    "We couldn't sign you up, please contact us.");
-
-                // log this error, so we can debug possible problem easier.
-                Yii::error('Signup failed! 
-                    User '.Html::encode($user->username).' could not sign up.
-                    Possible causes: something strange happened while saving user in database.');
-
-                return $this->refresh();
-            }
-        }
-                
-        return $this->render('signup', [
-            'model' => $model,
-        ]);     
-    }
+//    public function actionSignup()
+//    {
+//        // get setting value for 'Registration Needs Activation'
+//        $rna = Yii::$app->params['rna'];
+//
+//        // if 'rna' value is 'true', we instantiate SignupForm in 'rna' scenario
+//        $model = $rna ? new SignupForm(['scenario' => 'rna']) : new SignupForm();
+//
+//        // collect and validate user data
+//        if ($model->load(Yii::$app->request->post()) && $model->validate())
+//        {
+//            // try to save user data in database
+//            if ($user = $model->signup())
+//            {
+//                // if user is active he will be logged in automatically ( this will be first user )
+//                if ($user->status === User::STATUS_ACTIVE)
+//                {
+//                    if (Yii::$app->getUser()->login($user))
+//                    {
+//                        return $this->goHome();
+//                    }
+//                }
+//                // activation is needed, use signupWithActivation()
+//                else
+//                {
+//                    $this->signupWithActivation($model, $user);
+//
+//                    return $this->refresh();
+//                }
+//            }
+//            // user could not be saved in database
+//            else
+//            {
+//                // display error message to user
+//                Yii::$app->session->setFlash('error',
+//                    "Chúng tôi không thể tạo tài khoản cho bạn, vui lòng liên hệ trực tiếp với chúng tôi.");
+//
+//                // log this error, so we can debug possible problem easier.
+//                Yii::error('Tạo tài khoản lỗi! Có lỗi xảy ra khi tạo tài khoản cho ' . Html::encode($user->username) . '.');
+//
+//                return $this->refresh();
+//            }
+//        }
+//
+//        return $this->render('signup', [
+//            'model' => $model,
+//        ]);
+//    }
 
     /**
      * Sign up user with activation.
@@ -420,21 +418,19 @@ class SiteController extends Controller
         if ($model->sendAccountActivationEmail($user)) 
         {
             Yii::$app->session->setFlash('success', 
-                'Hello '.Html::encode($user->username).'. 
-                To be able to log in, you need to confirm your registration. 
-                Please check your email, we have sent you a message.');
+                'Chào '.Html::encode($user->username).'.
+                Để đăng nhập bạn cần phải kích hoạt tài khoản. Vui lòng kiểm tra email của bạn để kích hoạt.');
         }
         // email could not be sent
         else 
         {
             // display error message to user
             Yii::$app->session->setFlash('error', 
-                "We couldn't send you account activation email, please contact us.");
+                "Chúng tôi không thể gởi email để kích hoạt tài khoản, vui lòng liên hệ với chúng tôi.");
 
             // log this error, so we can debug possible problem easier.
-            Yii::error('Signup failed! 
-                User '.Html::encode($user->username).' could not sign up.
-                Possible causes: verification email could not be sent.');
+            Yii::error('Tạo tài khoản lỗi!
+                Chúng tôi không thể gởi thông tin tài khoản ' . Html::encode($user->username) . ' đến email của bạn.');
         }
     }
 
