@@ -18,6 +18,7 @@ use frontend\models\ContactForm;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\base\InvalidParamException;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -463,17 +464,15 @@ class SiteController extends Controller
         if ($user->activateAccount()) 
         {
             Yii::$app->getSession()->setFlash('success', 
-                'Success! You can now log in. 
-                Thank you '.Html::encode($user->username).' for joining us!');
+                'Kích hoạt thành công! Tài khoản ' . Html::encode($user->username) . ' của bạn có  thể đăng nhập.');
         }
         else
         {
             Yii::$app->getSession()->setFlash('error', 
-                ''.Html::encode($user->username).' your account could not be activated, 
-                please contact us!');
+                'Tài khoản '.Html::encode($user->username).' của bạn không thể kích hoạt, hãy liên hệ lại với chúng tôi!');
         }
 
-        return $this->redirect('login');
+        return $this->redirect(Url::toRoute(['site/login']));
     }
 
     /**

@@ -29,13 +29,13 @@ class SignupForm extends Model
             ['username', 'required'],
             ['username', 'string', 'min' => 2, 'max' => 255],
             ['username', 'unique', 'targetClass' => '\common\models\User', 
-                'message' => 'This username has already been taken.'],
+                'message' => 'Tên đăng nhập đã được sử dụng.'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => '\common\models\User', 
-                'message' => 'This email address has already been taken.'],
+                'message' => 'Email đã được sử dụng.'],
 
             ['password', 'required'],
             // use passwordStrengthRule() method to determine password strength

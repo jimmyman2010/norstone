@@ -38,6 +38,7 @@ return [
                 'dang-xuat' => 'site/logout',
                 'quen-mat-khau' => 'site/request-password-reset',
                 'dat-lai-mat-khau' => 'site/reset-password',
+                'kich-hoat-tai-khoan' => 'site/activate-account',
                 '<slug>' => 'page/view',
                 '/' => 'site/index',
             ]
