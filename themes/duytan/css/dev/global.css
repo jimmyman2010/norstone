@@ -709,6 +709,9 @@ img {
   font-weight: 600;
   font-size: 20px;
 }
+.product-detail .product-image img {
+  width: 100%;
+}
 .product-detail .slider-nav a {
   padding: 5px;
 }
@@ -722,6 +725,7 @@ img {
   padding-top: 15px;
   color: #b00;
   font-weight: 600;
+  line-height: 20px;
 }
 .product-detail .price li strong {
   display: block;
@@ -745,6 +749,7 @@ img {
   margin-bottom: 15px;
   padding-bottom: 12px;
   border-bottom: 1px solid #F5E6D3;
+  line-height: 17px;
 }
 .product-detail .product-description {
   margin: 15px 0;
@@ -909,7 +914,6 @@ img {
   overflow: hidden;
   *zoom: 1;
   background-color: #ffffff;
-  border: 1px solid #E4E4E4;
   -moz-border-radius: 5px 5px 0 0;
   -webkit-border-radius: 5px;
   border-radius: 5px 5px 0 0;
@@ -928,7 +932,6 @@ img {
 .product-information .product-content {
   overflow: hidden;
   *zoom: 1;
-  padding: 15px;
 }
 .product-information .product-content.list {
   padding: 15px 0;
@@ -996,6 +999,7 @@ img {
   position: relative;
 }
 .scrolling-container .scrolling-content {
+  display: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -1009,13 +1013,14 @@ img {
   position: absolute;
   top: 0;
   z-index: 110;
+  padding: 0;
 }
 .scrolling-container .scrolling-content li {
-  display: inline-block;
-  padding: 14px;
+  padding: 14px 0;
   font-size: 13px;
 }
 .scrolling-container .scrolling-content li a {
+  display: block;
   text-decoration: none;
   padding: 4px 10px;
   -moz-border-radius: 20px;
@@ -1583,6 +1588,21 @@ img {
   .header-bar .main-search button {
     visibility: visible;
   }
+
+  .scrolling-container .scrolling-content {
+    display: block;
+    padding: 0 10px;
+  }
+  .scrolling-container .scrolling-content li {
+    display: inline-block;
+  }
+
+  .product-information {
+    border: 1px solid #E4E4E4;
+  }
+  .product-information .product-content {
+    padding: 15px;
+  }
 }
 @media only screen and (min-width: 768px) {
   #map-canvas {
@@ -1612,6 +1632,10 @@ img {
   .module-content .content.list article:nth-child(3n+1),
   .widget .content-widget.list article:nth-child(3n+1) {
     clear: left;
+  }
+
+  .scrolling-container .scrolling-content li {
+    padding: 14px;
   }
 }
 @media only screen and (min-width: 992px) {

@@ -104,6 +104,11 @@
         font-weight: 600;
         font-size: 20px;
     }
+    .product-image{
+        img{
+            width: 100%;
+        }
+    }
     .slider-nav{
         a {
             padding: 5px;
@@ -120,6 +125,7 @@
                 padding-top: 15px;
                 color: #b00;
                 font-weight: 600;
+                line-height: 20px;
             }
             strong {
                 display: block;
@@ -145,6 +151,7 @@
         margin-bottom: 15px;
         padding-bottom: 12px;
         border-bottom: 1px solid #F5E6D3;
+        line-height: 17px;
     }
     .product-description{
         margin: 15px 0;
@@ -290,7 +297,6 @@
 .product-information{
     @include clearfix;
     background-color: #ffffff;
-    border: 1px solid #E4E4E4;
     @include border-radius(5px 5px 0 0);
     padding-bottom: 15px;
     margin-bottom: 15px;
@@ -307,7 +313,6 @@
     }
     .product-content{
         @include clearfix;
-        padding: 15px;
         &.list{
             padding: 15px 0;
             article{

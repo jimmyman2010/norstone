@@ -36,7 +36,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
             <h1>Blog</h1>
             <?php Pjax::begin(['id' => 'blog']) ?>
             <div class="widget">
-                <article class="news-style-list">
+                <div class="news-style-list">
                     <?php foreach ($dataProvider->getModels() as $index => $news) { ?>
                         <article>
                             <h2><?= Html::a($news->name, ['news/view', 'slug' => $news->slug]) ?></h2>
@@ -81,7 +81,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                                 </a>
                             </div>
                             <?= $news->summary ?>
-                            <?= Html::a('Chi tiết <i class="glyphicon glyphicon-arrow-right"></i>', ['news/view', 'slug' => $news->slug], ['class' => 'read-more']) ?>
+                            <nobr><?= Html::a('Chi tiết <i class="glyphicon glyphicon-arrow-right"></i>', ['news/view', 'slug' => $news->slug], ['class' => 'read-more']) ?></nobr>
                         </article>
                     <?php } ?>
                     <br clear="all"/>

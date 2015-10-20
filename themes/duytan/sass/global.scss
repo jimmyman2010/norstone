@@ -249,6 +249,21 @@ img{
             visibility: visible;
         }
     }
+    .scrolling-container {
+        .scrolling-content {
+            display: block;
+            padding: 0 10px;
+            li {
+                display: inline-block;
+            }
+        }
+    }
+    .product-information {
+        border: 1px solid #E4E4E4;
+        .product-content {
+            padding: 15px;
+        }
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -278,6 +293,9 @@ img{
     .module-content .content.list article:nth-child(3n+1),
     .widget .content-widget.list article:nth-child(3n+1) {
         clear: left;
+    }
+    .scrolling-container .scrolling-content li{
+        padding: 14px;
     }
 }
 
