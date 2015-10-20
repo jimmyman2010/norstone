@@ -22,7 +22,8 @@ class NewsController extends FrontendController {
     public function actionIndex()
     {
         $query = Content::find()
-            ->where(['deleted' => 0, 'content_type' => Content::TYPE_NEWS, 'status' => Content::STATUS_PUBLISHED]);
+            ->where(['deleted' => 0, 'content_type' => Content::TYPE_NEWS, 'status' => Content::STATUS_PUBLISHED])
+            ->orderBy('created_date DESC');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -251,13 +251,24 @@ AppAsset::register($this);
 </div>
 
 <?php $this->endBody() ?>
-<script>(function(d, s, id) {
+<script type="text/javascript">
+    (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<?= Config::findOne(['key' => 'GOOGLE_ANALYTIC'])->value ?>']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 </script>
 </body>
 </html>

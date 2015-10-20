@@ -48,7 +48,7 @@ class SiteController extends Controller
                     [
                         'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['admin'],
                     ],
                     [
                         'actions' => ['logout'],
@@ -355,61 +355,61 @@ class SiteController extends Controller
      *
      * @return string|\yii\web\Response
      */
-//    public function actionSignup()
-//    {
-//        // get setting value for 'Registration Needs Activation'
-//        $rna = Yii::$app->params['rna'];
-//
-//        // if 'rna' value is 'true', we instantiate SignupForm in 'rna' scenario
-//        $model = $rna ? new SignupForm(['scenario' => 'rna']) : new SignupForm();
-//
-//        // collect and validate user data
-//        if ($model->load(Yii::$app->request->post()) && $model->validate())
-//        {
-//            // try to save user data in database
-//            if ($user = $model->signup())
-//            {
-//                // if user is active he will be logged in automatically ( this will be first user )
-//                if ($user->status === User::STATUS_ACTIVE)
-//                {
-//                    if (Yii::$app->getUser()->login($user))
-//                    {
-//                        return $this->goHome();
-//                    }
-//                }
-//                // activation is needed, use signupWithActivation()
-//                else
-//                {
-//                    $this->signupWithActivation($model, $user);
-//
-//                    return $this->refresh();
-//                }
-//            }
-//            // user could not be saved in database
-//            else
-//            {
-//                // display error message to user
-//                Yii::$app->session->setFlash('error',
-//                    "Chúng tôi không thể tạo tài khoản cho bạn, vui lòng liên hệ trực tiếp với chúng tôi.");
-//
-//                // log this error, so we can debug possible problem easier.
-//                Yii::error('Tạo tài khoản lỗi! Có lỗi xảy ra khi tạo tài khoản cho ' . Html::encode($user->username) . '.');
-//
-//                return $this->refresh();
-//            }
-//        }
-//
-//        return $this->render('signup', [
-//            'model' => $model,
-//        ]);
-//    }
+    public function actionSignup()
+    {
+        // get setting value for 'Registration Needs Activation'
+        $rna = Yii::$app->params['rna'];
+
+        // if 'rna' value is 'true', we instantiate SignupForm in 'rna' scenario
+        $model = $rna ? new SignupForm(['scenario' => 'rna']) : new SignupForm();
+
+        // collect and validate user data
+        if ($model->load(Yii::$app->request->post()) && $model->validate())
+        {
+            // try to save user data in database
+            if ($user = $model->signup())
+            {
+                // if user is active he will be logged in automatically ( this will be first user )
+                if ($user->status === User::STATUS_ACTIVE)
+                {
+                    if (Yii::$app->getUser()->login($user))
+                    {
+                        return $this->goHome();
+                    }
+                }
+                // activation is needed, use signupWithActivation()
+                else
+                {
+                    $this->signupWithActivation($model, $user);
+
+                    return $this->refresh();
+                }
+            }
+            // user could not be saved in database
+            else
+            {
+                // display error message to user
+                Yii::$app->session->setFlash('error',
+                    "Chúng tôi không thể tạo tài khoản cho bạn, vui lòng liên hệ trực tiếp với chúng tôi.");
+
+                // log this error, so we can debug possible problem easier.
+                Yii::error('Tạo tài khoản lỗi! Có lỗi xảy ra khi tạo tài khoản cho ' . Html::encode($user->username) . '.');
+
+                return $this->refresh();
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Sign up user with activation.
      * User will have to activate his account using activation link that we will
      * send him via email.
      *
-     * @param $model
+     * @param \frontend\models\SignupForm $model
      * @param $user
      */
     private function signupWithActivation($model, $user)
