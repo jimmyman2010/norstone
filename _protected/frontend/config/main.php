@@ -36,6 +36,7 @@ return [
                 'tim-kiem' => 'site/search',
                 'dang-nhap' => 'site/login',
                 'dang-xuat' => 'site/logout',
+                'dang-ky' => 'site/signup',
                 'quen-mat-khau' => 'site/request-password-reset',
                 'dat-lai-mat-khau' => 'site/reset-password',
                 'kich-hoat-tai-khoan' => 'site/activate-account',

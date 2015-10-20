@@ -39,7 +39,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                         <?php ActiveForm::end(); ?>
 
                         <?php if ($model->scenario === 'rna'): ?>
-                            <div style="color:#666;margin:1em 0">
+                            <div>
                                 <i>*Chúng tôi sẽ gởi đường dẫn để kích hoạt tài khoản vào email của bạn.</i>
                             </div>
                         <?php endif ?>

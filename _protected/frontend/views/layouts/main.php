@@ -61,6 +61,11 @@ AppAsset::register($this);
                         <?php } else { ?>
                             <i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !
                             <?= Html::a('<i class="glyphicon glyphicon-log-out"></i> Đăng xuất', ['site/logout'], ['data'=>['method'=>'POST']]) ?>
+                            <?php
+                            $role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
+                            if(isset($role['admin'])) { ?>
+                                <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Đăng ký', ['site/signup']) ?>
+                            <?php } ?>
                         <?php } ?>
                     </p>
                 </div>
