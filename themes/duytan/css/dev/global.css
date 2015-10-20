@@ -588,26 +588,14 @@ img {
 }
 
 .banner {
+  padding: 0;
   margin-top: 20px;
 }
-.banner .slide-container {
-  border: 1px solid #E4E4E4;
-  background-color: #FFF;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  padding: 3px;
+.banner img {
+  width: 100%;
 }
-
-.banner-ext {
-  margin-top: 20px;
-}
-.banner-ext .text-image {
-  border: 1px solid #E4E4E4;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  padding: 3px;
+.banner img.desktop {
+  display: none;
 }
 
 .module-content {
@@ -1438,14 +1426,6 @@ img {
   display: none;
 }
 
-.phone {
-  display: block !important;
-}
-
-.desktop {
-  display: none !important;
-}
-
 .site-wrapper .wrapper {
   background-color: #F7F7F7;
   padding-top: 32px;
@@ -1562,7 +1542,7 @@ img {
   margin-top: 15px;
 }
 .left-under .mainmenu.login > li:before {
-  content: '';
+  display: none;
 }
 .left-under .copy {
   font-size: 10px;
@@ -1575,6 +1555,24 @@ img {
     RESPONSIVE
 \*------------------------------------*/
 @media only screen and (min-width: 600px) {
+  .banner {
+    padding: 0 15px;
+  }
+  .banner .slide-container {
+    border: 1px solid #E4E4E4;
+    background-color: #FFF;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 3px;
+  }
+  .banner img.desktop {
+    display: inline-block;
+  }
+  .banner img.phone {
+    display: none;
+  }
+
   .top-nav .top-left p {
     display: inline-block;
   }
@@ -1587,14 +1585,6 @@ img {
   }
 }
 @media only screen and (min-width: 768px) {
-  .phone {
-    display: none !important;
-  }
-
-  .desktop {
-    display: block !important;
-  }
-
   #map-canvas {
     height: 500px;
   }

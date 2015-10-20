@@ -2,20 +2,13 @@
     //min-height: 1000px;
 }
 .banner{
+    padding: 0;
     margin-top: 20px;
-    .slide-container{
-        border: 1px solid #E4E4E4;
-        background-color: #FFF;
-        @include border-radius(5px);
-        padding: 3px;
-    }
-}
-.banner-ext{
-    margin-top: 20px;
-    .text-image{
-        border: 1px solid #E4E4E4;
-        @include border-radius(5px);
-        padding: 3px;
+    img{
+        width: 100%;
+        &.desktop{
+            display: none;
+        }
     }
 }
 

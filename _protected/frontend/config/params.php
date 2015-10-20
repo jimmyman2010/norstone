@@ -10,6 +10,6 @@ return [
         'thumbnail-slide' => [160, 160],
         'slide' => [400, 400],
         'feature-desktop' => [870, 400],
-        'feature-phone' => [600, 460]
+        'feature-phone' => [600, 600]
     ]
 ];

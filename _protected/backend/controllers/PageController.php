@@ -57,21 +57,22 @@ class PageController extends BackendController
     /**
      * Creates a new Content model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param string $name
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($name)
     {
         $model = new Content();
 
-        $model->name = 'New page';
-        $model->slug = $model->getSlug('new-page');
-        $model->slug = 'summary page';
+        $model->name = $name;
+        $model->slug = $model->getSlug(SlugHelper::makeSlugs($name));
+        $model->summary = 'summary of ' . $name;
         $model->status = Content::STATUS_DRAFT;
         $model->content_type = Content::TYPE_PAGE;
         $model->created_date = time();
         $model->created_by = Yii::$app->user->identity->username;
 
-        if($model->save(false)) {
+        if($model->save()) {
             return $this->redirect(['update', 'id' => $model->id]);
         }
         else {
@@ -110,10 +111,6 @@ class PageController extends BackendController
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
-            if($model->updated_date === 0) {
-                $model->name = '';
-                $model->slug = '';
-            }
             return $this->render('update', [
                 'model' => $model,
                 'contentElement' => new ContentElement()

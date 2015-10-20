@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use common\helpers\UtilHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ContentSearch */
@@ -12,19 +13,20 @@ use common\helpers\UtilHelper;
 $this->title = 'Quản lý slide';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <article class="page-index">
     <div class="portlet">
         <div class="portlet-title">
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round', 'data' => ['reveal-id' => 'create']]) ?></li>
                 </ul>
             </div>
         </div>
         <div class="portlet-body has-padding">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-            <?php Pjax::begin(['id' => 'tags']) ?>
+            <?php Pjax::begin(['id' => 'slider']) ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -66,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ['title'=>'Delete page',
                                         'class'=>'fa fa-trash-o',
                                         'data' => [
-                                            'confirm' => Yii::t('app', 'Are you sure you want to delete this page?'),
+                                            'confirm' => Yii::t('app', 'Are you sure you want to delete this slide?'),
                                             'method' => 'post']
                                     ]);
                             }
@@ -77,3 +79,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </article>
+<?= $this->render('_popup') ?>

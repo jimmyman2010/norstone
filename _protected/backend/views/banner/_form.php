@@ -56,7 +56,7 @@ $this->registerJs("
                 'controller' => 'elfinder',
                 'path'       => 'image',
                 'filter'     => 'image',
-                'template'   => '<span class="clearfix"><span class="columns large-6">{input}</span><span class="columns large-6">{button}</span></span>',
+                'template'   => '<div class="row"><span class="columns large-6">{input}</span><span class="columns large-6">{button}</span></div>',
                 'name'       => 'Content[summary]',
                 'id'         => 'content-summary',
                 'value'      => $model->summary,
@@ -71,15 +71,14 @@ $this->registerJs("
     <div class="large-4 columns">
         <?= $form->field($model, 'sorting')->textInput() ?>
         <div class="form-group">
-            <label class="control-label"><?= Yii::t('app', 'Position') ?></label>
+            <label class="control-label">Vị trí</label>
             <select name="Content[parent_id]">
-                <option value="0" <?php if($model->parent_id === 0) { echo 'selected="selected"'; } ?>><?= Yii::t('app', 'Left') ?></option>
-                <option value="1" <?php if($model->parent_id === 1) { echo 'selected="selected"'; } ?>><?= Yii::t('app', 'Right') ?></option>
-                <option value="2" <?php if($model->parent_id === 2) { echo 'selected="selected"'; } ?>><?= Yii::t('app', 'Sidebar') ?></option>
+                <option value="0" <?php if($model->parent_id === 0) { echo 'selected="selected"'; } ?>>Scroll trái</option>
+                <option value="1" <?php if($model->parent_id === 1) { echo 'selected="selected"'; } ?>>Scroll phải</option>
+                <option value="2" <?php if($model->parent_id === 2) { echo 'selected="selected"'; } ?>>Cột trái</option>
             </select>
         </div>
     </div>
-    <div class="row">
         <div class="large-12 columns">
             <div class="action-buttons">
                 <input type="hidden" name="type-submit" value="" />
@@ -98,7 +97,6 @@ $this->registerJs("
                 <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
             </div>
         </div>
-    </div>
     <?php ActiveForm::end(); ?>
 
 </div>

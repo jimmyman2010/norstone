@@ -70,15 +70,16 @@ class BannerController extends BackendController {
     /**
      * Creates a new Content model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param string $name
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($name)
     {
         $model = new Content();
 
-        $model->name = 'New a widget';
-        $model->slug = $model->getSlug('new-a-widget');
-        $model->summary = 'summary widget';
+        $model->name = $name;
+        $model->slug = $model->getSlug(SlugHelper::makeSlugs($name));
+        $model->summary = 'summary of ' . $name;
         $model->status = Content::STATUS_DRAFT;
         $model->content_type = Content::TYPE_BANNER;
         $model->created_date = time();
@@ -126,8 +127,6 @@ class BannerController extends BackendController {
             $pictures = $dataProvider->search(['content_id' => $id])->getModels();
 
             if($model->updated_date === 0) {
-                $model->name = '';
-                $model->slug = '';
                 $model->summary = '';
             }
             return $this->render('update', [

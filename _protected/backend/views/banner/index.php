@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption"><?= Html::encode($this->title) ?></div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a('Thêm banner', ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Thêm banner', ['create'], ['class' => 'tiny button round', 'data' => ['reveal-id' => 'create']]) ?></li>
                 </ul>
             </div>
         </div>
@@ -89,3 +89,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </article>
+
+<?= $this->render('_popup') ?>

@@ -76,12 +76,6 @@ img{
     display: none;
 }
 
-.phone{
-    display: block !important;
-}
-.desktop{
-    display: none !important;
-}
 .site-wrapper{
     .wrapper{
         background-color: #F7F7F7;
@@ -198,7 +192,7 @@ img{
         &.login {
             margin-top: 15px;
             > li:before {
-                content: '';
+                display: none;
             }
         }
     }
@@ -227,6 +221,23 @@ img{
 }
 
 @media only screen and (min-width: 600px) {
+    .banner{
+        padding: 0 15px;
+        .slide-container{
+            border: 1px solid #E4E4E4;
+            background-color: #FFF;
+            @include border-radius(5px);
+            padding: 3px;
+        }
+        img{
+            &.desktop{
+                display: inline-block;
+            }
+            &.phone{
+                display: none;
+            }
+        }
+    }
     .top-nav .top-left p{
         display: inline-block;
     }
@@ -241,12 +252,6 @@ img{
 }
 
 @media only screen and (min-width: 768px) {
-    .phone{
-        display: none !important;
-    }
-    .desktop{
-        display: block !important;
-    }
     #map-canvas{
         height: 500px;
     }

@@ -67,14 +67,15 @@ class ProductController extends BackendController
     /**
      * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param string $name
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($name)
     {
         $model = new Product();
 
-        $model->name = 'New product';
-        $model->slug = $model->getSlug('new-product');
+        $model->name = $name;
+        $model->slug = $model->getSlug(SlugHelper::makeSlugs($name));
         $model->status = Product::STATUS_DRAFT;
         $model->created_date = time();
         $model->created_by = Yii::$app->user->identity->username;
@@ -317,10 +318,6 @@ class ProductController extends BackendController
 
             $productSuggestion = Product::find()->where(["AND", "deleted = 0", ["NOT IN", "id", $idList]])->orderBy('published_date DESC')->all();
 
-            if($model->updated_date === 0) {
-                $model->name = '';
-                $model->slug = '';
-            }
             if(empty($model->price_string)){
                 $model->price_string = Json::encode([
                     'month3' => [

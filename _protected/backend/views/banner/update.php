@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="action">
                 <ul class="button-group">
                     <li><?= Html::a('Quay lại', ['index'], ['class' => 'tiny button round secondary']) ?></li>
-                    <li><?= Html::a('Thêm mới', ['create'], ['class' => 'tiny button round secondary']) ?></li>
+                    <li><?= Html::a('Thêm mới', ['create'], ['class' => 'tiny button round secondary', 'data' => ['reveal-id' => 'create']]) ?></li>
                 </ul>
             </div>
         </div>
@@ -32,3 +32,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </article>
+<?= $this->render('_popup') ?>

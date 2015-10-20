@@ -63,15 +63,16 @@ class NewsController extends BackendController
     /**
      * Creates a new Content model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param string $name
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($name)
     {
         $model = new Content();
 
-        $model->name = 'New a news';
-        $model->slug = $model->getSlug('new-a-news');
-        $model->summary = 'summary news';
+        $model->name = $name;
+        $model->slug = $model->getSlug(SlugHelper::makeSlugs($name));
+        $model->summary = 'summary of ' . $name;
         $model->status = Content::STATUS_DRAFT;
         $model->content_type = Content::TYPE_NEWS;
         $model->created_date = time();
@@ -219,8 +220,6 @@ class NewsController extends BackendController
             $tagSuggestions = rtrim($tagSuggestions, ',');
 
             if($model->updated_date === 0) {
-                $model->name = '';
-                $model->slug = '';
                 $model->summary = '';
             }
             return $this->render('update', [

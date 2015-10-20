@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="caption">Danh sách sản phẩm</div>
             <div class="action">
                 <ul class="button-group">
-                    <li><?= Html::a('Thêm sản phẩm mới', ['create'], ['class' => 'tiny button round']) ?></li>
+                    <li><?= Html::a('Thêm sản phẩm', ['create'], ['class' => 'tiny button round', 'data' => ['reveal-id' => 'create']]) ?></li>
                 </ul>
             </div>
         </div>
@@ -81,3 +81,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </article>
+
+<?= $this->render('_popup') ?>

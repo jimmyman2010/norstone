@@ -60,4 +60,4 @@ use yii\helpers\Html;
         'options' => ['class'=>'mainmenu main']
     ]) ?>
 </nav>
-<p class="copy">© 2015 Duy Tan Computer<br/>Powered by <a href="http://www.mantrantd.com">Man Tran</a></p>
+<p class="copy">&copy; 2015 Duy Tan Computer<br/>Powered by <a href="http://www.mantrantd.com">Man Tran</a></p>
