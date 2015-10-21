@@ -2,15 +2,12 @@
 namespace frontend\controllers;
 
 use common\models\Arrangement;
-use common\models\Color;
 use common\models\Content;
 use common\models\ContentSearch;
-use common\models\Gallery;
 use common\models\Product;
-use common\models\Tag;
 use common\models\User;
 use common\models\LoginForm;
-use frontend\models\AccountActivation;
+use frontend\models\AccountActivationForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -24,7 +21,6 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use Yii;
-use yii\web\Response;
 
 /**
  * Site controller.
@@ -450,25 +446,34 @@ class SiteController extends Controller
     {
         try 
         {
-            $user = new AccountActivation($token);
+            $model = new AccountActivationForm($token);
         } 
         catch (InvalidParamException $e) 
         {
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        if ($user->activateAccount()) 
+        if ($model->load(Yii::$app->request->post()) && $model->validate())
         {
-            Yii::$app->getSession()->setFlash('success', 
-                'Kích hoạt thành công! Tài khoản ' . Html::encode($user->username) . ' của bạn có  thể đăng nhập.');
+            $user = $model->activateAccount();
+            if($user) {
+                Yii::$app->getSession()->setFlash('success',
+                    'Kích hoạt thành công! Tài khoản ' . Html::encode($model->getUsername()) . ' của bạn có  thể đăng nhập.');
+
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
+            return $this->redirect(Url::toRoute(['site/login']));
         }
         else
         {
-            Yii::$app->getSession()->setFlash('error', 
-                'Tài khoản '.Html::encode($user->username).' của bạn không thể kích hoạt, hãy liên hệ lại với chúng tôi!');
+            Yii::$app->getSession()->setFlash('error',
+                'Tài khoản '.Html::encode($model->getUsername()).' của bạn không thể kích hoạt, hãy liên hệ lại với chúng tôi!');
+            return $this->render('accountActivation', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->redirect(Url::toRoute(['site/login']));
     }
 
     /**
