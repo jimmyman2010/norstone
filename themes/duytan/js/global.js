@@ -3,6 +3,10 @@ $(function(){
         $("html, body").animate({scrollTop: 0}, 500);
     });
 
+    $('.gadget').on('click', function(){
+        $('.menu-account ul').slideToggle(100);
+    });
+
     $('.fancybox-login').fancybox({
         nextEffect: 'none',
         prevEffect: 'none'

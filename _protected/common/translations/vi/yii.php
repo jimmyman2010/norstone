@@ -12,6 +12,8 @@ return [
     'Home' => 'Trang chủ',
     'You are not allowed to perform this action.' => 'Bạn không có quyền truy cập url này.',
     '{attribute} is not a valid email address.' => 'Vui lòng nhập đúng định dạng email.',
+    '{attribute} must be repeated exactly.' => '{attribute} chưa chính xác.',
 
-    'Not Found (#404)' => 'Không tìm thấy trang.'
+    'Page not found.' => 'Không tìm thấy trang.',
+    'An internal server error occurred.' => 'Có lỗi xảy ra.'
 ];

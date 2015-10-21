@@ -16,9 +16,20 @@ use yii\helpers\Html;
         <?php if(!Yii::$app->user->isGuest) { ?>
             <li>
                 <i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !
-                <br/>
+            </li>
+            <li>
+                <a href="<?= Url::toRoute(['site/change-password']) ?>" data-method="post"><i class="glyphicon glyphicon-wrench"></i> Đổi mật khẩu</a>
+            </li>
+            <li>
                 <a href="<?= Url::toRoute(['site/logout']) ?>" data-method="post"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a>
             </li>
+            <?php
+            $role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
+            if(isset($role['admin'])) { ?>
+                <li>
+                    <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Đăng ký', ['site/signup']) ?>
+                </li>
+            <?php } ?>
         <?php } else { ?>
             <li><a href="<?= Url::toRoute(['site/login']) ?>"><i class="glyphicon glyphicon-user"></i> Đăng nhập</a></li>
         <?php } ?>

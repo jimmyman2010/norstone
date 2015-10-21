@@ -139,8 +139,38 @@ img {
 .top-nav .top-left {
   margin-top: 10px;
 }
-.top-nav .top-left p {
+.top-nav .top-left .menu-account {
   display: none;
+  position: relative;
+}
+.top-nav .top-left .menu-account .gadget {
+  cursor: pointer;
+  color: red;
+  display: inline-block;
+  margin-left: 3px;
+}
+.top-nav .top-left .menu-account ul {
+  z-index: 1200;
+  display: none;
+  position: absolute;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #E2E2E2;
+  top: 29px;
+  width: 180px;
+  -moz-box-shadow: 5px 5px 10px -2px #E2E2E2;
+  -webkit-box-shadow: 5px 5px 10px -2px #E2E2E2;
+  box-shadow: 5px 5px 10px -2px #E2E2E2;
+}
+.top-nav .top-left .menu-account ul li {
+  padding: 10px 20px 10px 0;
+  border-top: 1px solid #e2e2e2;
+}
+.top-nav .top-left .menu-account ul li:first-child {
+  border-top: none;
+}
+.top-nav .top-left .menu-account ul li i {
+  margin-left: 10px;
 }
 .top-nav .top-right {
   display: none;
@@ -1587,7 +1617,7 @@ img {
     display: none;
   }
 
-  .top-nav .top-left p {
+  .top-nav .top-left .menu-account {
     display: inline-block;
   }
 
@@ -1655,6 +1685,9 @@ img {
   .top-nav .top-left {
     float: left;
     margin-top: 8px;
+  }
+  .top-nav .top-left .menu-account ul {
+    top: 23px;
   }
   .top-nav .top-right {
     display: block;

@@ -10,8 +10,36 @@
     @include background-image(linear-gradient(#FFF, #FFF 40%, #FCFCFC 80%, #EFEFEF));
     .top-left{
         margin-top: 10px;
-        p{
+        .menu-account{
             display: none;
+            position: relative;
+            .gadget{
+                cursor: pointer;
+                color: red;
+                display: inline-block;
+                margin-left: 3px;
+            }
+            ul{
+                z-index: 1200;
+                display: none;
+                position: absolute;
+                text-align: left;
+                background-color: #fff;
+                border: 1px solid #E2E2E2;
+                top: 29px;
+                width: 180px;
+                @include box-shadow(5px 5px 10px -2px #E2E2E2);
+                li{
+                    padding: 10px 20px 10px 0;
+                    border-top: 1px solid #e2e2e2;
+                    &:first-child{
+                        border-top: none;
+                    }
+                    i{
+                        margin-left: 10px;
+                    }
+                }
+            }
         }
     }
     .top-right{

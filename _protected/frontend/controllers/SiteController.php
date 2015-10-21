@@ -8,6 +8,7 @@ use common\models\Product;
 use common\models\User;
 use common\models\LoginForm;
 use frontend\models\AccountActivationForm;
+use frontend\models\ChangePasswordForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -39,7 +40,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['signup', 'logout', 'change-password'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -47,7 +48,7 @@ class SiteController extends Controller
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'change-password'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -284,7 +285,7 @@ class SiteController extends Controller
             if ($model->sendEmail()) 
             {
                 Yii::$app->getSession()->setFlash('success', 
-                    'Kiểm tra email của bạn để lấy lại mật khẩu.');
+                    'Vui lòng kiểm tra email của bạn để lấy lại mật khẩu.');
 
                 return $this->goHome();
             } 
@@ -334,7 +335,21 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }       
-    }    
+    }
+
+    public function actionChangePassword()
+    {
+        $model = new ChangePasswordForm();
+        if($model->load(Yii::$app->request->post()) && $model->validate() && $model->changePassword()) {
+            Yii::$app->session->setFlash('success', 'Thay đổi mật khẩu thành công.');
+            return $this->redirect(Url::toRoute(['site/index']));
+        }
+        else {
+            return $this->render('changePassword', [
+                'model' => $model
+            ]);
+        }
+    }
 
 //------------------------------------------------------------------------------------------------//
 // SIGN UP / ACCOUNT ACTIVATION
@@ -453,23 +468,28 @@ class SiteController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate())
+        if ($model->load(Yii::$app->request->post()))
         {
-            $user = $model->activateAccount();
-            if($user) {
-                Yii::$app->getSession()->setFlash('success',
-                    'Kích hoạt thành công! Tài khoản ' . Html::encode($model->getUsername()) . ' của bạn có  thể đăng nhập.');
+            if($model->validate()) {
+                // activate account
+                $user = $model->activateAccount();
+                if ($user) {
+                    Yii::$app->getSession()->setFlash('success',
+                        'Kích hoạt thành công! Tài khoản ' . Html::encode($model->getUsername()) . ' của bạn có  thể đăng nhập.');
 
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+                    if (Yii::$app->getUser()->login($user)) {
+                        return $this->goHome();
+                    }
                 }
+                return $this->redirect(Url::toRoute(['site/login']));
             }
-            return $this->redirect(Url::toRoute(['site/login']));
+            else {
+                Yii::$app->getSession()->setFlash('error',
+                    'Tài khoản ' . Html::encode($model->getUsername()) . ' của bạn không thể kích hoạt, hãy liên hệ lại với chúng tôi!');
+            }
         }
         else
         {
-            Yii::$app->getSession()->setFlash('error',
-                'Tài khoản '.Html::encode($model->getUsername()).' của bạn không thể kích hoạt, hãy liên hệ lại với chúng tôi!');
             return $this->render('accountActivation', [
                 'model' => $model,
             ]);

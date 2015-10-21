@@ -39,6 +39,7 @@ return [
                 'dang-ky' => 'site/signup',
                 'quen-mat-khau' => 'site/request-password-reset',
                 'dat-lai-mat-khau' => 'site/reset-password',
+                'thay-doi-mat-khau' => 'site/change-password',
                 'kich-hoat-tai-khoan' => 'site/activate-account',
                 '<slug>' => 'page/view',
                 '/' => 'site/index',

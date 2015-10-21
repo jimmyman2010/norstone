@@ -16,5 +16,8 @@ $this->title = 'Không tìm thấy trang.';
     <p>
         <?= Html::a('Quay lại trang chủ', ['site/index']) ?>
     </p>
-
+    <div style="display: none;">
+        <h2><?= $name ?></h2>
+        <h3><?= $message ?></h3>
+    </div>
 </div>

@@ -55,19 +55,29 @@ AppAsset::register($this);
             <div class="container">
                 <div class="top-left">
                     Hotline: <a class="tel" href="tel:<?= Config::findOne(['key' => 'PHONE'])->value ?>"><?= Config::findOne(['key' => 'PHONE'])->value ?></a> !
-                    <p>
+                    <div class="menu-account">
                         <?php if(Yii::$app->user->isGuest) { ?>
                             <?= Html::a('<i class="glyphicon glyphicon-user"></i> Đăng nhập', ['site/login']) ?>
                         <?php } else { ?>
-                            <i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !
-                            <?= Html::a('<i class="glyphicon glyphicon-log-out"></i> Đăng xuất', ['site/logout'], ['data'=>['method'=>'POST']]) ?>
+                            <span class="name"><i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !</span>
+                            <span class="gadget glyphicon glyphicon-triangle-bottom"></span>
+                        <ul>
+                            <li>
+                                <?= Html::a('<i class="glyphicon glyphicon-wrench"></i> Đổi mật khẩu', ['site/change-password']) ?>
+                            </li>
+                            <li>
+                                <?= Html::a('<i class="glyphicon glyphicon-log-out"></i> Đăng xuất', ['site/logout'], ['data'=>['method'=>'POST']]) ?>
+                            </li>
                             <?php
                             $role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
                             if(isset($role['admin'])) { ?>
-                                <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Đăng ký', ['site/signup']) ?>
+                                <li>
+                                    <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Đăng ký', ['site/signup']) ?>
+                                </li>
                             <?php } ?>
+                        </ul>
                         <?php } ?>
-                    </p>
+                    </div>
                 </div>
                 <div class="top-right">
                     <span><i class="glyphicon glyphicon-road"></i><?= Config::findOne(['key' => 'ADDRESS'])->value ?></span>

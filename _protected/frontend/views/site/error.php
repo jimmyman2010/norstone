@@ -21,7 +21,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
             <li><span class="page-title">Lỗi</span></li>
         </ul>
         <div class="module-content page-detail">
-            <h1>Không tìm thấy trang</h1>
+            <h1><?= $message ?></h1>
             <div class="page-content rte">
                 <div class="hidden">
                     <h2><?= $name ?></h2>

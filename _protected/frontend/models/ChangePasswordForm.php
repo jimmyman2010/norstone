@@ -1,5 +1,13 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 10/21/2015
+ * Time: 10:38 AM
+ */
+
 namespace frontend\models;
+
 
 use common\models\User;
 use nenad\passwordStrength\StrengthValidator;
@@ -7,11 +15,9 @@ use yii\base\InvalidParamException;
 use yii\base\Model;
 use Yii;
 
-/**
- * Class representing account activation.
- */
-class AccountActivationForm extends Model
+class ChangePasswordForm extends Model
 {
+    public $password_old;
     public $password;
     public $password_confirm;
 
@@ -23,23 +29,17 @@ class AccountActivationForm extends Model
     /**
      * Creates the user object given a token.
      *
-     * @param  string $token  Account activation token.
      * @param  array  $config Name-value pairs that will be used to initialize the object properties.
-     *                        
+     *
      * @throws \yii\base\InvalidParamException  If token is empty or not valid.
      */
-    public function __construct($token, $config = [])
+    public function __construct($config = [])
     {
-        if (empty($token) || !is_string($token)) 
-        {
-            throw new InvalidParamException('Token không được để trống.');
-        }
+        $this->_user = User::findOne(Yii::$app->user->id);
 
-        $this->_user = User::findByAccountActivationToken($token);
-
-        if (!$this->_user) 
+        if (!$this->_user)
         {
-            throw new InvalidParamException('Không tìm thấy token này.');
+            throw new InvalidParamException('Bạn không có quyền vào trang này.');
         }
 
         parent::__construct($config);
@@ -53,11 +53,20 @@ class AccountActivationForm extends Model
     public function rules()
     {
         return [
-            [['password', 'password_confirm'], 'required'],
-            ['password_confirm','compare','compareAttribute'=>'password'],
+            [['password_old', 'password', 'password_confirm'], 'required'],
             // use passwordStrengthRule() method to determine password strength
             $this->passwordStrengthRule(),
+            ['password_old', 'passwordOldChecking'],
+            ['password_confirm','compare','compareAttribute'=>'password'],
         ];
+    }
+
+    public function passwordOldChecking($attribute, $params) {
+        $user = $this->_user;
+        if($user->validatePassword($this->password_old))
+        {
+            $this->addError($attribute, 'Mật khẩu cũ không đúng.');
+        }
     }
 
     /**
@@ -91,39 +100,22 @@ class AccountActivationForm extends Model
     public function attributeLabels()
     {
         return [
-            'password' => 'Mật khẩu',
-            'password_confirm' => 'Nhắc lại mật khẩu',
+            'password_old' => 'Mật khẩu cũ',
+            'password' => 'Mật khẩu mới',
+            'password_confirm' => 'Nhắc lại mật khẩu mới',
         ];
     }
 
     /**
-     * Activates account.
+     * Change password.
      *
-     * @return User|null|static
+     * @return bool Whether the password was reset.
      */
-    public function activateAccount()
+    public function changePassword()
     {
         $user = $this->_user;
-
         $user->setPassword($this->password);
-        $user->status = User::STATUS_ACTIVE;
-        $user->removeAccountActivationToken();
 
-        if($user->save()) {
-            return $user;
-        }
-        return null;
-    }
-
-    /**
-     * Returns the username of the user who has activated account.
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        $user = $this->_user;
-
-        return $user->username;
+        return $user->save();
     }
 }
