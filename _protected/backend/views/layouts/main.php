@@ -89,7 +89,19 @@ if(!isset($role['admin'])) {
                                         'label' => 'Tổng quan hoạt động',
                                         'url' => ['site/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-home"></i>{label}</a>',
-                                        'visible' => isset($role['admin'])
+                                        'visible' => isset($role['admin']),
+                                        'items' => [
+                                            [
+                                                'label' => 'Cấu hình chung',
+                                                'url' => ['config/general'],
+                                                'visible' => isset($role['admin'])
+                                            ],
+                                            [
+                                                'label' => 'Sắp xếp sản phẩm nổi bật',
+                                                'url' => ['config/featured'],
+                                                'visible' => isset($role['admin'])
+                                            ]
+                                        ]
                                     ],
                                     [
                                         'label' => 'Quản lý sản phẩm',

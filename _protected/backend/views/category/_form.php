@@ -61,7 +61,7 @@ $this->registerJs("
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
                         'editorOptions' => [
                             'inline' => false,
-                            'language' => 'en',
+                            'language' => 'vi',
                             'toolbar' => [
                                 ['name' => 'styles', 'items' => [ 'Format' ]],
                                 ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],

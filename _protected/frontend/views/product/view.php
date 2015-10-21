@@ -141,7 +141,9 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         <div class="widget-title" id="general">
                             <header><h2>Tổng quan</h2></header>
                             <div class="product-content rte table-responsive">
+                                <?= Config::findOne(['key' => 'GENERAL_TOP'])->value ?>
                                 <?= $model->general ?>
+                                <?= Config::findOne(['key' => 'GENERAL_BOTTOM'])->value ?>
                             </div>
                         </div>
                     <?php if($model->info_tech) { ?>

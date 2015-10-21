@@ -96,10 +96,6 @@ class ProductController extends FrontendController {
                 $query->orderBy('tbl_product.price ASC');
                 break;
             }
-            case 'gg':{
-                $query->orderBy('tbl_product.price DESC');
-                break;
-            }
             case 'az':{
                 $query->orderBy('tbl_product.name ASC');
                 break;
@@ -108,8 +104,9 @@ class ProductController extends FrontendController {
                 $query->orderBy('tbl_product.name DESC');
                 break;
             }
+            case 'gg':
             default: {
-                $query->orderBy('tbl_product.id DESC');
+                $query->orderBy('tbl_product.price DESC');
                 break;
             }
         }
@@ -150,10 +147,6 @@ class ProductController extends FrontendController {
                 $query->orderBy('tbl_product.price ASC');
                 break;
             }
-            case 'gg':{
-                $query->orderBy('tbl_product.price DESC');
-                break;
-            }
             case 'az':{
                 $query->orderBy('tbl_product.name ASC');
                 break;
@@ -162,8 +155,9 @@ class ProductController extends FrontendController {
                 $query->orderBy('tbl_product.name DESC');
                 break;
             }
+            case 'gg':
             default: {
-                $query->orderBy('tbl_product.id DESC');
+                $query->orderBy('tbl_product.price DESC');
                 break;
             }
         }

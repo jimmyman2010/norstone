@@ -108,8 +108,8 @@ class SiteController extends Controller
         return $this->render('index', [
             'featured' => $featured,
             'dataProvider' => $dataProvider,
-            'hpList' => $queryHp->all(),
-            'dellList' => $queryDell->all()
+            'hpList' => $queryHp->orderBy('price DESC')->all(),
+            'dellList' => $queryDell->orderBy('price DESC')->all()
         ]);
     }
 

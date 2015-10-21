@@ -71,7 +71,7 @@ $this->registerJs("
                         <?= $form->field($model, 'content')->widget(CKEditor::className(), [
                             'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],[
                                 'inline' => false,
-                                'language' => 'en',
+                                'language' => 'vi',
                                 'toolbar' => [
                                     ['name' => 'styles', 'items' => [ 'Format' ]],
                                     ['name' => 'document', 'items' => [ 'Templates' ]],

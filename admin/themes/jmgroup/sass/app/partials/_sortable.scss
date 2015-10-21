@@ -2,9 +2,6 @@
     .feature-products{
         @include clearfix;
         padding-bottom: rem-calc(15);
-        .action-buttons{
-            margin: 30px 0 0;
-        }
     }
     .related {
         .connected {

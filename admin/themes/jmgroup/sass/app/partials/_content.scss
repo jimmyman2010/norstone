@@ -17,3 +17,8 @@
         margin-top: 26px;
     }
 }
+
+.action-buttons{
+    @include clearfix;
+    margin: 20px 0 0 20px;
+}

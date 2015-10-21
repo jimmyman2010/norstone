@@ -22,7 +22,6 @@ use yii\helpers\Html;
                         ['label' => 'Blog', 'url' => ['news/index']],
                         ['label' => 'Hướng dẫn mua hàng', 'url' => ['page/view', 'slug' => 'huong-dan-mua-hang']],
                         ['label' => 'Liên hệ', 'url' => ['site/contact']],
-                        ['label' => 'Đăng nhập', 'url' => ['site/login']],
                     ]
                 ]) ?>
             </li>

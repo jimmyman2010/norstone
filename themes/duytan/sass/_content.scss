@@ -303,11 +303,12 @@
     margin-top: 15px;
     .widget-title{
         header{
-            background-color: #f6f6f6;
+            @include background-image(linear-gradient(#FFE000, #FF9C00));
             font-weight: 600;
             font-size: 15px;
             h2{
-                padding: 14px 15px;
+                color: #fff;
+                padding: 10px 15px;
             }
         }
     }

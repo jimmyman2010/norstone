@@ -37,6 +37,12 @@ class BackendController extends Controller
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
+                    [
+                        'controllers' => ['config'],
+                        'actions' => ['general', 'featured'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
 
                 ], // rules
 

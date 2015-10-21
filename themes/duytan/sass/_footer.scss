@@ -41,6 +41,7 @@
         }
     }
     .menu-footer{
+        display: none;
         .mainmenu{
             @include clearfix;
             padding: 0 0 15px;

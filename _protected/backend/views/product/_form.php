@@ -102,7 +102,7 @@ $this->registerJs("
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
                         'editorOptions' => [
                             'inline' => false,
-                            'language' => 'en',
+                            'language' => 'vi',
                             'toolbar' => [
                                 ['name' => 'styles', 'items' => [ 'Format' ]],
                                 ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
@@ -226,7 +226,7 @@ $this->registerJs("
                                 <?= $form->field($model, 'general')->widget(CKEditor::className(), [
                                     'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],[
                                         'inline' => false,
-                                        'language' => 'en',
+                                        'language' => 'vi',
                                         'toolbar' => [
                                             ['name' => 'styles', 'items' => [ 'Format' ]],
                                             ['name' => 'document', 'items' => [ 'Templates' ]],
@@ -247,7 +247,7 @@ $this->registerJs("
                                 <?= $form->field($model, 'info_tech')->widget(CKEditor::className(), [
                                     'editorOptions' => [
                                         'inline' => false,
-                                        'language' => 'en',
+                                        'language' => 'vi',
                                         'toolbar' => [
                                             ['name' => 'insert', 'items' => [ 'Table']],
                                             ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],

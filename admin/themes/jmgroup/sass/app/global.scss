@@ -105,7 +105,7 @@ body{
             line-height: rem-calc(30);
             color: #333;
         }
-        &.active a:not(.button) {
+        &.active > a:not(.button) {
             border-left: rem-calc(3) solid #0171B8;
             margin-left: rem-calc(-3);
             background: #f2f6f9;
