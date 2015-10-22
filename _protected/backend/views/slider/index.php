@@ -33,14 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
-                        'attribute' => '#',
-                        'format' => 'html',
-                        'value' => function($data) {
-                            $img = UtilHelper::getPicture($data->image, 'thumb-list', true);
-                            return Html::a(Html::img($img, ['width'=>'100']), ['update', 'id' => $data->id]);
-                        }
-                    ],
-                    [
                         'attribute'=>'name',
                         'format'=>'html',
                         'value'=> function($data) {

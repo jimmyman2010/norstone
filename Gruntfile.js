@@ -31,9 +31,12 @@ module.exports = function(grunt) {
                         'admin/themes/jmgroup/js/app/*.js',
                         'admin/themes/jmgroup/js/general/*.js'
                     ],
-                    'admin/themes/jmgroup/js/page-builder.min.js': [
-                        'admin/themes/jmgroup/js/page-builder/*.js'
-                    ],
+					'admin/themes/jmgroup/js/page-builder.min.js': [
+						'admin/themes/jmgroup/js/page-builder/*.js'
+					],
+					'admin/themes/jmgroup/js/system.min.js': [
+						'admin/themes/jmgroup/js/system/*.js'
+					],
                     'admin/themes/jmgroup/js/watermask.min.js': [
                         'admin/themes/jmgroup/js/watermask/*.js'
                     ],

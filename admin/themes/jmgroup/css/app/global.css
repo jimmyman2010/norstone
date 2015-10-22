@@ -2780,6 +2780,25 @@ span.dynatree-drop-target.dynatree-drop-reject {
   clear: both;
 }
 
+/* line 31, ../../sass/app/partials/_content.scss */
+.field-content-content .control-label,
+.field-content-summary .control-label {
+  display: none;
+}
+
+/* line 37, ../../sass/app/partials/_content.scss */
+.slide-content .image img,
+.banner-content .image img {
+  height: 100px;
+  margin-right: 10px;
+}
+/* line 41, ../../sass/app/partials/_content.scss */
+.slide-content button,
+.banner-content button {
+  padding: 5px 18px;
+  color: white;
+}
+
 /* line 4, ../../sass/app/modules/_page-builder.scss */
 .page-builder {
   background: #fcfcfc;

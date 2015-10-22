@@ -26,3 +26,20 @@
     @include clearfix;
     margin: 20px 0 0;
 }
+.field-content-content,
+.field-content-summary {
+    .control-label {
+        display: none;
+    }
+}
+.slide-content,
+.banner-content {
+    .image img {
+        height: 100px;
+        margin-right: 10px;
+    }
+    button{
+        padding: 5px 18px;
+        color: white;
+    }
+}

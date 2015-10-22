@@ -4,18 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Content;
 use yii\helpers\Url;
-use backend\assets\PageBuilderAsset;
-use mihaildev\ckeditor\CKEditor;
-use mihaildev\elfinder\ElFinder;
-use mihaildev\elfinder\InputFile;
-use yii\web\JsExpression;
+use backend\assets\SystemAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
 /* @var $contentElement common\models\ContentElement */
 /* @var $form yii\widgets\ActiveForm */
 
-PageBuilderAsset::register($this);
+SystemAsset::register($this);
 
 $this->registerJs("
     $('#content-name').on('blur', function(){
@@ -40,6 +36,41 @@ $this->registerJs("
     });
 ");
 
+use mihaildev\elfinder\AssetsCallBack;
+use mihaildev\elfinder\ElFinder;
+use \yii\helpers\Json;
+
+AssetsCallBack::register($this);
+
+$buttonOptions = [
+    'id' => 'el-button-banner',
+    'type' => 'button',
+    'class' => 'small round'
+];
+$managerOptions = [
+    'language' => 'vi',
+    'filter' => 'image',
+    'path' => 'image',
+    'callback' => 'el-banner',
+    'width' => 'auto',
+    'height' => 'auto'
+];
+$managerOptions['url'] = ElFinder::getManagerUrl('elfinder', $managerOptions);
+$managerOptions['id'] = $managerOptions['callback'];
+
+$this->registerJs("
+    mihaildev.elFinder.register(" . Json::encode($managerOptions['id']) . ", function(file, id){
+        $('#content-summary').val(file.url);
+        $('.banner-content .image').html('<img src=\"' + file.url + '\" alt=\"\" />');
+        return true;
+    });
+"); // register callback Function
+$this->registerJs("
+    $(document).on('click', '#" . $buttonOptions['id'] . "', function(){
+        mihaildev.elFinder.openManager(" . Json::encode($managerOptions) . ");
+    });
+");//on click button open manager
+
 ?>
 
 <div class="page-form row">
@@ -50,18 +81,17 @@ $this->registerJs("
 
     <div class="large-8 columns">
         <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
-        <div class="form-group field-content-summary required">
-            <label class="control-label" for="content-summary"><?= Yii::t('app', 'Banner') ?></label>
-            <?= InputFile::widget([
-                'controller' => 'elfinder',
-                'path'       => 'image',
-                'filter'     => 'image',
-                'template'   => '<div class="row"><span class="columns large-6">{input}</span><span class="columns large-6">{button}</span></div>',
-                'name'       => 'Content[summary]',
-                'id'         => 'content-summary',
-                'value'      => $model->summary,
-                'buttonOptions'     => ['class' => 'small button radius info']
-            ]); ?>
+        <?= $form->field($model, 'summary')->hiddenInput() ?>
+        <div class="form-group">
+            <label class="control-label">Banner</label>
+            <div class="banner-content">
+                <span class="image">
+                    <?php if($model->updated_date > 0) { ?>
+                        <img src="<?= $model->summary ?>" alt="" />
+                    <?php } ?>
+                </span>
+                <?= Html::button('Chọn', $buttonOptions);?>
+            </div>
         </div>
         <div class="form-group">
             <label class="control-label"><?= Yii::t('app', 'Link') ?></label>
