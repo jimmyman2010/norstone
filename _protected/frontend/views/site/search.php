@@ -43,9 +43,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                                 <span>Sắp xếp</span>
                                 <?php $orderBy = Yii::$app->getRequest()->getQueryParam('orderby'); ?>
                                 <select>
-                                    <option value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term')]) ?>">Mặc định</option>
+                                    <option value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term')]) ?>">Giá giảm</option>
                                     <option <?= $orderBy === 'gt' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'gt']) ?>">Giá tăng</option>
-                                    <option <?= $orderBy === 'gg' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'gg']) ?>">Giá giảm</option>
                                     <option <?= $orderBy === 'az' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'az']) ?>">Tên A - Z</option>
                                     <option <?= $orderBy === 'za' ? 'selected="selected"' : '' ?> value="<?= Url::toRoute(['site/search', 'term' => Yii::$app->request->get('term'), 'orderby' => 'za']) ?>">Tên Z - A</option>
                                 </select>
