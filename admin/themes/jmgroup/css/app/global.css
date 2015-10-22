@@ -1857,6 +1857,33 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
 }
 
+/* line 25, ../../sass/app/partials/_general.scss */
+.product-search {
+  padding-top: 20px;
+}
+/* line 27, ../../sass/app/partials/_general.scss */
+.product-search label {
+  display: none;
+}
+/* line 30, ../../sass/app/partials/_general.scss */
+.product-search input {
+  width: 300px;
+}
+/* line 33, ../../sass/app/partials/_general.scss */
+.product-search select {
+  width: 200px;
+}
+/* line 36, ../../sass/app/partials/_general.scss */
+.product-search button {
+  padding: 8px 20px;
+  color: #fff;
+}
+/* line 40, ../../sass/app/partials/_general.scss */
+.product-search .form-group {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 /* line 3, ../../sass/app/partials/_form.scss */
 input[type="text"],
 input[type="password"],

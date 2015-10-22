@@ -157,4 +157,21 @@ class Category extends \yii\db\ActiveRecord
         }
         return $result;
     }
+
+    /**
+     * @param int $type
+     * @return array
+     */
+    public static function getTreeView($type = 0)
+    {
+        $result = [];
+        $parent = self::getParents(0, $type);
+        foreach($parent as $papa) {
+            $result[$papa->id] = $papa->name;
+            foreach(Category::find()->where(['activated' => 1, 'deleted' => 0, 'parent_id' => $papa->id])->orderBy('sorting')->all() as $child) {
+                $result[$child->id] = '|__' . $child->name;
+            }
+        }
+        return $result;
+    }
 }

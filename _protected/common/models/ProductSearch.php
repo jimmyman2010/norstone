@@ -75,11 +75,14 @@ class ProductSearch extends Product
             // $query->where('0=1');
             return $dataProvider;
         }
+        if(!empty($this->price_init)) {
+            $query->innerJoin('tbl_product_category pc', 'tbl_product.id = pc.product_id');
+            $query->andWhere(['pc.category_id' => $this->price_init]);
+        }
 
         $query->andFilterWhere([
             'id' => $this->id,
             'image_id' => $this->image_id,
-            'price_init' => $this->price_init,
             'price' => $this->price,
             'is_hot' => $this->is_hot,
             'is_discount' => $this->is_discount,

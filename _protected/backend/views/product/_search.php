@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ProductSearch */
@@ -15,43 +16,14 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php echo $form->field($model, 'name')->textInput(['placeholder' => 'Tên sản phẩm']) ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?php echo $form->field($model, 'price_init')->dropDownList(Category::getTreeView(), ['prompt' => '- Danh mục -']) ?>
 
-    <?= $form->field($model, 'slug') ?>
-
-    <?= $form->field($model, 'category_id') ?>
-
-    <?= $form->field($model, 'image_id') ?>
-
-    <?php // echo $form->field($model, 'description') ?>
-
-    <?php // echo $form->field($model, 'general') ?>
-
-    <?php // echo $form->field($model, 'info_tech') ?>
-
-    <?php // echo $form->field($model, 'price') ?>
-
-    <?php // echo $form->field($model, 'price_new') ?>
-
-    <?php // echo $form->field($model, 'percent') ?>
-
-    <?php // echo $form->field($model, 'viewed') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'published_date') ?>
-
-    <?php // echo $form->field($model, 'created_date') ?>
-
-    <?php // echo $form->field($model, 'created_by') ?>
-
-    <?php // echo $form->field($model, 'deleted') ?>
+    <?php echo $form->field($model, 'status')->dropDownList($model->getStatusList(), ['prompt' => '- Trạng thái -']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Tìm', ['class' => 'small round']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

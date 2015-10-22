@@ -21,3 +21,24 @@ h1, h2, h3, h4, h5, h6{
         height: auto;
     }
 }
+
+.product-search{
+    padding-top: 20px;
+    label{
+        display: none;
+    }
+    input{
+        width: 300px;
+    }
+    select{
+        width: 200px;
+    }
+    button{
+        padding: 8px 20px;
+        color: #fff;
+    }
+    .form-group{
+        display: inline-block;
+        margin-right: 10px;
+    }
+}

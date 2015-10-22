@@ -84,7 +84,7 @@ class Product extends \yii\db\ActiveRecord
             'is_hot' => 'Sản phẩm hot',
             'is_discount' => 'Sản phẩm giảm giá',
             'viewed' => Yii::t('app', 'Viewed'),
-            'status' => Yii::t('app', 'Status'),
+            'status' => 'Trạng thái',
             'seo_title' => Yii::t('app', 'Seo Title'),
             'seo_keyword' => Yii::t('app', 'Seo Keyword'),
             'seo_description' => Yii::t('app', 'Seo Description'),
