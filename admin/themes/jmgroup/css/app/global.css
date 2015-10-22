@@ -2148,13 +2148,13 @@ textarea:focus {
 }
 /* line 7, ../../sass/app/partials/_sortable.scss */
 .site-index .related .connected {
-  height: 39.25rem;
-  max-height: 39.25rem;
+  height: 800px;
+  max-height: 800px;
 }
 /* line 13, ../../sass/app/partials/_sortable.scss */
 .site-index .search .connected {
-  height: 28.4375rem;
-  max-height: 28.4375rem;
+  height: 645px;
+  max-height: 645px;
 }
 
 /* line 20, ../../sass/app/partials/_sortable.scss */
@@ -2753,16 +2753,30 @@ span.dynatree-drop-target.dynatree-drop-reject {
 }
 
 /* line 21, ../../sass/app/partials/_content.scss */
-.action-buttons {
-  margin: 20px 0 0 20px;
+.general-info .action-buttons {
+  margin: 20px;
 }
 /* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.action-buttons:before, .action-buttons:after {
+.general-info .action-buttons:before, .general-info .action-buttons:after {
   content: " ";
   display: table;
 }
 /* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.action-buttons:after {
+.general-info .action-buttons:after {
+  clear: both;
+}
+
+/* line 25, ../../sass/app/partials/_content.scss */
+.feature-products .action-buttons {
+  margin: 20px 0 0;
+}
+/* line 172, ../../sass/vendor/foundation/components/_global.scss */
+.feature-products .action-buttons:before, .feature-products .action-buttons:after {
+  content: " ";
+  display: table;
+}
+/* line 173, ../../sass/vendor/foundation/components/_global.scss */
+.feature-products .action-buttons:after {
   clear: both;
 }
 

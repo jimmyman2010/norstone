@@ -8,13 +8,13 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\ContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'News');
+$this->title = 'Quản lý bài viết';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="page-index">
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption"><?= Html::encode($this->title) ?></div>
+            <div class="caption">Danh sách bài viết</div>
             <div class="action">
                 <ul class="button-group">
                     <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round', 'data' => ['reveal-id' => 'create']]) ?></li>
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="portlet-body has-padding">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-            <?php Pjax::begin(['id' => 'tags']) ?>
+            <?php Pjax::begin(['id' => 'news']) ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,

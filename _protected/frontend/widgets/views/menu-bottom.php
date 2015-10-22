@@ -30,7 +30,7 @@ use yii\helpers\Html;
     <div class="col-sm-4">
         <ul class="mainmenu">
             <?php foreach($treeCategory as $index => $category) { ?>
-                <?php if($category['show_in_menu'] && $index === 0) { ?>
+                <?php if($category['show_in_menu'] && $category['id'] === 262) { ?>
                     <li class="has-submenu">
                         <?= Html::a($category['name'], ['product/category', 'id' => $category['id'], 'slug' => $category['slug']]) ?>
                         <ul class="submenu">
@@ -51,7 +51,7 @@ use yii\helpers\Html;
                 <a href="javascript:void(0);">Khác</a>
                 <ul class="submenu">
             <?php foreach($treeCategory as $index => $category) { ?>
-                <?php if($category['show_in_menu'] && $index !== 0 & $index !== 1) { ?>
+                <?php if($category['show_in_menu'] && $category['id'] !== 262 && $category['id'] !== 261) { ?>
                     <li>
                         <?= Html::a($category['name'],
                             ['product/category', 'id' => $category['id'], 'slug' => $category['slug']]) ?>
@@ -65,7 +65,7 @@ use yii\helpers\Html;
     <div class="col-sm-4">
         <ul class="mainmenu">
             <?php foreach($treeCategory as $index => $category) { ?>
-                <?php if($category['show_in_menu'] && $index === 1) { ?>
+                <?php if($category['show_in_menu'] && $category['id'] === 261) { ?>
                     <li class="has-submenu">
                         <?= Html::a($category['name'], ['product/category', 'id' => $category['id'], 'slug' => $category['slug']]) ?>
                         <ul class="submenu">

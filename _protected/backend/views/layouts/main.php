@@ -182,38 +182,38 @@ if(!isset($role['admin'])) {
     </div>
     <?php
     $this->registerJs("
-        var goLockScreen = false;
-        var stop = false;
-        var autoLockTimer;
-        window.onload = resetTimer;
-        window.onmousemove = resetTimer;
-        window.onmousedown = resetTimer; // catches touchscreen presses
-        window.onclick = resetTimer;     // catches touchpad clicks
-        window.onscroll = resetTimer;    // catches scrolling with arrow keys
-        window.onkeypress = resetTimer;
-
-        function lockScreen() {
-            stop = true;
-            window.location.href = '" . Url::toRoute(['/site/lock-screen']) . "?previous='+encodeURIComponent(window.location.href);
-        }
-
-        function lockIdentity(){
-            goLockScreen = true;
-        }
-
-        function resetTimer() {
-            if(stop==true){
-
-            }
-            else if (goLockScreen) {
-                lockScreen();
-            }
-            else{
-                clearTimeout(autoLockTimer);
-                autoLockTimer = setTimeout(lockIdentity, " . (Yii::$app->session->timeout * 1000) . ");  // time is in milliseconds
-            }
-
-        }
+//        var goLockScreen = false;
+//        var stop = false;
+//        var autoLockTimer;
+//        window.onload = resetTimer;
+//        window.onmousemove = resetTimer;
+//        window.onmousedown = resetTimer; // catches touchscreen presses
+//        window.onclick = resetTimer;     // catches touchpad clicks
+//        window.onscroll = resetTimer;    // catches scrolling with arrow keys
+//        window.onkeypress = resetTimer;
+//
+//        function lockScreen() {
+//            stop = true;
+//            window.location.href = '" . Url::toRoute(['/site/lock-screen']) . "?previous='+encodeURIComponent(window.location.href);
+//        }
+//
+//        function lockIdentity(){
+//            goLockScreen = true;
+//        }
+//
+//        function resetTimer() {
+//            if(stop==true){
+//
+//            }
+//            else if (goLockScreen) {
+//                lockScreen();
+//            }
+//            else{
+//                clearTimeout(autoLockTimer);
+//                autoLockTimer = setTimeout(lockIdentity, " . (Yii::$app->session->timeout * 1000) . ");  // time is in milliseconds
+//            }
+//
+//        }
 
         $(document).foundation();
     ");

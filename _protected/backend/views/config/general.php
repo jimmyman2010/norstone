@@ -33,7 +33,7 @@ $this->title = 'Cấu hình chung | ' . Yii::$app->name;
                                 <i class="fa fa-flash"></i>Thông tin chung
                             </div>
                         </div>
-                        <div class="portlet-body feature-products">
+                        <div class="portlet-body general-info">
                             <?php $form = ActiveForm::begin([
                                 'id' => 'general-form'
                             ]); ?>
