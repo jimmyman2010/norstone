@@ -47,7 +47,7 @@ class SliderController extends BackendController {
         $searchModel = new ContentSearch();
         $params = Yii::$app->request->queryParams;
         $params['ContentSearch']['content_type'] = Content::TYPE_SLIDER;
-        $dataProvider = $searchModel->search($params);
+        $dataProvider = $searchModel->search($params, true);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -203,6 +203,21 @@ class SliderController extends BackendController {
         $model->save(false);
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $idList
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionSorting($idList)
+    {
+        foreach (explode(',', $idList) as $index => $id) {
+            $model = $this->findModel($id);
+            $model->sorting = $index + 1;
+            $model->save(false);
+        }
+        return true;
     }
 
 }

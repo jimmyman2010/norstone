@@ -108,7 +108,7 @@ $this->registerJs("
 
     <div class="large-12 columns">
         <div class="row">
-            <div class="large-12 columns">
+            <div class="large-8 columns">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
                 <?= $form->field($model, 'summary')->hiddenInput() ?>
                 <?= $form->field($model, 'content')->hiddenInput() ?>
@@ -135,6 +135,9 @@ $this->registerJs("
                         <?= Html::button('Chọn', $buttonOptions2);?>
                     </div>
                 </div>
+            </div>
+            <div class="large-4 columns">
+                <?= $form->field($model, 'sorting') ?>
             </div>
         </div>
         <div class="row">

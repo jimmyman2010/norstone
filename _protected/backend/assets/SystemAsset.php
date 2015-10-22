@@ -27,6 +27,8 @@ class SystemAsset extends AssetBundle
 
     ];
     public $js = [
+        'js/vendor/jquery-ui.sortable.min.js',
+        //'js/vendor/jquery.sortable.min.js',
         'js/system.min.js'
     ];
 

@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use common\helpers\UtilHelper;
+use yii\helpers\Url;
+use backend\assets\SystemAsset;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ContentSearch */
@@ -11,6 +12,9 @@ use common\helpers\UtilHelper;
 
 $this->title = 'Quản lý banner';
 $this->params['breadcrumbs'][] = $this->title;
+
+SystemAsset::register($this);
+
 ?>
 <article class="page-index">
     <div class="portlet">
@@ -22,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </div>
         </div>
-        <div class="portlet-body has-padding">
+        <div class="portlet-body has-padding system" data-url="<?= Url::toRoute(['sorting']) ?>">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
             <?php Pjax::begin(['id' => 'widgets']) ?>
             <?= GridView::widget([

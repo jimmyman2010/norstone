@@ -33,7 +33,7 @@ class BackendController extends Controller
                     ],
                     [
                         'controllers' => ['page', 'news', 'slider', 'widget', 'banner', 'content-element', 'category', 'gallery', 'product', 'tag'],
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'checkingduplicated', 'show-in-menu', 'active', 'switch'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'checkingduplicated', 'show-in-menu', 'active', 'switch', 'sorting'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],

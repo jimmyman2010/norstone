@@ -36,14 +36,20 @@ class ContentSearch extends Content
      * Creates data provider instance with search query applied
      *
      * @param array $params
+     * @param bool $sorting
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $sorting = false)
     {
         $query = Content::find();
         $query->where('deleted = 0');
-        $query->orderBy('created_date DESC');
+        if($sorting) {
+            $query->orderBy('sorting');
+        }
+        else {
+            $query->orderBy('created_date DESC');
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
