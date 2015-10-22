@@ -44,29 +44,44 @@ $this->params['breadcrumbs'][] = $this->title;
                         </td>
                         <td>
                             <?= Html::a('', ['show-in-menu', 'id' => $item['id']],
-                                ['class' => intval($item['show_in_menu']) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Show in menu', 'data-confirm'=>"Are you sure you want to change state this category?", 'data-method'=>"post"]) ?>
+                                ['class' => intval($item['show_in_menu']) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Show in menu',
+                                    'data' =>[
+                                        'confirm'=>"Are you sure you want to change state this category?",
+                                        'data-method'=>"post"
+                                    ]
+                                ]) ?>
                         </td>
                         <td>
                             <?= Html::a('', ['active', 'id' => $item['id']],
-                                ['class' => intval($item['activated']) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Active category', 'data-confirm'=>"Are you sure you want to change state this category?", 'data-method'=>"post"]) ?>
+                                ['class' => intval($item['activated']) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Active category',
+                                    'data' => [
+                                        'confirm' => "Are you sure you want to change state this category?",
+                                        'method'=>"post"
+                                    ]
+                                ]) ?>
                         </td>
                         <td>
                             <?php if($index > 0) { ?>
                                 <?= Html::a('', ['switch', 'id' => $item['id'], 'oid' => $result[$index-1]['id']],
-                                    ['class' => 'fa fa-arrow-circle-up', 'title' => 'Up', 'data-method'=>"post"]) ?>
+                                    ['class' => 'fa fa-arrow-circle-up', 'title' => 'Up', 'data' => ['method' => "post"]]) ?>
                             <?php } else { ?>
                                 <a class="fa fa-ban" style="visibility: hidden"></a>
                             <?php } ?>
                             <?php if($index < count($result)-1) { ?>
                                 <?= Html::a('', ['switch', 'id' => $item['id'], 'oid' => $result[$index+1]['id']],
-                                    ['class' => 'fa fa-arrow-circle-down', 'title' => 'Down', 'data-method'=>"post"]) ?>
+                                    ['class' => 'fa fa-arrow-circle-down', 'title' => 'Down', 'data' => ['method' => "post"]]) ?>
                             <?php } ?>
                         </td>
                         <td>
                             <?= Html::a('', ['update', 'id' => $item['id']],
                                 ['class' => 'fa fa-pencil-square-o', 'title' => 'Manage category']) ?>
                             <?= Html::a('', ['delete', 'id' => $item['id']],
-                                ['class' => 'fa fa-trash-o', 'title' => 'Delete category', 'data-confirm'=>"Are you sure you want to delete this category?", 'data-method'=>"post"]) ?>
+                                ['class' => 'fa fa-trash-o', 'title' => 'Delete category',
+                                    'data' => [
+                                        'confirm' => "Are you sure you want to delete this category?",
+                                        'data-method'=>"post"
+                                    ]
+                                ]) ?>
                         </td>
                     </tr>
                     <?php foreach($item['children'] as $inx => $child) { ?>
@@ -77,29 +92,48 @@ $this->params['breadcrumbs'][] = $this->title;
                             </td>
                             <td style="padding-left: 50px">
                                 <?= Html::a('', ['show-in-menu', 'id' => $child->id],
-                                    ['class' => intval($child->show_in_menu) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Show in menu', 'data-confirm'=>"Are you sure you want to change state this category?", 'data-method'=>"post"]) ?>
+                                    [
+                                        'class' => intval($child->show_in_menu) === 1 ? 'fa fa-check' : 'fa fa-remove',
+                                        'title' => 'Show in menu',
+                                        'data' => [
+                                            'confirm' => "Are you sure you want to change state this category?",
+                                            'method'=>"post"
+                                        ]
+                                    ]) ?>
                             </td>
                             <td style="padding-left: 50px">
                                 <?= Html::a('', ['active', 'id' => $child->id],
-                                    ['class' => $child->activated === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Active category', 'data-confirm'=>"Are you sure you want to change state this category?", 'data-method'=>"post"]) ?>
+                                    [
+                                        'class' => $child->activated === 1 ? 'fa fa-check' : 'fa fa-remove',
+                                        'title' => 'Active category',
+                                        'data' => [
+                                            'confirm' => "Are you sure you want to change state this category?",
+                                            'method'=>"post"
+                                        ]
+                                    ]) ?>
                             </td>
                             <td style="padding-left: 50px">
                                 <?php if($inx > 0) { ?>
                                     <?= Html::a('', ['switch', 'id' => $child->id, 'oid' => $item['children'][$inx-1]->id],
-                                        ['class' => 'fa fa-arrow-circle-up', 'title' => 'Up', 'data-method'=>"post"]) ?>
+                                        ['class' => 'fa fa-arrow-circle-up', 'title' => 'Up', 'data' => ['method' => "post"]]) ?>
                                 <?php } else { ?>
                                     <a class="fa fa-ban" style="visibility: hidden"></a>
                                 <?php } ?>
                                 <?php if($inx < count($item['children'])-1) { ?>
                                     <?= Html::a('', ['switch', 'id' => $child->id, 'oid' => $item['children'][$inx+1]->id],
-                                        ['class' => 'fa fa-arrow-circle-down', 'title' => 'Down', 'data-method'=>"post"]) ?>
+                                        ['class' => 'fa fa-arrow-circle-down', 'title' => 'Down', 'data' => ['method' => "post"]]) ?>
                                 <?php } ?>
                             </td>
                             <td style="padding-left: 50px">
                                 <?= Html::a('', ['update', 'id' => $child->id],
                                     ['class' => 'fa fa-pencil-square-o', 'title' => 'Manage category']) ?>
                                 <?= Html::a('', ['delete', 'id' => $child->id],
-                                    ['class' => 'fa fa-trash-o', 'title' => 'Delete category', 'data-confirm'=>"Are you sure you want to delete this category?", 'data-method'=>"post"]) ?>
+                                    ['class' => 'fa fa-trash-o', 'title' => 'Delete category',
+                                        'data' => [
+                                            'confirm'=>"Are you sure you want to delete this category?",
+                                            'method'=>"post"
+                                        ]
+                                    ]) ?>
                             </td>
                         </tr>
                     <?php } ?>

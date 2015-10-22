@@ -189,4 +189,19 @@ class BannerController extends BackendController {
         return $exist === null;
     }
 
+    /**
+     * @param $id
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionActive($id)
+    {
+        $model = $this->findModel($id);
+        $model->show_in_menu = !$model->show_in_menu;
+
+        $model->save(false);
+
+        return $this->redirect(['index']);
+    }
+
 }

@@ -94,44 +94,6 @@ class SliderController extends BackendController {
     }
 
     /**
-     * @param int $slideId
-     * @param array $pictureData
-     * @return void
-     */
-    protected function updatePicture($slideId, $pictureData)
-    {
-        $fileList = [];
-        if(is_array($pictureData)) {
-            foreach ($pictureData as $index => $value) {
-                if (($modelFile = File::findOne(intval($value['id']))) !== null) {
-                    if (!empty($value['caption'])) {
-                        $modelFile->caption = $value['caption'];
-                    }
-                    $modelFile->deleted = 0;
-                    $modelFile->save(false);
-                    array_push($fileList, $modelFile->id);
-
-                    if (($modelContentFile = ContentFile::findOne(['content_id' => $slideId, 'file_id' => intval($value['id'])])) !== null) {
-                        $modelContentFile->deleted = 0;
-                    } else {
-                        $modelContentFile = new ContentFile();
-                        $modelContentFile->content_id = $slideId;
-                        $modelContentFile->file_id = $modelFile->id;
-                    }
-                    $modelContentFile->save(false);
-                }
-            }
-        }
-
-        $contentFileObjects = ContentFile::findAll(['content_id'=>$slideId]);
-        foreach ($contentFileObjects as $object) {
-            if(!in_array($object->file_id, $fileList)){
-                $object->delete();
-            }
-        }
-    }
-
-    /**
      * Updates an existing Content model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -159,7 +121,6 @@ class SliderController extends BackendController {
 
             $model->updated_date = time();
             if($model->save()) {
-                $this->updatePicture($model->id, isset(Yii::$app->request->post()['Picture']) ? Yii::$app->request->post()['Picture'] : []);
                 return $this->redirect(['index']);
             }
         } else {
@@ -227,6 +188,21 @@ class SliderController extends BackendController {
             }
         }
         return $exist === null;
+    }
+
+    /**
+     * @param $id
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionActive($id)
+    {
+        $model = $this->findModel($id);
+        $model->show_in_menu = !$model->show_in_menu;
+
+        $model->save(false);
+
+        return $this->redirect(['index']);
     }
 
 }

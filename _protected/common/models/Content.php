@@ -85,7 +85,7 @@ class Content extends \yii\db\ActiveRecord
             'seo_title' => Yii::t('app', 'SEO Title'),
             'seo_keyword' => Yii::t('app', 'SEO Keyword'),
             'seo_description' => Yii::t('app', 'SEO Description'),
-            'show_in_menu' => Yii::t('app', 'Show In Menu'),
+            'show_in_menu' => 'Kích hoạt',
             'updated_date' => Yii::t('app', 'Updated Date'),
             'sorting' => 'Sắp xếp',
             'created_date' => Yii::t('app', 'Created Date'),

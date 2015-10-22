@@ -46,6 +46,20 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $data->statusName;
                         }
                     ],
+                    [
+                        'attribute' => 'show_in_menu',
+                        'format'=>'raw',
+                        'value' => function($data) {
+                            return Html::a('', ['active', 'id' => $data->id],
+                                [
+                                    'title'=>'Kích hoạt',
+                                    'class' => $data->show_in_menu === 1 ? 'fa fa-check' : 'fa fa-remove',
+                                    'data' => [
+                                        'confirm' => "Bạn muốn đổi trạng thái?",
+                                        'method' => 'post']
+                                ]);
+                        }
+                    ],
                     // buttons
                     ['class' => 'yii\grid\ActionColumn',
                         'header' => "Menu",
