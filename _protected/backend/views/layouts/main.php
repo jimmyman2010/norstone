@@ -123,9 +123,15 @@ if(!isset($role['admin'])) {
                                         'visible' => isset($role['admin'])
                                     ],
                                     [
-                                        'label' => 'Quản lý Tags',
-                                        'url' => ['tag/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-tags"></i>{label}</a>',
+                                        'label' => 'Quản lý Slide',
+                                        'url' => ['slider/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-indent"></i>{label}</a>',
+                                        'visible' => isset($role['admin'])
+                                    ],
+                                    [
+                                        'label' => 'Quản lý Banner',
+                                        'url' => ['banner/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-columns"></i>{label}</a>',
                                         'visible' => isset($role['admin'])
                                     ],
                                     [
@@ -142,21 +148,15 @@ if(!isset($role['admin'])) {
                                         'visible' => isset($role['admin'])
                                     ],
                                     [
-                                        'label' => 'Quản lý Slide',
-                                        'url' => ['slider/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-indent"></i>{label}</a>',
-                                        'visible' => isset($role['admin'])
-                                    ],
-                                    [
-                                        'label' => 'Quản lý Banner',
-                                        'url' => ['banner/index'],
-                                        'template' => '<a href="{url}"><i class="fa fa-columns"></i>{label}</a>',
-                                        'visible' => isset($role['admin'])
-                                    ],
-                                    [
                                         'label' => 'Quản lý trang',
                                         'url' => ['page/index'],
                                         'template' => '<a href="{url}"><i class="fa fa-clipboard"></i>{label}</a>',
+                                        'visible' => isset($role['admin'])
+                                    ],
+                                    [
+                                        'label' => 'Quản lý Tags',
+                                        'url' => ['tag/index'],
+                                        'template' => '<a href="{url}"><i class="fa fa-tags"></i>{label}</a>',
                                         'visible' => isset($role['admin'])
                                     ],
                                 ],
@@ -178,7 +178,7 @@ if(!isset($role['admin'])) {
         <?php $this->endBody() ?>
     </div>
     <div class="copyright">
-        2015 &copy; <?= Yii::$app->name ?>. Powered by <?= Html::a('Man Tran', 'http://www.mantrantd.com', ['target' => '_blank']) ?>
+        2015 &copy; <?= Yii::$app->name ?>.<br/>Powered by <?= Html::a('Man Tran', 'http://www.mantrantd.com', ['target' => '_blank']) ?>
     </div>
     <?php
     $this->registerJs("

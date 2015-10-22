@@ -5,10 +5,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 6, ../../sass/app/partials/_general.scss */
 .copyright {
-  text-align: center;
   font-size: 0.8rem;
   padding-top: 8px;
   color: #fff;
+  padding-left: 15px;
 }
 
 /* line 14, ../../sass/app/partials/_general.scss */

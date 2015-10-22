@@ -6,6 +6,7 @@ use frontend\assets\SliderAsset;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider; */
+/* @var $slide common\models\Content; */
 
 SliderAsset::register($this);
 
@@ -22,8 +23,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
             <div class="slider single-item">
                 <?php foreach ($dataProvider->getModels() as $index => $slide) { ?>
                 <div class="item"<?= $index > 0 ? ' style="display:none" ' : '' ?>>
-                    <img class="desktop" src="<?= UtilHelper::getPicture($slide->image_id, 'feature-desktop', true) ?>" title="#htmlcaption-<?= $index + 1 ?>" alt="" />
-                    <img class="phone" src="<?= UtilHelper::getPicture($slide->image_id, 'feature-phone', true) ?>" title="#htmlcaption-<?= $index + 1 ?>" alt="" />
+                    <img class="desktop" src="<?= $slide->summary ?>" title="<?= $slide->name ?>" alt="<?= $slide->name ?>" />
+                    <img class="phone" src="<?= $slide->content ?>" title="<?= $slide->name ?>" alt="<?= $slide->name ?>" />
                 </div>
                 <?php } ?>
             </div>
