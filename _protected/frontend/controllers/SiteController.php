@@ -99,7 +99,10 @@ class SiteController extends Controller
 
         $searchModel = new ContentSearch();
         $params = Yii::$app->request->queryParams;
-        $params['ContentSearch']['content_type'] = Content::TYPE_SLIDER;
+        $params['ContentSearch'] = [
+            'content_type' => Content::TYPE_SLIDER,
+            'show_in_menu' => 1
+        ];
         $dataProvider = $searchModel->search($params);
 
         $queryHp = Product::getProductByChildCategory(262);

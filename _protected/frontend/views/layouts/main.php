@@ -94,7 +94,8 @@ AppAsset::register($this);
                             'content_type' => Content::TYPE_BANNER,
                             'status' => Content::STATUS_PUBLISHED,
                             'deleted' => 0,
-                            'parent_id' => 0
+                            'parent_id' => 0,
+                            'show_in_menu' => 1
                         ])->orderBy('sorting')->all();
                         ?>
                         <?php foreach ($widget as $index => $item) { ?>
@@ -111,7 +112,8 @@ AppAsset::register($this);
                             'content_type' => Content::TYPE_BANNER,
                             'status' => Content::STATUS_PUBLISHED,
                             'deleted' => 0,
-                            'parent_id' => 1
+                            'parent_id' => 1,
+                            'show_in_menu' => 1
                         ])->orderBy('sorting')->all();
                         ?>
                         <?php foreach ($widget as $index => $item) { ?>
@@ -215,7 +217,8 @@ AppAsset::register($this);
                                     'content_type' => Content::TYPE_BANNER,
                                     'status' => Content::STATUS_PUBLISHED,
                                     'deleted' => 0,
-                                    'parent_id' => 2
+                                    'parent_id' => 2,
+                                    'show_in_menu' => 1
                                 ])->orderBy('sorting')->all();
                                 ?>
                                 <?php foreach ($widget as $index => $item) { ?>
