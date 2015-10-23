@@ -22,7 +22,7 @@ return [
                     'name' => Yii::t('app', 'User upload'),
                 ]
             ],
-            'watermark' => [
+            /*'watermark' => [
                 'source'         => __DIR__.'/logo.png', // Path to Water mark image
                 'marginRight'    => 5,          // Margin right pixel
                 'marginBottom'   => 5,          // Margin bottom pixel
@@ -30,7 +30,7 @@ return [
                 'transparency'   => 70,         // Water mark image transparency ( other than PNG )
                 'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
                 'targetMinPixel' => 200         // Target image minimum pixel size
-            ]
+            ]*/
         ]
     ],
     'components' => [
