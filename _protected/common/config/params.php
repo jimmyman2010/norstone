@@ -40,11 +40,11 @@ return [
      * Email used in contact form.
      * Users will send you emails to this address.
      */
-    'adminEmail' => 'admin@example.com', 
+    'adminEmail' => 'duytancomputer350@gmail.com',
 
     /**
      * Not used in template.
      * You can set support email here.
      */
-    'supportEmail' => 'support@example.com',
+    'supportEmail' => 'duytancomputer350@gmail.com',
 ];
