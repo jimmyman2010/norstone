@@ -103,6 +103,7 @@ img {
 }
 .rte h2, .rte h3, .rte h4, .rte h5 {
   font-family: 'Open Sans Condensed', sans-serif;
+  margin-bottom: 5px;
 }
 .rte h2 {
   font-size: 20px;
