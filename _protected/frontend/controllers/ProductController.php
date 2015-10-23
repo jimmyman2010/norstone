@@ -52,13 +52,13 @@ class ProductController extends FrontendController {
         $relatedList = Product::find()
             ->innerJoin('tbl_product_related', 'tbl_product_related.related_id = tbl_product.id')
             ->where(['tbl_product.deleted' => 0, 'tbl_product_related.deleted' => 0, 'tbl_product_related.product_id' => $id])
-            ->all();
+            ->orderBy('sorting')->all();
         if(count($relatedList) === 0) {
             $relatedList = Product::find()
                 ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
                 ->where(['tbl_product.deleted' => 0, 'tbl_product_category.deleted' => 0, 'tbl_product_category.category_id' => $category->id])
                 ->andWhere(['!=', 'tbl_product.id', $id])
-                ->all();
+                ->orderBy('price DESC')->all();
         }
         $tags = Tag::find()
             ->innerJoin('tbl_product_tag', 'tbl_product_tag.tag_id = tbl_tag.id')
