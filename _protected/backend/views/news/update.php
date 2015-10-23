@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Content */
 
-$this->title = 'Cập nhật tin tức';
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'News'), 'url' => ['index']];
+$this->title = 'Cập nhật bài viết';
+$this->params['breadcrumbs'][] = ['label' => 'Danh sách bài viết', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

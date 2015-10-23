@@ -15,7 +15,7 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html xmlns:fb="http://ogp.me/ns/fb#">
+<html lang="<?= Yii::$app->language ?>" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -244,7 +244,8 @@ AppAsset::register($this);
                         <div class="col-md-4">
                             <div class="contact-info">
                                 <h4>Chăm sóc Khách Hàng:</h4>
-                                <p class="tel"><a href="tel:08 62788887">(08) 62788887</a> <br/> <a href="tel:<?= Config::findOne(['key' => 'PHONE'])->value ?>"><?= Config::findOne(['key' => 'PHONE'])->value ?></a></p>
+                                <p class="tel"><a href="tel:<?= Config::findOne(['key' => 'PHONE_2'])->value ?>"><?= Config::findOne(['key' => 'PHONE_2'])->value ?></a>
+                                    <br/> <a href="tel:<?= Config::findOne(['key' => 'PHONE'])->value ?>"><?= Config::findOne(['key' => 'PHONE'])->value ?></a></p>
                                 <p>E-mail: <a href="mailto:<?= Config::findOne(['key' => 'EMAIL'])->value ?>"><?= Config::findOne(['key' => 'EMAIL'])->value ?></a></p>
                                 <p><?= Config::findOne(['key' => 'ADDRESS'])->value ?></p>
                             </div>

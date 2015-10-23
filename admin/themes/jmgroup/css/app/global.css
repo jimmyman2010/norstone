@@ -2780,19 +2780,19 @@ span.dynatree-drop-target.dynatree-drop-reject {
   clear: both;
 }
 
-/* line 31, ../../sass/app/partials/_content.scss */
-.field-content-content .control-label,
-.field-content-summary .control-label {
+/* line 32, ../../sass/app/partials/_content.scss */
+.system .field-content-content .control-label,
+.system .field-content-summary .control-label {
   display: none;
 }
 
-/* line 37, ../../sass/app/partials/_content.scss */
+/* line 39, ../../sass/app/partials/_content.scss */
 .slide-content .image img,
 .banner-content .image img {
   height: 100px;
   margin-right: 10px;
 }
-/* line 41, ../../sass/app/partials/_content.scss */
+/* line 43, ../../sass/app/partials/_content.scss */
 .slide-content button,
 .banner-content button {
   padding: 5px 18px;

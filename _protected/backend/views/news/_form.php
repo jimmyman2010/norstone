@@ -63,7 +63,7 @@ $this->registerJs("
             <section role="tabpanel" aria-hidden="false" class="row content active" id="panel2-1">
                 <div class="large-9 columns">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
-                    <?= $form->field($model, 'summary')->textarea(['row' => 3]) ?>
+                    <?= $form->field($model, 'summary')->textarea(['row' => 5]) ?>
                     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
                         'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],[
                             'inline' => false,
