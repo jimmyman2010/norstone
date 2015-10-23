@@ -31,8 +31,6 @@ return [
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
-            'timeout' => 1100,
-
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
