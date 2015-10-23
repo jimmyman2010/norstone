@@ -95,9 +95,12 @@ $(function(){
             var that = $(this);
             if(!that.hasClass('hover')) {
                 e.preventDefault();
-                that.siblings('li').removeClass('hover');
+                that.siblings('.has-submenu').removeClass('hover');
                 that.addClass('hover');
             }
+        });
+        $(window).on('scroll', function(){
+            $('.nav-left .mainmenu .has-submenu').removeClass('hover');
         });
     }
 
