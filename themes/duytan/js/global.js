@@ -90,4 +90,15 @@ $(function(){
         });
     }
 
+    if (Modernizr.touch) {
+        $('.nav-left .mainmenu .has-submenu').on('click', function(e){
+            var that = $(this);
+            if(!that.hasClass('hover')) {
+                e.preventDefault();
+                that.siblings('li').removeClass('hover');
+                that.addClass('hover');
+            }
+        });
+    }
+
 });
