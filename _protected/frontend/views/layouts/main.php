@@ -30,9 +30,16 @@ AppAsset::register($this);
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css' />
     <link rel="publisher" href="https://plus.google.com/<?= Config::findOne(['key' => 'GOOGLE_PUBLISHER'])->value ?>" />
     <link rel="canonical" href="<?= Url::canonical() ?>" />
-
-    <script src="<?= Yii::$app->view->theme->baseUrl ?>/js/lib/modernizr.min.js"></script>
     <?php $this->head() ?>
+    <script src="<?= Yii::$app->view->theme->baseUrl ?>/js/lib/modernizr.min.js"></script>
+    <script type="text/javascript">
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>',
+                status: true, cookie: true, xfbml: true, version: 'v2.5'
+            });
+        };
+    </script>
 </head>
 <body>
 <div id="fb-root"></div>
@@ -276,7 +283,7 @@ AppAsset::register($this);
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>";
+        js.src = "//connect.facebook.net/vi_VN/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 

@@ -101,7 +101,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                             <?php } ?>
                         <?php } ?>
                         <?php if($model->discount) { ?>
-                            <li>Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng có tài khoản.</li>
+                            <li class="text">Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng có tài khoản.</li>
                         <?php } ?>
                     </ul>
                     <div class="product-description rte" itemprop="description">

@@ -114,12 +114,13 @@
             padding: 5px;
             &.slick-current{
                 @include opacity(0.5);
+                border: 1px solid;
             }
         }
     }
     .price{
         li {
-            &:last-child{
+            &.text{
                 border-top: 1px solid #ebebeb;
                 margin-top: 15px;
                 padding-top: 15px;
@@ -173,8 +174,13 @@
         }
     }
 }
+.addthis_native_toolbox{
+    position: absolute;
+    z-index: 1500;
+}
 .information{
     @include clearfix;
+    margin-top: 20px;
 }
 .widget{
     margin: 20px 0;

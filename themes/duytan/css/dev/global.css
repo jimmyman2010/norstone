@@ -773,8 +773,9 @@ img {
 .product-detail .slider-nav a.slick-current {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
+  border: 1px solid;
 }
-.product-detail .price li:last-child {
+.product-detail .price li.text {
   border-top: 1px solid #ebebeb;
   margin-top: 15px;
   padding-top: 15px;
@@ -826,9 +827,15 @@ img {
   border-top-style: dashed;
 }
 
+.addthis_native_toolbox {
+  position: absolute;
+  z-index: 1500;
+}
+
 .information {
   overflow: hidden;
   *zoom: 1;
+  margin-top: 20px;
 }
 
 .widget {
