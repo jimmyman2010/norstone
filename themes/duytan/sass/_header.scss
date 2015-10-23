@@ -72,14 +72,13 @@
         margin-left: 50px;
         img {
             height: 60px;
-            margin: 0 0 3px 0px;
+            margin: 0 0 3px 0;
             width: 120px;
         }
         figcaption {
-            font-weight: bold;
-            font-size: 12px;
-            letter-spacing: -0.05em;
-            color: #303EF8;
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 15px;
+            color: #313FF8;
         }
     }
     .main-menu {
@@ -169,8 +168,7 @@
             color: #C5C5C5;
         }
         button{
-            font-weight: 800;
-            color: #B70504;
+            font-family: 'Open Sans Condensed', sans-serif;            color: #B70504;
             position: absolute;
             left: 332px;
             top: 0;

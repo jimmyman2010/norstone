@@ -102,7 +102,23 @@ img {
   font-style: italic;
 }
 .rte h2, .rte h3, .rte h4, .rte h5 {
-  font-weight: 600;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.rte h2 {
+  font-size: 20px;
+  line-height: 24px;
+}
+.rte h3 {
+  font-size: 18px;
+  line-height: 22px;
+}
+.rte h4 {
+  font-size: 16px;
+  line-height: 20px;
+}
+.rte h5 {
+  font-size: 14px;
+  line-height: 17px;
 }
 .rte ul {
   list-style: disc inside;
@@ -202,14 +218,13 @@ img {
 }
 .header .logo img {
   height: 60px;
-  margin: 0 0 3px 0px;
+  margin: 0 0 3px 0;
   width: 120px;
 }
 .header .logo figcaption {
-  font-weight: bold;
-  font-size: 12px;
-  letter-spacing: -0.05em;
-  color: #303EF8;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  color: #313FF8;
 }
 .header .main-menu {
   display: none;
@@ -325,7 +340,7 @@ img {
   color: #C5C5C5;
 }
 .header-bar .main-search button {
-  font-weight: 800;
+  font-family: 'Open Sans Condensed', sans-serif;
   color: #B70504;
   position: absolute;
   left: 332px;
@@ -455,7 +470,7 @@ img {
   background-image: -moz-linear-gradient(#ffffff, #ededed);
   background-image: -webkit-linear-gradient(#ffffff, #ededed);
   background-image: linear-gradient(#ffffff, #ededed);
-  font-weight: 800;
+  font-family: 'Open Sans Condensed', sans-serif;
   font-size: 15px;
   height: 35px;
   line-height: 35px;
@@ -591,8 +606,8 @@ img {
   padding: 18px 0 10px;
   border-bottom: 1px dotted #CECECE;
   margin: 0 0 10px;
-  font-weight: 600;
-  font-size: 20px;
+  font-family: 'Open Sans Condensed',sans-serif;
+  font-size: 24px;
 }
 .page-form-detail .page-content {
   line-height: 24px;
@@ -746,8 +761,8 @@ img {
   padding: 18px 0 10px;
   border-bottom: 1px dotted #CECECE;
   margin: 0 0 10px;
-  font-weight: 600;
-  font-size: 20px;
+  font-family: 'Open Sans Condensed',sans-serif;
+  font-size: 24px;
 }
 .product-detail .product-image img {
   width: 100%;
@@ -774,7 +789,7 @@ img {
 }
 .product-detail .price li .new {
   font-size: 20px;
-  font-weight: 800;
+  font-family: 'Open Sans Condensed', sans-serif;
   color: #f04331;
   display: inline-block;
   margin-right: 10px;
@@ -899,8 +914,8 @@ img {
   padding: 18px 0 10px;
   border-bottom: 1px dotted #CECECE;
   margin: 0 0 10px;
-  font-weight: 600;
-  font-size: 20px;
+  font-family: 'Open Sans Condensed',sans-serif;
+  font-size: 24px;
 }
 .category-detail header {
   overflow: hidden;
@@ -909,11 +924,11 @@ img {
 }
 .category-detail header .total-count {
   float: left;
-  margin: 14px 0 0;
+  margin: 14px 0;
 }
 .category-detail header .dropdownbox {
   float: right;
-  margin: 10px 0 8px;
+  margin: 0 0 8px;
   font-weight: normal;
 }
 
@@ -931,8 +946,8 @@ img {
   padding: 18px 0 10px;
   border-bottom: 1px dotted #CECECE;
   margin: 0 0 10px;
-  font-weight: 600;
-  font-size: 20px;
+  font-family: 'Open Sans Condensed',sans-serif;
+  font-size: 24px;
 }
 .page-detail .page-content {
   padding-bottom: 20px;
@@ -1031,7 +1046,7 @@ img {
 }
 .map-popup .name {
   display: block;
-  font-weight: 800;
+  font-family: 'Open Sans Condensed', sans-serif;
   color: #303EF8;
 }
 .map-popup .address {
@@ -1165,8 +1180,8 @@ img {
   padding: 18px 5px;
 }
 .footer .contact-info h4 {
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 16px;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 .footer .contact-info p {
   margin: 5px 0;
@@ -1194,7 +1209,7 @@ img {
 }
 .footer .menu-footer .mainmenu > li > a {
   font-size: 14px;
-  font-weight: 800;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 .footer .menu-footer .mainmenu > li ul {
   margin-top: 10px;
@@ -1535,10 +1550,9 @@ img {
   width: 120px;
 }
 .left-under .logo figcaption {
-  font-weight: bold;
-  font-size: 12px;
-  letter-spacing: -0.05em;
-  color: #303EF8;
+  font-family: 'Open Sans Condensed',sans-serif;
+  font-size: 15px;
+  color: #313FF8;
 }
 .left-under .close-under {
   position: absolute;

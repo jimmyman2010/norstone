@@ -53,7 +53,23 @@ img{
         font-style: italic;
     }
     h2,h3,h4,h5{
-        font-weight: 600;
+        font-family: 'Open Sans Condensed', sans-serif;
+    }
+    h2{
+        font-size: 20px;
+        line-height: 24px;
+    }
+    h3{
+        font-size: 18px;
+        line-height: 22px;
+    }
+    h4{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    h5{
+        font-size: 14px;
+        line-height: 17px;
     }
     ul{
         list-style: disc inside;
@@ -138,10 +154,9 @@ img{
             width: 120px;
         }
         figcaption {
-            font-weight: bold;
-            font-size: 12px;
-            letter-spacing: -0.05em;
-            color: #303EF8;
+            font-family: 'Open Sans Condensed',sans-serif;
+            font-size: 15px;
+            color: #313FF8;
         }
     }
     .close-under {

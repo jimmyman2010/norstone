@@ -101,8 +101,8 @@
         padding: 18px 0 10px;
         border-bottom: 1px dotted #CECECE;
         margin:0 0 10px;
-        font-weight: 600;
-        font-size: 20px;
+        font-family: 'Open Sans Condensed',sans-serif;
+        font-size: 24px;
     }
     .product-image{
         img{
@@ -134,7 +134,7 @@
             }
             .new {
                 font-size: 20px;
-                font-weight: 800;
+                font-family: 'Open Sans Condensed', sans-serif;
                 color: #f04331;
                 display: inline-block;
                 margin-right: 10px;
@@ -246,19 +246,19 @@
         padding: 18px 0 10px;
         border-bottom: 1px dotted #CECECE;
         margin:0 0 10px;
-        font-weight: 600;
-        font-size: 20px;
+        font-family: 'Open Sans Condensed',sans-serif;
+        font-size: 24px;
     }
     header{
         @include clearfix;
         font-size: 14px;
         .total-count{
             float: left;
-            margin: 14px 0 0;
+            margin: 14px 0;
         }
         .dropdownbox{
             float: right;
-            margin: 10px 0 8px;
+            margin: 0 0 8px;
             font-weight: normal;
         }
     }
@@ -273,8 +273,8 @@
         padding: 18px 0 10px;
         border-bottom: 1px dotted #CECECE;
         margin:0 0 10px;
-        font-weight: 600;
-        font-size: 20px;
+        font-family: 'Open Sans Condensed',sans-serif;
+        font-size: 24px;
     }
     .page-content{
         padding-bottom: 20px;
@@ -365,7 +365,7 @@
     }
     .name{
         display: block;
-        font-weight: 800;
+        font-family: 'Open Sans Condensed', sans-serif;
         color: #303EF8;
     }
     .address{

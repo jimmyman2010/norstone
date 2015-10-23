@@ -7,6 +7,7 @@ use common\models\ContentElement;
 use Yii;
 use common\models\Content;
 use common\models\ContentSearch;
+use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -89,7 +90,6 @@ class PageController extends BackendController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post())) {
             if(isset(Yii::$app->request->post()['Content']['slug'])) {
                 $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->slug), $id);
@@ -104,6 +104,10 @@ class PageController extends BackendController
                     $model->status = Content::STATUS_PUBLISHED;
                     $model->published_date = time();
                 }
+            }
+
+            if(empty($model->summary)) {
+                $model->summary = 'summary of ' . $model->name;
             }
 
             $model->updated_date = time();

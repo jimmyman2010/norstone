@@ -89,7 +89,7 @@
     .title{
         @include border-radius(5px 5px 0 0);
         @include background-image(linear-gradient(#FFFFFF, #EDEDED));
-        font-weight: 800;
+        font-family: 'Open Sans Condensed', sans-serif;
         font-size: 15px;
         height: 35px;
         line-height: 35px;
