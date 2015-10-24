@@ -1834,12 +1834,12 @@ select {
   cursor: pointer;
 }
 
-/* line 3, ../../sass/app/partials/_general.scss */
+/* line 4, ../../sass/app/partials/_general.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
-/* line 6, ../../sass/app/partials/_general.scss */
+/* line 7, ../../sass/app/partials/_general.scss */
 .copyright {
   text-align: center;
   font-size: 0.8rem;
@@ -1847,40 +1847,42 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-/* line 14, ../../sass/app/partials/_general.scss */
+/* line 15, ../../sass/app/partials/_general.scss */
 .tabs-content .content .tabs {
   border-top: 1px solid #EFEFEF;
 }
 
-/* line 20, ../../sass/app/partials/_general.scss */
+/* line 21, ../../sass/app/partials/_general.scss */
 .cke_reset_all textarea, .cke_reset_all input[type="text"], .cke_reset_all input[type="password"] {
   height: auto;
 }
 
-/* line 25, ../../sass/app/partials/_general.scss */
+/* line 26, ../../sass/app/partials/_general.scss */
 .product-search {
+  overflow: hidden;
+  *zoom: 1;
   padding-top: 20px;
 }
-/* line 27, ../../sass/app/partials/_general.scss */
+/* line 29, ../../sass/app/partials/_general.scss */
 .product-search label {
   display: none;
 }
-/* line 30, ../../sass/app/partials/_general.scss */
+/* line 32, ../../sass/app/partials/_general.scss */
 .product-search input {
   width: 300px;
 }
-/* line 33, ../../sass/app/partials/_general.scss */
+/* line 35, ../../sass/app/partials/_general.scss */
 .product-search select {
   width: 200px;
 }
-/* line 36, ../../sass/app/partials/_general.scss */
+/* line 38, ../../sass/app/partials/_general.scss */
 .product-search button {
   padding: 8px 20px;
   color: #fff;
 }
-/* line 40, ../../sass/app/partials/_general.scss */
+/* line 42, ../../sass/app/partials/_general.scss */
 .product-search .form-group {
-  display: inline-block;
+  float: left;
   margin-right: 10px;
 }
 
@@ -2135,16 +2137,9 @@ textarea:focus {
 
 /* line 2, ../../sass/app/partials/_sortable.scss */
 .site-index .feature-products {
+  overflow: hidden;
+  *zoom: 1;
   padding-bottom: 0.9375rem;
-}
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.site-index .feature-products:before, .site-index .feature-products:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.site-index .feature-products:after {
-  clear: both;
 }
 /* line 7, ../../sass/app/partials/_sortable.scss */
 .site-index .related .connected {
@@ -2754,30 +2749,16 @@ span.dynatree-drop-target.dynatree-drop-reject {
 
 /* line 21, ../../sass/app/partials/_content.scss */
 .general-info .action-buttons {
+  overflow: hidden;
+  *zoom: 1;
   margin: 20px;
-}
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.general-info .action-buttons:before, .general-info .action-buttons:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.general-info .action-buttons:after {
-  clear: both;
 }
 
 /* line 25, ../../sass/app/partials/_content.scss */
 .feature-products .action-buttons {
+  overflow: hidden;
+  *zoom: 1;
   margin: 20px 0 0;
-}
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.feature-products .action-buttons:before, .feature-products .action-buttons:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.feature-products .action-buttons:after {
-  clear: both;
 }
 
 /* line 32, ../../sass/app/partials/_content.scss */
@@ -2827,15 +2808,8 @@ span.dynatree-drop-target.dynatree-drop-reject {
   margin-top: 40px;
   border: 1px solid #e8e8e8;
   padding: 10px 5px;
-}
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.page-builder .pb-row:before, .page-builder .pb-row:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.page-builder .pb-row:after {
-  clear: both;
+  overflow: hidden;
+  *zoom: 1;
 }
 /* line 28, ../../sass/app/modules/_page-builder.scss */
 .page-builder .pb-row > .controls {
@@ -2869,15 +2843,8 @@ span.dynatree-drop-target.dynatree-drop-reject {
 /* line 55, ../../sass/app/modules/_page-builder.scss */
 .portlet-mini .portlet-mini-header {
   border-bottom: 1px solid #cccccc;
-}
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.portlet-mini .portlet-mini-header:before, .portlet-mini .portlet-mini-header:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.portlet-mini .portlet-mini-header:after {
-  clear: both;
+  overflow: hidden;
+  *zoom: 1;
 }
 /* line 58, ../../sass/app/modules/_page-builder.scss */
 .portlet-mini .portlet-mini-header .portlet-mini-title {
@@ -2892,14 +2859,10 @@ span.dynatree-drop-target.dynatree-drop-reject {
   margin: 20px;
 }
 
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-#content-using_page_builder:before, #content-using_page_builder:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-#content-using_page_builder:after {
-  clear: both;
+/* line 72, ../../sass/app/modules/_page-builder.scss */
+#content-using_page_builder {
+  overflow: hidden;
+  *zoom: 1;
 }
 /* line 74, ../../sass/app/modules/_page-builder.scss */
 #content-using_page_builder label {
@@ -2907,14 +2870,10 @@ span.dynatree-drop-target.dynatree-drop-reject {
   padding: 10px 30px 0 0;
 }
 
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.watermask-controls:before, .watermask-controls:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.watermask-controls:after {
-  clear: both;
+/* line 1, ../../sass/app/modules/_watermask.scss */
+.watermask-controls {
+  overflow: hidden;
+  *zoom: 1;
 }
 /* line 3, ../../sass/app/modules/_watermask.scss */
 .watermask-controls .button-group {
@@ -3422,15 +3381,8 @@ body .copyright {
 .portlet .portlet-title {
   border-bottom: 1px solid #eee;
   min-height: 2.75rem;
-}
-/* line 172, ../../sass/vendor/foundation/components/_global.scss */
-.portlet .portlet-title:before, .portlet .portlet-title:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../../sass/vendor/foundation/components/_global.scss */
-.portlet .portlet-title:after {
-  clear: both;
+  overflow: hidden;
+  *zoom: 1;
 }
 /* line 144, ../../sass/app/global.scss */
 .portlet .portlet-title .caption {

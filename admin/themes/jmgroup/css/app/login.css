@@ -1,9 +1,9 @@
-/* line 3, ../../sass/app/partials/_general.scss */
+/* line 4, ../../sass/app/partials/_general.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
-/* line 6, ../../sass/app/partials/_general.scss */
+/* line 7, ../../sass/app/partials/_general.scss */
 .copyright {
   text-align: center;
   font-size: 0.8rem;
@@ -11,40 +11,42 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-/* line 14, ../../sass/app/partials/_general.scss */
+/* line 15, ../../sass/app/partials/_general.scss */
 .tabs-content .content .tabs {
   border-top: 1px solid #EFEFEF;
 }
 
-/* line 20, ../../sass/app/partials/_general.scss */
+/* line 21, ../../sass/app/partials/_general.scss */
 .cke_reset_all textarea, .cke_reset_all input[type="text"], .cke_reset_all input[type="password"] {
   height: auto;
 }
 
-/* line 25, ../../sass/app/partials/_general.scss */
+/* line 26, ../../sass/app/partials/_general.scss */
 .product-search {
+  overflow: hidden;
+  *zoom: 1;
   padding-top: 20px;
 }
-/* line 27, ../../sass/app/partials/_general.scss */
+/* line 29, ../../sass/app/partials/_general.scss */
 .product-search label {
   display: none;
 }
-/* line 30, ../../sass/app/partials/_general.scss */
+/* line 32, ../../sass/app/partials/_general.scss */
 .product-search input {
   width: 300px;
 }
-/* line 33, ../../sass/app/partials/_general.scss */
+/* line 35, ../../sass/app/partials/_general.scss */
 .product-search select {
   width: 200px;
 }
-/* line 36, ../../sass/app/partials/_general.scss */
+/* line 38, ../../sass/app/partials/_general.scss */
 .product-search button {
   padding: 8px 20px;
   color: #fff;
 }
-/* line 40, ../../sass/app/partials/_general.scss */
+/* line 42, ../../sass/app/partials/_general.scss */
 .product-search .form-group {
-  display: inline-block;
+  float: left;
   margin-right: 10px;
 }
 
