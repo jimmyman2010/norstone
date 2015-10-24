@@ -36,12 +36,12 @@ use common\helpers\CurrencyHelper;
         </a>
     </h3>
     <p class="price">
-        <?= intval($product->price) === 0 ? '<span><nobr>Liên hệ</nobr></span>' : '<strong><nobr>' . CurrencyHelper::formatNumber($product->price) . '</nobr></strong>' ?>
+        <?= intval($product->price) === 0 ? '<span>Liên hệ</span>' : '<strong>' . CurrencyHelper::formatNumber($product->price) . '</strong>' ?>
         &nbsp;&nbsp;
         <?php if(!empty($product->price_string)) {
             $priceArray = Json::decode($product->price_string);
             if(intval($priceArray['month3']['old']) !== 0) { ?>
-        <em><nobr><?= $priceArray['month3']['old'] ?></nobr></em>
+        <em><?= $priceArray['month3']['old'] ?></em>
             <?php } } ?>
     </p>
 </article>
