@@ -18,16 +18,15 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="fb:app_id" content="<?= Config::findOne(['key' => 'FACEBOOK_APP_ID'])->value ?>" />
     <?= Html::csrfMetaTags() ?>
-    <base href="<?= Url::base(true) ?>">
     <title><?= $this->title ?></title>
     <link rel="icon" type="image/x-icon" href="<?= Yii::$app->view->theme->baseUrl ?>/images/favicon/favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="<?= Yii::$app->view->theme->baseUrl ?>/images/favicon/favicon.png" />
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic&subset=all' rel='stylesheet' type='text/css' />
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=all' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic&amp;subset=all' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&amp;subset=all' rel='stylesheet' type='text/css' />
     <link rel="publisher" href="https://plus.google.com/<?= Config::findOne(['key' => 'GOOGLE_PUBLISHER'])->value ?>" />
     <link rel="canonical" href="<?= Url::canonical() ?>" />
     <?php $this->head() ?>
@@ -146,7 +145,7 @@ AppAsset::register($this);
                 <nav class="main-menu" role="navigation">
                     <?= \frontend\widgets\MenuTop::widget() ?>
                 </nav>
-                <br clear="all" />
+                <div class="clearfix"></div>
                 <div class="header-bar">
                     <div class="main-search">
                         <form action="<?= Url::toRoute(['site/search']) ?>">
@@ -171,7 +170,7 @@ AppAsset::register($this);
                                     <?php if($contact['type'] === 'yahoo') { ?>
                                         <li>
                                             <a class="icon" href="ymsgr:sendim?<?= trim($contact['nickname']) ?>">
-                                                <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
+                                                <img src="<?= Url::toRoute(['site/yahoo-status', 'nickname' => trim($contact['nickname'])]) ?>" alt=""/>
                                             </a>
                                             <p>
                                                 <a class="name" href="ymsgr:sendim?<?= trim($contact['nickname']) ?>"><?= trim($contact['name']) ?></a>
@@ -181,7 +180,7 @@ AppAsset::register($this);
                                     <?php } else { ?>
                                         <li>
                                             <a class="icon" href="skype:<?= trim($contact['nickname']) ?>?chat">
-                                                <img src="<?= Url::toRoute(['site/skype-status', 'nickname' => trim($contact['nickname'])]) ?>"/>
+                                                <img src="<?= Url::toRoute(['site/skype-status', 'nickname' => trim($contact['nickname'])]) ?>" alt=""/>
                                             </a>
                                             <p>
                                                 <a class="name" href="skype:<?= trim($contact['nickname']) ?>?chat"><?= trim($contact['name']) ?></a>

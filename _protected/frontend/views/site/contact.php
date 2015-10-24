@@ -35,7 +35,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                         <?= $form->field($model, 'body', ['options' => ['class' => 'col-sm-12 form-group']])->textArea(['rows' => 6]) ?>
                         <?= $form->field($model, 'verifyCode', ['options' => ['class' => 'col-sm-6 form-group']])
                             ->widget(Captcha::className(), [
-                                'template' => '{image}<br clear="all"/>{input}'
+                                'template' => '{image}<div class="clearfix"></div>{input}'
                             ]) ?>
                         <div class="col-sm-6 form-group buttons">
                             <?= Html::submitButton(Yii::t('app', 'Gởi mail'), ['class' => 'btn btn-primary radius', 'name' => 'contact-button']) ?>

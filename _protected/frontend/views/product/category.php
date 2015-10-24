@@ -62,7 +62,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                             'product' => $product,
                         ]) ?>
                     <?php } ?>
-                    <br clear="all"/>
+                    <div class="clearfix"></div>
                     <nav class="pagination-bottom">
                         <?= LinkPager::widget([
                             'pagination'=>$dataProvider->pagination,

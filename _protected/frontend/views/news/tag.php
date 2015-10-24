@@ -86,7 +86,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                             <?= Html::a('Chi tiết <i class="glyphicon glyphicon-arrow-right"></i>', ['news/view', 'slug' => $news->slug], ['class' => 'read-more']) ?>
                         </article>
                     <?php } ?>
-                    <br clear="all"/>
+                    <div class="clearfix"></div>
                     <nav class="pagination-bottom">
                         <?= LinkPager::widget([
                             'pagination'=>$dataProvider->pagination,

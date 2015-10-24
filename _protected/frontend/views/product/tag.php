@@ -57,7 +57,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                                 'product' => $product,
                             ]) ?>
                         <?php } ?>
-                        <br clear="all"/>
+                        <div class="clearfix"></div>
                         <nav class="pagination-bottom">
                             <?= LinkPager::widget([
                                 'pagination'=>$dataProvider->pagination,
