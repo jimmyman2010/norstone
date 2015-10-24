@@ -270,7 +270,7 @@ AppAsset::register($this);
             <div class="copyright">
                 <div class="container">
                     <p>&copy; 2015 Duy Tan Computer</p>
-                    <p>Powered by <a href="http://www.mantrantd.com">Man Tran</a></p>
+                    <p>Powered by <a href="http://www.mantrantd.com" target="_blank">Man Tran</a></p>
                 </div>
             </div>
         </footer>
