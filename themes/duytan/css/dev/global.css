@@ -779,6 +779,12 @@ img {
 .product-detail .product-image img {
   width: 100%;
 }
+.product-detail .slider-nav {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #CECECE;
+}
 .product-detail .slider-nav a {
   padding: 5px;
 }
@@ -840,14 +846,19 @@ img {
 }
 
 .addthis_native_toolbox {
-  position: absolute;
   z-index: 1500;
+}
+.addthis_native_toolbox .addthis_default_style .at300b, .addthis_native_toolbox .addthis_default_style .at300bo, .addthis_native_toolbox .addthis_default_style .at300m {
+  padding: 5px 2px;
+}
+.addthis_native_toolbox .addthis_default_style .addthis_nonzero {
+  padding: 5px 2px;
+  height: 30px;
 }
 
 .information {
   overflow: hidden;
   *zoom: 1;
-  margin-top: 20px;
 }
 
 .widget {
@@ -1724,6 +1735,12 @@ img {
 
   .page-form-detail .field-loginform-rememberme {
     margin-bottom: 15px;
+  }
+
+  .product-detail .slider-nav {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   .footer .menu-footer {

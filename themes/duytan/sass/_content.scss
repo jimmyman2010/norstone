@@ -107,9 +107,14 @@
     .product-image{
         img{
             width: 100%;
+            //margin: 15px 0;
         }
     }
     .slider-nav{
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #CECECE;
         a {
             padding: 5px;
             &.slick-current{
@@ -175,12 +180,21 @@
     }
 }
 .addthis_native_toolbox{
-    position: absolute;
+    //position: absolute;
     z-index: 1500;
+    .addthis_default_style {
+        .at300b, .at300bo, .at300m {
+            padding: 5px 2px;
+        }
+        .addthis_nonzero {
+            padding: 5px 2px;
+            height: 30px;
+        }
+    }
 }
 .information{
     @include clearfix;
-    margin-top: 20px;
+    //margin-top: 20px;
 }
 .widget{
     margin: 20px 0;
