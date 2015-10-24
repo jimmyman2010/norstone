@@ -8,7 +8,9 @@ gulp.task('compass', function() {
     gulp.src('./sass/*.scss')
         .pipe(compass({
             css: 'css/dev',
-            sass: 'sass'
+            sass: 'sass',
+            comments: true,
+            style: 'compact'
         }))
         .pipe(minifyCss())
         .pipe(gulp.dest('css'));
