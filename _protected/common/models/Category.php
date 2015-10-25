@@ -149,8 +149,8 @@ class Category extends \yii\db\ActiveRecord
                 $tmpChild['id'] = $child->id;
                 $tmpChild['name'] = $child->name;
                 $tmpChild['slug'] = $child->slug;
-                $tmpChild['show_in_menu'] = $papa->show_in_menu;
-                $tmpChild['activated'] = $papa->activated;
+                $tmpChild['show_in_menu'] = $child->show_in_menu;
+                $tmpChild['activated'] = $child->activated;
                 $tmp['children'][] = $tmpChild;
             }
             $result[] = $tmp;
