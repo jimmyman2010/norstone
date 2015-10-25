@@ -126,7 +126,6 @@ class Content extends \yii\db\ActiveRecord
     {
         $statusArray = [
             self::STATUS_PUBLISHED    => 'Hiển thị',
-            self::STATUS_WAITING   => 'Chờ',
             self::STATUS_DRAFT => 'Tạm'
         ];
 

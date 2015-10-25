@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </td>
                         <td>
                             <?= Html::a('', ['show-in-menu', 'id' => $item['id']],
-                                ['class' => intval($item['show_in_menu']) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Show in menu',
+                                ['class' => intval($item['show_in_menu']) === 1 ? 'fa fa-eye' : 'fa fa-eye-slash', 'title' => 'Show in menu',
                                     'data' =>[
                                         'confirm'=>"Are you sure you want to change state this category?",
                                         'method'=>"post"
@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td style="padding-left: 50px">
                                 <?= Html::a('', ['show-in-menu', 'id' => $child->id],
                                     [
-                                        'class' => intval($child->show_in_menu) === 1 ? 'fa fa-check' : 'fa fa-remove',
+                                        'class' => intval($child->show_in_menu) === 1 ? 'fa fa-eye' : 'fa fa-eye-slash',
                                         'title' => 'Show in menu',
                                         'data' => [
                                             'confirm' => "Are you sure you want to change state this category?",

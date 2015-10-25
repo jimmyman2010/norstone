@@ -54,6 +54,21 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $data->statusName;
                         }
                     ],
+                    [
+                        'header' => 'Hiển thị',
+                        'format' => 'raw',
+                        'value' => function($data) {
+                            return Html::a('', ['active', 'id' => $data->id],
+                                [
+                                    'class' => intval($data->activated) === 1 ? 'active fa fa-eye' : 'active fa fa-eye-slash',
+                                    'title' => 'Show in menu',
+                                    'data' => [
+                                        'confirm' => "Are you sure you want to change state this category?",
+                                        'method'=>"post"
+                                    ]
+                                ]);
+                        }
+                    ],
                     // buttons
                     ['class' => 'yii\grid\ActionColumn',
                         'header' => "Menu",
@@ -81,5 +96,17 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </article>
+
+<?php
+$this->registerJs("
+$('#products').on('click', '.active', function(e){
+    var url = $(this).attr('href') + '?ajax=1';
+    $.post(url, function(){
+        $.pjax.reload({container: '#products'});
+    });
+    return false;
+});
+");
+?>
 
 <?= $this->render('_popup') ?>

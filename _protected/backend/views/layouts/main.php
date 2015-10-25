@@ -97,7 +97,7 @@ if(!isset($role['admin'])) {
                                                 'visible' => isset($role['admin'])
                                             ],
                                             [
-                                                'label' => 'Sắp xếp sản phẩm nổi bật',
+                                                'label' => 'Sắp xếp SP nổi bật',
                                                 'url' => ['config/featured'],
                                                 'visible' => isset($role['admin'])
                                             ]

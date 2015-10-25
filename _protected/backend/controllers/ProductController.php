@@ -360,6 +360,31 @@ class ProductController extends BackendController
     }
 
     /**
+     * @param $id
+     * @param int $ajax
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function actionActive($id, $ajax = 0) {
+        $model = $this->findModel($id);
+        $model->activated = intval(!$model->activated);
+        if($model->activated) {
+            $model->status = Product::STATUS_INSTOCK;
+        }
+        else {
+            $model->status = Product::STATUS_WAITING;
+        }
+        $model->save();
+
+        if($ajax) {
+            return true;
+        }
+        else {
+            return $this->redirect(['index']);
+        }
+    }
+
+    /**
      * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
