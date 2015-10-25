@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ['class' => intval($item['show_in_menu']) === 1 ? 'fa fa-check' : 'fa fa-remove', 'title' => 'Show in menu',
                                     'data' =>[
                                         'confirm'=>"Are you sure you want to change state this category?",
-                                        'data-method'=>"post"
+                                        'method'=>"post"
                                     ]
                                 ]) ?>
                         </td>
