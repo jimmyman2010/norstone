@@ -7,10 +7,10 @@
  */
 
 use yii\helpers\Url;
-use yii\helpers\Html;
 use common\helpers\UtilHelper;
 use yii\helpers\Json;
 use common\helpers\CurrencyHelper;
+use common\models\Product;
 
 /* @var $product common\models\Product */
 
@@ -36,6 +36,9 @@ use common\helpers\CurrencyHelper;
         </a>
     </h3>
     <p class="price">
+        <?php if($product->status === Product::STATUS_WAITING) { ?>
+            <span>Hết hàng</span>
+        <?php } else { ?>
         <?= intval($product->price) === 0 ? '<span>Liên hệ</span>' : '<strong>' . CurrencyHelper::formatNumber($product->price) . '</strong>' ?>
         &nbsp;&nbsp;
         <?php if(!empty($product->price_string)) {
@@ -43,5 +46,6 @@ use common\helpers\CurrencyHelper;
             if(intval($priceArray['month3']['old']) !== 0) { ?>
         <em><?= $priceArray['month3']['old'] ?></em>
             <?php } } ?>
+        <?php } ?>
     </p>
 </article>

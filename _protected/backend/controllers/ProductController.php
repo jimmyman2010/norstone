@@ -368,12 +368,6 @@ class ProductController extends BackendController
     public function actionActive($id, $ajax = 0) {
         $model = $this->findModel($id);
         $model->activated = intval(!$model->activated);
-        if($model->activated) {
-            $model->status = Product::STATUS_INSTOCK;
-        }
-        else {
-            $model->status = Product::STATUS_WAITING;
-        }
         $model->save();
 
         if($ajax) {

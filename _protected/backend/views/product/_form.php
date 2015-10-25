@@ -56,7 +56,7 @@ $this->registerJs("
                 </a>
             </li>
             <li class="tab-title" role="presentational" >
-                <a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">
+                <a href="#panel2-2" role="tab" tabindex="0" aria-selected="false" controls="panel2-2">
                     Nội dung
                 </a>
             </li>
@@ -148,6 +148,9 @@ $this->registerJs("
                     </div>
                 </div>
                 <div class="large-3 columns">
+                    <?php if($model->status !== Product::STATUS_DRAFT) { ?>
+                        <?= $form->field($model, 'status')->dropDownList($model->getStatusListEdit()) ?>
+                    <?php } ?>
                     <?= $form->field($model, 'is_hot')->checkbox() ?>
                     <?= $form->field($model, 'is_discount')->checkbox() ?>
                     <?= $form->field($model, 'discount')->textInput(['value' => CurrencyHelper::formatNumber($model->discount), 'class' => 'money-input']) ?>

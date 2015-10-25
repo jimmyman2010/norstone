@@ -94,7 +94,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $featured = Product::find()->innerJoin('tbl_arrangement', 'tbl_product.id = tbl_arrangement.content_id')
-            ->where(["tbl_product.deleted" => 0, "tbl_arrangement.deleted" => 0, "content_type" => Arrangement::TYPE_PRODUCT])
+            ->where(["tbl_product.activated" => 1, "tbl_product.deleted" => 0, "tbl_arrangement.deleted" => 0, "content_type" => Arrangement::TYPE_PRODUCT])
             ->orderBy('sorting')->all();
 
         $searchModel = new ContentSearch();
@@ -126,8 +126,9 @@ class SiteController extends Controller
 
         $query = Product::find();
         $query->where([
+            'tbl_product.activated' => 1,
             'tbl_product.deleted' => 0,
-            'status' => Product::STATUS_INSTOCK
+            'status' => Product::isShowing()
         ]);
 
         if(!empty($term)) {

@@ -122,6 +122,25 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
+     * Returns the array of possible product status values.
+     *
+     * @return array
+     */
+    public function getStatusListEdit()
+    {
+        $statusArray = [
+            self::STATUS_INSTOCK    => 'Còn hàng',
+            self::STATUS_WAITING   => 'Hết hàng',
+        ];
+
+        return $statusArray;
+    }
+
+    public static function isShowing(){
+        return [self::STATUS_INSTOCK, self::STATUS_WAITING];
+    }
+
+    /**
      * Returns the gallery status in nice format.
      *
      * @param null|integer $status Status integer value if sent to method.
@@ -158,10 +177,10 @@ class Product extends \yii\db\ActiveRecord
             if($i > 0)
                 $result = $slug . $i;
             if ($id === 0) {
-                $exist = Product::findOne(['slug' => $result]);
+                $exist = self::findOne(['slug' => $result]);
             }
             else {
-                $exist = Product::findOne(['AND', ['=', 'slug', $result], ['<>', 'id', $id]]);
+                $exist = self::findOne(['AND', ['=', 'slug', $result], ['<>', 'id', $id]]);
             }
             if($exist === null) {
                 break;
@@ -176,17 +195,19 @@ class Product extends \yii\db\ActiveRecord
      * @return static
      */
     public static function getProductByParentCategory($categoryId) {
-        $categoryObjects = Category::findAll(['deleted' => 0, 'parent_id' => $categoryId]);
+        $categoryObjects = Category::findAll(['activated' => 1, 'deleted' => 0, 'parent_id' => $categoryId]);
         $categoryArray = [$categoryId];
         foreach ($categoryObjects as $index => $category) {
             array_push($categoryArray, $category->id);
         }
-        $query = Product::find()
+        $query = self::find()
             ->distinct()
             ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
             ->where([
                 'tbl_product_category.deleted' => 0,
+                'tbl_product.activated' => 1,
                 'tbl_product.deleted' => 0,
+                'tbl_product.status' => self::isShowing(),
             ])
             ->andWhere(['IN', 'tbl_product_category.category_id', $categoryArray]);
         return $query;
@@ -197,11 +218,13 @@ class Product extends \yii\db\ActiveRecord
      * @return static
      */
     public static function getProductByChildCategory($categoryId) {
-        $query = Product::find()
+        $query = self::find()
             ->innerJoin('tbl_product_category', 'tbl_product_category.product_id = tbl_product.id')
             ->where([
                 'tbl_product_category.deleted' => 0,
+                'tbl_product.activated' => 1,
                 'tbl_product.deleted' => 0,
+                'tbl_product.status' => self::isShowing(),
                 'tbl_product_category.category_id' => $categoryId,
             ]);
         return $query;

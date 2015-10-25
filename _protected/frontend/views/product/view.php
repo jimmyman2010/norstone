@@ -13,6 +13,7 @@ use frontend\assets\SliderAsset;
 use yii\helpers\Json;
 use common\models\Config;
 use common\helpers\CurrencyHelper;
+use common\models\Product;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -73,35 +74,40 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
 
                 <div class="col-sm-7">
                     <ul class="price">
-                        <?php
-                        if(empty($model->price_string)) { ?>
+                        <?php if($model->status === Product::STATUS_WAITING) { ?>
                             <li>
-                                <strong>Bảo hành 3 tháng: </strong>
-                                <span class="new"><?= intval($model->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($model->price) ?></span>
+                                <span class="new" style="margin-top: 10px">Hết hàng</span>
                             </li>
-                            <?php
-                        } else {
-                            $priceArray = Json::decode($model->price_string);
-                            ?>
-                            <li>
-                                <strong>Bảo hành 3 tháng: </strong>
-                                <span class="new"><?= intval($priceArray['month3']['current']) === 0 ? 'Liên hệ' : $priceArray['month3']['current'] ?></span>
-                                <?php if(intval($priceArray['month3']['old']) !== 0) { ?>
-                                    <span class="old"><?= $priceArray['month3']['old'] ?></span>
-                                <?php } ?>
-                            </li>
-                            <?php if(!(intval($priceArray['month3']['current']) === 0 && intval($priceArray['month12']['current']) === 0)) { ?>
+                        <?php } else { ?>
+                            <?php if(empty($model->price_string)) { ?>
                                 <li>
-                                    <strong>Bảo hành 12 tháng: </strong>
-                                    <span class="new"><?= intval($priceArray['month12']['current']) === 0 ? 'Liên hệ' : $priceArray['month12']['current'] ?></span>
-                                    <?php if(intval($priceArray['month12']['old']) !== 0) { ?>
-                                        <span class="old"><?= $priceArray['month12']['old'] ?></span>
+                                    <strong>Bảo hành 3 tháng: </strong>
+                                    <span class="new"><?= intval($model->price) === 0 ? 'Liên hệ' : CurrencyHelper::formatNumber($model->price) ?></span>
+                                </li>
+                                <?php
+                            } else {
+                                $priceArray = Json::decode($model->price_string);
+                                ?>
+                                <li>
+                                    <strong>Bảo hành 3 tháng: </strong>
+                                    <span class="new"><?= intval($priceArray['month3']['current']) === 0 ? 'Liên hệ' : $priceArray['month3']['current'] ?></span>
+                                    <?php if(intval($priceArray['month3']['old']) !== 0) { ?>
+                                        <span class="old"><?= $priceArray['month3']['old'] ?></span>
                                     <?php } ?>
                                 </li>
+                                <?php if(!(intval($priceArray['month3']['current']) === 0 && intval($priceArray['month12']['current']) === 0)) { ?>
+                                    <li>
+                                        <strong>Bảo hành 12 tháng: </strong>
+                                        <span class="new"><?= intval($priceArray['month12']['current']) === 0 ? 'Liên hệ' : $priceArray['month12']['current'] ?></span>
+                                        <?php if(intval($priceArray['month12']['old']) !== 0) { ?>
+                                            <span class="old"><?= $priceArray['month12']['old'] ?></span>
+                                        <?php } ?>
+                                    </li>
+                                <?php } ?>
                             <?php } ?>
-                        <?php } ?>
-                        <?php if($model->discount) { ?>
-                            <li class="text">Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng có tài khoản.</li>
+                            <?php if($model->discount) { ?>
+                                <li class="text">Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng có tài khoản.</li>
+                            <?php } ?>
                         <?php } ?>
                     </ul>
                     <div class="product-description rte" itemprop="description">
