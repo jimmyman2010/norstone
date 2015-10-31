@@ -62,7 +62,7 @@
             position: relative;
             border-top: 1px solid #F5E6D3;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
             &:first-child{
                 border-top: none;
             }
@@ -99,7 +99,7 @@
                 background-color: #FFF;
                 border: 2px solid #ff9900;
                 padding: 5px;
-                font-weight: normal;
+                font-size: 14px;
                 z-index: 100;
                 li{
                     padding: 13px 8px 12px 10px;
@@ -160,6 +160,9 @@
             a{
                 display: inline-block;
                 margin: 4px 5px;
+            }
+            .name{
+                font-weight: 600;
             }
         }
     }

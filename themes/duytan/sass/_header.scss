@@ -10,9 +10,12 @@
     @include background-image(linear-gradient(#FFF, #FFF 40%, #FCFCFC 80%, #EFEFEF));
     .top-left{
         margin-top: 10px;
+        font-weight: 600;
+        font-size: 18px;
         .menu-account{
             display: none;
             position: relative;
+            font-weight: normal;
             .gadget{
                 cursor: pointer;
                 color: red;
@@ -43,6 +46,7 @@
         }
     }
     .top-right{
+        font-weight: 600;
         display: none;
     }
     a{
@@ -84,7 +88,7 @@
     .main-menu {
         display: none;
         float: left;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
         margin: 18px 0 0 25px;
         ul{

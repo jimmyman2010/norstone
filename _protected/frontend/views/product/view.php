@@ -137,9 +137,6 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                 <aside class="scrolling-container">
                     <ul class="scrolling-content col-xs-12">
                         <li><a href="javascript:void(0);" class="active" data-target="#general">Tổng quan</a></li>
-                        <?php if($model->info_tech) { ?>
-                            <li><a href="javascript:void(0);" data-target="#info-tech">Thông số kỷ thuật</a></li>
-                        <?php } ?>
                         <li><a href="javascript:void(0);" data-target="#comment">Ý kiến khách hàng</a></li>
                         <li><a href="javascript:void(0);" data-target="#related">Sản phẩm liên quan</a></li>
                     </ul>
@@ -152,14 +149,6 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                                 <?= Config::findOne(['key' => 'GENERAL_BOTTOM'])->value ?>
                             </div>
                         </div>
-                    <?php if($model->info_tech) { ?>
-                        <div class="widget-title" id="info-tech">
-                            <header><h2>Thông số kỷ thuật</h2></header>
-                            <div class="product-content rte table-responsive">
-                                <?= $model->info_tech ?>
-                            </div>
-                        </div>
-                    <?php } ?>
                         <div class="widget-title" id="comment">
                             <header><h2>Ý kiến khách hàng</h2></header>
                             <div class="product-content">
