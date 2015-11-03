@@ -232,9 +232,10 @@ img{
     .product-information .product-content.list,
     .module-content .content.list,
     .widget .content-widget.list {
-        article:hover .hover-info {
+        article figure:hover .hover-info {
             display: block;
         }
+
     }
     .hover-info {
         position: absolute;

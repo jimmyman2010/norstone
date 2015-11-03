@@ -93,7 +93,7 @@ if(!isset($role['admin'])) {
                                         'items' => [
                                             [
                                                 'label' => 'Popup chào mừng',
-                                                'url' => ['config/general'],
+                                                'url' => ['config/splash-screen'],
                                                 'visible' => isset($role['admin'])
                                             ],
                                             [

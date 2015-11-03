@@ -275,8 +275,34 @@ AppAsset::register($this);
         </footer>
     </div>
 </div>
-
 <?php $this->endBody() ?>
+<?php if(Config::findOne(['key'=>'POPUP_ENABLED'])->value) { ?>
+    <div id="content-splash-screen" class="rte" style="display: none">
+        <?= Config::findOne(['key'=>'POPUP_CONTENT'])->value ?>
+    </div>
+    <script>
+        $(function(){
+            var enabled = getCookie("splashScreen");
+            if(enabled === '') {
+                $.fancybox.open('#content-splash-screen', {
+                    <?= Config::findOne(['key' => 'POPUP_OPTIONS'])->value ?>
+                });
+                setCookie('splashScreen', new Date(), 1);
+            }
+            else {
+                var date = new Date(enabled);
+                var today = new Date();
+                if(date.getDate() !== today.getDate()) {
+                    $.fancybox.open('#content-splash-screen', {
+                        <?= Config::findOne(['key' => 'POPUP_OPTIONS'])->value ?>
+                    });
+                    setCookie('splashScreen', new Date(), 1);
+                }
+            }
+
+        });
+    </script>
+<?php } ?>
 <script type="text/javascript">
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

@@ -28,22 +28,22 @@ class ConfigController extends BackendController
     /**
      * @return string
      */
-    public function actionGeneral() {
-        if(isset(Yii::$app->request->post()['general_top'])) {
-            $value = Yii::$app->request->post()['general_top'];
-            $object = Config::findOne(['key' => 'GENERAL_TOP']);
+    public function actionSplashScreen() {
+        if(isset(Yii::$app->request->post()['popup_content'])) {
+            $value = Yii::$app->request->post()['popup_content'];
+            $object = Config::findOne(['key' => 'POPUP_CONTENT']);
             $object->value = $value;
             $object->save(false);
 
-            $value = Yii::$app->request->post()['general_bottom'];
-            $object = Config::findOne(['key' => 'GENERAL_BOTTOM']);
-            $object->value = $value;
+            $value = Yii::$app->request->post()['popup_enabled'];
+            $object = Config::findOne(['key' => 'POPUP_ENABLED']);
+            $object->value = intval($value);
             $object->save(false);
 
             $this->refresh();
         }
         else {
-            return $this->render('general');
+            return $this->render('splash-screen');
         }
     }
 

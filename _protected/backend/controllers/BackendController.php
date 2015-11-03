@@ -39,7 +39,7 @@ class BackendController extends Controller
                     ],
                     [
                         'controllers' => ['config'],
-                        'actions' => ['general', 'featured'],
+                        'actions' => ['splash-screen', 'featured'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],

@@ -2781,6 +2781,11 @@ span.dynatree-drop-target.dynatree-drop-reject {
   color: white;
 }
 
+/* line 48, ../../sass/app/partials/_content.scss */
+.form-group-enabled {
+  margin-top: 20px;
+}
+
 /* line 4, ../../sass/app/modules/_page-builder.scss */
 .page-builder {
   background: #fcfcfc;
