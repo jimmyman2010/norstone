@@ -26,7 +26,7 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['username', 'email', 'status', 'item_name'], 'safe'],
+            [['username', 'full_name', 'email', 'status', 'item_name'], 'safe'],
         ];
     }
 
@@ -88,7 +88,8 @@ class UserSearch extends User
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
-              ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'full_name', $this->full_name])
+            ->andFilterWhere(['like', 'email', $this->email])
               ->andFilterWhere(['like', 'item_name', $this->item_name]);
 
         return $dataProvider;

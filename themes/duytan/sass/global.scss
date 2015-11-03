@@ -228,6 +228,28 @@ img{
     }
 }
 
+.no-touch {
+    .product-information .product-content.list,
+    .module-content .content.list,
+    .widget .content-widget.list {
+        article:hover .hover-info {
+            display: block;
+        }
+    }
+    .hover-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: rgb(238, 238, 238);
+        padding: 8px;
+        text-decoration: none;
+        display: none;
+    }
+}
+
 /*------------------------------------*\
     RESPONSIVE
 \*------------------------------------*/
@@ -421,7 +443,7 @@ img{
     }
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1790px) {
     .top-nav {
         height: 40px;
         .top-left {

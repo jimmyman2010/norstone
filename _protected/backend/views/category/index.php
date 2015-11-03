@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="portlet-body has-padding">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
             <?php Pjax::begin(['id' => 'categories']) ?>
-            <table class="table table-striped table-bordered"><thead>
+            <table class="table table-striped table-bordered table-hover"><thead>
                 <tr>
                     <th>#</th>
                     <th>Tên danh mục</th>
@@ -63,13 +63,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td>
                             <?php if($index > 0) { ?>
                                 <?= Html::a('', ['switch', 'id' => $item['id'], 'oid' => $result[$index-1]['id']],
-                                    ['class' => 'fa fa-arrow-circle-up', 'title' => 'Up', 'data' => ['method' => "post"]]) ?>
+                                    ['class' => 'fa fa-arrow-circle-up switch', 'title' => 'Up', 'data' => ['method' => "post"]]) ?>
                             <?php } else { ?>
                                 <a class="fa fa-ban" style="visibility: hidden"></a>
                             <?php } ?>
                             <?php if($index < count($result)-1) { ?>
                                 <?= Html::a('', ['switch', 'id' => $item['id'], 'oid' => $result[$index+1]['id']],
-                                    ['class' => 'fa fa-arrow-circle-down', 'title' => 'Down', 'data' => ['method' => "post"]]) ?>
+                                    ['class' => 'fa fa-arrow-circle-down switch', 'title' => 'Down', 'data' => ['method' => "post"]]) ?>
                             <?php } ?>
                         </td>
                         <td>
@@ -115,13 +115,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td style="padding-left: 50px">
                                 <?php if($inx > 0) { ?>
                                     <?= Html::a('', ['switch', 'id' => $child->id, 'oid' => $item['children'][$inx-1]->id],
-                                        ['class' => 'fa fa-arrow-circle-up', 'title' => 'Up', 'data' => ['method' => "post"]]) ?>
+                                        ['class' => 'fa fa-arrow-circle-up switch', 'title' => 'Up', 'data' => ['method' => "post"]]) ?>
                                 <?php } else { ?>
                                     <a class="fa fa-ban" style="visibility: hidden"></a>
                                 <?php } ?>
                                 <?php if($inx < count($item['children'])-1) { ?>
                                     <?= Html::a('', ['switch', 'id' => $child->id, 'oid' => $item['children'][$inx+1]->id],
-                                        ['class' => 'fa fa-arrow-circle-down', 'title' => 'Down', 'data' => ['method' => "post"]]) ?>
+                                        ['class' => 'fa fa-arrow-circle-down switch', 'title' => 'Down', 'data' => ['method' => "post"]]) ?>
                                 <?php } ?>
                             </td>
                             <td style="padding-left: 50px">
@@ -143,3 +143,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </article>
+<?php
+$this->registerJs("
+    $('#categories').on('click', '.switch', function(){
+        var url = $(this).prop('href');
+        $.post(url, function(){
+            $.pjax.reload('#categories');
+        });
+        return false;
+    });
+");

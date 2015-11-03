@@ -105,8 +105,8 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                                     </li>
                                 <?php } ?>
                             <?php } ?>
-                            <?php if($model->discount) { ?>
-                                <li class="text">Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng có tài khoản.</li>
+                            <?php if($model->discount && !Yii::$app->user->isGuest) { ?>
+                                <li class="text">Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng.</li>
                             <?php } ?>
                         <?php } ?>
                     </ul>
@@ -144,9 +144,12 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                         <div class="widget-title" id="general">
                             <header><h2>Tổng quan</h2></header>
                             <div class="product-content rte table-responsive">
-                                <?= Config::findOne(['key' => 'GENERAL_TOP'])->value ?>
                                 <?= $model->general ?>
-                                <?= Config::findOne(['key' => 'GENERAL_BOTTOM'])->value ?>
+                                <?php if($model->getCategory() !== null) {
+                                    $category = $model->getCategory();
+                                    ?>
+                                    <?= $category->parent_id !== 0 ? $category->parent->general : $category->general ?>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="widget-title" id="comment">

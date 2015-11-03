@@ -191,6 +191,22 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return  \common\models\Category|null
+     */
+    public function getCategory() {
+        $query = Category::find()
+            ->innerJoin('tbl_product_category pc', 'tbl_category.id = pc.category_id')
+            ->where(['tbl_category.activated' => 1, 'tbl_category.deleted' => 0, 'pc.product_id' => $this->id]);
+        $categories = $query->all();
+        if($categories !== null) {
+            return $categories[0];
+        }
+        else {
+            return null;
+        }
+    }
+
+    /**
      * @param $categoryId
      * @return static
      */

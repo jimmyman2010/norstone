@@ -34,7 +34,7 @@ class User extends UserIdentity
     {
         return [
             [['username', 'email'], 'filter', 'filter' => 'trim'],
-            [['username', 'email', 'status'], 'required'],
+            [['username', 'full_name', 'email', 'status'], 'required'],
             ['email', 'email'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
@@ -43,8 +43,8 @@ class User extends UserIdentity
             // use passwordStrengthRule() method to determine password strength
             $this->passwordStrengthRule(),
                       
-            ['username', 'unique', 'message' => 'This username has already been taken.'],
-            ['email', 'unique', 'message' => 'This email address has already been taken.'],
+            ['username', 'unique', 'message' => 'Tên đăng nhập này đã được sử dụng.'],
+            ['email', 'unique', 'message' => 'Email này đã được sử dụng.'],
         ];
     }
 
@@ -90,7 +90,8 @@ class User extends UserIdentity
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'username' => Yii::t('app', 'Username'),
+            'username' => 'Tên đăng nhập',
+            'full_name' => 'Họ tên',
             'password' => 'Mật khẩu',
             'email' => Yii::t('app', 'Email'),
             'status' => 'Trạng thái',

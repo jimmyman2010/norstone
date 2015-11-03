@@ -47,4 +47,48 @@ return [
      * You can set support email here.
      */
     'supportEmail' => 'duytancomputer350@gmail.com',
+
+    'toolbarContent' => [
+        'inline' => false,
+        'language' => 'vi',
+        'toolbar' => [
+            ['name' => 'styles', 'items' => [ 'Format' ]],
+            ['name' => 'document', 'items' => [ 'Templates' ]],
+            ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+            ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Blockquote']],
+            ['name' => 'insert', 'items' => [ 'Table', 'Image', 'Smiley', 'Iframe']],
+            ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+            ['name' => 'clipboard', 'items' => ['PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']],
+            ['name' => 'tools', 'items' => [ 'Maximize' ]],
+        ],
+    ],
+    'toolbarDescription' => [
+        'inline' => false,
+        'language' => 'vi',
+        'toolbar' => [
+            ['name' => 'styles', 'items' => [ 'Format' ]],
+            ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+            ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
+            ['name' => 'insert', 'items' => [ 'Table']],
+            ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+            ['name' => 'tools', 'items' => [ 'Maximize' ]],
+        ],
+        'removePlugins' => 'elementspath',
+        'resize_enabled' => false,
+    ],
+    'toolbarIntro' => [
+        'inline' => false,
+        'language' => 'vi',
+        'toolbar' => [
+            ['name' => 'styles', 'items' => [ 'Format' ]],
+            ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
+            ['name' => 'insert', 'items' => [ 'Table']],
+            ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
+            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+            ['name' => 'tools', 'items' => [ 'Maximize' ]],
+        ],
+        'removePlugins' => 'elementspath',
+        'resize_enabled' => false,
+    ]
 ];

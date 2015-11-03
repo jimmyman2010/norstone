@@ -66,7 +66,7 @@ AppAsset::register($this);
                         <?php if(Yii::$app->user->isGuest) { ?>
                             <?= Html::a('<i class="glyphicon glyphicon-user"></i> Đăng nhập', ['site/login']) ?>
                         <?php } else { ?>
-                            <span class="name"><i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->username ?> !</span>
+                            <span class="name"><i class="glyphicon glyphicon-user"></i> Chào <?= Yii::$app->user->identity->full_name ?> !</span>
                             <span class="gadget glyphicon glyphicon-triangle-bottom"></span>
                         <ul>
                             <li>

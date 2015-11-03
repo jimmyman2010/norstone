@@ -69,21 +69,11 @@ $this->registerJs("
                     <aside class="normal-editor radio-group radio-item-0" <?= intval($model->using_page_builder) === 1 ? 'style="display: none"' : '' ?> >
 
                         <?= $form->field($model, 'content')->widget(CKEditor::className(), [
-                            'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],[
-                                'inline' => false,
-                                'language' => 'vi',
-                                'toolbar' => [
-                                    ['name' => 'styles', 'items' => [ 'Format' ]],
-                                    ['name' => 'document', 'items' => [ 'Templates' ]],
-                                    ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                    ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Blockquote']],
-                                    ['name' => 'insert', 'items' => [ 'Table', 'Image', 'Smiley', 'Iframe']],
-                                    ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
-                                    ['name' => 'clipboard', 'items' => ['PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']],
-                                    ['name' => 'tools', 'items' => [ 'Maximize' ]],
-                                ],
-                                'height' => 600
-                            ]),
+                            'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],
+                                array_merge(Yii::$app->params['toolbarContent'], [
+                                    'height' => 600
+                                ])
+                            ),
                         ]) ?>
                     </aside>
                     <aside class="page-builder-editor radio-group radio-item-1" <?= intval($model->using_page_builder) === 0 ? 'style="display: none"' : '' ?> >

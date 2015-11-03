@@ -44,6 +44,7 @@
         }
         .caption{
             padding: 0;
+            display: none;
             textarea{
                 @include border-top-left-radius(0);
                 @include border-top-right-radius(0);

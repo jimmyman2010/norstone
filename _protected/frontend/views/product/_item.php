@@ -26,6 +26,12 @@ use common\models\Product;
             <span class="discount"></span>
             <?php } ?>
         </figcaption>
+
+        <?php if($product->info_tech) { ?>
+            <a class="hover-info" href="<?= Url::toRoute(['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>">
+                <?= $product->info_tech ?>
+            </a>
+        <?php } ?>
     </figure>
     <h3>
         <a href="<?= Url::toRoute(['product/view', 'id' => $product->id, 'slug' => $product->slug]) ?>">

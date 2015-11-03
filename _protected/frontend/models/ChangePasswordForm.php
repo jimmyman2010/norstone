@@ -61,9 +61,16 @@ class ChangePasswordForm extends Model
         ];
     }
 
+    /**
+     * Validates the password.
+     * This method serves as the inline validation for password.
+     *
+     * @param string $attribute The attribute currently being validated.
+     * @param array  $params    The additional name-value pairs.
+     */
     public function passwordOldChecking($attribute, $params) {
         $user = $this->_user;
-        if($user->validatePassword($this->password_old))
+        if(!$user->validatePassword($this->password_old))
         {
             $this->addError($attribute, 'Mật khẩu cũ không đúng.');
         }

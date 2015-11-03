@@ -59,21 +59,15 @@ $this->registerJs("
                     <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::map($model->getParents($model->id, 0, 0), 'id', 'name'), ['prompt'=>'- please select -']) ?>
 
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
-                        'editorOptions' => [
-                            'inline' => false,
-                            'language' => 'vi',
-                            'toolbar' => [
-                                ['name' => 'styles', 'items' => [ 'Format' ]],
-                                ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']],
-                                ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
-                                ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
-                                ['name' => 'tools', 'items' => [ 'Maximize' ]],
-                            ],
-                            'removePlugins' => 'elementspath',
-                            'resize_enabled' => false,
+                        'editorOptions' => array_merge(Yii::$app->params['toolbarDescription'], [
                             'height' => 300
-                        ],
+                        ]),
+                    ]) ?>
+
+                    <?= $form->field($model, 'general')->widget(CKEditor::className(), [
+                        'editorOptions' => array_merge(Yii::$app->params['toolbarContent'], [
+                            'height' => 500
+                        ]),
                     ]) ?>
                 </div>
             </section>

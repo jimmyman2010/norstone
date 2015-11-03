@@ -228,26 +228,18 @@ body{
 .form-group{
     margin-bottom: rem-calc(15);
     position: relative;
+    &.has-error{
+        .form-control{
+            border-color: red;
+        }
+    }
     .control-label{
         margin-bottom: rem-calc(3);
     }
     .help-block{
-        position: absolute;
-        @include border-radius(rem-calc(5));
-        padding: rem-calc(5) rem-calc(12) rem-calc(5) rem-calc(15);
-        z-index: 9;
-        background: #444;
-        color: #fff;
-        left: 25%;
-        &:before{
-            content: "\f0d8";
-            color: #444;
-            position: absolute;
-            top: rem-calc(-26);
-            z-index: 10;
-            font-family: FontAwesome;
-            font-size: rem-calc(28);
-        }
+        color: red;
+        font-size: 12px;
+        margin: 5px 0 0;
         &:empty{
             display: none;
         }

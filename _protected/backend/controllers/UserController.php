@@ -125,7 +125,7 @@ class UserController extends BackendController
             $user->save(false);
             $role->save(false); 
             
-            return $this->redirect(['view', 'id' => $user->id]);
+            return $this->redirect(['index']);
         }
         else 
         {

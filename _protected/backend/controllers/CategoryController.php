@@ -236,7 +236,7 @@ class CategoryController extends BackendController
         $model->save(false);
         $modelOther->save(false);
 
-        return $this->redirect(['index']);
+        //return $this->redirect(['index']);
+        return true;
     }
-
 }

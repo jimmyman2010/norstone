@@ -100,20 +100,9 @@ $this->registerJs("
                     </div>
                     <hr/>
                     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
-                        'editorOptions' => [
-                            'inline' => false,
-                            'language' => 'vi',
-                            'toolbar' => [
-                                ['name' => 'styles', 'items' => [ 'Format' ]],
-                                ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
-                                ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
-                                ['name' => 'tools', 'items' => [ 'Maximize' ]],
-                            ],
-                            'removePlugins' => 'elementspath',
-                            'resize_enabled' => false,
+                        'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
                             'height' => 300
-                        ],
+                        ]),
                     ]) ?>
 
                     <div>
@@ -227,40 +216,20 @@ $this->registerJs("
                         <section role="tabpanel" aria-hidden="false" class="row content active" id="panel1-1">
                             <div class="large-12 columns">
                                 <?= $form->field($model, 'general')->widget(CKEditor::className(), [
-                                    'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],[
-                                        'inline' => false,
-                                        'language' => 'vi',
-                                        'toolbar' => [
-                                            ['name' => 'styles', 'items' => [ 'Format' ]],
-                                            ['name' => 'document', 'items' => [ 'Templates' ]],
-                                            ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                            ['name' => 'paragraph', 'items' => [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Blockquote']],
-                                            ['name' => 'insert', 'items' => [ 'Table', 'Image', 'Smiley', 'Iframe']],
-                                            ['name' => 'links', 'items' => [ 'Link', 'Unlink', 'Anchor' ]],
-                                            ['name' => 'clipboard', 'items' => ['PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']],
-                                            ['name' => 'tools', 'items' => [ 'Maximize' ]],
-                                        ],
-                                        'height' => 600
-                                    ]),
+                                    'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],
+                                        array_merge(Yii::$app->params['toolbarContent'], [
+                                            'height' => 600
+                                        ])
+                                    ),
                                 ]) ?>
                             </div>
                         </section>
                         <section role="tabpanel" aria-hidden="true" class="row content" id="panel1-2">
                             <div class="large-12 columns">
                                 <?= $form->field($model, 'info_tech')->widget(CKEditor::className(), [
-                                    'editorOptions' => [
-                                        'inline' => false,
-                                        'language' => 'vi',
-                                        'toolbar' => [
-                                            ['name' => 'insert', 'items' => [ 'Table']],
-                                            ['name' => 'basicstyles', 'items' => [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ]],
-                                            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
-                                            ['name' => 'tools', 'items' => [ 'Maximize' ]],
-                                        ],
-                                        'removePlugins' => 'elementspath',
-                                        'resize_enabled' => false,
+                                    'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
                                         'height' => 600
-                                    ],
+                                    ]),
                                 ]) ?>
                             </div>
                         </section>

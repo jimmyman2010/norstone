@@ -39,9 +39,9 @@ $this->registerMetaTag(['name' => 'description', 'content' => Config::findOne(['
                             <div class="col-sm-6">
                                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
                             </div>
-                            <div class="col-sm-6 forget-link">
-                                <?= Html::a('Quên mật khẩu?', ['site/request-password-reset']) ?>
-                            </div>
+<!--                            <div class="col-sm-6 forget-link">-->
+<!--                                --><?php //echo Html::a('Quên mật khẩu?', ['site/request-password-reset']) ?>
+<!--                            </div>-->
                         </div>
                         <div class="form-group">
                             <?= Html::submitButton('Đăng nhập', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>

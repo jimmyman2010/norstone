@@ -2006,8 +2006,9 @@ textarea:focus {
 /* line 45, ../../sass/app/partials/_upload.scss */
 .view-thumbnail .photo-zone .caption {
   padding: 0;
+  display: none;
 }
-/* line 47, ../../sass/app/partials/_upload.scss */
+/* line 48, ../../sass/app/partials/_upload.scss */
 .view-thumbnail .photo-zone .caption textarea {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -2016,19 +2017,19 @@ textarea:focus {
   -webkit-border-top-right-radius: 0;
   border-top-right-radius: 0;
 }
-/* line 52, ../../sass/app/partials/_upload.scss */
+/* line 53, ../../sass/app/partials/_upload.scss */
 .view-thumbnail .photo-zone .controls {
   font-size: 1rem;
 }
-/* line 54, ../../sass/app/partials/_upload.scss */
+/* line 55, ../../sass/app/partials/_upload.scss */
 .view-thumbnail .photo-zone .controls label {
   float: left;
 }
-/* line 56, ../../sass/app/partials/_upload.scss */
+/* line 57, ../../sass/app/partials/_upload.scss */
 .view-thumbnail .photo-zone .controls label input {
   margin: 0;
 }
-/* line 60, ../../sass/app/partials/_upload.scss */
+/* line 61, ../../sass/app/partials/_upload.scss */
 .view-thumbnail .photo-zone .controls a {
   float: right;
 }
@@ -3489,58 +3490,46 @@ body .copyright {
   margin-bottom: 0.9375rem;
   position: relative;
 }
-/* line 231, ../../sass/app/global.scss */
+/* line 232, ../../sass/app/global.scss */
+.form-group.has-error .form-control {
+  border-color: red;
+}
+/* line 236, ../../sass/app/global.scss */
 .form-group .control-label {
   margin-bottom: 0.1875rem;
 }
-/* line 234, ../../sass/app/global.scss */
+/* line 239, ../../sass/app/global.scss */
 .form-group .help-block {
-  position: absolute;
-  -moz-border-radius: 0.3125rem;
-  -webkit-border-radius: 0.3125rem;
-  border-radius: 0.3125rem;
-  padding: 0.3125rem 0.75rem 0.3125rem 0.9375rem;
-  z-index: 9;
-  background: #444;
-  color: #fff;
-  left: 25%;
+  color: red;
+  font-size: 12px;
+  margin: 5px 0 0;
 }
-/* line 242, ../../sass/app/global.scss */
-.form-group .help-block:before {
-  content: "\f0d8";
-  color: #444;
-  position: absolute;
-  top: -1.625rem;
-  z-index: 10;
-  font-family: FontAwesome;
-  font-size: 1.75rem;
-}
-/* line 251, ../../sass/app/global.scss */
+/* line 243, ../../sass/app/global.scss */
 .form-group .help-block:empty {
   display: none;
 }
 
-/* line 256, ../../sass/app/global.scss */
+/* line 248, ../../sass/app/global.scss */
 #gallery-application {
   overflow: auto;
   padding: 0.625rem 0;
 }
-/* line 259, ../../sass/app/global.scss */
+/* line 251, ../../sass/app/global.scss */
 #gallery-application label {
   float: left;
   width: 49%;
 }
 
-/* line 264, ../../sass/app/global.scss */
+/* line 256, ../../sass/app/global.scss */
 .user-form table tr td {
   padding: 0;
 }
-/* line 266, ../../sass/app/global.scss */
+/* line 258, ../../sass/app/global.scss */
 .user-form table tr td .input-group {
   position: relative;
   padding-right: 0.625rem;
 }
-/* line 269, ../../sass/app/global.scss */
+/* line 261, ../../sass/app/global.scss */
 .user-form table tr td .input-group .input-group-addon {
   position: absolute;
   right: 1.25rem;

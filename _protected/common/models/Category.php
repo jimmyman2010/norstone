@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $slug
  * @property string $description
+ * @property string $general
  * @property string $seo_title
  * @property string $seo_keyword
  * @property string $seo_description
@@ -45,7 +46,7 @@ class Category extends \yii\db\ActiveRecord
             [['name', 'seo_title'], 'string', 'max' => 256],
             [['seo_description', 'seo_keyword'], 'string', 'max' => 512],
             [['slug'], 'string', 'max' => 128],
-            [['description'], 'safe'],
+            [['description', 'general'], 'safe'],
         ];
     }
 
@@ -59,6 +60,7 @@ class Category extends \yii\db\ActiveRecord
             'name' => 'Tên danh mục',
             'slug' => Yii::t('app', 'Slug'),
             'description' => 'Mô tả',
+            'general' => 'Thông tin chung SP',
             'seo_title' => Yii::t('app', 'SEO Title'),
             'seo_keyword' => Yii::t('app', 'SEO Keyword'),
             'seo_description' => Yii::t('app', 'SEO Description'),
