@@ -1,13 +1,13 @@
-<?php
-
-Yii::setAlias('@uploads', __DIR__ . '/../../../uploads');
-
-return [
-    'adminEmail' => 'admin@example.com',
-    'image_sizes' => [
-        'thumbnail' => [318, 212],
-        'thumbnail-search' => [130, 85],
-        'thumbnail-slide' => [130, 85],
-        'slide' => [650, 432]
-    ]
-];
+<?php
+
+Yii::setAlias('@uploads', __DIR__ . '/../../../uploads');
+
+return [
+    'adminEmail' => 'admin@example.com',
+    'image_sizes' => [
+        'thumbnail' => [318, 212],
+        'thumbnail-search' => [130, 85],
+        'thumbnail-slide' => [130, 85],
+        'slide' => [650, 432]
+    ]
+];

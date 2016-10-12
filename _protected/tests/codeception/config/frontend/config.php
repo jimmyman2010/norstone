@@ -1,5 +1,5 @@
-<?php
-/**
- * Application configuration for all frontend test types
- */
+<?php
+/**
+ * Application configuration for all frontend test types
+ */
 return [];

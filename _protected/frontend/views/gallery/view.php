@@ -18,6 +18,13 @@ $this->title = ucfirst($model->name) . ' | ' . Yii::t('app', Yii::$app->name);
 $this->params['breadcrumbs'][] = $model->name;
 
 GalleryAsset::register($this);
+if($model->seo_keyword)
+    $this->registerMetaTag(['name' => 'keywords', 'value' => $model->seo_keyword]);
+if($model->seo_description)
+    $this->registerMetaTag(['name' => 'description', 'value' => $model->seo_description]);
+else
+    $this->registerMetaTag(['name' => 'description', 'value' => 'Norstone. New dimensions in natural stone. Innovative natural stone products hand-crafted and designed to inspire you']);
+
 ?>
 
 <div class="row">
@@ -73,11 +80,14 @@ GalleryAsset::register($this);
         <div class="close"><a href="<?= Url::home() ?>" class="right">Close <span class="ti-close"></span></a></div>
         <h2><?= Html::encode($model->name) ?></h2>
         <div class="des"><?= $model->description ?></div>
-
-        <?php if(!empty($model->lean_more_link)) { ?>
-        <p><a href="<?= Url::to($model->lean_more_link) ?>" target="_blank" class="more-btn button radius">Learn more</a></p>
-        <?php } ?>
-
+        <p>
+            <?php if(!empty($model->lean_more_link)) { ?>
+            <a href="<?= Url::to($model->lean_more_link) ?>" target="_blank" class="more-btn button radius">Learn more</a>
+            <?php } ?>
+            <a href="<?= Url::toRoute('site/contact') ?>" class="more-btn contact-us button radius">
+                <i class="ti-email"></i> <?= Yii::t('app', 'Contact us') ?>
+            </a>
+        </p>
         <ul class="info">
             <li><strong>Product name:</strong>
                 <?= Html::a($model->product->name, ['site/index', 'product'=>$model->product_id], ['class'=> 'link']) ?>
@@ -86,7 +96,7 @@ GalleryAsset::register($this);
                 <?= Html::a($model->color->name, ['site/index', 'color'=>$model->color_id], ['class'=> 'link']) ?>
             </li>
             <li><strong>Application:</strong>
-                <?= Html::a($model->application ? Yii::t('app', 'Internal') : Yii::t('app', 'External'),
+                <?= Html::a($model->application ? Yii::t('app', 'Interior') : Yii::t('app', 'Exterior'),
                     ['site/index', 'application'=>$model->application], ['class'=> 'link']) ?>
             </li>
             <li><strong>Tags:</strong>
@@ -111,7 +121,7 @@ GalleryAsset::register($this);
 
 <?php if(count($relatedList) > 0) { ?>
 <aside class="gallery-list related-gallery">
-    <h3 class="text-center"><span>See also this images</span></h3>
+    <h3 class="text-center"><span>See also these images</span></h3>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
         <?php foreach ($relatedList as $item) { ?>
         <li class="gallery-thumb">

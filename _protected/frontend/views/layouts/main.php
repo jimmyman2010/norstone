@@ -14,13 +14,14 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <script src="<?= Yii::$app->view->theme->baseUrl ?>/bower_components/modernizr/modernizr.js"></script>
     <?php $this->head() ?>
+    <script type='text/javascript' src='https://crm.zoho.com/crm/javascript/zcga.js'></script>
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -96,7 +97,7 @@ AppAsset::register($this);
                         <li><a class="tw" href="https://twitter.com/NorstoneGlobal" title="Twitter" target="_blank">Twitter</a></li>
                         <li><a class="pin" href="https://www.pinterest.com/norstoneglobal/" title="Pinterest" target="_blank">Pinterest</a></li>
                         <li><a class="ins" href="https://instagram.com/norstoneglobal/" title="Instagram" target="_blank">Instagram</a></li>
-                        <li><a class="mail" href="mailto:#" title="Email">Email</a></li>
+                        <li><a class="mail" href="mailto:sales@norstone.com.au" title="Email">Email</a></li>
                     </ul>
                 </section><!--end socials-->
 
@@ -107,11 +108,11 @@ AppAsset::register($this);
             <div class="row">
                 <div class="large-12 columns">
                     <div class="links">
-                        <a href="<?= Url::to('http://www.norstone.global/') ?>">Official Norstone Website</a>
+                        <a href="<?= Url::to('http://www.norstone.com.au/') ?>">Official Norstone Website</a>
                         <span>&nbsp;&bull;&nbsp;</span>
-                        <a href="<?= Url::to('http://www.norstone.global/legal/') ?>">Legal</a>
+                        <a href="<?= Url::to('http://www.norstone.com.au/legal/') ?>">Legal</a>
                         <span>&nbsp;&bull;&nbsp;</span>
-                        <a href="<?= Url::to('http://www.norstone.global/trademarks/') ?>">Trademarks</a>
+                        <a href="<?= Url::to('http://www.norstone.com.au/trademarks/') ?>">Trademarks</a>
                         <span>&nbsp;&bull;&nbsp;</span>
                         <a href="<?= Url::toRoute('site/contact') ?>">Contact Us</a>
                     </div>

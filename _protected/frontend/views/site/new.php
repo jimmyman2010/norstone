@@ -10,12 +10,13 @@ use yii\widgets\Pjax;
 /* @var $tags array */
 /* @var $dataProvider yii\data\ActiveDataProvider; */
 
-$this->title = Yii::t('app', 'New Images');
+$this->title = Yii::t('app', 'New Images') . ' | ' . Yii::t('app', Yii::$app->name);
+$this->registerMetaTag(['name' => 'description', 'value' => 'Norstone. New dimensions in natural stone. Innovative natural stone products hand-crafted and designed to inspire you']);
 
 ?>
 <section class="new welcome text-center">
     <h2><span>Check out our</span> New Images</h2>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
+    <p>Check some of our latest photos.</p>
 </section><!--end welcome-->
 <section class="gallery-list">
 

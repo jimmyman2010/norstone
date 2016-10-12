@@ -11,6 +11,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider; */
 
 $this->title = Yii::t('app', Yii::$app->name);
+$this->registerMetaTag(['name' => 'description', 'value' => 'Norstone. New dimensions in natural stone. Innovative natural stone products hand-crafted and designed to inspire you']);
 
 /**
  * @param string $type
@@ -46,18 +47,20 @@ function getUrl($type, $id, $request, $remove = false)
 ?>
 <section class="welcome text-center">
     <h2><span>Norstone Image Gallery</span> When images speak louder than words</h2>
-    <p>Welcome to our Norstone image gallery. We are excited to show you how can our eco friendly stone products contribute to a better aesthetics of architecture and spaces that surrounds us. Stone is universal material suitable for various applications. Use our <a href="javascript:;">"Choose the products"</a> searching tool to find inspiration you are looking for.</p>
+    <p></p>
 </section><!--end welcome-->
 <section class="gallery-list">
 
     <div class="filter-gallery">
-        <div class="text-center"><span id="drop-view" data-target="drop-content" class="button">Choose the product</span></div>
+        <div class="text-center"><span class="button gallery-filter-control">Choose the product</span></div>
     </div>
     <?php Pjax::begin(['id' => 'galleries']) ?>
+
     <div class="filter-gallery">
-        <div class="filter-content" id="drop-content" data-dropdown-content aria-hidden="true" tabindex="-1"
+        <div class="filter-content gallery-filter-area"
             <?= (isset($request['color']) || isset($request['product']) || isset($request['application'])) ? ' style="display:block"' : '' ?>
             >
+
             <div class="row text-left">
                 <div class="small-12 medium-12 large-4 columns text-center">
                     <div class="dropdown" data-dropdown="drop1" aria-expanded="false">
@@ -117,10 +120,10 @@ function getUrl($type, $id, $request, $remove = false)
                         <?= Yii::t('app', 'Show all') ?>
                     </a>
                     <a <?= (isset($request['application']) && intval($request['application']) === 1) ? 'class="active"' : '' ?> href="<?= getUrl('application', 1, $request) ?>">
-                        <?= Yii::t('app', 'Internal') ?>
+                        <?= Yii::t('app', 'Interior') ?>
                     </a>
                     <a <?= (isset($request['application']) && intval($request['application']) === 0) ? 'class="active"' : '' ?> href="<?= getUrl('application', 0, $request) ?>">
-                        <?= Yii::t('app', 'External') ?>
+                        <?= Yii::t('app', 'Exterior') ?>
                     </a>
                 </div>
             </div>
@@ -142,8 +145,8 @@ function getUrl($type, $id, $request, $remove = false)
             if(count($galleries) === 0) {
         ?>
             <li class="no-results text-center">
-                <h2>We are sorry but now image matched your search criteria</h2>
-                <a class="button">Please try again</a>
+                <h2>We are sorry but no image matches your search criteria.</h2>
+                <a class="button" href="http://gallery.norstone.global">Reset the filters</a>
             </li>
 
         <?php
@@ -172,7 +175,7 @@ if(isset($request['product']) || isset($request['color']) || isset($request['app
 {
     $this->registerJs("$(document).ready(function(){
         $('html, body').animate({
-            scrollTop: $('#drop-view').offset().top
+            scrollTop: $('.gallery-filter-control').offset().top
         }, 800);
     });");
 }

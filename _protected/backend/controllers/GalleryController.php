@@ -73,7 +73,7 @@ class GalleryController extends BackendController
 
         if($model->load(Yii::$app->request->post()))
         {
-            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+            if(intval(Yii::$app->request->post()['type-submit']) === 1) {
                 $model->status = Gallery::STATUS_PUBLISHED;
                 $model->publish_date = time();
             } else {
@@ -244,7 +244,7 @@ class GalleryController extends BackendController
 
         if ($model->load(Yii::$app->request->post())) {
             $model->slug = $model->getSlug($model->slug, $id);
-            if(Yii::$app->request->post()['type-submit'] === Yii::t('app', 'Publish')) {
+            if(intval(Yii::$app->request->post()['type-submit']) === 1) {
                 if($model->status !== Gallery::STATUS_PUBLISHED) {
                     $model->status = Gallery::STATUS_PUBLISHED;
                     $model->publish_date = time();
