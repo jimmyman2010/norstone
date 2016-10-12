@@ -123,6 +123,9 @@ AppAsset::register($this);
     </div>
 
     <?php $this->endBody() ?>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57fe2a1b97842897"></script>
+
 </body>
 </html>
 <?php $this->endPage() ?>

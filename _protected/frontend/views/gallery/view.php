@@ -108,16 +108,9 @@ else
 
     </div><!--end right content-->
 </div>
-
-<div class="shared-this">
-    <p>Share with your friends:</p>
-    <span class='st_facebook_hcount' displayText='Facebook'></span>
-    <span class='st_twitter_hcount' displayText='Tweet'></span>
-    <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-    <span class='st_googleplus_hcount' displayText='Google +'></span>
-    <span class='st_pinterest_hcount' displayText='Pinterest'></span>
-    <span class='st_email_hcount' displayText='Email'></span>
-</div><!--end viral tools-->
+<br>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox"></div>
 
 <?php if(count($relatedList) > 0) { ?>
 <aside class="gallery-list related-gallery">
