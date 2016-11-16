@@ -104,10 +104,6 @@ class ProductController extends FrontendController {
         }
         $orderBy = Yii::$app->getRequest()->getQueryParam('orderby');
         switch($orderBy) {
-            case 'gt':{
-                $query->orderBy('tbl_product.price ASC');
-                break;
-            }
             case 'az':{
                 $query->orderBy('tbl_product.name ASC');
                 break;
@@ -116,9 +112,13 @@ class ProductController extends FrontendController {
                 $query->orderBy('tbl_product.name DESC');
                 break;
             }
-            case 'gg':
-            default: {
+            case 'gg':{
                 $query->orderBy('tbl_product.price DESC');
+                break;
+            }
+            case 'gt':
+            default: {
+                $query->orderBy('tbl_product.status DESC, tbl_product.price ASC');
                 break;
             }
         }
