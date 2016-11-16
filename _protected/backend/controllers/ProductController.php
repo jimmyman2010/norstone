@@ -268,6 +268,9 @@ class ProductController extends BackendController
                     $model->published_date = time();
                 }
             }
+			if(isset(Yii::$app->request->post()['Product']['status'])) {
+                $model->status = Yii::$app->request->post()['Product']['status'];
+            }
             if(isset(Yii::$app->request->post()['Product']['discount'])) {
                 $model->discount = CurrencyHelper::toNumber(Yii::$app->request->post()['Product']['discount']);
             }

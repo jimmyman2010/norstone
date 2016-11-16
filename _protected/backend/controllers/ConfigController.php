@@ -40,6 +40,11 @@ class ConfigController extends BackendController
             $object->value = intval($value);
             $object->save(false);
 
+            $value = Yii::$app->request->post()['popup_options'];
+            $object = Config::findOne(['key' => 'POPUP_OPTIONS']);
+            $object->value = $value;
+            $object->save(false);
+
             $this->refresh();
         }
         else {

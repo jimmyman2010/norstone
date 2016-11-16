@@ -2,9 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\assets\ArrangementAsset;
 
 /* @var $this yii\web\View */
 $this->title = Yii::t('app', Yii::$app->name);
+
+ArrangementAsset::register($this);
 
 ?>
 

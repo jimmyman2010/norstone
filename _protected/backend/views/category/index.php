@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ['class' => 'fa fa-trash-o', 'title' => 'Delete category',
                                     'data' => [
                                         'confirm' => "Are you sure you want to delete this category?",
-                                        'data-method'=>"post"
+                                        'method' => "post"
                                     ]
                                 ]) ?>
                         </td>

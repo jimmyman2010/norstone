@@ -209,13 +209,10 @@ AppAsset::register($this);
                             </ul>
                         </div>
                         <div class="module fan-page">
-                            <div class="fb-page" data-href="https://www.facebook.com/maytinhdebandongbo" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
-                                <div class="fb-xfbml-parse-ignore">
-                                    <blockquote cite="https://www.facebook.com/maytinhdebandongbo">
-                                        <a href="https://www.facebook.com/maytinhdebandongbo">Máy tính để bàn đồng bộ</a>
-                                    </blockquote>
-                                </div>
-                            </div>
+							<div class="fb-page" 
+									data-tabs="messages"
+									data-href="https://www.facebook.com/maytinhdebandongbo"
+									data-hide-cover="false"></div>
                         </div>
                         <div class="module adv">
                             <div class="content">

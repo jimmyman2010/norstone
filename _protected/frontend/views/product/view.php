@@ -106,7 +106,7 @@ $this->registerMetaTag(['name' => 'description', 'content' => !empty($model->seo
                                 <?php } ?>
                             <?php } ?>
                             <?php if($model->discount && !Yii::$app->user->isGuest) { ?>
-                                <li class="text">Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng.</li>
+                                <li class="text">Giảm ngay <?= CurrencyHelper::formatNumber($model->discount) ?> cho khách hàng <?= Yii::$app->user->identity->full_name ?>.</li>
                             <?php } ?>
                         <?php } ?>
                     </ul>

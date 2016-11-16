@@ -69,14 +69,14 @@ class ProductSearch extends Product
         ]);
 
         $this->load($params);
-
+//die('sdfds');
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
         if(!empty($this->price_init)) {
-            $query->innerJoin('tbl_product_category pc', 'tbl_product.id = pc.product_id');
+            $query->innerJoin('tbl_product_category pc', 'tbl_product.id = pc.product_id AND pc.deleted = 0');
             $query->andWhere(['pc.category_id' => $this->price_init]);
         }
 
